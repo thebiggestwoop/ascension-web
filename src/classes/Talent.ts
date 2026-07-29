@@ -2,6 +2,8 @@ import type { AttributeId, SkillId, SocialClassId, TalentCategory, TalentTier } 
 
 export interface ITalentPrerequisite {
   attribute?: { id: AttributeId; minRating: number }
+  /** OR across attributes, e.g. Gauntlet Adept's "Agility, Brawn, or Coordination 10". */
+  attributeAny?: { ids: AttributeId[]; minRating: number }
   skill?: { id: SkillId; minRating: number }
   socialClass?: SocialClassId
   /** References a content/lifepath/careers.json option id, e.g. "acolyte". */
