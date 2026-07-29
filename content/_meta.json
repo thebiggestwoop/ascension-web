@@ -20,8 +20,8 @@
     "equipment.mounts": "4 of 4 (complete)",
     "equipment.general": "4 of 4 (complete: Banner, Healing Potion, Tome, Spell Implement)",
     "talents.index": "complete and corrected: 21 Narrative Archetypes (not the initial miscount of 15 - Setting Archetype has 9 groups, not 3) + 68 Combat Talent Trees (not 49 - General has 42, not 24, and Weapon Adept has 8, not 7; both undercounts came from a regex mapping pass that only caught trees with an explicit '(Requires X)' clause) - see talents/_index.json",
-    "talents.narrative": "21 of 21 Archetypes fully transcribed (105 abilities: 6 Skill + 3 Class + 9 Setting + 3 Magickal)",
-    "talents.combat": "68 of 68 Talent Trees fully transcribed (8 Weapon Adept + 42 General + 18 Magick, ~325 abilities total)",
+    "talents.narrative": "21 of 21 Archetypes fully transcribed (102 abilities: 6 Skill + 3 Class + 9 Setting + 3 Magickal)",
+    "talents.combat": "68 of 68 Talent Trees fully transcribed (8 Weapon Adept + 42 General + 18 Magick, 253 abilities total)",
     "spells.arcane": "20 of 20 fully transcribed",
     "spells.light": "25 of 25 fully transcribed",
     "spells.dark": "18 of 18 fully transcribed (with Willpower costs)"
