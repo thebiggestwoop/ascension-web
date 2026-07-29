@@ -1,38 +1,28 @@
 [
-  {
-    "id": "shortsword",
-    "name": "Shortsword",
-    "tag": "sword",
-    "damageCD": 2,
-    "damageEffects": [],
-    "hands": 1,
-    "qualities": [{ "quality": "parrying" }]
-  },
-  {
-    "id": "longsword",
-    "name": "Longsword",
-    "tag": "sword",
-    "damageCD": 3,
-    "damageEffects": [],
-    "hands": 1,
-    "qualities": [{ "quality": "parrying" }, { "quality": "heavy" }]
-  },
-  {
-    "id": "greatsword",
-    "name": "Greatsword",
-    "tag": "sword",
-    "damageCD": 4,
-    "damageEffects": [],
-    "hands": 2,
-    "qualities": [{ "quality": "parrying" }, { "quality": "heavy" }, { "quality": "bulky" }]
-  },
-  {
-    "id": "saber",
-    "name": "Saber",
-    "tag": "sword",
-    "damageCD": 2,
-    "damageEffects": [],
-    "hands": 1,
-    "qualities": [{ "quality": "saddleback" }]
-  }
+  { "id": "shortsword", "name": "Shortsword", "tag": "sword", "damageCD": 2, "damageEffects": [], "hands": 1, "qualities": [{ "quality": "parrying" }] },
+  { "id": "longsword", "name": "Longsword", "tag": "sword", "damageCD": 3, "damageEffects": [], "hands": 1, "qualities": [{ "quality": "parrying" }, { "quality": "heavy" }] },
+  { "id": "greatsword", "name": "Greatsword", "tag": "sword", "damageCD": 4, "damageEffects": [], "hands": 2, "qualities": [{ "quality": "parrying" }, { "quality": "heavy" }, { "quality": "bulky" }] },
+  { "id": "saber", "name": "Saber", "tag": "sword", "damageCD": 2, "damageEffects": [], "hands": 1, "qualities": [{ "quality": "saddleback" }] },
+  { "id": "rapier", "name": "Rapier", "tag": "sword", "damageCD": 1, "damageEffects": [], "hands": 1, "qualities": [] },
+  { "id": "dagger", "name": "Dagger", "tag": "sword", "damageCD": 1, "damageEffects": [], "hands": 1, "qualities": [{ "quality": "parrying" }, { "quality": "subtle" }] },
+  { "id": "handaxe", "name": "Handaxe", "tag": "axe", "damageCD": 3, "damageEffects": [], "hands": 1, "qualities": [] },
+  { "id": "battleaxe", "name": "Battleaxe", "tag": "axe", "damageCD": 4, "damageEffects": [], "hands": 2, "qualities": [] },
+  { "id": "greataxe", "name": "Greataxe", "tag": "axe", "damageCD": 5, "damageEffects": [], "hands": 2, "qualities": [{ "quality": "heavy" }, { "quality": "bulky" }] },
+  { "id": "warhammer", "name": "Warhammer", "tag": "axe", "damageCD": 2, "damageEffects": ["knockdown"], "hands": 1, "qualities": [{ "quality": "saddleback" }] },
+  { "id": "mace", "name": "Mace", "tag": "axe", "damageCD": 2, "damageEffects": ["destructive"], "hands": 1, "qualities": [] },
+  { "id": "club_baton", "name": "Club, Baton, etc.", "tag": "axe", "damageCD": 1, "damageEffects": ["knockdown"], "hands": 1, "qualities": [] },
+  { "id": "spear", "name": "Spear", "tag": "spear", "damageCD": 2, "damageEffects": [], "hands": 1, "qualities": [{ "quality": "extended", "value": 2 }] },
+  { "id": "glaive", "name": "Glaive", "tag": "spear", "damageCD": 3, "damageEffects": [], "hands": 2, "qualities": [{ "quality": "extended", "value": 2 }] },
+  { "id": "halberd", "name": "Halberd", "tag": "spear", "damageCD": 3, "damageEffects": ["knockdown"], "hands": 2, "qualities": [{ "quality": "extended", "value": 2 }, { "quality": "heavy" }] },
+  { "id": "pike", "name": "Pike", "tag": "spear", "damageCD": 3, "damageEffects": [], "hands": 2, "qualities": [{ "quality": "extended", "value": 3 }, { "quality": "heavy" }, { "quality": "bulky" }] },
+  { "id": "lance", "name": "Lance", "tag": "spear", "damageCD": 2, "damageEffects": [], "hands": 1, "qualities": [{ "quality": "saddleback" }] },
+  { "id": "brass_knuckles", "name": "Brass Knuckles", "tag": "gauntlet", "damageCD": 2, "damageEffects": [], "hands": 1, "qualities": [{ "quality": "subtle" }] },
+  { "id": "metal_claws", "name": "Metal Claws", "tag": "gauntlet", "damageCD": 3, "damageEffects": [], "hands": 2, "qualities": [] },
+  { "id": "spike_fists", "name": "Spike Fists", "tag": "gauntlet", "damageCD": 4, "damageEffects": [], "hands": 2, "qualities": [{ "quality": "heavy" }] },
+  { "id": "shortbow", "name": "Shortbow", "tag": "bow", "damageCD": 2, "damageEffects": [], "hands": 2, "range": "9", "qualities": [{ "quality": "close_quarters" }] },
+  { "id": "longbow", "name": "Longbow", "tag": "bow", "damageCD": 3, "damageEffects": [], "hands": 2, "range": "12", "qualities": [{ "quality": "heavy" }] },
+  { "id": "crossbow", "name": "Crossbow", "tag": "bow", "damageCD": 5, "damageEffects": [], "hands": 2, "range": "9", "qualities": [{ "quality": "loading" }, { "quality": "heavy" }, { "quality": "bulky" }] },
+  { "id": "throwing_knife", "name": "Throwing Knife", "tag": "sword", "damageCD": 1, "damageEffects": [], "hands": 1, "range": "7", "qualities": [{ "quality": "thrown", "value": 4 }, { "quality": "close_quarters" }] },
+  { "id": "javelin", "name": "Javelin", "tag": "spear", "damageCD": 2, "damageEffects": [], "hands": 1, "range": "8", "qualities": [{ "quality": "thrown", "value": 2 }] },
+  { "id": "throwing_axe", "name": "Throwing Axe", "tag": "axe", "damageCD": 2, "damageEffects": [], "hands": 1, "range": "6", "qualities": [{ "quality": "thrown", "value": 3 }] }
 ]

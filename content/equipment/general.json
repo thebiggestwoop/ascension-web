@@ -1,9 +1,30 @@
 [
   {
-    "id": "healing_potion",
-    "name": "Healing Potion",
+    "id": "banner",
+    "name": "Banner",
     "hands": 1,
     "qualities": [],
+    "description": "A banner shows your affiliation to a group, a house, or faction, and creates a sense of unity. While carrying one, you generate 1 Bonus Momentum for all Authority Combat Tasks."
+  },
+  {
+    "id": "healing_potion",
+    "name": "Healing Potion",
+    "hands": 0,
+    "qualities": [],
     "description": "As a Minor Action, you can drink a Healing Potion and immediately restore HP equal to one health bar, and the Healing Potion is removed from your inventory. You may administer a potion to an adjacent ally as a Major Action."
+  },
+  {
+    "id": "tome",
+    "name": "Tome",
+    "hands": 0,
+    "qualities": [],
+    "description": "Tomes are magic books or scrolls that increase the number of spells a spellcaster can use. As long as you already have spell slots, each tome you have in your inventory grants 2 additional spell slots."
+  },
+  {
+    "id": "spell_implement",
+    "name": "Spell Implement",
+    "hands": 1,
+    "qualities": [],
+    "description": "A spell implement (e.g. an arcane orb, or a holy staff) is necessary to cast spells effectively. (See Chapter Eight: Magick)"
   }
 ]

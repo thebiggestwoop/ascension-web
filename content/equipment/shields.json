@@ -1,0 +1,5 @@
+[
+  { "id": "round_shield", "name": "Round Shield", "resistance": 0, "hands": 1, "qualities": [{ "quality": "shield" }] },
+  { "id": "tower_shield", "name": "Tower Shield", "resistance": 0, "hands": 1, "qualities": [{ "quality": "shield" }, { "quality": "concealing" }, { "quality": "exhausting" }] },
+  { "id": "buckler", "name": "Buckler", "resistance": 0, "hands": 1, "qualities": [{ "quality": "parrying" }, { "quality": "effortless" }] }
+]

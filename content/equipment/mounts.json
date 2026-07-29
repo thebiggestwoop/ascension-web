@@ -1,0 +1,37 @@
+[
+  {
+    "id": "horse",
+    "name": "Horse",
+    "description": "A numerous and favored mount to take into battle.",
+    "ridingAttribute": "coordination",
+    "baseSpeed": 6,
+    "canFly": false,
+    "specialRules": "Horses have difficulty moving over difficult terrain-every space of movement over, onto, and off of difficult terrain costs thrice as much as standard."
+  },
+  {
+    "id": "griffin",
+    "name": "Griffin",
+    "description": "Horse-like creatures with the head and wings of an eagle, allowing flight.",
+    "ridingAttribute": "presence",
+    "baseSpeed": 5,
+    "canFly": true
+  },
+  {
+    "id": "pegasus",
+    "name": "Pegasus",
+    "description": "Majestic equine creatures with great feathery wings, said to have come from Heaven by some faiths.",
+    "ridingAttribute": "faith",
+    "baseSpeed": 5,
+    "canFly": true
+  },
+  {
+    "id": "flying_broom",
+    "name": "Flying Broom",
+    "description": "Magically enchanted broomsticks that are favored flying devices of wizards.",
+    "ridingAttribute": "reason",
+    "baseSpeed": 5,
+    "canFly": true,
+    "groundImmobile": true,
+    "specialRules": "A broom cannot move on the ground; it must be flying to move."
+  }
+]

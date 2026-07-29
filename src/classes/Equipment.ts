@@ -66,6 +66,8 @@ export interface IArmorData {
   name: string
   resistance: number
   qualities: IQualityInstance[]
+  /** Shields consume a hand; worn body armor does not (omitted). */
+  hands?: 1 | 2
 }
 
 export interface IGeneralItemData {

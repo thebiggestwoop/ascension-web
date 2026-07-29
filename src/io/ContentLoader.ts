@@ -3,6 +3,7 @@ import type { ISkillData } from '@/classes/Skill'
 import type { ILifepathStageData, IFinishingTouchesData, IStandardArrayData } from '@/classes/Lifepath'
 import type { IAdvancementData } from '@/classes/Advancement'
 import type { IWeaponData, IArmorData, IGeneralItemData } from '@/classes/Equipment'
+import type { IMountData } from '@/classes/Mount'
 import type { ITalentData } from '@/classes/Talent'
 import type { ISpellData } from '@/classes/Spell'
 
@@ -18,6 +19,8 @@ import standardArrayJson from '@content/standard-array.json'
 import advancementJson from '@content/advancement.json'
 import weaponsJson from '@content/equipment/weapons.json'
 import armorJson from '@content/equipment/armor.json'
+import shieldsJson from '@content/equipment/shields.json'
+import mountsJson from '@content/equipment/mounts.json'
 import generalItemsJson from '@content/equipment/general.json'
 import narrativeTalentsJson from '@content/talents/narrative.json'
 import combatTalentsJson from '@content/talents/combat.json'
@@ -44,8 +47,9 @@ export const CoreContent = {
   equipment: {
     weapons: weaponsJson as IWeaponData[],
     armor: armorJson as IArmorData[],
+    shields: shieldsJson as IArmorData[],
+    mounts: mountsJson as IMountData[],
     general: generalItemsJson as IGeneralItemData[],
-    // shields, mounts are pending further Phase 1 data entry
   },
   talents: {
     narrative: narrativeTalentsJson as ITalentData[],
