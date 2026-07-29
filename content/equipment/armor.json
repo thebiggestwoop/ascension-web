@@ -1,0 +1,26 @@
+[
+  {
+    "id": "light_armor",
+    "name": "Light Armor",
+    "resistance": 1,
+    "qualities": []
+  },
+  {
+    "id": "medium_armor",
+    "name": "Medium Armor",
+    "resistance": 2,
+    "qualities": [{ "quality": "overt", "value": 1 }]
+  },
+  {
+    "id": "heavy_armor",
+    "name": "Heavy Armor",
+    "resistance": 3,
+    "qualities": [{ "quality": "overt", "value": 2 }, { "quality": "bulky" }]
+  },
+  {
+    "id": "imposing_armor",
+    "name": "Imposing Armor",
+    "resistance": 4,
+    "qualities": [{ "quality": "overt", "value": 2 }, { "quality": "bulky" }, { "quality": "exhausting" }]
+  }
+]

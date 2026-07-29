@@ -1,0 +1,77 @@
+export enum WeaponTag {
+  Sword = 'sword',
+  Axe = 'axe',
+  Spear = 'spear',
+  Bow = 'bow',
+  Gauntlet = 'gauntlet',
+  Spell = 'spell',
+}
+
+/** Fixed rules-text quality enum, reusable across weapons/armor/shields. */
+export enum EquipmentQuality {
+  Bulky = 'bulky',
+  Burst = 'burst',
+  CloseQuarters = 'close_quarters',
+  Effortless = 'effortless',
+  Extended = 'extended',
+  Heavy = 'heavy',
+  Knockback = 'knockback',
+  Loading = 'loading',
+  Parrying = 'parrying',
+  Piercing = 'piercing',
+  Reliable = 'reliable',
+  Saddleback = 'saddleback',
+  Subtle = 'subtle',
+  Thrown = 'thrown',
+  Concealing = 'concealing',
+  Exhausting = 'exhausting',
+  Overt = 'overt',
+  Shield = 'shield',
+}
+
+/** Triggered by rolling an Effect [!] face on a Challenge Die; checked against an Effect Save. */
+export enum DamageEffect {
+  Daunting = 'daunting',
+  Destructive = 'destructive',
+  Draining = 'draining',
+  Knockdown = 'knockdown',
+  Persistent = 'persistent',
+  Pinning = 'pinning',
+  Provoking = 'provoking',
+  Startling = 'startling',
+  Stunning = 'stunning',
+  Terrifying = 'terrifying',
+}
+
+export interface IQualityInstance {
+  quality: EquipmentQuality
+  /** Numeric value for qualities like Burst X / Reliable X / Thrown X. Omitted otherwise. */
+  value?: number
+}
+
+export interface IWeaponData {
+  id: string
+  name: string
+  tag: WeaponTag
+  /** Base [CD] count before adding the wielder's Damage Bonus (Skirmish). */
+  damageCD: number
+  damageEffects: DamageEffect[]
+  hands: 1 | 2
+  range?: string
+  qualities: IQualityInstance[]
+}
+
+export interface IArmorData {
+  id: string
+  name: string
+  resistance: number
+  qualities: IQualityInstance[]
+}
+
+export interface IGeneralItemData {
+  id: string
+  name: string
+  hands: 0 | 1 | 2
+  qualities: IQualityInstance[]
+  description: string
+}

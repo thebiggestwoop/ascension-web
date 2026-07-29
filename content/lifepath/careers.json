@@ -1,0 +1,31 @@
+{
+  "id": "career",
+  "name": "Step Four: Career",
+  "selectCount": 1,
+  "options": [
+    {
+      "id": "acolyte",
+      "name": "Acolyte",
+      "description": "Your character's career is in service to their faith or to a religious institution, whether that may be as a priest, a holy knight, or an ascetic monk.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [
+          { "amount": 2, "restrictTo": ["authority", "study"] },
+          { "amount": 1 },
+          { "amount": 1 }
+        ],
+        "focusCount": 2,
+        "focusExamples": [
+          "Canon Law",
+          "Heresy",
+          "Philosophy",
+          "Religious History",
+          "Religious Rituals",
+          "Theology",
+          "Transcription"
+        ],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them."
+      }
+    }
+  ]
+}

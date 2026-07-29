@@ -1,0 +1,27 @@
+{
+  "id": "life_events",
+  "name": "Step Five: Life Events",
+  "selectCount": 2,
+  "options": [
+    {
+      "id": "ran_away_from_home",
+      "name": "Ran away from home",
+      "description": "Your character—either as a child or an adult—ran away from home, forsaking their family name and potentially their titles.",
+      "grants": {
+        "attributePoints": [{ "amount": 1 }],
+        "skillPoints": [],
+        "focusCount": 1
+      }
+    },
+    {
+      "id": "death_of_a_loved_one",
+      "name": "Death of a loved one",
+      "description": "Your character, at some point in their life, has lost a loved one.",
+      "grants": {
+        "attributePoints": [{ "amount": 1 }],
+        "skillPoints": [],
+        "focusCount": 1
+      }
+    }
+  ]
+}

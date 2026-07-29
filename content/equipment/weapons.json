@@ -1,0 +1,38 @@
+[
+  {
+    "id": "shortsword",
+    "name": "Shortsword",
+    "tag": "sword",
+    "damageCD": 2,
+    "damageEffects": [],
+    "hands": 1,
+    "qualities": [{ "quality": "parrying" }]
+  },
+  {
+    "id": "longsword",
+    "name": "Longsword",
+    "tag": "sword",
+    "damageCD": 3,
+    "damageEffects": [],
+    "hands": 1,
+    "qualities": [{ "quality": "parrying" }, { "quality": "heavy" }]
+  },
+  {
+    "id": "greatsword",
+    "name": "Greatsword",
+    "tag": "sword",
+    "damageCD": 4,
+    "damageEffects": [],
+    "hands": 2,
+    "qualities": [{ "quality": "parrying" }, { "quality": "heavy" }, { "quality": "bulky" }]
+  },
+  {
+    "id": "saber",
+    "name": "Saber",
+    "tag": "sword",
+    "damageCD": 2,
+    "damageEffects": [],
+    "hands": 1,
+    "qualities": [{ "quality": "saddleback" }]
+  }
+]

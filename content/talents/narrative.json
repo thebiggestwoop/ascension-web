@@ -1,0 +1,42 @@
+[
+  {
+    "id": "warrior_glare",
+    "name": "Glare",
+    "category": "narrative",
+    "group": "Warrior",
+    "prerequisites": { "skill": { "id": "skirmish", "minRating": 3 } },
+    "effectText": "When you would Assist an ally with a Diplomacy or Authority Task using Agility, Brawn, or Coordination, you may also use Skirmish in place of Diplomacy or Authority. When you use this ability, you may make the check with a bonus d20."
+  },
+  {
+    "id": "warrior_go_for_a_walk",
+    "name": "Go For a Walk",
+    "category": "narrative",
+    "group": "Warrior",
+    "prerequisites": { "skill": { "id": "skirmish", "minRating": 3 } },
+    "effectText": "Once per session, when you separate from the group to do something alone, you can trigger this ability to automatically succeed on one Task. If you do so, you will leave a trace that clearly points back to you."
+  },
+  {
+    "id": "warrior_breaking_point",
+    "name": "Breaking Point",
+    "category": "narrative",
+    "group": "Warrior",
+    "prerequisites": { "skill": { "id": "skirmish", "minRating": 3 } },
+    "effectText": "When in a public setting, you can automatically succeed in riling a character up enough to get them to start a brawl and make it seem like it was their fault."
+  },
+  {
+    "id": "warrior_never_show_fear",
+    "name": "Never Show Fear",
+    "category": "narrative",
+    "group": "Warrior",
+    "prerequisites": { "skill": { "id": "skirmish", "minRating": 3 } },
+    "effectText": "The heat of battle has taught you how to keep your emotions in check. You cannot be intimidated, and other characters have +1 Difficulty on Tasks to read your emotions."
+  },
+  {
+    "id": "warrior_predator",
+    "name": "Predator",
+    "category": "narrative",
+    "group": "Warrior",
+    "prerequisites": { "skill": { "id": "skirmish", "minRating": 3 } },
+    "effectText": "When you attempt a Task to follow or chase after someone using Skirmish and you succeed, your target cannot escape from you until you let them."
+  }
+]

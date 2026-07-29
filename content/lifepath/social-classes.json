@@ -1,0 +1,22 @@
+{
+  "id": "social_class",
+  "name": "Step One: Social Class",
+  "selectCount": 1,
+  "options": [
+    {
+      "id": "commoner_peasant",
+      "name": "Commoner (Peasant)",
+      "description": "The lowest on the hierarchy of social class, peasants are commoners who labor for a living. They typically don't own any land, instead paying rent to landlords (usually minor nobility) in exchange for getting to live on the land and cultivate it.",
+      "grants": {
+        "attributePoints": [
+          { "amount": 1, "restrictTo": ["faith"] },
+          { "amount": 1, "restrictTo": ["brawn"] }
+        ],
+        "skillPoints": [],
+        "focusCount": 0,
+        "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result.",
+        "trait": "Peasant"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  { "id": "agility", "name": "Agility", "description": "Physical speed, dexterity, and reflexes. Governs Speed." },
+  { "id": "awareness", "name": "Awareness", "description": "Perception, alertness, and instinct." },
+  { "id": "brawn", "name": "Brawn", "description": "Physical strength and toughness. Contributes to the Health Bar." },
+  { "id": "coordination", "name": "Coordination", "description": "Hand-eye coordination and precision." },
+  { "id": "faith", "name": "Faith", "description": "Willpower and spiritual conviction. Governs the Willpower pool." },
+  { "id": "presence", "name": "Presence", "description": "Charisma and force of personality." },
+  { "id": "reason", "name": "Reason", "description": "Intellect, logic, and reasoning." }
+]

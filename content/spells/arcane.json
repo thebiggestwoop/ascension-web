@@ -1,0 +1,14 @@
+[
+  {
+    "id": "firebolt",
+    "name": "Firebolt",
+    "domain": "arcane",
+    "tier": 1,
+    "tags": ["Attack", "Fire"],
+    "slotCost": 1,
+    "action": "major",
+    "usesPerScene": 3,
+    "range": "10",
+    "effectText": "You shoot a blast of fire towards an enemy within range. Make a Spell Attack defended by Agility. On hit: 1[CD] Piercing damage."
+  }
+]

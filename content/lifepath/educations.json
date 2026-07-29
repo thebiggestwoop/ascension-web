@@ -1,0 +1,30 @@
+{
+  "id": "education",
+  "name": "Step Three: Education",
+  "selectCount": 1,
+  "options": [
+    {
+      "id": "academy",
+      "name": "Academy",
+      "description": "Your character was educated at a proper school or academy, where they were taught by learned professors alongside many peers.",
+      "grants": {
+        "attributePoints": [{ "amount": 2 }],
+        "skillPoints": [{ "amount": 1 }],
+        "focusCount": 1,
+        "focusExamples": [
+          "Canon Law",
+          "Classical Philosophy",
+          "Debauchery",
+          "Engineering",
+          "Flirting",
+          "History",
+          "Languages",
+          "Oratory",
+          "Partying",
+          "Polearms",
+          "Strategy"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "upbringing",
+  "name": "Step Two: Upbringing",
+  "selectCount": 1,
+  "options": [
+    {
+      "id": "agrarian",
+      "name": "Agrarian",
+      "description": "Your character was brought up in the countryside, working the land and tending livestock alongside their family. Kept mostly away from the bustling life of urbanity, your character grew up surrounded by more nature than people, and is no stranger to doing hard labor.",
+      "grants": {
+        "attributePoints": [
+          { "amount": 1, "restrictTo": ["brawn"] },
+          { "amount": 1 }
+        ],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["skirmish", "medicine"] }],
+        "focusCount": 1,
+        "focusExamples": [
+          "Animal Handling",
+          "Athletics",
+          "Axes",
+          "Cooking",
+          "Farming",
+          "Home Medicine",
+          "Manual Labor",
+          "Tracking"
+        ],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    }
+  ]
+}

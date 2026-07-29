@@ -1,0 +1,25 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+*.tsbuildinfo
+
+# Redundant duplicate of the already-tracked, extracted "Ascension_BETA 0.8 Rules/" folder
+Ascension_BETA 0.8 Rules.zip
+
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.claude/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.env
+.env.*
+!.env.example
+
+*.log
+npm-debug.log*

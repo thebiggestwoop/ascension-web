@@ -1,0 +1,21 @@
+{
+  "name": "Ascension Core Rules",
+  "version": "0.8.0-beta",
+  "source": "Ascension_BETA 0.8 Rules",
+  "description": "Bundled core-rulebook content. Seeded with representative examples per category during project groundwork; full transcription is Phase 1 of the project roadmap.",
+  "categories": {
+    "attributes": 7,
+    "skills": 6,
+    "lifepath.socialClasses": "1 of 5 (Commoner (Peasant))",
+    "lifepath.upbringings": "1 of 12 (Agrarian)",
+    "lifepath.educations": "1 of 6 (Academy)",
+    "lifepath.careers": "1 of 11 (Acolyte)",
+    "lifepath.lifeEvents": "2 of ~15 (Ran away from home, Death of a loved one)",
+    "equipment.weapons": "5 of ~30 (melee Sword-tag examples)",
+    "equipment.armor": "4 of 4 (Light/Medium/Heavy/Imposing)",
+    "equipment.general": "1 of ~4 (Healing Potion)",
+    "talents.narrative": "1 of ~15+ Archetypes (Warrior)",
+    "talents.combat": "1 of ~49 Talent Trees (Sword Adept)",
+    "spells.arcane": "1 of dozens (Firebolt)"
+  }
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "sword_adept",
+    "name": "Sword Adept",
+    "category": "combat",
+    "group": "Sword Adept",
+    "tier": 1,
+    "prerequisites": { "attribute": { "id": "agility", "minRating": 10 } },
+    "effectText": "When you attack with a weapon that has the Sword tag, the bonus momentum cost to use Swift Task to attack again is reduced by 1, to a minimum of 0."
+  },
+  {
+    "id": "blade_master_1",
+    "name": "Blade Master 1",
+    "category": "combat",
+    "group": "Sword Adept",
+    "tier": 2,
+    "prerequisites": { "attribute": { "id": "agility", "minRating": 10 }, "priorTalentId": "sword_adept" },
+    "effectText": "If you miss an attack with a weapon with the Sword tag and take the Swift Task to attack again the same turn, you may add a bonus die to your pool on the second attack."
+  },
+  {
+    "id": "blade_master_2",
+    "name": "Blade Master 2",
+    "category": "combat",
+    "group": "Sword Adept",
+    "tier": 3,
+    "prerequisites": { "attribute": { "id": "agility", "minRating": 10 }, "priorTalentId": "blade_master_1", "minLevel": 3 },
+    "effectText": "When you use Swift Task to make an attack with the Sword tag, lower the Difficulty on that attack's roll by -1."
+  }
+]

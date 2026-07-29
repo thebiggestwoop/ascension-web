@@ -1,0 +1,8 @@
+[
+  { "id": "skirmish", "name": "Skirmish", "description": "Combat prowess. Contributes to the Health Bar and sets Damage Bonus." },
+  { "id": "authority", "name": "Authority", "description": "Command, leadership, and giving orders." },
+  { "id": "diplomacy", "name": "Diplomacy", "description": "Negotiation, persuasion, and social finesse." },
+  { "id": "study", "name": "Study", "description": "Academic knowledge and research." },
+  { "id": "medicine", "name": "Medicine", "description": "Healing, anatomy, and treatment of injury." },
+  { "id": "intrigue", "name": "Intrigue", "description": "Subterfuge, deception, and reading hidden motives." }
+]
