@@ -8,10 +8,14 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import App from './App.vue'
 import router from './router'
+import { getStoredTheme } from './theme'
 
 const vuetify = createVuetify({
   components,
   directives,
+  theme: {
+    defaultTheme: getStoredTheme(),
+  },
 })
 
 createApp(App).use(createPinia()).use(router).use(vuetify).mount('#app')
