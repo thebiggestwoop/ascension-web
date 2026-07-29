@@ -308,7 +308,7 @@
     "name": "Of Want to Please",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": {},
+    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
     "effectText": "People want to get on your good side. Once per Session, you can automatically succeed on any Diplomacy task if you promise to help the target Character out in the future (you need not keep this promise, of course, but may suffer a Complication if you don't). Requires the Petty Nobility, Landed Nobility, or Royalty social class."
   },
   {
@@ -316,7 +316,7 @@
     "name": "Noble Privilege",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": {},
+    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
     "effectText": "You can never be accused of trespassing or breaking petty laws by anyone who isn't a noble or isn't the direct owner of the property you are violating. Servants and the working class will assume that wherever you are and whatever you are doing, you are allowed - unless they've been told beforehand by their master to particularly look out for you."
   },
   {
@@ -324,7 +324,7 @@
     "name": "Reputation Precedes You",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": {},
+    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
     "effectText": "You have something of a reputation and can use it to your advantage. When you attempt a Task to interact with someone you've never met before, you may roll two extra dice without cost, but the Complication range increases by 2. If you roll a Complication, they've heard of you before, but they're not pleased by what your reputation would suggest."
   },
   {
@@ -332,7 +332,7 @@
     "name": "Above the Law",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": {},
+    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
     "effectText": "Your status places you above the scrutiny that others might face. When you are about to be arrested or face legal consequences of some kind, you may instead take a complication and avoid immediate repercussions."
   },
   {

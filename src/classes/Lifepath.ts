@@ -101,7 +101,7 @@ export interface IStandardArrayData {
  * 56/14) are validated separately at the Finishing Touches step, not here.
  */
 export function applyLifepathSelection(
-  draft: Pick<ICharacterData, 'attributes' | 'skills' | 'focuses' | 'values' | 'traits'>,
+  draft: Pick<ICharacterData, 'attributes' | 'skills' | 'focuses' | 'values' | 'traits' | 'socialClassId' | 'careerId'>,
   selection: ILifepathSelection,
   stage: ILifepathStageData,
 ): void {
@@ -109,6 +109,9 @@ export function applyLifepathSelection(
   if (!option) {
     throw new Error(`Unknown Lifepath option "${selection.optionId}" for stage "${stage.id}"`)
   }
+
+  if (stage.id === LifepathStageId.SocialClass) draft.socialClassId = option.id as ICharacterData['socialClassId']
+  if (stage.id === LifepathStageId.Career) draft.careerId = option.id
 
   for (const [id, amount] of Object.entries(selection.resolvedAttributePoints)) {
     draft.attributes[id as AttributeId] += amount ?? 0

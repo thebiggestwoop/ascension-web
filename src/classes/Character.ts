@@ -1,4 +1,4 @@
-import { AttributeId, SkillId, StatusId } from './enums'
+import { AttributeId, SkillId, SocialClassId, StatusId } from './enums'
 import type { ISerializable } from './ISerializable'
 
 export interface IValue {
@@ -41,6 +41,10 @@ export interface ICharacterData {
   equippedArmorId?: string
   inventoryItemIds: string[]
   mountId?: string
+
+  /** Set from the Social Class / Career Lifepath stages; used to gate Talent prerequisites. */
+  socialClassId?: SocialClassId
+  careerId?: string
 }
 
 /**

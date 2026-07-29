@@ -107,7 +107,8 @@ const isReady = computed(
     skillAllocations.value.every((v) => v !== null) &&
     valueText.value.trim().length > 0 &&
     definingFeatureText.value.trim().length > 0 &&
-    talentPicks.value.narrativeTalentIds.length === REQUIRED_NARRATIVE_TALENTS,
+    talentPicks.value.narrativeTalentIds.length === REQUIRED_NARRATIVE_TALENTS &&
+    talentPicks.value.combatTalentIds.length === REQUIRED_COMBAT_TALENTS,
 )
 
 const finished = ref(false)
@@ -199,7 +200,10 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         <v-card-title>Talents</v-card-title>
         <v-card-text>
           <TalentPicker
-            :current-agility="projectedAttributes[AttributeId.Agility]"
+            :attributes="projectedAttributes"
+            :skills="store.draft.skills"
+            :social-class-id="store.draft.socialClassId"
+            :career-id="store.draft.careerId"
             @change="(p) => (talentPicks = p)"
           />
         </v-card-text>
@@ -218,12 +222,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         <div>
           Narrative Talents: {{ talentPicks.narrativeTalentIds.length }} / {{ REQUIRED_NARRATIVE_TALENTS }}
         </div>
-        <div>
-          Combat Talents: {{ talentPicks.combatTalentIds.length }} / {{ REQUIRED_COMBAT_TALENTS }}
-          <span class="text-caption text-medium-emphasis">
-            (limited to 1 - only Sword Adept is transcribed so far)
-          </span>
-        </div>
+        <div>Combat Talents: {{ talentPicks.combatTalentIds.length }} / {{ REQUIRED_COMBAT_TALENTS }}</div>
 
         <div class="text-subtitle-2 mt-4 mb-1">Derived Stats</div>
         <div>Speed: {{ finalCharacter.speed }}</div>
