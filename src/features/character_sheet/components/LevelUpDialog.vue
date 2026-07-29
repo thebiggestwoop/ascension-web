@@ -22,10 +22,29 @@ const emit = defineEmits<{
 
 const attributeItems = CoreContent.attributes.map((a) => ({ title: a.name, value: a.id }))
 const skillItems = CoreContent.skills.map((s) => ({ title: s.name, value: s.id }))
+const allAttributeIds = CoreContent.attributes.map((a) => a.id as AttributeId)
+const allSkillIds = CoreContent.skills.map((s) => s.id as SkillId)
+
+/**
+ * Per the rules: "cannot have more than one Attribute above 11 or Skill above 4" until Level
+ * 5, "but all characters may only ever have one Attribute at 12 and one Skill at 5" even
+ * after. So the ceiling is 11/4 pre-Level-5 (only one may reach it) and 12/5 post-Level-5
+ * (11/4 becomes unrestricted since it's no longer the ceiling; only one may reach 12/5).
+ */
+const ATTRIBUTE_CEILING_BASE = 11
+const ATTRIBUTE_CEILING_HIGH = 12
+const SKILL_CEILING_BASE = 4
+const SKILL_CEILING_HIGH = 5
 
 const newLevel = computed(() => props.character.level + 1)
 const row = computed(() => CoreContent.advancement.levelAscensionChart.find((r) => r.level === newLevel.value))
 const maxTier = computed(() => (newLevel.value >= CoreContent.advancement.tier3TalentUnlockLevel ? 3 : 2))
+const attributeCeiling = computed(() =>
+  newLevel.value >= CoreContent.advancement.multipleAt11Or4UnlockLevel ? ATTRIBUTE_CEILING_HIGH : ATTRIBUTE_CEILING_BASE,
+)
+const skillCeiling = computed(() =>
+  newLevel.value >= CoreContent.advancement.multipleAt11Or4UnlockLevel ? SKILL_CEILING_HIGH : SKILL_CEILING_BASE,
+)
 
 const attributeAllocations = ref<(AttributeId | null)[]>([])
 const skillAllocations = ref<(SkillId | null)[]>([])
@@ -57,6 +76,53 @@ const projectedAttributes = computed(() => {
   }
   return result
 })
+
+const projectedSkills = computed(() => {
+  const result = { ...props.character.skills }
+  for (const id of skillAllocations.value) {
+    if (id) result[id] += 1
+  }
+  return result
+})
+
+/** Value `id` would have if slot `excludeSlotIndex` weren't counted - lets that slot's own dropdown react to every *other* slot's pick. */
+function projectedAttributeValue(id: AttributeId, excludeSlotIndex: number): number {
+  let value = props.character.attributes[id]
+  attributeAllocations.value.forEach((picked, idx) => {
+    if (idx !== excludeSlotIndex && picked === id) value += 1
+  })
+  return value
+}
+
+function isAttributeDisabled(itemValue: string, slotIndex: number): boolean {
+  const id = itemValue as AttributeId
+  const ceiling = attributeCeiling.value
+  const projected = projectedAttributeValue(id, slotIndex)
+  if (projected >= ceiling) return true
+  if (projected + 1 === ceiling) {
+    return allAttributeIds.some((otherId) => otherId !== id && projectedAttributeValue(otherId, slotIndex) >= ceiling)
+  }
+  return false
+}
+
+function projectedSkillValue(id: SkillId, excludeSlotIndex: number): number {
+  let value = props.character.skills[id]
+  skillAllocations.value.forEach((picked, idx) => {
+    if (idx !== excludeSlotIndex && picked === id) value += 1
+  })
+  return value
+}
+
+function isSkillDisabled(itemValue: string, slotIndex: number): boolean {
+  const id = itemValue as SkillId
+  const ceiling = skillCeiling.value
+  const projected = projectedSkillValue(id, slotIndex)
+  if (projected >= ceiling) return true
+  if (projected + 1 === ceiling) {
+    return allSkillIds.some((otherId) => otherId !== id && projectedSkillValue(otherId, slotIndex) >= ceiling)
+  }
+  return false
+}
 
 const isReady = computed(() => {
   if (!row.value) return false
@@ -105,17 +171,28 @@ function confirm() {
 
         <template v-if="row.attributePoints > 0">
           <div class="text-subtitle-2 mb-1">Attribute Points</div>
+          <p class="text-caption text-medium-emphasis">
+            Max {{ attributeCeiling }}, only one Attribute may reach it.
+          </p>
           <PointAllocator
             v-model="attributeAllocations"
             :count="row.attributePoints"
             :items="attributeItems"
             label="Choose Attribute"
+            :is-item-disabled="isAttributeDisabled"
           />
         </template>
 
         <template v-if="row.skillPoints > 0">
           <div class="text-subtitle-2 mt-3 mb-1">Skill Points</div>
-          <PointAllocator v-model="skillAllocations" :count="row.skillPoints" :items="skillItems" label="Choose Skill" />
+          <p class="text-caption text-medium-emphasis">Max {{ skillCeiling }}, only one Skill may reach it.</p>
+          <PointAllocator
+            v-model="skillAllocations"
+            :count="row.skillPoints"
+            :items="skillItems"
+            label="Choose Skill"
+            :is-item-disabled="isSkillDisabled"
+          />
         </template>
 
         <template v-if="row.newFocus">
@@ -127,7 +204,7 @@ function confirm() {
           <div class="text-subtitle-2 mt-3 mb-1">Talents</div>
           <TalentPicker
             :attributes="projectedAttributes"
-            :skills="character.skills"
+            :skills="projectedSkills"
             :social-class-id="character.socialClassId"
             :career-id="character.careerId"
             :held-talent-ids="character.talentIds"
