@@ -1,8 +1,14 @@
 <script setup lang="ts">
+import { computed, toRaw } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
+import { Character } from '@/classes/Character'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 
 const store = useCharacterDraftStore()
+const isFinished = computed(() => store.completedStageIds.includes('finishing_touches'))
+// toRaw() unwraps Pinia's reactive Proxy - structuredClone() (used inside Deserialize)
+// can't clone a live reactive Proxy directly.
+const character = computed(() => Character.Deserialize(toRaw(store.draft)))
 </script>
 
 <template>
@@ -44,6 +50,14 @@ const store = useCharacterDraftStore()
         </v-chip>
         <span v-if="!store.draft.traits.length" class="text-medium-emphasis">None yet</span>
       </div>
+
+      <template v-if="isFinished">
+        <div class="text-subtitle-2 mt-3 mb-1">Derived Stats</div>
+        <div>Speed: {{ character.speed }}</div>
+        <div>Max HP: {{ character.maxHp }} (current: {{ store.draft.currentHp }})</div>
+        <div>Willpower: {{ character.maxWillpower }}</div>
+        <div>Damage Bonus: {{ character.damageBonus }}</div>
+      </template>
     </v-card-text>
   </v-card>
 </template>

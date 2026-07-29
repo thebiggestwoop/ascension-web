@@ -3,8 +3,9 @@ import { computed, ref } from 'vue'
 import { AttributeId, SkillId } from '@/classes/enums'
 import type { ILifepathOption, ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 import { CoreContent } from '@/io/ContentLoader'
+import PointAllocator from './PointAllocator.vue'
 
-const props = defineProps<{ stage: ILifepathStageData }>()
+const props = defineProps<{ stage: ILifepathStageData; excludeOptionIds?: string[] }>()
 const emit = defineEmits<{ confirm: [selection: ILifepathSelection] }>()
 
 const attributeItems = CoreContent.attributes.map((a) => ({ title: a.name, value: a.id }))
@@ -14,9 +15,16 @@ function attributeName(id: AttributeId): string {
   return CoreContent.attributes.find((a) => a.id === id)?.name ?? id
 }
 
+const availableOptions = computed(() =>
+  props.stage.options.filter((o) => !props.excludeOptionIds?.includes(o.id)),
+)
+
 const selectedOptionId = ref<string | null>(null)
+/** Single-select resolution, keyed by grant index: fixed grants never need an entry here. */
 const attributeChoices = ref<Record<number, AttributeId | null>>({})
 const skillChoices = ref<Record<number, SkillId | null>>({})
+/** Free-split pools (amount > 1, no restrictTo), keyed by grant index: one pick per point. */
+const attributePools = ref<Record<number, (AttributeId | null)[]>>({})
 const focusTexts = ref<string[]>([])
 const valueText = ref('')
 
@@ -24,10 +32,18 @@ const selectedOption = computed<ILifepathOption | undefined>(() =>
   props.stage.options.find((o) => o.id === selectedOptionId.value),
 )
 
+function isPool(grant: { amount: number; restrictTo?: unknown[] }): boolean {
+  return grant.amount > 1 && !grant.restrictTo
+}
+
 function selectOption(option: ILifepathOption) {
   selectedOptionId.value = option.id
   attributeChoices.value = {}
   skillChoices.value = {}
+  attributePools.value = {}
+  option.grants.attributePoints.forEach((grant, i) => {
+    if (isPool(grant)) attributePools.value[i] = Array(grant.amount).fill(null)
+  })
   focusTexts.value = Array(option.grants.focusCount).fill('')
   valueText.value = ''
 }
@@ -35,9 +51,11 @@ function selectOption(option: ILifepathOption) {
 const isReady = computed(() => {
   const option = selectedOption.value
   if (!option) return false
-  const attributesResolved = option.grants.attributePoints.every(
-    (grant, i) => (grant.restrictTo?.length === 1 ? true : !!attributeChoices.value[i]),
-  )
+  const attributesResolved = option.grants.attributePoints.every((grant, i) => {
+    if (grant.restrictTo?.length === 1) return true
+    if (isPool(grant)) return attributePools.value[i]?.every((v) => v !== null) ?? false
+    return !!attributeChoices.value[i]
+  })
   const skillsResolved = option.grants.skillPoints.every(
     (grant, i) => (grant.restrictTo?.length === 1 ? true : !!skillChoices.value[i]),
   )
@@ -52,6 +70,12 @@ function confirm() {
 
   const resolvedAttributePoints: Partial<Record<AttributeId, number>> = {}
   option.grants.attributePoints.forEach((grant, i) => {
+    if (isPool(grant)) {
+      for (const id of attributePools.value[i] ?? []) {
+        if (id) resolvedAttributePoints[id] = (resolvedAttributePoints[id] ?? 0) + 1
+      }
+      return
+    }
     const id = grant.restrictTo?.length === 1 ? grant.restrictTo[0] : attributeChoices.value[i]!
     resolvedAttributePoints[id] = (resolvedAttributePoints[id] ?? 0) + grant.amount
   })
@@ -78,7 +102,7 @@ function confirm() {
     <h3 class="text-h6 mb-2">{{ stage.name }}</h3>
 
     <v-row>
-      <v-col v-for="option in stage.options" :key="option.id" cols="12" sm="6">
+      <v-col v-for="option in availableOptions" :key="option.id" cols="12" sm="6">
         <v-card
           :variant="selectedOptionId === option.id ? 'tonal' : 'outlined'"
           :color="selectedOptionId === option.id ? 'primary' : undefined"
@@ -92,18 +116,26 @@ function confirm() {
 
     <v-card v-if="selectedOption" class="mt-4" variant="outlined">
       <v-card-text>
-        <div v-for="(grant, i) in selectedOption.grants.attributePoints" :key="`attr-${i}`" class="mb-3">
-          <template v-if="grant.restrictTo?.length === 1">
+        <template v-for="(grant, i) in selectedOption.grants.attributePoints" :key="`attr-${i}`">
+          <div v-if="grant.restrictTo?.length === 1" class="mb-3">
             +{{ grant.amount }} {{ attributeName(grant.restrictTo[0]) }} (fixed)
-          </template>
+          </div>
+          <PointAllocator
+            v-else-if="isPool(grant)"
+            v-model="attributePools[i]"
+            :count="grant.amount"
+            :items="attributeItems"
+            label="Choose Attribute"
+          />
           <v-select
             v-else
             v-model="attributeChoices[i]"
             :items="grant.restrictTo ? attributeItems.filter((a) => grant.restrictTo!.includes(a.value)) : attributeItems"
             :label="`Choose Attribute for +${grant.amount}`"
             density="compact"
+            class="mb-3"
           />
-        </div>
+        </template>
 
         <div v-for="(grant, i) in selectedOption.grants.skillPoints" :key="`skill-${i}`" class="mb-3">
           <template v-if="grant.restrictTo?.length === 1">

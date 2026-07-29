@@ -40,6 +40,7 @@ export interface ICharacterData {
   equippedWeaponIds: string[]
   equippedArmorId?: string
   inventoryItemIds: string[]
+  mountId?: string
 }
 
 /**
