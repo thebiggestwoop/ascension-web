@@ -8,5 +8,5 @@
   "combatTalentGrant": { "tier": 1, "count": 4 },
   "narrativeTalentGrant": 3,
   "startingTraits": ["Commoner or Noble", "Defining Feature"],
-  "finalCheck": { "attributeSum": 56, "skillSum": 14 }
+  "finalCheck": { "attributeSum": 56, "skillSum": 13 }
 }

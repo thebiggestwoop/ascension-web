@@ -66,6 +66,28 @@ export interface IFinishingTouchesPayload {
   mountId?: string
 }
 
+/**
+ * Quick Build (Standard Array) is the fast-path alternative to the six-step Lifepath: it
+ * assigns final Attribute/Skill values directly (not deltas from the base 6/1 draft) since
+ * there's no earlier stage to build on top of, then hands over the same Focus/Value/Trait/
+ * Talent/Equipment grants as Finishing Touches.
+ */
+export interface IQuickBuildPayload {
+  name: string
+  attributes: Record<AttributeId, number>
+  skills: Record<SkillId, number>
+  focusTexts: string[]
+  valueTexts: string[]
+  traitName: string
+  definingFeatureText: string
+  narrativeTalentIds: string[]
+  combatTalentIds: string[]
+  equippedWeaponIds: string[]
+  equippedArmorId?: string
+  inventoryItemIds: string[]
+  mountId?: string
+}
+
 export const useCharacterDraftStore = defineStore('characterDraft', {
   state: () => ({
     draft: createBaseDraft(),
@@ -92,7 +114,27 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
 
-      // Character is now playable: start at full HP/Willpower.
+      await this.finalizeCharacter()
+    },
+    async applyQuickBuild(payload: IQuickBuildPayload) {
+      this.draft.name = payload.name
+      this.draft.attributes = { ...payload.attributes }
+      this.draft.skills = { ...payload.skills }
+      this.draft.focuses.push(...payload.focusTexts)
+      for (const text of payload.valueTexts) {
+        this.draft.values.push({ text, active: true })
+      }
+      this.draft.traits.push({ name: payload.traitName }, { name: payload.definingFeatureText })
+      this.draft.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
+      this.draft.equippedWeaponIds.push(...payload.equippedWeaponIds)
+      if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
+      this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
+      if (payload.mountId) this.draft.mountId = payload.mountId
+
+      await this.finalizeCharacter()
+    },
+    /** Character is now playable: start at full HP/Willpower, mark complete, persist. */
+    async finalizeCharacter() {
       // toRaw() unwraps Pinia's reactive Proxy - structuredClone() (used inside
       // Character.Deserialize) can't clone a live reactive Proxy directly.
       const modifiers = computeStatModifiers(

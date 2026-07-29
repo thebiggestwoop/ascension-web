@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { AttributeId, SkillId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
+import { isAllocationDisabledByCeiling } from '@/classes/AllocationCaps'
 import { CoreContent } from '@/io/ContentLoader'
 import PointAllocator from '@/features/character_builder/components/PointAllocator.vue'
 import TalentPicker from '@/features/character_builder/components/TalentPicker.vue'
@@ -85,43 +86,26 @@ const projectedSkills = computed(() => {
   return result
 })
 
-/** Value `id` would have if slot `excludeSlotIndex` weren't counted - lets that slot's own dropdown react to every *other* slot's pick. */
-function projectedAttributeValue(id: AttributeId, excludeSlotIndex: number): number {
-  let value = props.character.attributes[id]
-  attributeAllocations.value.forEach((picked, idx) => {
-    if (idx !== excludeSlotIndex && picked === id) value += 1
-  })
-  return value
-}
-
 function isAttributeDisabled(itemValue: string, slotIndex: number): boolean {
-  const id = itemValue as AttributeId
-  const ceiling = attributeCeiling.value
-  const projected = projectedAttributeValue(id, slotIndex)
-  if (projected >= ceiling) return true
-  if (projected + 1 === ceiling) {
-    return allAttributeIds.some((otherId) => otherId !== id && projectedAttributeValue(otherId, slotIndex) >= ceiling)
-  }
-  return false
-}
-
-function projectedSkillValue(id: SkillId, excludeSlotIndex: number): number {
-  let value = props.character.skills[id]
-  skillAllocations.value.forEach((picked, idx) => {
-    if (idx !== excludeSlotIndex && picked === id) value += 1
-  })
-  return value
+  return isAllocationDisabledByCeiling(
+    allAttributeIds,
+    props.character.attributes,
+    attributeAllocations.value,
+    itemValue as AttributeId,
+    slotIndex,
+    attributeCeiling.value,
+  )
 }
 
 function isSkillDisabled(itemValue: string, slotIndex: number): boolean {
-  const id = itemValue as SkillId
-  const ceiling = skillCeiling.value
-  const projected = projectedSkillValue(id, slotIndex)
-  if (projected >= ceiling) return true
-  if (projected + 1 === ceiling) {
-    return allSkillIds.some((otherId) => otherId !== id && projectedSkillValue(otherId, slotIndex) >= ceiling)
-  }
-  return false
+  return isAllocationDisabledByCeiling(
+    allSkillIds,
+    props.character.skills,
+    skillAllocations.value,
+    itemValue as SkillId,
+    slotIndex,
+    skillCeiling.value,
+  )
 }
 
 const isReady = computed(() => {
