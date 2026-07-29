@@ -4,7 +4,7 @@ import type { ILifepathStageData, IFinishingTouchesData, IStandardArrayData } fr
 import type { IAdvancementData } from '@/classes/Advancement'
 import type { IWeaponData, IArmorData, IGeneralItemData } from '@/classes/Equipment'
 import type { IMountData } from '@/classes/Mount'
-import type { ITalentData } from '@/classes/Talent'
+import type { ITalentData, ITalentGroupIndexEntry } from '@/classes/Talent'
 import type { ISpellData } from '@/classes/Spell'
 
 import attributesJson from '@content/attributes.json'
@@ -24,6 +24,7 @@ import mountsJson from '@content/equipment/mounts.json'
 import generalItemsJson from '@content/equipment/general.json'
 import narrativeTalentsJson from '@content/talents/narrative.json'
 import combatTalentsJson from '@content/talents/combat.json'
+import talentIndexJson from '@content/talents/_index.json'
 import arcaneSpellsJson from '@content/spells/arcane.json'
 
 /**
@@ -54,6 +55,8 @@ export const CoreContent = {
   talents: {
     narrative: narrativeTalentsJson as ITalentData[],
     combat: combatTalentsJson as ITalentData[],
+    /** All 15 Archetypes + 49 Talent Trees by name/prerequisite; most await full ability transcription. */
+    index: talentIndexJson as ITalentGroupIndexEntry[],
   },
   spells: {
     arcane: arcaneSpellsJson as ISpellData[],
