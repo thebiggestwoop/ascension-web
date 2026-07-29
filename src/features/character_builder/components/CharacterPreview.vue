@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRaw } from 'vue'
+import { computed } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
@@ -7,16 +7,20 @@ import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 const store = useCharacterDraftStore()
 const isFinished = computed(() => store.completedStageIds.includes('finishing_touches'))
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
-// toRaw() unwraps Pinia's reactive Proxy - structuredClone() (used inside Deserialize)
-// can't clone a live reactive Proxy directly.
+/**
+ * Deliberately NOT Character.Deserialize()/toRaw(): those strip Vue's reactive Proxy via
+ * structuredClone, so this computed would only re-run when `store.draft` is reassigned
+ * wholesale (e.g. reset()) - not when stage actions mutate its fields in place. Constructing
+ * directly over the live proxy keeps every nested read tracked as a real dependency.
+ */
 const character = computed(() => {
   const modifiers = computeStatModifiers(
-    toRaw(store.draft),
+    store.draft,
     allTalents,
     CoreContent.equipment.armor,
     CoreContent.equipment.general,
   )
-  return Character.Deserialize(toRaw(store.draft), modifiers)
+  return new Character(store.draft, modifiers)
 })
 </script>
 

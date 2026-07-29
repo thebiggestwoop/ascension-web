@@ -1,7 +1,18 @@
 import { defineStore } from 'pinia'
 import { toRaw } from 'vue'
+import type { AttributeId, SkillId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
+import { Character, computeStatModifiers } from '@/classes/Character'
+import { CoreContent } from '@/io/ContentLoader'
 import { loadCharacter, saveCharacter } from '@/io/Storage'
+
+export interface ILevelUpPayload {
+  attributeDeltas: Partial<Record<AttributeId, number>>
+  skillDeltas: Partial<Record<SkillId, number>>
+  focusText?: string
+  narrativeTalentIds: string[]
+  combatTalentIds: string[]
+}
 
 export const useCharacterSheetStore = defineStore('characterSheet', {
   state: () => ({
@@ -37,6 +48,36 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       const value = this.character.values[index]
       if (!value) return
       value.active = !value.active
+      await this.persist()
+    },
+    async adjustXp(delta: number) {
+      if (!this.character) return
+      this.character.xp = Math.max(0, this.character.xp + delta)
+      await this.persist()
+    },
+    /** Applies one Level Ascension Chart entry's grants and refills HP/Willpower to the new max. */
+    async levelUp(payload: ILevelUpPayload) {
+      if (!this.character) return
+      this.character.level += 1
+      for (const [id, amount] of Object.entries(payload.attributeDeltas)) {
+        this.character.attributes[id as AttributeId] += amount ?? 0
+      }
+      for (const [id, amount] of Object.entries(payload.skillDeltas)) {
+        this.character.skills[id as SkillId] += amount ?? 0
+      }
+      if (payload.focusText) this.character.focuses.push(payload.focusText)
+      this.character.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
+
+      const modifiers = computeStatModifiers(
+        toRaw(this.character),
+        [...CoreContent.talents.narrative, ...CoreContent.talents.combat],
+        CoreContent.equipment.armor,
+        CoreContent.equipment.general,
+      )
+      const char = Character.Deserialize(toRaw(this.character), modifiers)
+      this.character.currentHp = char.maxHp
+      this.character.currentWillpower = char.maxWillpower
+
       await this.persist()
     },
   },

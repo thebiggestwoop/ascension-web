@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, toRaw } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { AttributeId, SkillId } from '@/classes/enums'
 import { Character, computeStatModifiers } from '@/classes/Character'
@@ -149,16 +149,20 @@ async function finish() {
   emit('finish')
 }
 
-// toRaw() unwraps Pinia's reactive Proxy - structuredClone() (used inside Deserialize)
-// can't clone a live reactive Proxy directly.
+/**
+ * Deliberately NOT Character.Deserialize()/toRaw(): those strip Vue's reactive Proxy via
+ * structuredClone, so this computed would only re-run when `store.draft` is reassigned
+ * wholesale, not when mutated in place. Constructing directly over the live proxy keeps
+ * every nested read tracked as a real dependency.
+ */
 const finalCharacter = computed(() => {
   const modifiers = computeStatModifiers(
-    toRaw(store.draft),
+    store.draft,
     allTalents,
     CoreContent.equipment.armor,
     CoreContent.equipment.general,
   )
-  return Character.Deserialize(toRaw(store.draft), modifiers)
+  return new Character(store.draft, modifiers)
 })
 const attributeSum = computed(() => Object.values(store.draft.attributes).reduce((a, b) => a + b, 0))
 const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) => a + b, 0))

@@ -1,26 +1,36 @@
 <script setup lang="ts">
-import { computed, onMounted, toRaw, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
+import LevelUpDialog from './components/LevelUpDialog.vue'
 
 const props = defineProps<{ id: string }>()
 const store = useCharacterSheetStore()
+const showLevelUp = ref(false)
+const canLevelUp = computed(() => (store.character?.level ?? 0) < CoreContent.advancement.maxLevel)
 
 onMounted(() => store.loadById(props.id))
 watch(() => props.id, (id) => store.loadById(id))
 
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
 
+/**
+ * Deliberately NOT Character.Deserialize()/toRaw(): those strip Vue's reactive Proxy via
+ * structuredClone, so this computed would only re-run when `store.character` is reassigned
+ * wholesale (e.g. on load) - not when actions mutate its fields in place (e.g. levelUp()
+ * pushing a Talent or incrementing an Attribute). Constructing directly over the live proxy
+ * keeps every nested read (attributes, talentIds, ...) tracked as a real dependency.
+ */
 const character = computed(() => {
   if (!store.character) return null
   const modifiers = computeStatModifiers(
-    toRaw(store.character),
+    store.character,
     allTalents,
     CoreContent.equipment.armor,
     CoreContent.equipment.general,
   )
-  return Character.Deserialize(toRaw(store.character), modifiers)
+  return new Character(store.character, modifiers)
 })
 
 const heldTalents = computed(() => {
@@ -67,7 +77,27 @@ const mount = computed(() =>
       <h2 class="text-h5">{{ character.name || 'Unnamed Character' }}</h2>
       <v-btn variant="text" size="small" to="/sheet">Back to Characters</v-btn>
     </div>
-    <p class="text-body-2 text-medium-emphasis mb-4">Level {{ character.level }}</p>
+    <div class="d-flex align-center mb-4">
+      <p class="text-body-2 text-medium-emphasis mr-4 mb-0">Level {{ character.level }}</p>
+      <v-btn size="small" icon="mdi-minus" variant="text" @click="store.adjustXp(-1)" />
+      <span class="mx-1 text-body-2">XP {{ store.character.xp }} / {{ CoreContent.advancement.xpThresholdPerLevel }}</span>
+      <v-btn size="small" icon="mdi-plus" variant="text" @click="store.adjustXp(1)" />
+      <v-btn
+        class="ml-4"
+        color="primary"
+        size="small"
+        :disabled="!canLevelUp"
+        @click="showLevelUp = true"
+      >
+        {{ canLevelUp ? 'Level Up' : 'Max Level Reached' }}
+      </v-btn>
+    </div>
+
+    <LevelUpDialog
+      v-model="showLevelUp"
+      :character="store.character"
+      @confirm="store.levelUp"
+    />
 
     <v-row>
       <v-col cols="12" md="7">
