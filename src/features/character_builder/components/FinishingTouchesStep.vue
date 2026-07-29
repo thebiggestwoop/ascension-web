@@ -113,7 +113,7 @@ const isReady = computed(
 const finished = ref(false)
 
 function finish() {
-  if (!isReady.value) return
+  if (!isReady.value || finished.value) return
 
   const attributeDeltas: Partial<Record<AttributeId, number>> = { ...capCorrection.value.attributeDeltas }
   for (const id of attributeAllocations.value) {

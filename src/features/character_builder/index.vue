@@ -22,6 +22,9 @@ const currentStage = computed(() => stages[currentStageIndex.value])
 const allStagesDone = computed(() => currentStageIndex.value >= stages.length)
 
 function handleConfirm(selection: ILifepathSelection) {
+  // Guards against a stray double-emit (e.g. a leftover event from a just-unmounted
+  // instance) re-applying a stage that's already been advanced past.
+  if (selection.stageId !== currentStage.value?.id) return
   store.applyStage(currentStage.value, selection)
   pickedOptionIdsForCurrentStage.value.push(selection.optionId)
   if (pickedOptionIdsForCurrentStage.value.length >= currentStage.value.selectCount) {
@@ -29,11 +32,20 @@ function handleConfirm(selection: ILifepathSelection) {
     pickedOptionIdsForCurrentStage.value = []
   }
 }
+
+function startOver() {
+  store.reset()
+  currentStageIndex.value = 0
+  pickedOptionIdsForCurrentStage.value = []
+}
 </script>
 
 <template>
   <v-container>
-    <h2 class="text-h5 mb-1">Character Builder</h2>
+    <div class="d-flex align-center justify-space-between mb-1">
+      <h2 class="text-h5">Character Builder</h2>
+      <v-btn variant="text" size="small" @click="startOver">Start Over</v-btn>
+    </div>
     <p class="text-body-2 text-medium-emphasis mb-4">Lifepath Creation, Steps One through Six.</p>
 
     <v-row>

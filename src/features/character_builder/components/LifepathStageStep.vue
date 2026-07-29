@@ -37,6 +37,7 @@ function isPool(grant: { amount: number; restrictTo?: unknown[] }): boolean {
 }
 
 function selectOption(option: ILifepathOption) {
+  submitted.value = false
   selectedOptionId.value = option.id
   attributeChoices.value = {}
   skillChoices.value = {}
@@ -64,9 +65,12 @@ const isReady = computed(() => {
   return attributesResolved && skillsResolved && focusesResolved && valueResolved
 })
 
+const submitted = ref(false)
+
 function confirm() {
   const option = selectedOption.value
-  if (!option || !isReady.value) return
+  if (!option || !isReady.value || submitted.value) return
+  submitted.value = true
 
   const resolvedAttributePoints: Partial<Record<AttributeId, number>> = {}
   option.grants.attributePoints.forEach((grant, i) => {
@@ -172,7 +176,7 @@ function confirm() {
           Grants Trait: <strong>{{ selectedOption.grants.trait }}</strong>
         </div>
 
-        <v-btn color="primary" :disabled="!isReady" @click="confirm">Confirm &amp; Continue</v-btn>
+        <v-btn color="primary" :disabled="!isReady || submitted" @click="confirm">Confirm &amp; Continue</v-btn>
       </v-card-text>
     </v-card>
   </div>
