@@ -22,8 +22,8 @@
     "talents.index": "complete: all 15 Narrative Archetypes + all 49 Combat Talent Trees mapped by name/subgroup/prerequisite (see talents/_index.json)",
     "talents.narrative": "1 of 15 Archetypes fully transcribed (Warrior); remaining 14 mapped but not transcribed",
     "talents.combat": "1 of 49 Talent Trees fully transcribed (Sword Adept, partial); remaining 48 mapped but not transcribed",
-    "spells.arcane": "1 of dozens (Firebolt)",
-    "spells.light": "pending",
-    "spells.dark": "pending"
+    "spells.arcane": "20 of 20 mapped (name/tier/tags/slotCost/action/uses); 1 fully transcribed (Firebolt)",
+    "spells.light": "25 of 25 mapped; 0 fully transcribed",
+    "spells.dark": "18 of 18 mapped (with Willpower costs); 0 fully transcribed"
   }
 }

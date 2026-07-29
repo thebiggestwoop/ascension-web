@@ -1,0 +1,20 @@
+[
+  { "id": "penumbra", "name": "Penumbra", "domain": "dark", "tier": 1, "tags": ["Attack", "Shadow"], "slotCost": 1, "action": "major", "usesPerScene": 3, "willpowerCost": 2, "transcribed": false },
+  { "id": "umbra", "name": "Umbra", "domain": "dark", "tier": 2, "tags": ["Attack", "Shadow"], "slotCost": 2, "action": "major", "usesPerScene": 2, "willpowerCost": 4, "transcribed": false },
+  { "id": "nox", "name": "Nox", "domain": "dark", "tier": 3, "tags": ["Attack", "Shadow"], "slotCost": 3, "action": "major", "usesPerScene": 1, "willpowerCost": 4, "transcribed": false },
+  { "id": "shadow_blade", "name": "Shadow Blade", "domain": "dark", "tier": 1, "tags": ["Spellblade", "Shadow"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "willpowerCost": 2, "transcribed": false },
+  { "id": "umbral_shroud", "name": "Umbral Shroud", "domain": "dark", "tier": 1, "tags": ["Illusion", "Shadow"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "willpowerCost": 2, "transcribed": false },
+  { "id": "umbral_domain", "name": "Umbral Domain", "domain": "dark", "tier": 3, "tags": ["Illusion", "Shadow"], "slotCost": 3, "action": "major", "usesPerScene": 1, "willpowerCost": 4, "transcribed": false },
+  { "id": "court_death", "name": "Court Death", "domain": "dark", "tier": 2, "tags": ["Defense", "Soul"], "slotCost": 3, "action": "passive", "usesPerScene": "passive", "transcribed": false },
+  { "id": "profane_death", "name": "Profane Death", "domain": "dark", "tier": 3, "tags": ["Defense", "Soul"], "slotCost": 2, "action": "passive", "usesPerScene": "passive", "transcribed": false },
+  { "id": "soul_drain", "name": "Soul Drain", "domain": "dark", "tier": 1, "tags": ["Attack", "Soul"], "slotCost": 2, "action": "major", "usesPerScene": 3, "transcribed": false },
+  { "id": "soul_siphon", "name": "Soul Siphon", "domain": "dark", "tier": 2, "tags": ["Attack", "Soul"], "slotCost": 2, "action": "major", "usesPerScene": 2, "transcribed": false },
+  { "id": "soul_consumption", "name": "Soul Consumption", "domain": "dark", "tier": 3, "tags": ["Attack", "Soul"], "slotCost": 3, "action": "major", "usesPerScene": 2, "transcribed": false },
+  { "id": "siphoning_strike", "name": "Siphoning Strike", "domain": "dark", "tier": 1, "tags": ["Spellblade", "Soul"], "slotCost": 2, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "geist_strike", "name": "Geist Strike", "domain": "dark", "tier": 1, "tags": ["Spellblade", "Soul"], "slotCost": 2, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "blood_bargain", "name": "Blood Bargain", "domain": "dark", "tier": 1, "tags": ["Blood"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "blood_heal", "name": "Blood Heal", "domain": "dark", "tier": 1, "tags": ["Blood"], "slotCost": 1, "action": "major", "usesPerScene": 3, "transcribed": false },
+  { "id": "blood_sickness", "name": "Blood Sickness", "domain": "dark", "tier": 1, "tags": ["Attack", "Blood"], "slotCost": 1, "action": "major", "usesPerScene": 3, "transcribed": false },
+  { "id": "blood_contagion", "name": "Blood Contagion", "domain": "dark", "tier": 2, "tags": ["Attack", "Blood"], "slotCost": 2, "action": "major", "usesPerScene": 2, "transcribed": false },
+  { "id": "blood_doom", "name": "Blood Doom", "domain": "dark", "tier": 3, "tags": ["Attack", "Blood"], "slotCost": 3, "action": "major", "usesPerScene": 1, "transcribed": false }
+]

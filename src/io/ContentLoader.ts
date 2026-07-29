@@ -26,6 +26,8 @@ import narrativeTalentsJson from '@content/talents/narrative.json'
 import combatTalentsJson from '@content/talents/combat.json'
 import talentIndexJson from '@content/talents/_index.json'
 import arcaneSpellsJson from '@content/spells/arcane.json'
+import lightSpellsJson from '@content/spells/light.json'
+import darkSpellsJson from '@content/spells/dark.json'
 
 /**
  * Central place the rest of the app pulls rules content from. Right now this reads the
@@ -60,6 +62,7 @@ export const CoreContent = {
   },
   spells: {
     arcane: arcaneSpellsJson as ISpellData[],
-    // light, dark domains are pending further Phase 1 data entry
+    light: lightSpellsJson as ISpellData[],
+    dark: darkSpellsJson as ISpellData[],
   },
 }

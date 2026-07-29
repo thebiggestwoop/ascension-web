@@ -1,14 +1,22 @@
 [
-  {
-    "id": "firebolt",
-    "name": "Firebolt",
-    "domain": "arcane",
-    "tier": 1,
-    "tags": ["Attack", "Fire"],
-    "slotCost": 1,
-    "action": "major",
-    "usesPerScene": 3,
-    "range": "10",
-    "effectText": "You shoot a blast of fire towards an enemy within range. Make a Spell Attack defended by Agility. On hit: 1[CD] Piercing damage."
-  }
+  { "id": "firebolt", "name": "Firebolt", "domain": "arcane", "tier": 1, "tags": ["Attack", "Fire"], "slotCost": 1, "action": "major", "usesPerScene": 3, "range": "10", "transcribed": true, "effectText": "You shoot a blast of fire towards an enemy within range. Make a Spell Attack defended by Agility. On hit: 1[CD] Piercing damage." },
+  { "id": "fireball", "name": "Fireball", "domain": "arcane", "tier": 2, "tags": ["Attack", "Fire"], "slotCost": 2, "action": "major", "usesPerScene": 2, "transcribed": false },
+  { "id": "meteor", "name": "Meteor", "domain": "arcane", "tier": 3, "tags": ["Attack", "Fire"], "slotCost": 3, "action": "major", "usesPerScene": 1, "transcribed": false },
+  { "id": "frigid_grasp", "name": "Frigid Grasp", "domain": "arcane", "tier": 1, "tags": ["Attack", "Ice"], "slotCost": 1, "action": "major", "usesPerScene": 3, "transcribed": false },
+  { "id": "blizzard", "name": "Blizzard", "domain": "arcane", "tier": 2, "tags": ["Attack", "Ice"], "slotCost": 2, "action": "major", "usesPerScene": 2, "transcribed": false },
+  { "id": "fimbulvetr", "name": "Fimbulvetr", "domain": "arcane", "tier": 3, "tags": ["Attack", "Ice"], "slotCost": 3, "action": "major", "usesPerScene": 1, "transcribed": false },
+  { "id": "electric_arc", "name": "Electric Arc", "domain": "arcane", "tier": 1, "tags": ["Attack", "Lightning"], "slotCost": 1, "action": "major", "usesPerScene": 3, "transcribed": false },
+  { "id": "voltaic_javelin", "name": "Voltaic Javelin", "domain": "arcane", "tier": 2, "tags": ["Attack", "Lightning"], "slotCost": 2, "action": "major", "usesPerScene": 2, "transcribed": false },
+  { "id": "lightning_bolt", "name": "Lightning Bolt", "domain": "arcane", "tier": 3, "tags": ["Attack", "Lightning"], "slotCost": 3, "action": "major", "usesPerScene": 1, "transcribed": false },
+  { "id": "armis_arcane", "name": "Armis Arcane", "domain": "arcane", "tier": 1, "tags": ["Defense"], "slotCost": 2, "action": "passive", "usesPerScene": "passive", "transcribed": false },
+  { "id": "arcane_parry", "name": "Arcane Parry", "domain": "arcane", "tier": 1, "tags": ["Defense"], "slotCost": 1, "action": "reaction", "usesPerScene": 2, "transcribed": false },
+  { "id": "invisibilis", "name": "Invisibilis", "domain": "arcane", "tier": 1, "tags": ["Illusion"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "major_invisibilis", "name": "Major Invisibilis", "domain": "arcane", "tier": 2, "tags": ["Illusion"], "slotCost": 3, "action": "minor", "usesPerScene": 1, "transcribed": false },
+  { "id": "skip", "name": "Skip", "domain": "arcane", "tier": 1, "tags": ["Teleportation"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "arcane_leap", "name": "Arcane Leap", "domain": "arcane", "tier": 2, "tags": ["Teleportation"], "slotCost": 3, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "redisplacement", "name": "Redisplacement", "domain": "arcane", "tier": 2, "tags": ["Teleportation"], "slotCost": 2, "action": "major", "usesPerScene": 2, "transcribed": false },
+  { "id": "arcane_jaunt", "name": "Arcane Jaunt", "domain": "arcane", "tier": 3, "tags": ["Teleportation"], "slotCost": 3, "action": "minor", "usesPerScene": 1, "transcribed": false },
+  { "id": "volcanic_strike", "name": "Volcanic Strike", "domain": "arcane", "tier": 1, "tags": ["Spellblade", "Fire"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "frozen_strike", "name": "Frozen Strike", "domain": "arcane", "tier": 1, "tags": ["Spellblade", "Ice"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "transcribed": false },
+  { "id": "thunderous_strike", "name": "Thunderous Strike", "domain": "arcane", "tier": 1, "tags": ["Spellblade", "Lightning"], "slotCost": 1, "action": "minor", "usesPerScene": 2, "transcribed": false }
 ]
