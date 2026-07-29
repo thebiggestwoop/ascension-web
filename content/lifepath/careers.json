@@ -9,22 +9,118 @@
       "description": "Your character's career is in service to their faith or to a religious institution, whether that may be as a priest, a holy knight, or an ascetic monk.",
       "grants": {
         "attributePoints": [{ "amount": 3 }],
-        "skillPoints": [
-          { "amount": 2, "restrictTo": ["authority", "study"] },
-          { "amount": 1 },
-          { "amount": 1 }
-        ],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["authority", "study"] }, { "amount": 1 }, { "amount": 1 }],
         "focusCount": 2,
-        "focusExamples": [
-          "Canon Law",
-          "Heresy",
-          "Philosophy",
-          "Religious History",
-          "Religious Rituals",
-          "Theology",
-          "Transcription"
-        ],
-        "valuePrompt": "Reflect why the character chose this career and what it means to them."
+        "focusExamples": ["Canon Law", "Heresy", "Philosophy", "Religious History", "Religious Rituals", "Theology", "Transcription"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'The Arysian Faith Is The Way Of Righteousness.'"
+      }
+    },
+    {
+      "id": "artisan",
+      "name": "Artisan",
+      "description": "Your character's career is involved in the crafting of some kind of specialized good that they sell in a shop or take commissions from patrons. They might be a baker, leatherworker, potioneer, herbalist, etc.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["study", "medicine"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Architecture", "Brewing", "Map-making", "Painting", "Sculpture", "Smithing", "Tailoring", "Woodworking"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'My Work Is My Life.'"
+      }
+    },
+    {
+      "id": "courtier",
+      "name": "Courtier",
+      "description": "Your character has made a career out of being in a noble's court. Whether this is as a lady-in-waiting, an advisor, or maybe an artist or scholar under contract, the character spends most of their time in service to a member of the nobility.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["intrigue", "diplomacy"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Astrology", "Counseling", "Eavesdropping", "Etiquette", "Estate Management", "Oratory", "Poetry", "Philosophy"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'Forever Indebted To My Patron.'"
+      }
+    },
+    {
+      "id": "criminal",
+      "name": "Criminal",
+      "description": "Your character is a criminal, and has made a career out of illegal trades like thievery or maybe even assassination.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["intrigue", "skirmish"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Brawling", "Concealed Weapons", "Disguise", "Intimidation", "Lock Picking", "Smuggling", "Stealth"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'I Live By My Own Rules.'"
+      }
+    },
+    {
+      "id": "laborer",
+      "name": "Laborer",
+      "description": "Your character's career is one of hard labor, whether that's working in agriculture as a laborer in the field, or as a house servant doing the menial tasks that keep a household running.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["skirmish", "authority"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Agriculture", "Animal Handling", "Armor Care", "Cleaning", "Heavy Weights", "Makeshift Tools", "Mending", "Riding", "Sewing"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'A Society That Mistreats Its Laborers Is Unjust.'"
+      }
+    },
+    {
+      "id": "merchant",
+      "name": "Merchant",
+      "description": "Your character's career has been made in finance, and in moving money and goods from place to place.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["study", "diplomacy"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Bribery", "Contracts", "Estate Management", "Finances", "Haggling", "Persuasion", "Travel Logistics"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'Cultural Exchange Is Always Valuable.'"
+      }
+    },
+    {
+      "id": "outcast",
+      "name": "Outcast",
+      "description": "One of the more varied careers, characters who are Outcasts are marked by their time spent outside of society on the fringes of civilization. They may work as a hedgemage or as a ranger.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["skirmish", "medicine"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Avoiding Trouble", "Foraging", "Hedge Magic", "Herbalism", "Navigation", "Survival", "Trapping"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'I Do My Best Work Alone.'"
+      }
+    },
+    {
+      "id": "ruler",
+      "name": "Ruler",
+      "description": "Your character's career has been spent learning how to rule, and presiding over a town, city, or larger territory.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["authority", "diplomacy"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Finances", "Foreign Relations", "History", "Law", "Negotiations", "Politics", "Religious Doctrine"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'The Crown Is A Heavy Burden.'"
+      }
+    },
+    {
+      "id": "soldier",
+      "name": "Soldier",
+      "description": "Your character's career is on the battlefield, whether as a fighter, healer, or tactician. They may be in an army that fights for the sake of one kingdom or institution, or a mercenary whose loyalties are only to their pay.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["skirmish", "authority"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Axes", "Field Medicine", "Hand-to-Hand Combat", "Improvised Weapons", "Military Tactics", "Mounted Combat", "Polearms", "Swords", "Shields"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'The Most Honorable Death is on the Battlefield.'"
+      }
+    },
+    {
+      "id": "scholar",
+      "name": "Scholar",
+      "description": "Your character has pursued a career in study, dedicated to research and the pursuit of knowledge.",
+      "grants": {
+        "attributePoints": [{ "amount": 3 }],
+        "skillPoints": [{ "amount": 2, "restrictTo": ["study", "medicine"] }, { "amount": 1 }, { "amount": 1 }],
+        "focusCount": 2,
+        "focusExamples": ["Alchemy", "Anatomy", "Botany", "Cartography", "History", "Law", "Religious History", "Research", "Sketching"],
+        "valuePrompt": "Reflect why the character chose this career and what it means to them. Example: 'There is Always an Answer to Every Question.'"
       }
     }
   ]

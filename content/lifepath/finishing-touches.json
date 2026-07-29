@@ -1,0 +1,21 @@
+{
+  "id": "finishing_touches",
+  "name": "Step Six: Finishing Touches",
+  "attributeCap": { "max": 11, "maxAtCap": 1 },
+  "attributeBonusCount": 3,
+  "skillCap": { "max": 4, "maxAtCap": 1 },
+  "skillBonusCount": 2,
+  "bonusValueCount": 1,
+  "combatTalentGrant": { "tier": 1, "count": 4 },
+  "narrativeTalentGrant": 3,
+  "definingFeatureTrait": true,
+  "equipmentGrant": "Any equipment of your choice from the equipment lists, so long as you have the inventory space and meet any prerequisites.",
+  "finalCheck": {
+    "attributeSum": 56,
+    "skillSum": 14,
+    "combatTalentTier1Count": 4,
+    "narrativeTalentCount": 3,
+    "focusCount": 6,
+    "valueCount": 4
+  }
+}

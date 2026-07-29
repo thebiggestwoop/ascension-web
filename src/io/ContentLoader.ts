@@ -1,6 +1,7 @@
 import type { IAttributeData } from '@/classes/Attribute'
 import type { ISkillData } from '@/classes/Skill'
-import type { ILifepathStageData } from '@/classes/Lifepath'
+import type { ILifepathStageData, IFinishingTouchesData, IStandardArrayData } from '@/classes/Lifepath'
+import type { IAdvancementData } from '@/classes/Advancement'
 import type { IWeaponData, IArmorData, IGeneralItemData } from '@/classes/Equipment'
 import type { ITalentData } from '@/classes/Talent'
 import type { ISpellData } from '@/classes/Spell'
@@ -8,6 +9,13 @@ import type { ISpellData } from '@/classes/Spell'
 import attributesJson from '@content/attributes.json'
 import skillsJson from '@content/skills.json'
 import socialClassesJson from '@content/lifepath/social-classes.json'
+import upbringingsJson from '@content/lifepath/upbringings.json'
+import educationsJson from '@content/lifepath/educations.json'
+import careersJson from '@content/lifepath/careers.json'
+import lifeEventsJson from '@content/lifepath/life-events.json'
+import finishingTouchesJson from '@content/lifepath/finishing-touches.json'
+import standardArrayJson from '@content/standard-array.json'
+import advancementJson from '@content/advancement.json'
 import weaponsJson from '@content/equipment/weapons.json'
 import armorJson from '@content/equipment/armor.json'
 import generalItemsJson from '@content/equipment/general.json'
@@ -25,12 +33,19 @@ export const CoreContent = {
   skills: skillsJson as ISkillData[],
   lifepath: {
     socialClass: socialClassesJson as ILifepathStageData,
-    // upbringing, education, career, lifeEvents stages are seeded stubs pending Phase 1 data entry
+    upbringing: upbringingsJson as ILifepathStageData,
+    education: educationsJson as ILifepathStageData,
+    career: careersJson as ILifepathStageData,
+    lifeEvents: lifeEventsJson as ILifepathStageData,
+    finishingTouches: finishingTouchesJson as IFinishingTouchesData,
   },
+  standardArray: standardArrayJson as IStandardArrayData,
+  advancement: advancementJson as IAdvancementData,
   equipment: {
     weapons: weaponsJson as IWeaponData[],
     armor: armorJson as IArmorData[],
     general: generalItemsJson as IGeneralItemData[],
+    // shields, mounts are pending further Phase 1 data entry
   },
   talents: {
     narrative: narrativeTalentsJson as ITalentData[],
@@ -38,6 +53,6 @@ export const CoreContent = {
   },
   spells: {
     arcane: arcaneSpellsJson as ISpellData[],
-    // light, dark domains are pending Phase 1 data entry
+    // light, dark domains are pending further Phase 1 data entry
   },
 }

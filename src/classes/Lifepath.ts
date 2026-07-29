@@ -38,6 +38,8 @@ export interface ILifepathStageData {
   /** How many options the player selects at this stage (Life Events defaults to 2). */
   selectCount: number
   options: ILifepathOption[]
+  /** Stage-level bonus prompt independent of the chosen option, e.g. Social Class's optional "Illegitimate" Trait. */
+  notes?: string
 }
 
 /** A choice made by the player while stepping through the wizard, not yet applied to a Character. */
@@ -49,6 +51,47 @@ export interface ILifepathSelection {
   resolvedSkillPoints: Partial<Record<SkillId, number>>
   focusText: string[]
   valueText?: string
+}
+
+/**
+ * Step Six: Finishing Touches is not option-driven like the other five stages — it's a
+ * fixed sequence of cap-correction passes, bonus points, and grants, ending in the Final
+ * Scores checkpoint that the whole build must satisfy.
+ */
+export interface IFinishingTouchesData {
+  id: 'finishing_touches'
+  name: string
+  attributeCap: { max: number; maxAtCap: number }
+  attributeBonusCount: number
+  skillCap: { max: number; maxAtCap: number }
+  skillBonusCount: number
+  bonusValueCount: number
+  combatTalentGrant: { tier: number; count: number }
+  narrativeTalentGrant: number
+  definingFeatureTrait: true
+  equipmentGrant: string
+  finalCheck: {
+    attributeSum: number
+    skillSum: number
+    combatTalentTier1Count: number
+    narrativeTalentCount: number
+    focusCount: number
+    valueCount: number
+  }
+}
+
+/** The fast-path alternative to the six-step Lifepath: assign from fixed arrays instead. */
+export interface IStandardArrayData {
+  attributeArray: number[]
+  attributeBonusPoints: number
+  skillArray: number[]
+  skillBonusPoints: number
+  focusCount: number
+  valueCount: number
+  combatTalentGrant: { tier: number; count: number }
+  narrativeTalentGrant: number
+  startingTraits: string[]
+  finalCheck: { attributeSum: number; skillSum: number }
 }
 
 /**

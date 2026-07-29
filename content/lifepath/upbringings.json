@@ -8,22 +8,142 @@
       "name": "Agrarian",
       "description": "Your character was brought up in the countryside, working the land and tending livestock alongside their family. Kept mostly away from the bustling life of urbanity, your character grew up surrounded by more nature than people, and is no stranger to doing hard labor.",
       "grants": {
-        "attributePoints": [
-          { "amount": 1, "restrictTo": ["brawn"] },
-          { "amount": 1 }
-        ],
+        "attributePoints": [{ "amount": 1, "restrictTo": ["brawn"] }, { "amount": 1 }],
         "skillPoints": [{ "amount": 1, "restrictTo": ["skirmish", "medicine"] }],
         "focusCount": 1,
-        "focusExamples": [
-          "Animal Handling",
-          "Athletics",
-          "Axes",
-          "Cooking",
-          "Farming",
-          "Home Medicine",
-          "Manual Labor",
-          "Tracking"
-        ],
+        "focusExamples": ["Animal Handling", "Athletics", "Axes", "Cooking", "Farming", "Home Medicine", "Manual Labor", "Tracking"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "courtly",
+      "name": "Courtly",
+      "description": "Your character was brought up in a noble court, not as a true member of its gathered nobles, but as their servant. Whether a true servant or in a position of some privilege, your character's place in court has been dependent on the patronage of someone of higher rank.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["presence"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["diplomacy", "intrigue"] }],
+        "focusCount": 1,
+        "focusExamples": ["Astrology", "Counseling", "Eavesdropping", "Etiquette", "Estate Management", "Oratory", "Poetry", "Philosophy"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "craftsman",
+      "name": "Craftsman",
+      "description": "Your character was brought up by artisans, taught the ins and outs of their craft as well as the details and politics of business and trade. Most artisans in well-populated areas are members of their local guild.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["coordination"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["diplomacy", "study"] }],
+        "focusCount": 1,
+        "focusExamples": ["Brewing", "Construction", "Glass-blowing", "Map-making", "Sculpture", "Smithing", "Tailoring", "Woodworking"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "mercantile",
+      "name": "Mercantile",
+      "description": "Your character was brought up surrounded by wealth, though more than likely it was mostly not their own. Whether as a merchant or a banker, your character is familiar with the intricacies of finance and has experience interacting with people of all social classes.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["reason"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["intrigue", "study"] }],
+        "focusCount": 1,
+        "focusExamples": ["Bribery", "Contracts", "Estate Management", "Finances", "Haggling", "Persuasion", "Travel Logistics"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "military",
+      "name": "Military",
+      "description": "Your character was brought up for the battlefield. Whether as a member of an esteemed mercenary family or as the young squire to a knight-commander, your character has grown up with the expectation that they would take up arms someday.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["brawn"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["authority", "skirmish"] }],
+        "focusCount": 1,
+        "focusExamples": ["Field Medicine", "Hand-to-Hand Combat", "Military Tactics", "Mounted Combat", "Polearms", "Shields"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "nomadic",
+      "name": "Nomadic",
+      "description": "Your character wasn't brought up in a single place, but traveled frequently and saw much of the world as they grew up. Being part of a wandering troupe has given your character a wide and varied experience of the world.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["awareness"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["medicine", "skirmish"] }],
+        "focusCount": 1,
+        "focusExamples": ["Comedy", "Flora Identification", "Foraging", "Foreign Languages", "Hunting", "Setting Traps", "Theatrics"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "pariah",
+      "name": "Pariah",
+      "description": "Your character was brought up on the edges of society, raised by people who couldn't or refused to conform to normative societal standards. Living outside of society has given your character a unique perspective on what most people find normal.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["awareness"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["intrigue", "medicine"] }],
+        "focusCount": 1,
+        "focusExamples": ["Avoiding Trouble", "Heresy", "Herbal Medicine", "Natural Magic", "Philosophy", "Reading People", "Witchcraft"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "privileged",
+      "name": "Privileged",
+      "description": "Your character is a member of a wealthy and privileged family and was brought up with few expectations, raised secure in the knowledge that they would never need to truly work.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["presence"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["authority", "diplomacy"] }],
+        "focusCount": 1,
+        "focusExamples": ["Dancing", "Etiquette", "Finances", "History", "Law", "Negotiation", "Swords", "Painting", "Philosophy", "Politics"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "religious",
+      "name": "Religious",
+      "description": "Your character was brought up in an extremely religious environment, such as a monastery, where their life was oriented around their community's religious practices and beliefs.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["faith"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["authority", "study"] }],
+        "focusCount": 1,
+        "focusExamples": ["Composure", "Painting", "Philosophy", "Proselytizing", "Religious History", "Theology", "Translation"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "sailor",
+      "name": "Sailor",
+      "description": "Your character grew up on a seafaring ship, traveling the world by oar and sail. Raised as part of a crew, your character is familiar with the hard work and routine necessary to keep a ship running.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["agility"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["skirmish", "diplomacy"] }],
+        "focusCount": 1,
+        "focusExamples": ["Astronomy", "Meteorology", "Navigation", "Ropes and Knots", "Ship Maintenance", "Ship Rigging"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "scholarly",
+      "name": "Scholarly",
+      "description": "Your character was raised in the world of the learned and esoteric. Whether they spent most of their life in a boarding school away from home, or were tutored intensely by family or mentors, your character was brought up with a considerable amount of book-learning.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["reason"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["study", "medicine"] }],
+        "focusCount": 1,
+        "focusExamples": ["Alchemy", "Anatomy", "Botany", "Cartography", "History", "Law", "Religious History", "Research", "Sketching"],
+        "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
+      }
+    },
+    {
+      "id": "urchin",
+      "name": "Urchin",
+      "description": "Your character wasn't raised by anyone, and instead had to depend on their own wits and skills to get by without parents or family to look out for them. Years of practice have given them the street smarts necessary to survive on their own.",
+      "grants": {
+        "attributePoints": [{ "amount": 1, "restrictTo": ["agility"] }, { "amount": 1 }],
+        "skillPoints": [{ "amount": 1, "restrictTo": ["skirmish", "intrigue"] }],
+        "focusCount": 1,
+        "focusExamples": ["Athletics", "Blending In", "Bluffing", "Charm", "Lock Picking", "Pick-pocketing", "Stealth", "Urban Navigation"],
         "valuePrompt": "Choose whether your character accepted or rebelled against their upbringing, and give them a Value that reflects that choice."
       }
     }

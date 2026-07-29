@@ -6,24 +6,67 @@
     {
       "id": "academy",
       "name": "Academy",
-      "description": "Your character was educated at a proper school or academy, where they were taught by learned professors alongside many peers.",
+      "description": "Your character was educated at a proper school or academy, where they were taught by learned professors alongside many peers. Surrounded by fellow students their age, your character had the opportunity to make friends in school.",
       "grants": {
         "attributePoints": [{ "amount": 2 }],
         "skillPoints": [{ "amount": 1 }],
         "focusCount": 1,
-        "focusExamples": [
-          "Canon Law",
-          "Classical Philosophy",
-          "Debauchery",
-          "Engineering",
-          "Flirting",
-          "History",
-          "Languages",
-          "Oratory",
-          "Partying",
-          "Polearms",
-          "Strategy"
-        ]
+        "focusExamples": ["Canon Law", "Classical Philosophy", "Debauchery", "Engineering", "Flirting", "History", "Languages", "Oratory", "Partying", "Polearms", "Strategy"]
+      }
+    },
+    {
+      "id": "educated_abroad",
+      "name": "Educated Abroad",
+      "description": "Your character was sent to be educated abroad, and they gained a formal education as they also had to learn and adapt to new languages and cultures.",
+      "grants": {
+        "attributePoints": [{ "amount": 2 }],
+        "skillPoints": [{ "amount": 1 }],
+        "focusCount": 1,
+        "focusExamples": ["Alchemy", "Astronomy", "Botany", "Ciphers", "Foreign Languages", "Musical Performance", "Natural Magic", "Negotiation", "Painting", "Philosophy"]
+      }
+    },
+    {
+      "id": "elder_mentor",
+      "name": "Elder Mentor",
+      "description": "Your character was educated by a brilliant mentor, someone with great experience and with a reputation for excellence, who retired from their own exploits to teach the next generation.",
+      "grants": {
+        "attributePoints": [{ "amount": 2 }],
+        "skillPoints": [{ "amount": 1 }],
+        "focusCount": 1,
+        "focusExamples": ["Axes", "Blacksmithing", "Herbalism", "Martial Arts", "Music Composition", "Painting", "Poetry", "Polearms", "Singing", "Swords", "Tinkering"]
+      }
+    },
+    {
+      "id": "family_footsteps",
+      "name": "Family Footsteps",
+      "description": "Your character was educated on the job, learning at the side of family members who had learned at the side of theirs, and so on for generations.",
+      "grants": {
+        "attributePoints": [{ "amount": 2 }],
+        "skillPoints": [{ "amount": 1 }],
+        "focusCount": 1,
+        "focusExamples": ["Accounting", "Appraisal", "Carpentry", "Estate Management", "Haggling", "Smithing", "or Any Focus listed for your Upbringing"]
+      }
+    },
+    {
+      "id": "on_your_own_terms",
+      "name": "On Your Own Terms",
+      "description": "Your character didn't have anyone else's help to get their education. Instead, they learned as they went and taught themself all the skills they needed to know, working hard and studying alone.",
+      "grants": {
+        "attributePoints": [{ "amount": 2 }],
+        "skillPoints": [{ "amount": 1 }],
+        "focusCount": 1,
+        "focusExamples": ["Axes", "Bartering", "Carving", "Foraging", "Hedge Magic", "Marksmanship", "Pick-pocketing", "Poisons", "Singing", "Stealth", "Unarmed Combat"]
+      }
+    },
+    {
+      "id": "privately_tutored",
+      "name": "Privately Tutored",
+      "description": "Your character was educated by a few tutors, who personally and privately oversaw their education. Without peers or classmates, your character's education was gained mostly in isolation.",
+      "grants": {
+        "attributePoints": [{ "amount": 2 }],
+        "skillPoints": [{ "amount": 1 }],
+        "focusCount": 1,
+        "focusExamples": ["Astronomy", "Etiquette", "Geography", "History", "Languages", "Political Theory", "Philosophy", "Spell-crafting", "Swords"]
       }
     }
   ]

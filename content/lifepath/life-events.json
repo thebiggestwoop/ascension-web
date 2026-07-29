@@ -2,26 +2,97 @@
   "id": "life_events",
   "name": "Step Five: Life Events",
   "selectCount": 2,
+  "notes": "Decide your character's approximate age before choosing life events, to guide which are plausible. With Gamemaster approval you may choose more than two, as long as you do not exceed the Focus/Attribute bonuses gained at this stage.",
   "options": [
     {
       "id": "ran_away_from_home",
       "name": "Ran away from home",
       "description": "Your character—either as a child or an adult—ran away from home, forsaking their family name and potentially their titles.",
-      "grants": {
-        "attributePoints": [{ "amount": 1 }],
-        "skillPoints": [],
-        "focusCount": 1
-      }
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
     },
     {
       "id": "death_of_a_loved_one",
       "name": "Death of a loved one",
       "description": "Your character, at some point in their life, has lost a loved one.",
-      "grants": {
-        "attributePoints": [{ "amount": 1 }],
-        "skillPoints": [],
-        "focusCount": 1
-      }
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "serious_injury",
+      "name": "Serious injury",
+      "description": "Your character was seriously hurt and needed to spend a considerable amount of time recovering.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "religious_conversion",
+      "name": "Religious conversion",
+      "description": "Your character has converted to a new faith.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "disowned",
+      "name": "Disowned",
+      "description": "Your character was disowned by their family, and forced to live without their support or wealth.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "committed_a_crime",
+      "name": "Committed a crime",
+      "description": "Your character has committed a crime at one point in their life and reaped the consequences of it, often viewed with suspicion if not outright distrust.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "lucky_break",
+      "name": "Lucky break",
+      "description": "Your character happened to be in the right place at the right time, and made an impactful choice that earned them a positive reputation and potentially a real reward, such as being knighted after rescuing a queen from a bandit attack.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "won_a_decisive_battle",
+      "name": "Won a decisive battle",
+      "description": "Your character took charge of their forces and struck a decisive blow, winning a battle that changed the tide of a conflict, if not winning it altogether.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "ascended_a_throne",
+      "name": "Ascended a throne",
+      "description": "Your character gained a noble title, whether inherited from a deceased relative or granted as a reward by a monarch.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "married",
+      "name": "Married",
+      "description": "Your character got married, whether in an arranged marriage or one of their own choosing.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "took_religious_orders",
+      "name": "Took religious orders",
+      "description": "Your character swore an oath to a religious order, taking orders as a monk or a nun and devoting themself wholly to their faith.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "unknown_origins",
+      "name": "Unknown origins",
+      "description": "Your character doesn't know their birth family or where they came from, and was raised by someone else.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "survived_an_assassination_attempt",
+      "name": "Survived an assassination attempt",
+      "description": "Someone tried to kill your character, but they narrowly escaped death.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "joined_a_crew",
+      "name": "Joined a crew",
+      "description": "Your character has joined a band or company of people, maybe a mercenary company or a guild of artisans or even a secret society.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
+    },
+    {
+      "id": "made_a_powerful_enemy",
+      "name": "Made a powerful enemy",
+      "description": "Your character, whether through action or circumstance, has made an enemy of someone powerful who is out for your blood.",
+      "grants": { "attributePoints": [{ "amount": 1 }], "skillPoints": [], "focusCount": 1 }
     }
   ]
 }

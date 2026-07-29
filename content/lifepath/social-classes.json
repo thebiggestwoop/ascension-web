@@ -2,11 +2,12 @@
   "id": "social_class",
   "name": "Step One: Social Class",
   "selectCount": 1,
+  "notes": "If your character was born out of wedlock, they additionally gain the Trait \"Illegitimate\".",
   "options": [
     {
       "id": "commoner_peasant",
       "name": "Commoner (Peasant)",
-      "description": "The lowest on the hierarchy of social class, peasants are commoners who labor for a living. They typically don't own any land, instead paying rent to landlords (usually minor nobility) in exchange for getting to live on the land and cultivate it.",
+      "description": "The lowest on the hierarchy of social class, peasants are commoners who labor for a living. They typically don't own any land, instead paying rent to landlords (usually minor nobility) in exchange for getting to live on the land and cultivate it. This social class also encompasses skilled laborers like bakers, blacksmiths, and leatherworkers.",
       "grants": {
         "attributePoints": [
           { "amount": 1, "restrictTo": ["faith"] },
@@ -14,8 +15,68 @@
         ],
         "skillPoints": [],
         "focusCount": 0,
-        "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result.",
-        "trait": "Peasant"
+        "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'Commoners must protect each other when the highborn won't.'",
+        "trait": "Commoner"
+      }
+    },
+    {
+      "id": "commoner_merchant",
+      "name": "Commoner (Merchant)",
+      "description": "Though still commoners, the merchant class exists higher on the social ladder than peasants due mainly to one thing: wealth. Those of the merchant class (bankers, artists, scholars, lawyers, priests, etc) are wealthy enough to own property and wield influence over politics and trade.",
+      "grants": {
+        "attributePoints": [
+          { "amount": 1, "restrictTo": ["presence"] },
+          { "amount": 1, "restrictTo": ["reason"] }
+        ],
+        "skillPoints": [],
+        "focusCount": 0,
+        "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: \"I can prove I'm as good as any nobleman.\"",
+        "trait": "Commoner"
+      }
+    },
+    {
+      "id": "petty_nobility",
+      "name": "Petty Nobility",
+      "description": "Above the common classes, but at the bottom of the nobility, the petty nobility is made up of minor nobles, often those who have been ennobled by a duke or monarch but without their own lands to control (e.g. knights, baronets, etc).",
+      "grants": {
+        "attributePoints": [
+          { "amount": 1, "restrictTo": ["agility"] },
+          { "amount": 1, "restrictTo": ["brawn"] }
+        ],
+        "skillPoints": [],
+        "focusCount": 0,
+        "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'I owe a debt to Lord Fife, and I will repay it.'",
+        "trait": "Noble"
+      }
+    },
+    {
+      "id": "landed_nobility",
+      "name": "Landed Nobility",
+      "description": "Landed nobility are powerful aristocrats who control their own territories and hold their own courts, though still owe their fealty to an overlord, typically a monarch. Titles and territories are typically passed down to descendants.",
+      "grants": {
+        "attributePoints": [
+          { "amount": 1, "restrictTo": ["awareness"] },
+          { "amount": 1, "restrictTo": ["coordination"] }
+        ],
+        "skillPoints": [],
+        "focusCount": 0,
+        "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'The hierarchy of nobility is the natural order of things, and upholding it preserves peace.'",
+        "trait": "Noble"
+      }
+    },
+    {
+      "id": "royalty",
+      "name": "Royalty",
+      "description": "Obviously at the top of the social hierarchy, members of the royalty are the sovereigns of territories or nations, whose families have been invested with power by the divine right of kings, or merely by virtue of dynasty.",
+      "grants": {
+        "attributePoints": [
+          { "amount": 1, "restrictTo": ["presence"] },
+          { "amount": 1, "restrictTo": ["faith"] }
+        ],
+        "skillPoints": [],
+        "focusCount": 0,
+        "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'It is better to be feared than loved.'",
+        "trait": "Noble"
       }
     }
   ]
