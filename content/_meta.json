@@ -2,7 +2,7 @@
   "name": "Ascension Core Rules",
   "version": "0.8.0-beta",
   "source": "Ascension_BETA 0.8 Rules",
-  "description": "Bundled core-rulebook content. Chapters Two (Lifepath Creation), Six (Talents), and Seven (Equipment) are fully transcribed. Spells (Chapter Eight) are mapped but not yet transcribed - the remainder of Phase 1.",
+  "description": "Bundled core-rulebook content. Chapters Two (Lifepath Creation), Six (Talents), Seven (Equipment), and Eight (Spells) are fully transcribed. Phase 1 content transcription is complete.",
   "categories": {
     "attributes": "7 of 7 (complete)",
     "skills": "6 of 6 (complete)",
@@ -22,8 +22,8 @@
     "talents.index": "complete and corrected: 21 Narrative Archetypes (not the initial miscount of 15 - Setting Archetype has 9 groups, not 3) + 68 Combat Talent Trees (not 49 - General has 42, not 24, and Weapon Adept has 8, not 7; both undercounts came from a regex mapping pass that only caught trees with an explicit '(Requires X)' clause) - see talents/_index.json",
     "talents.narrative": "21 of 21 Archetypes fully transcribed (105 abilities: 6 Skill + 3 Class + 9 Setting + 3 Magickal)",
     "talents.combat": "68 of 68 Talent Trees fully transcribed (8 Weapon Adept + 42 General + 18 Magick, ~325 abilities total)",
-    "spells.arcane": "20 of 20 mapped (name/tier/tags/slotCost/action/uses); 1 fully transcribed (Firebolt)",
-    "spells.light": "25 of 25 mapped; 0 fully transcribed",
-    "spells.dark": "18 of 18 mapped (with Willpower costs); 0 fully transcribed"
+    "spells.arcane": "20 of 20 fully transcribed",
+    "spells.light": "25 of 25 fully transcribed",
+    "spells.dark": "18 of 18 fully transcribed (with Willpower costs)"
   }
 }
