@@ -1,0 +1,12 @@
+[
+  { "id": "daunting", "name": "Daunting X", "description": "The attack or hazard cuts into a target's Willpower in addition to their HP. Add +X Willpower damage for each [!] rolled." },
+  { "id": "destructive", "name": "Destructive", "description": "The attack or hazard can quickly overcome physical obstacles, and deals double damage when targeting objects. When targeting an enemy unit benefiting from Half-Cover, if you roll 3 or more [!], you may reduce your damage by 2 to destroy that instance of Half-Cover." },
+  { "id": "draining", "name": "Draining", "description": "If a number of [!] are rolled that equals or exceeds the target's Faith Effect Save, the target gains the Weakened condition until the end of their next turn." },
+  { "id": "knockdown", "name": "Knockdown", "description": "The attack or hazard causes the target to stumble or fall. If a number of [!] are rolled that equals or exceeds the target's Brawn Effect Save, the target is knocked prone." },
+  { "id": "persistent", "name": "Persistent X", "description": "The attack or hazard has a lingering effect. The target must succeed on a Difficulty 2 Brawn + Medicine Task at the end of their turn or suffer X [CD] damage (of the same type as the initial attack), continuing each round until they succeed or benefit from a First Aid action. Multiple instances stack. Persistent damage ignores Resistance." },
+  { "id": "pinning", "name": "Pinning", "description": "If a number of [!] are rolled that equals or exceeds the target's Coordination Effect Save, they become Immobilized and must spend a Minor Action to break free." },
+  { "id": "provoking", "name": "Provoking", "description": "If a number of [!] are rolled that equals or exceeds the target's current Willpower, the target becomes Enraged until the end of their next turn, with the attacker as their source of rage." },
+  { "id": "startling", "name": "Startling", "description": "If a number of [!] are rolled that equals or exceeds the target's Awareness Effect Save, the target is Off-Guard until the end of their next turn." },
+  { "id": "stunning", "name": "Stunning", "description": "The attack or hazard leaves the target momentarily unable to act. If a number of [!] are rolled that equals or exceeds the target's Awareness Effect Save, the target is Dazed until the end of their next turn." },
+  { "id": "terrifying", "name": "Terrifying", "description": "If a number of [!] are rolled that equals or exceeds the target's Willpower, the target is Frightened of you until they are consoled by an ally." }
+]

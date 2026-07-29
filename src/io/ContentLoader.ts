@@ -2,7 +2,14 @@ import type { IAttributeData } from '@/classes/Attribute'
 import type { ISkillData } from '@/classes/Skill'
 import type { ILifepathStageData, IFinishingTouchesData, IStandardArrayData } from '@/classes/Lifepath'
 import type { IAdvancementData } from '@/classes/Advancement'
-import type { IWeaponData, IArmorData, IGeneralItemData } from '@/classes/Equipment'
+import type {
+  IWeaponData,
+  IArmorData,
+  IGeneralItemData,
+  IWeaponTagDefinition,
+  IEquipmentQualityDefinition,
+  IDamageEffectDefinition,
+} from '@/classes/Equipment'
 import type { IMountData } from '@/classes/Mount'
 import type { ITalentData, ITalentGroupIndexEntry } from '@/classes/Talent'
 import type { ISpellData } from '@/classes/Spell'
@@ -22,6 +29,9 @@ import armorJson from '@content/equipment/armor.json'
 import shieldsJson from '@content/equipment/shields.json'
 import mountsJson from '@content/equipment/mounts.json'
 import generalItemsJson from '@content/equipment/general.json'
+import weaponTagsJson from '@content/equipment/weapon-tags.json'
+import qualitiesJson from '@content/equipment/qualities.json'
+import damageEffectsJson from '@content/equipment/damage-effects.json'
 import narrativeTalentsJson from '@content/talents/narrative.json'
 import combatTalentsJson from '@content/talents/combat.json'
 import talentIndexJson from '@content/talents/_index.json'
@@ -53,6 +63,9 @@ export const CoreContent = {
     shields: shieldsJson as IArmorData[],
     mounts: mountsJson as IMountData[],
     general: generalItemsJson as IGeneralItemData[],
+    weaponTags: weaponTagsJson as IWeaponTagDefinition[],
+    qualities: qualitiesJson as IEquipmentQualityDefinition[],
+    damageEffects: damageEffectsJson as IDamageEffectDefinition[],
   },
   talents: {
     narrative: narrativeTalentsJson as ITalentData[],

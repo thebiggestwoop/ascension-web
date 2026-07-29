@@ -1,0 +1,8 @@
+[
+  { "id": "sword", "name": "Sword", "description": "Bladed weapons with short hilts, capable of rapid strikes with dizzying maneuvers. Swords use Agility as their primary Attribute." },
+  { "id": "axe", "name": "Axe", "description": "Battleaxes, warhammers, and other heavy weapons capable of great and powerful blows. Axes use Brawn as their primary Attribute." },
+  { "id": "spear", "name": "Spear", "description": "Polearms that can be thrust or swung, striking precise and devastating blows from reach. Spears use Coordination as their primary Attribute." },
+  { "id": "bow", "name": "Bow", "description": "Ranged projectile weapons that can eliminate foes from a great distance, and are extra effective against flying opponents. Bows use Awareness as their primary Attribute." },
+  { "id": "gauntlet", "name": "Gauntlet", "description": "Weapons that leave the hands open, such as bladed fists or armored gauntlets, used to rapidly disable opponents by tripping, grappling, and disarming them. Gauntlets can use Agility, Brawn, or Coordination as their primary Attribute." },
+  { "id": "spell", "name": "Spell", "description": "Not a weapon, but serves a similar purpose in combat. Attack spells can cause devastating effects at range, though the most powerful must be used sparingly. Spell attacks use the caster's Magick Attribute (Presence, Faith, or Reason) as their primary Attribute." }
+]

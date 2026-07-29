@@ -2,8 +2,22 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
+import type { IQualityInstance } from '@/classes/Equipment'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
+import TooltipChip from '@/ui/TooltipChip.vue'
+
+function qualityLabel(q: IQualityInstance): string {
+  const label = q.quality
+    .split('_')
+    .map((w) => w[0].toUpperCase() + w.slice(1))
+    .join(' ')
+  return q.value !== undefined ? `${label} ${q.value}` : label
+}
+
+function qualityTooltip(q: IQualityInstance): string | undefined {
+  return CoreContent.equipment.qualities.find((x) => x.id === q.quality)?.description
+}
 
 const props = defineProps<{ id: string }>()
 const store = useCharacterSheetStore()
@@ -170,18 +184,41 @@ const mount = computed(() =>
           <v-card-text>
             <div class="text-subtitle-2 mb-1">Weapons</div>
             <div v-if="!equippedWeapons.length" class="text-medium-emphasis mb-2">None equipped</div>
-            <v-chip v-for="w in equippedWeapons" :key="w.id" class="mr-1 mb-2" size="small">
-              {{ w.name }} ({{ w.damageCD }}[CD])
-            </v-chip>
+            <div v-for="w in equippedWeapons" :key="w.id" class="mb-2">
+              <span class="mr-2">{{ w.name }} ({{ w.damageCD }}[CD])</span>
+              <TooltipChip
+                v-for="(q, i) in w.qualities"
+                :key="i"
+                :label="qualityLabel(q)"
+                :tooltip="qualityTooltip(q)"
+              />
+            </div>
 
             <div class="text-subtitle-2 mb-1">Armor</div>
             <div class="text-medium-emphasis mb-2">
-              {{ equippedArmor ? `${equippedArmor.name} (Resistance ${equippedArmor.resistance})` : 'None equipped' }}
+              <template v-if="equippedArmor">
+                <span class="mr-2">{{ equippedArmor.name }} (Resistance {{ equippedArmor.resistance }})</span>
+                <TooltipChip
+                  v-for="(q, i) in equippedArmor.qualities"
+                  :key="i"
+                  :label="qualityLabel(q)"
+                  :tooltip="qualityTooltip(q)"
+                />
+              </template>
+              <span v-else>None equipped</span>
             </div>
 
             <div class="text-subtitle-2 mb-1">Inventory</div>
             <div v-if="!inventoryItems.length" class="text-medium-emphasis mb-2">Empty</div>
-            <v-chip v-for="i in inventoryItems" :key="i.id" class="mr-1 mb-2" size="small">{{ i.name }}</v-chip>
+            <div v-for="i in inventoryItems" :key="i.id" class="mb-2">
+              <span class="mr-2">{{ i.name }}</span>
+              <TooltipChip
+                v-for="(q, qi) in i.qualities"
+                :key="qi"
+                :label="qualityLabel(q)"
+                :tooltip="qualityTooltip(q)"
+              />
+            </div>
 
             <template v-if="mount">
               <div class="text-subtitle-2 mb-1">Mount</div>

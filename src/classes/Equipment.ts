@@ -77,3 +77,24 @@ export interface IGeneralItemData {
   qualities: IQualityInstance[]
   description: string
 }
+
+/** Reference text for a Weapon Tag, shown as a tooltip wherever the tag appears (e.g. "Sword"). */
+export interface IWeaponTagDefinition {
+  id: WeaponTag
+  name: string
+  description: string
+}
+
+/** Reference text for an Equipment Quality, shown as a tooltip wherever the quality appears (e.g. "Parrying"). */
+export interface IEquipmentQualityDefinition {
+  id: EquipmentQuality
+  name: string
+  description: string
+}
+
+/** Reference text for a Damage Effect, shown as a tooltip wherever it appears (e.g. "Knockdown"). */
+export interface IDamageEffectDefinition {
+  id: DamageEffect
+  name: string
+  description: string
+}
