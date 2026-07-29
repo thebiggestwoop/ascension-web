@@ -4,6 +4,8 @@ export interface ITalentPrerequisite {
   attribute?: { id: AttributeId; minRating: number }
   skill?: { id: SkillId; minRating: number }
   socialClass?: SocialClassId
+  /** References a content/lifepath/careers.json option id, e.g. "acolyte". */
+  career?: string
   magickDomain?: string
   priorTalentId?: string
   minLevel?: number

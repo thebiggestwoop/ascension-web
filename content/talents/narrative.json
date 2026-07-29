@@ -38,5 +38,781 @@
     "group": "Warrior",
     "prerequisites": { "skill": { "id": "skirmish", "minRating": 3 } },
     "effectText": "When you attempt a Task to follow or chase after someone using Skirmish and you succeed, your target cannot escape from you until you let them."
+  },
+  {
+    "id": "captain_bolstering_word",
+    "name": "Bolstering Word",
+    "category": "narrative",
+    "group": "Captain",
+    "prerequisites": { "skill": { "id": "authority", "minRating": 3 } },
+    "effectText": "Whenever you assist on a task using your Authority, you may roll two dice instead of one. In addition, you never have to spend Momentum in order to assist."
+  },
+  {
+    "id": "captain_recruiter",
+    "name": "Recruiter",
+    "category": "narrative",
+    "group": "Captain",
+    "prerequisites": { "skill": { "id": "authority", "minRating": 3 } },
+    "effectText": "When performing a task to convince someone to join your cause or bow to your command, you gain an extra d20. You may always succeed at cost on any checks to learn what it would take to convince them."
+  },
+  {
+    "id": "captain_thats_an_order",
+    "name": "That's an Order",
+    "category": "narrative",
+    "group": "Captain",
+    "prerequisites": { "skill": { "id": "authority", "minRating": 3 } },
+    "effectText": "Once per scene, when you give instructions to a character who reports to you or is under your command, they must agree to obey or suffer a Complication."
+  },
+  {
+    "id": "captain_plan_of_action",
+    "name": "Plan of Action",
+    "category": "narrative",
+    "group": "Captain",
+    "prerequisites": { "skill": { "id": "authority", "minRating": 3 } },
+    "effectText": "Whenever an ally succeeds on a Task that had its Difficulty lowered thanks to an Advantage you created, they generate two bonus momentum."
+  },
+  {
+    "id": "captain_let_me_try",
+    "name": "Let Me Try",
+    "category": "narrative",
+    "group": "Captain",
+    "prerequisites": { "skill": { "id": "authority", "minRating": 3 } },
+    "effectText": "Once per session, when someone in your party fails on a Task, before the GM narrates the consequences of their failure, you may attempt to salvage the situation. You reattempt the Task, using the Task's original Attribute + your Authority. On a success, you negate the previously failed roll and the scene continues. If you also fail, you reap the consequences of failure and generate an additional Complication."
+  },
+  {
+    "id": "diplomat_keep_them_talking",
+    "name": "Keep Them Talking",
+    "category": "narrative",
+    "group": "Diplomat",
+    "prerequisites": { "skill": { "id": "diplomacy", "minRating": 3 } },
+    "effectText": "When engaging someone in conversation, you have a knack for keeping them there. Anyone you talk to has an extra difficult time leaving the conversation if you don't want them to, allowing you to stall them indefinitely, and must perform a contested Faith + Diplomacy task against you to leave. Additionally, if you fail a Chit-Chat task during Negotiation, the Difficulty of Persuade increases by +1 as normal instead of +2."
+  },
+  {
+    "id": "diplomat_translator",
+    "name": "Translator",
+    "category": "narrative",
+    "group": "Diplomat",
+    "prerequisites": { "skill": { "id": "diplomacy", "minRating": 3 } },
+    "effectText": "Your knowledge of multiple languages makes it easier to connect to strangers from foreign lands. When speaking with someone in a language that is not your primary native one, you may increase the Complication range of a Diplomacy Task by 2 in order to lower the Difficulty by 1, as if you were a native speaker of that language. If you roll a Complication, through some mistake of accent or grammar, you say something with an unintended meaning."
+  },
+  {
+    "id": "diplomat_art_of_the_deal",
+    "name": "The Art of the Deal",
+    "category": "narrative",
+    "group": "Diplomat",
+    "prerequisites": { "skill": { "id": "diplomacy", "minRating": 3 } },
+    "effectText": "You may always succeed at cost on a task to bargain or haggle with someone. When you succeed on the Persuade Task as part of a Negotiation, you may reroll up to 3[CD] Favor without spending Momentum."
+  },
+  {
+    "id": "diplomat_conversational_gambler",
+    "name": "Conversational Gambler",
+    "category": "narrative",
+    "group": "Diplomat",
+    "prerequisites": { "skill": { "id": "diplomacy", "minRating": 3 } },
+    "effectText": "When you perform a task with Presence, you may increase the complication range by 2 to roll an extra die. If you do so on a Persuade Task during a Negotiation Challenge, you may also roll +2[CD] Favor dice on a success."
+  },
+  {
+    "id": "diplomat_cultural_flexibility",
+    "name": "Cultural Flexibility",
+    "category": "narrative",
+    "group": "Diplomat",
+    "prerequisites": { "skill": { "id": "diplomacy", "minRating": 3 } },
+    "effectText": "When you encounter someone from an unfamiliar culture or travel to a new place, you automatically succeed on any Tasks made in order to learn about that culture's customs or how to behave appropriately, and you gain 2 bonus momentum that must be spent on Obtain Information."
+  },
+  {
+    "id": "scholar_polymath",
+    "name": "Polymath",
+    "category": "narrative",
+    "group": "Scholar",
+    "prerequisites": { "skill": { "id": "study", "minRating": 3 } },
+    "effectText": "You are widely educated in many fields, and can speak on them with confidence. Once per session, you may declare that you actually have some expertise in a relevant subject. You gain a single Focus in that subject for the remainder of the scene."
+  },
+  {
+    "id": "scholar_historian",
+    "name": "Historian",
+    "category": "narrative",
+    "group": "Scholar",
+    "prerequisites": { "skill": { "id": "study", "minRating": 3 } },
+    "effectText": "You are well-versed in the histories of your world and the rise and fall of its kingdoms. You do not need to spend Momentum when using Obtain Information to gather information about events that happened more than ten years ago."
+  },
+  {
+    "id": "scholar_lecturer",
+    "name": "Lecturer",
+    "category": "narrative",
+    "group": "Scholar",
+    "prerequisites": { "skill": { "id": "study", "minRating": 3 } },
+    "effectText": "You are learned in rhetoric and debate, and making arguments with carefully studied historical evidence to back you up. When you use Reason to make a Diplomacy or Authority Task, you may make the check with a bonus d20."
+  },
+  {
+    "id": "scholar_facts_and_logic",
+    "name": "Facts and Logic",
+    "category": "narrative",
+    "group": "Scholar",
+    "prerequisites": { "skill": { "id": "study", "minRating": 3 } },
+    "effectText": "When you succeed on a Reason + Diplomacy Task to persuade another character or convince them of a certain course of action, you generate an extra point of Momentum that can be spent immediately or saved to the group pool."
+  },
+  {
+    "id": "scholar_meticulous",
+    "name": "Meticulous",
+    "category": "narrative",
+    "group": "Scholar",
+    "prerequisites": { "skill": { "id": "study", "minRating": 3 } },
+    "effectText": "Years of careful study have taught you how to be methodical and check for errors before attempting a Task. When you attempt a Task using Study for which you have a relevant focus, you may reroll any number of dice in your dice pool for the Task."
+  },
+  {
+    "id": "healer_bedside_manner",
+    "name": "Bedside Manner",
+    "category": "narrative",
+    "group": "Healer",
+    "prerequisites": { "skill": { "id": "medicine", "minRating": 3 } },
+    "effectText": "When you interact with a patient or someone sick or injured, they naturally feel more at ease in your presence. When you speak with them, you are able to keep them distracted from whatever is afflicting them. Additionally, the Difficulty on any tasks to convince them to share a secret with you is reduced by 1."
+  },
+  {
+    "id": "healer_apothecary",
+    "name": "Apothecary",
+    "category": "narrative",
+    "group": "Healer",
+    "prerequisites": { "skill": { "id": "medicine", "minRating": 3 } },
+    "effectText": "You possess a deep knowledge of poisons, diseases, and the cures for them. When treating a drugged, poisoned, or ill patient, you always know the best antidote or medicine so long as you know what the affliction is. The GM will tell you how you can obtain/make the cure and how long you have to treat it. Additionally, whenever you want to craft a poison, you always know what ingredients are necessary and the best places for you to obtain them."
+  },
+  {
+    "id": "healer_not_a",
+    "name": "I'm a Doctor, Not a...",
+    "category": "narrative",
+    "group": "Healer",
+    "prerequisites": { "skill": { "id": "medicine", "minRating": 3 } },
+    "effectText": "When you attempt a Task using Medicine that is not related to trying to heal or treat a patient and purchase extra dice with Threat or Momentum, you may reroll the purchased dice."
+  },
+  {
+    "id": "healer_autopsy",
+    "name": "Autopsy",
+    "category": "narrative",
+    "group": "Healer",
+    "prerequisites": { "skill": { "id": "medicine", "minRating": 3 } },
+    "effectText": "When you encounter a dead body, you automatically succeed on any Tasks to identify their cause of death. Knowing this information creates an Advantage that you may use to reduce the Difficulty of a Task to find the culprit of their death by 1."
+  },
+  {
+    "id": "healer_professional_opinion",
+    "name": "In My Professional Opinion",
+    "category": "narrative",
+    "group": "Healer",
+    "prerequisites": { "skill": { "id": "medicine", "minRating": 3 } },
+    "effectText": "When you give advice to an ally, they can choose to heed it or ignore it. If they heed your advice, the crit range on their next Task is equal to your Medicine. If they ignore it, the complication range on their next Task increases by 1."
+  },
+  {
+    "id": "scoundrel_lockpicker",
+    "name": "Lockpicker",
+    "category": "narrative",
+    "group": "Scoundrel",
+    "prerequisites": { "skill": { "id": "intrigue", "minRating": 3 } },
+    "effectText": "Locked doors are no challenge for you. You can easily unlock and lock common locks with no task needed. For rare complex locks - the sorts that nobles use to lock their treasuries or guarded with magick - any task to unlock them is made with a bonus d20."
+  },
+  {
+    "id": "scoundrel_eavesdropper",
+    "name": "Eavesdropper",
+    "category": "narrative",
+    "group": "Scoundrel",
+    "prerequisites": { "skill": { "id": "intrigue", "minRating": 3 } },
+    "effectText": "You are skilled at listening in to conversations that you aren't meant to hear. As long as you can hear someone speaking at a whisper, or can see their lips, you are able to clearly make out everything that they say. In any case, you have a bonus d20 on any Awareness tasks to listen in to conversations if it is a question whether it is audible to you."
+  },
+  {
+    "id": "scoundrel_wallflower",
+    "name": "Wallflower",
+    "category": "narrative",
+    "group": "Scoundrel",
+    "prerequisites": { "skill": { "id": "intrigue", "minRating": 3 } },
+    "effectText": "You are adept at disappearing in plain sight, with others not noticing you ever left. If at least 2 Allies are with you during a scene, you can slink away without NPCs noticing you left unless your allies remind them of you. Additionally, if you return to the same location during the same scene, NPCs won't notice that you ever left."
+  },
+  {
+    "id": "scoundrel_well_placed_contacts",
+    "name": "Well Placed Contacts",
+    "category": "narrative",
+    "group": "Scoundrel",
+    "prerequisites": { "skill": { "id": "intrigue", "minRating": 3 } },
+    "effectText": "You have well-placed contacts that you can rely on for information. When you succeed on a Task to gain information about what's going on in the world beyond your immediate surroundings, your first use of the Gain Information momentum spend is free."
+  },
+  {
+    "id": "scoundrel_pickpocket",
+    "name": "Pickpocket",
+    "category": "narrative",
+    "group": "Scoundrel",
+    "prerequisites": { "skill": { "id": "intrigue", "minRating": 3 } },
+    "effectText": "With deft fingers, you can easily snatch items away from their owners. You can easily steal small, insignificant items without needing to make a roll. For larger or more important items that would be missed, you may choose to automatically succeed on any Task made to take the item, but the owner will notice that it's missing."
+  },
+  {
+    "id": "peasant_back_of_your_hand",
+    "name": "Back of Your Hand",
+    "category": "narrative",
+    "group": "Peasant",
+    "prerequisites": { "socialClass": "commoner_peasant" },
+    "effectText": "When navigating a city or region with which you are familiar, you are able to avoid implicit dangers, potentially avoiding dangerous encounters. You may attempt a Difficulty 2 Awareness + Study Task in order to use this ability in unfamiliar environments."
+  },
+  {
+    "id": "peasant_folk_hero",
+    "name": "Folk Hero",
+    "category": "narrative",
+    "group": "Peasant",
+    "prerequisites": { "socialClass": "commoner_peasant" },
+    "effectText": "You are greatly renowned among the common folk. Once per session, you can automatically succeed on an authority task to encourage a mob to take action, redirect their focus, or disperse. Additionally, commonfolk who know of you will go out of their way to offer you assistance, boarding, and food."
+  },
+  {
+    "id": "peasant_instantly_forgotten",
+    "name": "Instantly Forgotten",
+    "category": "narrative",
+    "group": "Peasant",
+    "prerequisites": { "socialClass": "commoner_peasant" },
+    "effectText": "Your low status makes you easily forgettable. Anyone you interact with or encounter only briefly won't remember your name or description well enough to describe you unless you want them to, allowing you to avoid being found later."
+  },
+  {
+    "id": "peasant_master_of_the_trade",
+    "name": "Master of the Trade",
+    "category": "narrative",
+    "group": "Peasant",
+    "prerequisites": { "socialClass": "commoner_peasant" },
+    "effectText": "When you take this talent, choose a single of your focuses that relates to a trade or craft of some kind. Once per session, when you spend your Determination on a Task where this Focus applies, you may instantly get it back after the roll."
+  },
+  {
+    "id": "merchant_solidarity",
+    "name": "Merchant Solidarity",
+    "category": "narrative",
+    "group": "Merchant",
+    "prerequisites": { "socialClass": "commoner_merchant" },
+    "effectText": "Once per scene, you can appeal to your status as a common merchant to appeal to another merchant to automatically succeed on a task trying to get information or assistance from them."
+  },
+  {
+    "id": "merchant_populo_grosso",
+    "name": "Populo Grosso",
+    "category": "narrative",
+    "group": "Merchant",
+    "prerequisites": { "socialClass": "commoner_merchant" },
+    "effectText": "Your wealth grants you a certain amount of respect across all social classes. Creating an Advantage costs 1 less Momentum when using it to help you with Tasks to interact with someone whose social class is above yours."
+  },
+  {
+    "id": "merchant_verified_expert",
+    "name": "Verified Expert",
+    "category": "narrative",
+    "group": "Merchant",
+    "prerequisites": { "socialClass": "commoner_merchant" },
+    "effectText": "Your skill in your trade has given you a vast amount of expertise in the matter. You may always apply your social class to create a discounted advantage for study tasks that you have an applicable focus for."
+  },
+  {
+    "id": "merchant_in_my_employ",
+    "name": "In My Employ",
+    "category": "narrative",
+    "group": "Merchant",
+    "prerequisites": { "socialClass": "commoner_merchant" },
+    "effectText": "When another character that is employed by you or serving you attempts a Task, you may spend your Determination in order to grant its effects to that character. When you do this, you also create an Advantage for yourself related to the task."
+  },
+  {
+    "id": "high_born_of_want_to_please",
+    "name": "Of Want to Please",
+    "category": "narrative",
+    "group": "High Born",
+    "prerequisites": {},
+    "effectText": "People want to get on your good side. Once per Session, you can automatically succeed on any Diplomacy task if you promise to help the target Character out in the future (you need not keep this promise, of course, but may suffer a Complication if you don't). Requires the Petty Nobility, Landed Nobility, or Royalty social class."
+  },
+  {
+    "id": "high_born_noble_privilege",
+    "name": "Noble Privilege",
+    "category": "narrative",
+    "group": "High Born",
+    "prerequisites": {},
+    "effectText": "You can never be accused of trespassing or breaking petty laws by anyone who isn't a noble or isn't the direct owner of the property you are violating. Servants and the working class will assume that wherever you are and whatever you are doing, you are allowed - unless they've been told beforehand by their master to particularly look out for you."
+  },
+  {
+    "id": "high_born_reputation_precedes_you",
+    "name": "Reputation Precedes You",
+    "category": "narrative",
+    "group": "High Born",
+    "prerequisites": {},
+    "effectText": "You have something of a reputation and can use it to your advantage. When you attempt a Task to interact with someone you've never met before, you may roll two extra dice without cost, but the Complication range increases by 2. If you roll a Complication, they've heard of you before, but they're not pleased by what your reputation would suggest."
+  },
+  {
+    "id": "high_born_above_the_law",
+    "name": "Above the Law",
+    "category": "narrative",
+    "group": "High Born",
+    "prerequisites": {},
+    "effectText": "Your status places you above the scrutiny that others might face. When you are about to be arrested or face legal consequences of some kind, you may instead take a complication and avoid immediate repercussions."
+  },
+  {
+    "id": "carouser_heavyweight",
+    "name": "Heavyweight",
+    "category": "narrative",
+    "group": "Carouser",
+    "prerequisites": {},
+    "effectText": "Once per scene, you may automatically succeed at a task to resist any negative effects from excessive consumption of alcohol, drugs, or other substances. Additionally, when you are drunk or similarly inebriated, the Difficulty on all diplomacy tasks against others under the influence is reduced by 1."
+  },
+  {
+    "id": "carouser_life_of_the_party",
+    "name": "Life of the Party",
+    "category": "narrative",
+    "group": "Carouser",
+    "prerequisites": {},
+    "effectText": "You can channel the mood of a crowd to your advantage. You may reroll on a die on any attempt to sway an excited or partying crowd, and gain two bonus momentum on a success."
+  },
+  {
+    "id": "carouser_terrible_influence",
+    "name": "Terrible Influence",
+    "category": "narrative",
+    "group": "Carouser",
+    "prerequisites": {},
+    "effectText": "You make anything and everything seem cool and compelling if you are encouraging it. Whenever you attempt to convince another character to indulge in vice - such as drinking, substances, gambling, or sexual impropriety - they must suffer a complication if they refuse, even if you fail a relevant task."
+  },
+  {
+    "id": "carouser_party_doesnt_start_without_me",
+    "name": "The Party Doesn't Start Without Me",
+    "category": "narrative",
+    "group": "Carouser",
+    "prerequisites": {},
+    "effectText": "Whenever you perform a task to attempt to join a social gathering or event that you do not have an invitation to or are not welcome in, you may always choose to succeed at cost. This may generate multiple complications if you attempt to bring others in with you, at the GM's discretion."
+  },
+  {
+    "id": "carouser_never_stop_gambling",
+    "name": "Never Stop Gambling",
+    "category": "narrative",
+    "group": "Carouser",
+    "prerequisites": {},
+    "effectText": "You can't help but chase the thrill of uncertainty and chance. Whenever you perform a task that involves a high amount of risk, as determined by the GM, you may increase your complication range to roll an additional die. The first time you use this ability in a session the increase in complication range is 1. The increase goes up by 1 each time this ability is subsequently used in the same session (+2 on the second, +3 on the third, etc.) to a maximum range of 5."
+  },
+  {
+    "id": "jester_fools_privilege",
+    "name": "The Fool's Privilege",
+    "category": "narrative",
+    "group": "Jester",
+    "prerequisites": {},
+    "effectText": "You are not expected to be taken seriously. Once a scene, you may ignore a social complication entirely, and may ignore each further social complication by spending 1 momentum."
+  },
+  {
+    "id": "jester_defusive_humor",
+    "name": "Defusive Humor",
+    "category": "narrative",
+    "group": "Jester",
+    "prerequisites": {},
+    "effectText": "You know how to break the tension with jokes. Once per scene, you may reduce the cost of creating an advantage to put someone at ease by 1. Additionally, once during a negotiation task, you may automatically succeed on an Excuse or Chit-Chat task."
+  },
+  {
+    "id": "jester_master_of_none",
+    "name": "Master of None",
+    "category": "narrative",
+    "group": "Jester",
+    "prerequisites": {},
+    "effectText": "When performing a task outside of combat without a focus, each additional die you purchase costs only 1 momentum."
+  },
+  {
+    "id": "jester_entertainers_finesse",
+    "name": "The Entertainer's Finesse",
+    "category": "narrative",
+    "group": "Jester",
+    "prerequisites": {},
+    "effectText": "When you succeed in a task related to some performative skill that you have a focus in (e.g. juggling, tumbling, singing, etc.), you generate two bonus momentum that must be spent on creating a social advantage."
+  },
+  {
+    "id": "jester_from_the_margins",
+    "name": "From the Margins",
+    "category": "narrative",
+    "group": "Jester",
+    "prerequisites": {},
+    "effectText": "You have learned to use what makes you unique to your own advantage. If you have a trait that is considered unusual or looked down upon by your current society, you may always apply it to gain a discounted advantage on performative or persuasion tasks. Additionally, it does not give you a complication on social tasks as long as you are around close allies or friends."
+  },
+  {
+    "id": "knight_chivalry",
+    "name": "Chivalry",
+    "category": "narrative",
+    "group": "Knight",
+    "prerequisites": {},
+    "effectText": "Once per session, if you spend your determination while acting to defend someone else, you immediately regain it."
+  },
+  {
+    "id": "knight_courtly_love",
+    "name": "Courtly Love",
+    "category": "narrative",
+    "group": "Knight",
+    "prerequisites": {},
+    "effectText": "When you act in the name of someone who is the object of your affections, but they are not there to witness it, you generate an extra point of Momentum on a successful Task that can be spent immediately or saved to the group pool."
+  },
+  {
+    "id": "knight_bold_and_brave",
+    "name": "Bold and Brave",
+    "category": "narrative",
+    "group": "Knight",
+    "prerequisites": {},
+    "effectText": "When you attempt a Task using Presence or Skirmish and buy one or more d20s by adding to Threat, you may re-roll a single d20 in your dice pool."
+  },
+  {
+    "id": "knight_tourney_knight",
+    "name": "Tourney Knight",
+    "category": "narrative",
+    "group": "Knight",
+    "prerequisites": {},
+    "effectText": "When you attempt an Opposed Task outside of combat and fail, your opponent doesn't generate any Momentum/Threat."
+  },
+  {
+    "id": "knight_rallying_cry",
+    "name": "Rallying Cry",
+    "category": "narrative",
+    "group": "Knight",
+    "prerequisites": {},
+    "effectText": "When you spend your determination, you may also add 3 Momentum to the pool."
+  },
+  {
+    "id": "magnate_endless_coffers",
+    "name": "Endless Coffers",
+    "category": "narrative",
+    "group": "Magnate",
+    "prerequisites": {},
+    "effectText": "Money isn't an issue for you. Whenever you create an Advantage arising from you spending money, you may decrease the Difficulty of the task by 2 instead of 1. Additionally, you may always succeed at cost to convince someone to do something for you - such as give information, betray someone, sell you something - by paying them, so long as there was any chance of success in the first place."
+  },
+  {
+    "id": "magnate_loyal_retainer",
+    "name": "Loyal Retainer",
+    "category": "narrative",
+    "group": "Magnate",
+    "prerequisites": {},
+    "effectText": "You have a loyal servant whose job is to assist you in everyday tasks - such as a secretary, a page, a squire, a maidservant, etc. They can be delegated small tasks without issue; obey your instructions, within reason; and can assist you on any tasks as deemed appropriate by the GM. You know them well enough to judge their loyalty. You may roll an additional die on any task to ascertain if they're lying to you, have betrayed you, or otherwise are being deceitful."
+  },
+  {
+    "id": "magnate_magnanimous_patron",
+    "name": "Magnanimous Patron",
+    "category": "narrative",
+    "group": "Magnate",
+    "prerequisites": {},
+    "effectText": "You do not need to spend Momentum in order to be assisted by more than one character."
+  },
+  {
+    "id": "magnate_debt_collector",
+    "name": "Debt Collector",
+    "category": "narrative",
+    "group": "Magnate",
+    "prerequisites": {},
+    "effectText": "Whenever a character owes you a debt, material or financial, the cost to create an advantage on diplomacy tasks against them is reduced by 1 as if you had a relevant trait. Additionally, you may always succeed on such tasks against them by notably reducing or forgiving the debt."
+  },
+  {
+    "id": "magnate_make_it_happen",
+    "name": "Make it Happen",
+    "category": "narrative",
+    "group": "Magnate",
+    "prerequisites": {},
+    "effectText": "Your wealth means you are well connected into patronage networks and can easily find the best person for any job. Once a session, when you need someone for a job - a craftsman, an artist, an expert, a conman, etc. - you may ask the GM where you can find the best person for the job and what you will need to hire them. Subsequent uses during the same session cost 1 momentum."
+  },
+  {
+    "id": "priest_blessings_abound",
+    "name": "Blessings Abound",
+    "category": "narrative",
+    "group": "Priest",
+    "prerequisites": { "career": "acolyte" },
+    "effectText": "1/scene, when you assist an ally using Faith, you may roll two dice."
+  },
+  {
+    "id": "priest_heavenly_authority",
+    "name": "Heavenly Authority",
+    "category": "narrative",
+    "group": "Priest",
+    "prerequisites": { "career": "acolyte" },
+    "effectText": "You speak with an authority invested in you by Heaven Itself. When you use Faith to make an Authority or Diplomacy Task, you may reroll a single d20 in your dice pool for that Task."
+  },
+  {
+    "id": "priest_of_sacred_order",
+    "name": "Of Sacred Order",
+    "category": "narrative",
+    "group": "Priest",
+    "prerequisites": { "career": "acolyte" },
+    "effectText": "You are in community with the ascetic and/or monastic members of your faith and can call on them for assistance. When you are in need of information, you may seek out answers from your fellow acolytes, who will either give you what you need or point you in the right direction. You also gain an Advantage to be used on a Task acting on information you receive."
+  },
+  {
+    "id": "priest_pillar_of_salt",
+    "name": "Pillar of Salt",
+    "category": "narrative",
+    "group": "Priest",
+    "prerequisites": { "career": "acolyte" },
+    "effectText": "When someone acts against the tenets of your faith and you rebuke them, you may give them a Complication representing their status as someone in opposition to your faith, affecting all Tasks to interact with other members of your faith. This Complication lasts until either you or the GM decides that they have sufficiently repented."
+  },
+  {
+    "id": "priest_penitent",
+    "name": "Penitent",
+    "category": "narrative",
+    "group": "Priest",
+    "prerequisites": { "career": "acolyte" },
+    "effectText": "When you humble yourself before Heaven, your humility is rewarded. When you attempt any Faith Task for which you have a focus that applies, you may choose not to use that focus. If you still succeed on the roll, you gain 2 bonus momentum that can be spent to either get rid of an existing Complication, or create a new Advantage."
+  },
+  {
+    "id": "rake_string_them_along",
+    "name": "String Them Along",
+    "category": "narrative",
+    "group": "Rake",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "Your seductions leave an impression. Once per session, you automatically succeed on a diplomacy task to convince someone you've previously romanced to help you with something, so long as you have not aggrieved them since. Further, whenever you try to appease an aggrieved lover, the Difficulty of any rolls is reduced by one."
+  },
+  {
+    "id": "rake_leave_them_wanting_more",
+    "name": "Leave them Wanting More",
+    "category": "narrative",
+    "group": "Rake",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "Whenever you leave in the middle of a conversation, your conversation partner will be left wishing it had continued. The next time you speak to them, they'll be more inclined to appease you and give you something you want, giving you an extra d20 in any diplomacy tasks to convince them to do what you want."
+  },
+  {
+    "id": "rake_intimate_multitasker",
+    "name": "Intimate Multitasker",
+    "category": "narrative",
+    "group": "Rake",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "When you are engaged with a lover, you are able to perform a second subtle task, such as eavesdropping or pickpocketing, without their noticing and without getting distracted. Further, whenever you are publicly engaged with a lover or lovers, any onlookers will assume your full attention is on your lovers and not on any secondary task."
+  },
+  {
+    "id": "rake_all_the_courts_secrets",
+    "name": "All the Court's Secrets",
+    "category": "narrative",
+    "group": "Rake",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "You are amazing at extracting information from your lovers. Whenever you successfully seduce someone, you gain two bonus momentum that must be spent on Obtain Information and may not be saved to the group pool."
+  },
+  {
+    "id": "rake_come_back_to_my_room",
+    "name": "Come Back to My Room",
+    "category": "narrative",
+    "group": "Rake",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "Once per session, you can use this talent to make an individual that you have successfully charmed or wooed willing to follow you to a private location in spite of any concerns for their own safety or well-being, so long as it is not obviously life-threatening."
+  },
+  {
+    "id": "retainer_contract_work",
+    "name": "Contract Work",
+    "category": "narrative",
+    "group": "Retainer",
+    "prerequisites": {},
+    "effectText": "You rely on the patronage of others to fund your artistic and/or scholarly endeavors, and in exchange help to fill your patron's court with wonder and magnificence. You may enter into contracts with others to give your services in exchange for funding, protection, etc. While you are under contract from your patron(s), once per scene a task made in order to fulfill your contract generates two bonus momentum, which may not be saved to the group pool."
+  },
+  {
+    "id": "retainer_servants_gossip",
+    "name": "Servant's Gossip",
+    "category": "narrative",
+    "group": "Retainer",
+    "prerequisites": {},
+    "effectText": "Whenever you interact with a courtier, servant, or retainer, you may automatically succeed at any task to get them to share secrets and scandals about their patron, so long as it does not put them or their patron in immediate danger."
+  },
+  {
+    "id": "retainer_at_your_service",
+    "name": "At Your Service",
+    "category": "narrative",
+    "group": "Retainer",
+    "prerequisites": {},
+    "effectText": "Whenever you assist in a task, you and the character you are assisting may each reroll a single die in the task."
+  },
+  {
+    "id": "retainer_fine_reputation",
+    "name": "Fine Reputation",
+    "category": "narrative",
+    "group": "Retainer",
+    "prerequisites": {},
+    "effectText": "You are considered a master in your field, and with that comes certain boons of networking. Any potential patron or colleague will always hear you out when you approach them, and your name will be recognized by anyone with a connection to or interest in your field."
+  },
+  {
+    "id": "retainer_prospective_patronage",
+    "name": "Prospective Patronage",
+    "category": "narrative",
+    "group": "Retainer",
+    "prerequisites": {},
+    "effectText": "When attempting a Task to persuade or convince someone to hire you or pay for your services, you may add an extra die to your dice pool."
+  },
+  {
+    "id": "romantic_damsel_in_distress",
+    "name": "Damsel in Distress",
+    "category": "narrative",
+    "group": "Romantic",
+    "prerequisites": {},
+    "effectText": "When others assist you on a Task, their successes always count towards the result, whether you rolled a success or not."
+  },
+  {
+    "id": "romantic_diamond_in_the_rough",
+    "name": "Diamond in the Rough",
+    "category": "narrative",
+    "group": "Romantic",
+    "prerequisites": {},
+    "effectText": "Whether as a noble disguising yourself as a commoner to avoid being recognized, or as a commoner disguising yourself as a noble to gain access to a higher status, you have mastered the art of disguise in order to get around the circumstances of your birth. When entering a scene in disguise, you gain an Advantage on all Tasks to remain unnoticed or to maintain your fake identity."
+  },
+  {
+    "id": "romantic_heartsong",
+    "name": "Heartsong",
+    "category": "narrative",
+    "group": "Romantic",
+    "prerequisites": {},
+    "effectText": "Once per session, when you sing for someone, you may choose to reveal one of your Values as part of your song, and you may choose one character (PC or NPC) that is listening who must reveal one of their Values to you in return."
+  },
+  {
+    "id": "romantic_i_believe_in_you",
+    "name": "I Believe in You!",
+    "category": "narrative",
+    "group": "Romantic",
+    "prerequisites": {},
+    "effectText": "When an ally fails a roll in which they were unassisted, you may roll a die to assist using your Faith or Presence + the requisite skill. This may only occur after the result of the roll has been declared but before the outcome has been described."
+  },
+  {
+    "id": "romantic_wish_upon_a_star",
+    "name": "Wish Upon a Star",
+    "category": "narrative",
+    "group": "Romantic",
+    "prerequisites": {},
+    "effectText": "In addition to your Values, you have a Wish: a secret dream or desire that you helplessly yearn to fulfill. You may call upon this Wish in order to spend Determination in the same way you would use a Value or the Common Cause, though you may only do so once per session. When you spend Determination using your Wish, roll 1[CD]. If an effect is rolled, you regain that point of Determination."
+  },
+  {
+    "id": "vizier_lull_into_security",
+    "name": "Lull into Security",
+    "category": "narrative",
+    "group": "Vizier",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "Whenever you attempt a Task to make your target relax or trust you, you gain a bonus d20. Further, you may always Succeed at Cost on these tasks, with each complication you suffer adding +1 to the Difficulty of further Tasks to maintain your target's trust and goodwill."
+  },
+  {
+    "id": "vizier_like_a_book",
+    "name": "Like a Book",
+    "category": "narrative",
+    "group": "Vizier",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "You may spend your Determination to be able to hone your ability to detect lies. For the rest of the scene, you can always tell when someone is lying to you as long as you can see their face."
+  },
+  {
+    "id": "vizier_the_hand",
+    "name": "The Hand",
+    "category": "narrative",
+    "group": "Vizier",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "You act not in your own name, but in the name of someone greater than you. Once per session, you may ignore the effects of a Complication, instead conferring it to your liege lord."
+  },
+  {
+    "id": "vizier_silver_tongued",
+    "name": "Silver-Tongued",
+    "category": "narrative",
+    "group": "Vizier",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "When you attempt a Diplomacy Task while lying, you gain one extra d20 which you can reroll."
+  },
+  {
+    "id": "vizier_devils_bargain",
+    "name": "The Devil's Bargain",
+    "category": "narrative",
+    "group": "Vizier",
+    "prerequisites": { "attribute": { "id": "presence", "minRating": 9 } },
+    "effectText": "When someone else would challenge or comply with one of their Values in order to gain an extra point of Determination, you may offer them your own point of Determination instead, stopping them from doing so. If they take your bargain, you gain an Advantage to spend on your next roll. If they refuse, you keep your Determination."
+  },
+  {
+    "id": "magician_arcane_secrets",
+    "name": "Arcane Secrets",
+    "category": "narrative",
+    "group": "Magician",
+    "prerequisites": { "magickDomain": "arcane" },
+    "effectText": "Whenever you attempt a Task to understand a piece of magick, you gain two Bonus Momentum which you must spend on Gather Information. You gain this bonus momentum even if you fail the Task."
+  },
+  {
+    "id": "magician_artificer",
+    "name": "Artificer",
+    "category": "narrative",
+    "group": "Magician",
+    "prerequisites": { "magickDomain": "arcane" },
+    "effectText": "When you attempt an Extended Task to perform a spell or create an object using your Magick, you may reroll the Progress dice once without spending any momentum."
+  },
+  {
+    "id": "magician_prestidigitation",
+    "name": "Prestidigitation",
+    "category": "narrative",
+    "group": "Magician",
+    "prerequisites": { "magickDomain": "arcane" },
+    "effectText": "1/scene, when you choose not to roll on a Difficulty 0 Task to perform a feat of Magick, you may create a free Advantage."
+  },
+  {
+    "id": "magician_scrying",
+    "name": "Scrying",
+    "category": "narrative",
+    "group": "Magician",
+    "prerequisites": { "magickDomain": "arcane" },
+    "effectText": "Whenever you attempt a Task using Magick + Intrigue that targets another character, you may increase the Complication range of the Task by 2 in order to gain a bonus die. If you have a possession or body part (like a lock of hair) belonging to the target of your Task, you may gain a bonus die without the Complication range increase."
+  },
+  {
+    "id": "magician_telecast",
+    "name": "Telecast",
+    "category": "narrative",
+    "group": "Magician",
+    "prerequisites": { "magickDomain": "arcane" },
+    "effectText": "When you perform a Task to communicate with someone magickally, you may always succeed at cost."
+  },
+  {
+    "id": "theurgist_divine_healer",
+    "name": "Divine Healer",
+    "category": "narrative",
+    "group": "Theurgist",
+    "prerequisites": { "magickDomain": "light" },
+    "effectText": "When you succeed on a Magick + Medicine Task, you gain 2 bonus momentum."
+  },
+  {
+    "id": "theurgist_intercession",
+    "name": "Intercession",
+    "category": "narrative",
+    "group": "Theurgist",
+    "prerequisites": { "magickDomain": "light" },
+    "effectText": "You appeal to a higher power for a miracle. 1/session, when facing a Difficulty 6 Task that has not been reduced by any other effects, all dice you purchase cost 1 Momentum."
+  },
+  {
+    "id": "theurgist_oracle",
+    "name": "Oracle",
+    "category": "narrative",
+    "group": "Theurgist",
+    "prerequisites": { "magickDomain": "light" },
+    "effectText": "1/session you may ask the GM about the outcome of a course of action you or another character intends to take, and the GM must give you an honest answer, choosing one of the following omens: weal, woe, weal and woe, or nothing."
+  },
+  {
+    "id": "theurgist_warding",
+    "name": "Warding",
+    "category": "narrative",
+    "group": "Theurgist",
+    "prerequisites": { "magickDomain": "light" },
+    "effectText": "When you successfully perform a Task to create a magickal protection or ward, you always know when something triggers it and when it wears off. The Difficulty on any Task to re-enable a ward you created is reduced by 1."
+  },
+  {
+    "id": "theurgist_will_of_heaven",
+    "name": "Will of Heaven",
+    "category": "narrative",
+    "group": "Theurgist",
+    "prerequisites": { "magickDomain": "light" },
+    "effectText": "When an ally attempts a Task, before the roll occurs, you may choose to turn one of the dice in their pool into a 10. You may use this ability once per session."
+  },
+  {
+    "id": "witch_bargain_with_darkness",
+    "name": "Bargain with Darkness",
+    "category": "narrative",
+    "group": "Witch",
+    "prerequisites": { "magickDomain": "dark" },
+    "effectText": "Whenever you give Threat to roll extra dice on a Task using your Magick, you may reroll any number of the purchased dice once and keep either result."
+  },
+  {
+    "id": "witch_cloaked_in_shadow",
+    "name": "Cloaked in Shadow",
+    "category": "narrative",
+    "group": "Witch",
+    "prerequisites": { "magickDomain": "dark" },
+    "effectText": "Your mastery of darkness allows you to maneuver unseen. You may roll an extra die on any Task you perform to remain hidden or move stealthily."
+  },
+  {
+    "id": "witch_it_catches_up",
+    "name": "It Catches Up",
+    "category": "narrative",
+    "group": "Witch",
+    "prerequisites": { "magickDomain": "dark" },
+    "effectText": "1/session, when you fail a Task, you may reroll your entire dice pool. If you succeed on the second attempt, you must reroll your dice pool on the next Task that you succeed. This must be done before the outcome of the roll is determined."
+  },
+  {
+    "id": "witch_soul_read",
+    "name": "Soul Read",
+    "category": "narrative",
+    "group": "Witch",
+    "prerequisites": { "magickDomain": "dark" },
+    "effectText": "1/session, when you succeed on a Magick + Diplomacy Task to decipher someone's intentions, you may also feel their emotions in that moment as if they were your own. You may spend 2 Momentum to also learn the target's surface thoughts."
+  },
+  {
+    "id": "witch_dark_power",
+    "name": "The Dark Power",
+    "category": "narrative",
+    "group": "Witch",
+    "prerequisites": { "magickDomain": "dark" },
+    "effectText": "1/session, you may consult a Dark Power for guidance or insight. The Dark Power is not trustworthy, and the GM may be tricky or misleading when answering. If you heed the Dark Power, you gain a bonus die on your next Task, though the Complication range increases by 1. If you do not, the GM gains 1 Threat, and the Complication range of your next Task increases by 1."
   }
 ]

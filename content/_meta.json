@@ -19,9 +19,9 @@
     "equipment.shields": "3 of 3 (complete)",
     "equipment.mounts": "4 of 4 (complete)",
     "equipment.general": "4 of 4 (complete: Banner, Healing Potion, Tome, Spell Implement)",
-    "talents.index": "complete: all 15 Narrative Archetypes + all 49 Combat Talent Trees mapped by name/subgroup/prerequisite (see talents/_index.json)",
-    "talents.narrative": "1 of 15 Archetypes fully transcribed (Warrior); remaining 14 mapped but not transcribed",
-    "talents.combat": "1 of 49 Talent Trees fully transcribed (Sword Adept, partial); remaining 48 mapped but not transcribed",
+    "talents.index": "complete: all 21 Narrative Archetypes (corrected from an initial miscount of 15 - Setting Archetype actually has 9 groups, not 3) + all 49 Combat Talent Trees mapped by name/subgroup/prerequisite (see talents/_index.json)",
+    "talents.narrative": "21 of 21 Archetypes fully transcribed (105 abilities: 6 Skill + 3 Class + 9 Setting + 3 Magickal)",
+    "talents.combat": "1 of 49 Talent Trees fully transcribed (Sword Adept); remaining 48 mapped but not transcribed",
     "spells.arcane": "20 of 20 mapped (name/tier/tags/slotCost/action/uses); 1 fully transcribed (Firebolt)",
     "spells.light": "25 of 25 mapped; 0 fully transcribed",
     "spells.dark": "18 of 18 mapped (with Willpower costs); 0 fully transcribed"
