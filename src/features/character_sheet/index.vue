@@ -44,6 +44,21 @@ const WEAPON_TAG_ATTRIBUTES: Partial<Record<WeaponTag, AttributeId[]>> = {
   [WeaponTag.Gauntlet]: [AttributeId.Agility, AttributeId.Brawn, AttributeId.Coordination],
 }
 
+/**
+ * The Attribute the defender rolls against each Weapon Tag - a three-way cycle for the
+ * melee tags (Sword > Coordination > Brawn (Spear) is defended by Brawn; Axe/Brawn is
+ * defended by Agility; Sword/Agility is defended by Coordination), Bow defended by the same
+ * Awareness it attacks with, and Gauntlet defended by whichever of Agility/Brawn/Coordination
+ * the attacker chose to attack with (design team confirmed, not stated in the source doc -
+ * its Weapon Triangle diagram is missing from this export).
+ */
+const WEAPON_TAG_DEFEND_ATTRIBUTES: Partial<Record<WeaponTag, AttributeId[]>> = {
+  [WeaponTag.Sword]: [AttributeId.Coordination],
+  [WeaponTag.Axe]: [AttributeId.Agility],
+  [WeaponTag.Spear]: [AttributeId.Brawn],
+  [WeaponTag.Bow]: [AttributeId.Awareness],
+}
+
 const props = defineProps<{ id: string }>()
 const store = useCharacterSheetStore()
 const showLevelUp = ref(false)
@@ -117,6 +132,13 @@ function weaponTask(weapon: IWeaponData): string {
   return attrs
     .map((id) => `${attributeName(id)} ${character.value!.attribute(id) + character.value!.skill(SkillId.Skirmish)}`)
     .join(' / ')
+}
+
+/** "Coordination" for most tags; Gauntlet is defended with whichever attribute it attacked with. */
+function weaponDefendedBy(weapon: IWeaponData): string {
+  if (weapon.tag === WeaponTag.Gauntlet) return 'Same as Task'
+  const attrs = WEAPON_TAG_DEFEND_ATTRIBUTES[weapon.tag]
+  return attrs ? attrs.map(attributeName).join(' / ') : '-'
 }
 
 function weaponRangeOrReach(weapon: IWeaponData): { label: string; value: number | string } {
@@ -254,6 +276,7 @@ function weaponDamage(weapon: IWeaponData): string {
               <v-card-text>
                 <v-row dense>
                   <v-col cols="6" sm="3">Task: <strong>{{ weaponTask(g.weapon) }}</strong></v-col>
+                  <v-col cols="6" sm="3">Defended by: <strong>{{ weaponDefendedBy(g.weapon) }}</strong></v-col>
                   <v-col cols="6" sm="3">{{ weaponRangeOrReach(g.weapon).label }}: <strong>{{ weaponRangeOrReach(g.weapon).value }}</strong></v-col>
                   <v-col cols="6" sm="3">Damage: <strong>{{ weaponDamage(g.weapon) }}</strong></v-col>
                 </v-row>
