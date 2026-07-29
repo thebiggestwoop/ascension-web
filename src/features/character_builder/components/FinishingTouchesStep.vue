@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { computed, ref, toRaw } from 'vue'
+import { useRouter } from 'vue-router'
 import { AttributeId, SkillId } from '@/classes/enums'
-import { Character } from '@/classes/Character'
+import { Character, computeStatModifiers } from '@/classes/Character'
 import { CoreContent } from '@/io/ContentLoader'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
 import EquipmentPicker from './EquipmentPicker.vue'
 import TalentPicker from './TalentPicker.vue'
+
+const router = useRouter()
+const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
 
 const ATTRIBUTE_CAP = 11
 const SKILL_CAP = 4
@@ -86,6 +90,7 @@ const projectedAttributes = computed(() => {
   return result
 })
 
+const nameText = ref('')
 const valueText = ref('')
 const definingFeatureText = ref('')
 
@@ -103,6 +108,7 @@ const talentPicks = ref<{ narrativeTalentIds: string[]; combatTalentIds: string[
 
 const isReady = computed(
   () =>
+    nameText.value.trim().length > 0 &&
     attributeAllocations.value.every((v) => v !== null) &&
     skillAllocations.value.every((v) => v !== null) &&
     valueText.value.trim().length > 0 &&
@@ -113,7 +119,7 @@ const isReady = computed(
 
 const finished = ref(false)
 
-function finish() {
+async function finish() {
   if (!isReady.value || finished.value) return
 
   const attributeDeltas: Partial<Record<AttributeId, number>> = { ...capCorrection.value.attributeDeltas }
@@ -125,7 +131,8 @@ function finish() {
     if (id) skillDeltas[id] = (skillDeltas[id] ?? 0) + 1
   }
 
-  store.applyFinishingTouches({
+  await store.applyFinishingTouches({
+    name: nameText.value,
     attributeDeltas,
     skillDeltas,
     valueText: valueText.value,
@@ -144,7 +151,15 @@ function finish() {
 
 // toRaw() unwraps Pinia's reactive Proxy - structuredClone() (used inside Deserialize)
 // can't clone a live reactive Proxy directly.
-const finalCharacter = computed(() => Character.Deserialize(toRaw(store.draft)))
+const finalCharacter = computed(() => {
+  const modifiers = computeStatModifiers(
+    toRaw(store.draft),
+    allTalents,
+    CoreContent.equipment.armor,
+    CoreContent.equipment.general,
+  )
+  return Character.Deserialize(toRaw(store.draft), modifiers)
+})
 const attributeSum = computed(() => Object.values(store.draft.attributes).reduce((a, b) => a + b, 0))
 const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) => a + b, 0))
 </script>
@@ -184,6 +199,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
 
       <v-card class="mb-4" variant="outlined">
         <v-card-text>
+          <v-text-field v-model="nameText" label="Character Name" density="compact" class="mb-2" />
           <v-text-field v-model="valueText" label="4th Value" density="compact" class="mb-2" />
           <v-text-field v-model="definingFeatureText" label="Defining Feature (Trait)" density="compact" />
         </v-card-text>
@@ -228,13 +244,19 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         <div>Speed: {{ finalCharacter.speed }}</div>
         <div>Max HP: {{ finalCharacter.maxHp }}</div>
         <div>Willpower: {{ finalCharacter.maxWillpower }}</div>
+        <div>Resistance: {{ finalCharacter.resistance }}</div>
         <div>Damage Bonus: {{ finalCharacter.damageBonus }}</div>
+        <div>Spell Slots: {{ finalCharacter.spellSlots }}</div>
         <div>
           Effect Saves:
           <span v-for="attr in CoreContent.attributes" :key="attr.id" class="mr-2">
             {{ attr.name }}: {{ finalCharacter.effectSave(attr.id) }}
           </span>
         </div>
+
+        <v-btn color="primary" class="mt-4" @click="router.push(`/sheet/${store.draft.id}`)">
+          View Character Sheet
+        </v-btn>
       </v-card-text>
     </v-card>
   </div>

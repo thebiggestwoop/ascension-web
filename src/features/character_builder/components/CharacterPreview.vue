@@ -1,14 +1,23 @@
 <script setup lang="ts">
 import { computed, toRaw } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
-import { Character } from '@/classes/Character'
+import { Character, computeStatModifiers } from '@/classes/Character'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 
 const store = useCharacterDraftStore()
 const isFinished = computed(() => store.completedStageIds.includes('finishing_touches'))
+const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
 // toRaw() unwraps Pinia's reactive Proxy - structuredClone() (used inside Deserialize)
 // can't clone a live reactive Proxy directly.
-const character = computed(() => Character.Deserialize(toRaw(store.draft)))
+const character = computed(() => {
+  const modifiers = computeStatModifiers(
+    toRaw(store.draft),
+    allTalents,
+    CoreContent.equipment.armor,
+    CoreContent.equipment.general,
+  )
+  return Character.Deserialize(toRaw(store.draft), modifiers)
+})
 </script>
 
 <template>
@@ -56,7 +65,9 @@ const character = computed(() => Character.Deserialize(toRaw(store.draft)))
         <div>Speed: {{ character.speed }}</div>
         <div>Max HP: {{ character.maxHp }} (current: {{ store.draft.currentHp }})</div>
         <div>Willpower: {{ character.maxWillpower }}</div>
+        <div>Resistance: {{ character.resistance }}</div>
         <div>Damage Bonus: {{ character.damageBonus }}</div>
+        <div>Spell Slots: {{ character.spellSlots }}</div>
       </template>
     </v-card-text>
   </v-card>

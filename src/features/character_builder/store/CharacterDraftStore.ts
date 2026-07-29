@@ -2,13 +2,16 @@ import { defineStore } from 'pinia'
 import { toRaw } from 'vue'
 import { AttributeId, SkillId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
-import { Character } from '@/classes/Character'
+import { Character, computeStatModifiers } from '@/classes/Character'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 import { applyLifepathSelection } from '@/classes/Lifepath'
+import { CoreContent } from '@/io/ContentLoader'
+import { saveCharacter } from '@/io/Storage'
 
 /** Every character begins at Attributes=6, Skills=1 per Chapter Two. */
 function createBaseDraft(): ICharacterData {
   return {
+    id: crypto.randomUUID(),
     name: '',
     level: 0,
     xp: 0,
@@ -49,6 +52,7 @@ function createBaseDraft(): ICharacterData {
  * Equipment picks itself and hands the net result here as one batch.
  */
 export interface IFinishingTouchesPayload {
+  name: string
   /** Net Attribute deltas: cap-correction reductions + freely-reallocated pool + bonus points. */
   attributeDeltas: Partial<Record<AttributeId, number>>
   skillDeltas: Partial<Record<SkillId, number>>
@@ -72,7 +76,8 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       applyLifepathSelection(this.draft, selection, stage)
       this.completedStageIds.push(stage.id)
     },
-    applyFinishingTouches(payload: IFinishingTouchesPayload) {
+    async applyFinishingTouches(payload: IFinishingTouchesPayload) {
+      this.draft.name = payload.name
       for (const [id, amount] of Object.entries(payload.attributeDeltas)) {
         this.draft.attributes[id as AttributeId] += amount ?? 0
       }
@@ -90,11 +95,18 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       // Character is now playable: start at full HP/Willpower.
       // toRaw() unwraps Pinia's reactive Proxy - structuredClone() (used inside
       // Character.Deserialize) can't clone a live reactive Proxy directly.
-      const char = Character.Deserialize(toRaw(this.draft))
+      const modifiers = computeStatModifiers(
+        toRaw(this.draft),
+        [...CoreContent.talents.narrative, ...CoreContent.talents.combat],
+        CoreContent.equipment.armor,
+        CoreContent.equipment.general,
+      )
+      const char = Character.Deserialize(toRaw(this.draft), modifiers)
       this.draft.currentHp = char.maxHp
       this.draft.currentWillpower = char.maxWillpower
 
       this.completedStageIds.push('finishing_touches')
+      await saveCharacter(this.draft.id, toRaw(this.draft))
     },
     reset() {
       this.draft = createBaseDraft()

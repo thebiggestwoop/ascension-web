@@ -44,6 +44,19 @@ export function meetsTalentPrerequisites(prereq: ITalentPrerequisite, ctx: ITale
 }
 
 /**
+ * Unconditional (always-on while held) numeric bonuses to a derived stat, e.g. Resilient 1's
+ * "Your Health Bar increases by 2". Only set on abilities whose bonus applies regardless of
+ * combat state/stance - situational bonuses (e.g. "+2 Speed while berserk") stay text-only in
+ * effectText, since the app doesn't track battle-turn state to know when they'd apply.
+ */
+export interface ITalentPassiveModifiers {
+  /** Adds to Health Bar before the x3 Max HP multiplier. */
+  healthBarBonus?: number
+  /** Adds directly to Max Willpower. */
+  willpowerBonus?: number
+}
+
+/**
  * A single named ability. Narrative Talents are flat lists grouped under an
  * Archetype; Combat Talents are ordered within a Tier 1-3 Talent Tree.
  */
@@ -56,6 +69,7 @@ export interface ITalentData {
   tier?: TalentTier
   prerequisites: ITalentPrerequisite
   effectText: string
+  passiveModifiers?: ITalentPassiveModifiers
 }
 
 /**

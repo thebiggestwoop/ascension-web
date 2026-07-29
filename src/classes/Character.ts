@@ -1,5 +1,7 @@
 import { AttributeId, SkillId, SocialClassId, StatusId } from './enums'
 import type { ISerializable } from './ISerializable'
+import type { ITalentData } from './Talent'
+import type { IArmorData, IGeneralItemData } from './Equipment'
 
 export interface IValue {
   text: string
@@ -19,6 +21,8 @@ export interface IActiveStatus {
 }
 
 export interface ICharacterData {
+  /** Stable id assigned when the draft is created; used as the Storage.ts key. */
+  id: string
   name: string
   level: number
   xp: number
@@ -48,12 +52,61 @@ export interface ICharacterData {
 }
 
 /**
+ * Passive bonuses to derived stats resolved from a character's held Talents and equipped
+ * items. Not part of ICharacterData - it's derived from talentIds/equipment against the
+ * rules content, so it's computed fresh via computeStatModifiers() rather than stored.
+ */
+export interface ICharacterStatModifiers {
+  healthBarBonus?: number
+  willpowerBonus?: number
+  resistanceBonus?: number
+  spellSlotBonus?: number
+}
+
+/**
+ * Resolves a character's talentIds/equipment against the rules content to find passive stat
+ * bonuses (e.g. Resilient 1's +2 Health Bar, an equipped Armor's Resistance). Pure function of
+ * explicitly-passed content so src/classes stays free of ContentLoader/io imports - callers
+ * (Vue components/stores, which already read CoreContent) resolve this and pass it to
+ * Character's constructor or Deserialize.
+ */
+export function computeStatModifiers(
+  data: Pick<ICharacterData, 'talentIds' | 'equippedArmorId' | 'inventoryItemIds'>,
+  talents: ITalentData[],
+  armor: IArmorData[],
+  generalItems: IGeneralItemData[],
+): ICharacterStatModifiers {
+  const heldTalentIds = new Set(data.talentIds)
+  let healthBarBonus = 0
+  let willpowerBonus = 0
+  for (const t of talents) {
+    if (!heldTalentIds.has(t.id) || !t.passiveModifiers) continue
+    healthBarBonus += t.passiveModifiers.healthBarBonus ?? 0
+    willpowerBonus += t.passiveModifiers.willpowerBonus ?? 0
+  }
+
+  const resistanceBonus = armor.find((a) => a.id === data.equippedArmorId)?.resistance ?? 0
+
+  /** "Each Tome you have grants 2 additional Spell Slots" (Gremorie 1 raises this to 3). */
+  const tomeId = generalItems.find((g) => g.name === 'Tome')?.id
+  const tomeCount = tomeId ? data.inventoryItemIds.filter((id) => id === tomeId).length : 0
+  const spellSlotsPerTome = heldTalentIds.has('gremorie_1') ? 3 : 2
+  const spellSlotBonus = tomeCount * spellSlotsPerTome
+
+  return { healthBarBonus, willpowerBonus, resistanceBonus, spellSlotBonus }
+}
+
+/**
  * The core character domain model. Attributes/Skills/Focuses/Values/Traits are the
  * raw inputs (set during Lifepath or Standard Array creation); everything below is
- * derived per the Chapter Three formulas in the rules doc.
+ * derived per the Chapter Three formulas in the rules doc, plus any passive bonuses from
+ * held Talents/equipped items resolved into `modifiers`.
  */
 export class Character implements ISerializable<ICharacterData> {
-  constructor(private data: ICharacterData) {}
+  constructor(
+    private data: ICharacterData,
+    private modifiers: ICharacterStatModifiers = {},
+  ) {}
 
   get name(): string {
     return this.data.name
@@ -76,18 +129,18 @@ export class Character implements ISerializable<ICharacterData> {
     return 3 + Math.floor(this.attribute(AttributeId.Agility) / 2)
   }
 
-  /** Health Bar = Brawn + Skirmish; there are three Health Bars, so Max HP = Health Bar x 3. */
+  /** Health Bar = Brawn + Skirmish (+ passive Talent bonuses, e.g. Resilient 1's +2); Max HP = Health Bar x 3. */
   get healthBar(): number {
-    return this.attribute(AttributeId.Brawn) + this.skill(SkillId.Skirmish)
+    return this.attribute(AttributeId.Brawn) + this.skill(SkillId.Skirmish) + (this.modifiers.healthBarBonus ?? 0)
   }
 
   get maxHp(): number {
     return this.healthBar * 3
   }
 
-  /** Willpower pool == Faith rating. */
+  /** Willpower pool == Faith rating (+ passive Talent bonuses, e.g. Fortified Mind 2's +3). */
   get maxWillpower(): number {
-    return this.attribute(AttributeId.Faith)
+    return this.attribute(AttributeId.Faith) + (this.modifiers.willpowerBonus ?? 0)
   }
 
   /** Effect Save = floor(Attribute / 2) - 1, one per Attribute. */
@@ -100,6 +153,16 @@ export class Character implements ISerializable<ICharacterData> {
     return this.skill(SkillId.Skirmish)
   }
 
+  /** Damage subtracted before HP loss; comes entirely from equipped Armor. */
+  get resistance(): number {
+    return this.modifiers.resistanceBonus ?? 0
+  }
+
+  /** Spell Slots == Study rating, plus 2 (or 3, with Gremorie 1) per equipped Tome. */
+  get spellSlots(): number {
+    return this.skill(SkillId.Study) + (this.modifiers.spellSlotBonus ?? 0)
+  }
+
   get isRattled(): boolean {
     return this.data.statuses.some((s) => s.id === StatusId.Rattled)
   }
@@ -108,7 +171,7 @@ export class Character implements ISerializable<ICharacterData> {
     return structuredClone(this.data)
   }
 
-  static Deserialize(data: ICharacterData): Character {
-    return new Character(structuredClone(data))
+  static Deserialize(data: ICharacterData, modifiers?: ICharacterStatModifiers): Character {
+    return new Character(structuredClone(data), modifiers)
   }
 }
