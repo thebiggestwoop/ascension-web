@@ -43,6 +43,7 @@ function createBaseDraft(): ICharacterData {
     talentIds: [],
     equippedWeaponIds: [],
     inventoryItemIds: [],
+    preparedSpellIds: [],
   }
 }
 

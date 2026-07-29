@@ -2,9 +2,13 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
-import type { IQualityInstance } from '@/classes/Equipment'
+import { AttributeId, SkillId } from '@/classes/enums'
+import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
+import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
+import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
+import SpellsSection from './components/SpellsSection.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
 
 function qualityLabel(q: IQualityInstance): string {
@@ -19,9 +23,31 @@ function qualityTooltip(q: IQualityInstance): string | undefined {
   return CoreContent.equipment.qualities.find((x) => x.id === q.quality)?.description
 }
 
+function damageEffectLabel(effect: string): string {
+  return CoreContent.equipment.damageEffects.find((e) => e.id === effect)?.name ?? effect
+}
+
+function damageEffectTooltip(effect: string): string | undefined {
+  return CoreContent.equipment.damageEffects.find((e) => e.id === effect)?.description
+}
+
+function attributeName(id: AttributeId): string {
+  return CoreContent.attributes.find((a) => a.id === id)?.name ?? id
+}
+
+/** Attribute(s) used for the attacker's Skill Test with each Weapon Tag, per Chapter Seven. */
+const WEAPON_TAG_ATTRIBUTES: Partial<Record<WeaponTag, AttributeId[]>> = {
+  [WeaponTag.Sword]: [AttributeId.Agility],
+  [WeaponTag.Axe]: [AttributeId.Brawn],
+  [WeaponTag.Spear]: [AttributeId.Coordination],
+  [WeaponTag.Bow]: [AttributeId.Awareness],
+  [WeaponTag.Gauntlet]: [AttributeId.Agility, AttributeId.Brawn, AttributeId.Coordination],
+}
+
 const props = defineProps<{ id: string }>()
 const store = useCharacterSheetStore()
 const showLevelUp = ref(false)
+const showLoadoutEditor = ref(false)
 const canLevelUp = computed(() => (store.character?.level ?? 0) < CoreContent.advancement.maxLevel)
 
 onMounted(() => store.loadById(props.id))
@@ -53,9 +79,14 @@ const heldTalents = computed(() => {
   return allTalents.filter((t) => ids.includes(t.id))
 })
 
-const equippedWeapons = computed(() => {
+/** Weapons equipped, grouped by id with a count (dual-wielding two of the same weapon is common). */
+const equippedWeaponGroups = computed(() => {
   if (!store.character) return []
-  return CoreContent.equipment.weapons.filter((w) => store.character!.equippedWeaponIds.includes(w.id))
+  const counts: Record<string, number> = {}
+  for (const id of store.character.equippedWeaponIds) counts[id] = (counts[id] ?? 0) + 1
+  return Object.entries(counts)
+    .map(([id, count]) => ({ weapon: CoreContent.equipment.weapons.find((w) => w.id === id), count }))
+    .filter((g): g is { weapon: IWeaponData; count: number } => !!g.weapon)
 })
 
 const equippedArmor = computed(() =>
@@ -65,15 +96,39 @@ const equippedArmor = computed(() =>
 )
 
 const allInventoryItems = [...CoreContent.equipment.shields, ...CoreContent.equipment.general]
-const inventoryItems = computed(() => {
+const inventoryGroups = computed(() => {
   if (!store.character) return []
-  const ids = store.character.inventoryItemIds
-  return allInventoryItems.filter((i) => ids.includes(i.id))
+  const counts: Record<string, number> = {}
+  for (const id of store.character.inventoryItemIds) counts[id] = (counts[id] ?? 0) + 1
+  return Object.entries(counts)
+    .map(([id, count]) => ({ item: allInventoryItems.find((i) => i.id === id), count }))
+    .filter((g): g is { item: (typeof allInventoryItems)[number]; count: number } => !!g.item)
 })
 
 const mount = computed(() =>
   store.character?.mountId ? CoreContent.equipment.mounts.find((m) => m.id === store.character!.mountId) : undefined,
 )
+
+/** "Agility / 17" style Task display: attribute(s) + that attribute's value plus Skirmish. */
+function weaponTask(weapon: IWeaponData): string {
+  if (!character.value) return '-'
+  const attrs = WEAPON_TAG_ATTRIBUTES[weapon.tag]
+  if (!attrs) return '-'
+  return attrs
+    .map((id) => `${attributeName(id)} ${character.value!.attribute(id) + character.value!.skill(SkillId.Skirmish)}`)
+    .join(' / ')
+}
+
+function weaponRangeOrReach(weapon: IWeaponData): { label: string; value: number | string } {
+  if (weapon.range) return { label: 'Range', value: weapon.range }
+  const extended = weapon.qualities.find((q) => q.quality === EquipmentQuality.Extended)
+  return { label: 'Reach', value: extended?.value ?? 1 }
+}
+
+function weaponDamage(weapon: IWeaponData): string {
+  if (!character.value) return `${weapon.damageCD}[CD]`
+  return `${weapon.damageCD + character.value.damageBonus}[CD]`
+}
 </script>
 
 <template>
@@ -111,6 +166,11 @@ const mount = computed(() =>
       v-model="showLevelUp"
       :character="store.character"
       @confirm="store.levelUp"
+    />
+    <LoadoutEditorDialog
+      v-model="showLoadoutEditor"
+      :character="store.character"
+      @change="store.updateEquipment"
     />
 
     <v-row>
@@ -180,19 +240,39 @@ const mount = computed(() =>
         </v-card>
 
         <v-card variant="outlined" class="mb-4">
-          <v-card-title>Equipment</v-card-title>
+          <v-card-title class="d-flex align-center justify-space-between">
+            <span>Equipment</span>
+            <v-btn size="small" variant="tonal" @click="showLoadoutEditor = true">Edit Loadout</v-btn>
+          </v-card-title>
           <v-card-text>
             <div class="text-subtitle-2 mb-1">Weapons</div>
-            <div v-if="!equippedWeapons.length" class="text-medium-emphasis mb-2">None equipped</div>
-            <div v-for="w in equippedWeapons" :key="w.id" class="mb-2">
-              <span class="mr-2">{{ w.name }} ({{ w.damageCD }}[CD])</span>
-              <TooltipChip
-                v-for="(q, i) in w.qualities"
-                :key="i"
-                :label="qualityLabel(q)"
-                :tooltip="qualityTooltip(q)"
-              />
-            </div>
+            <div v-if="!equippedWeaponGroups.length" class="text-medium-emphasis mb-2">None equipped</div>
+            <v-card v-for="g in equippedWeaponGroups" :key="g.weapon.id" variant="tonal" class="mb-2">
+              <v-card-title class="text-subtitle-1">
+                {{ g.weapon.name }}<span v-if="g.count > 1"> x{{ g.count }}</span>
+              </v-card-title>
+              <v-card-text>
+                <v-row dense>
+                  <v-col cols="6" sm="3">Task: <strong>{{ weaponTask(g.weapon) }}</strong></v-col>
+                  <v-col cols="6" sm="3">{{ weaponRangeOrReach(g.weapon).label }}: <strong>{{ weaponRangeOrReach(g.weapon).value }}</strong></v-col>
+                  <v-col cols="6" sm="3">Damage: <strong>{{ weaponDamage(g.weapon) }}</strong></v-col>
+                </v-row>
+                <div class="mt-1">
+                  <TooltipChip
+                    v-for="effect in g.weapon.damageEffects"
+                    :key="effect"
+                    :label="damageEffectLabel(effect)"
+                    :tooltip="damageEffectTooltip(effect)"
+                  />
+                  <TooltipChip
+                    v-for="(q, i) in g.weapon.qualities"
+                    :key="i"
+                    :label="qualityLabel(q)"
+                    :tooltip="qualityTooltip(q)"
+                  />
+                </div>
+              </v-card-text>
+            </v-card>
 
             <div class="text-subtitle-2 mb-1">Armor</div>
             <div class="text-medium-emphasis mb-2">
@@ -209,11 +289,11 @@ const mount = computed(() =>
             </div>
 
             <div class="text-subtitle-2 mb-1">Inventory</div>
-            <div v-if="!inventoryItems.length" class="text-medium-emphasis mb-2">Empty</div>
-            <div v-for="i in inventoryItems" :key="i.id" class="mb-2">
-              <span class="mr-2">{{ i.name }}</span>
+            <div v-if="!inventoryGroups.length" class="text-medium-emphasis mb-2">Empty</div>
+            <div v-for="g in inventoryGroups" :key="g.item.id" class="mb-2">
+              <span class="mr-2">{{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
               <TooltipChip
-                v-for="(q, qi) in i.qualities"
+                v-for="(q, qi) in g.item.qualities"
                 :key="qi"
                 :label="qualityLabel(q)"
                 :tooltip="qualityTooltip(q)"
@@ -224,6 +304,18 @@ const mount = computed(() =>
               <div class="text-subtitle-2 mb-1">Mount</div>
               <div class="text-medium-emphasis">{{ mount.name }}</div>
             </template>
+          </v-card-text>
+        </v-card>
+
+        <v-card variant="outlined" class="mb-4">
+          <v-card-title>Spells</v-card-title>
+          <v-card-text>
+            <SpellsSection
+              :talent-ids="store.character.talentIds"
+              :prepared-spell-ids="store.character.preparedSpellIds"
+              :spell-slots="character.spellSlots"
+              @change="store.updatePreparedSpells"
+            />
           </v-card-text>
         </v-card>
       </v-col>

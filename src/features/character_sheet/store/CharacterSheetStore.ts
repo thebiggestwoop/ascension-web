@@ -55,6 +55,24 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       this.character.xp = Math.max(0, this.character.xp + delta)
       await this.persist()
     },
+    async updateEquipment(payload: {
+      equippedWeaponIds: string[]
+      equippedArmorId?: string
+      inventoryItemIds: string[]
+      mountId?: string
+    }) {
+      if (!this.character) return
+      this.character.equippedWeaponIds = payload.equippedWeaponIds
+      this.character.equippedArmorId = payload.equippedArmorId
+      this.character.inventoryItemIds = payload.inventoryItemIds
+      this.character.mountId = payload.mountId
+      await this.persist()
+    },
+    async updatePreparedSpells(preparedSpellIds: string[]) {
+      if (!this.character) return
+      this.character.preparedSpellIds = preparedSpellIds
+      await this.persist()
+    },
     /** Applies one Level Ascension Chart entry's grants and refills HP/Willpower to the new max. */
     async levelUp(payload: ILevelUpPayload) {
       if (!this.character) return

@@ -45,6 +45,8 @@ export interface ICharacterData {
   equippedArmorId?: string
   inventoryItemIds: string[]
   mountId?: string
+  /** Spells currently prepared, by id; duplicate entries mean multiple copies of the same spell prepared. */
+  preparedSpellIds: string[]
 
   /** Set from the Social Class / Career Lifepath stages; used to gate Talent prerequisites. */
   socialClassId?: SocialClassId

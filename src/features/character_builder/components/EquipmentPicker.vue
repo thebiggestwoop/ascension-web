@@ -2,8 +2,30 @@
 import { computed, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { EquipmentQuality } from '@/classes/Equipment'
+import type { IQualityInstance } from '@/classes/Equipment'
+import TooltipChip from '@/ui/TooltipChip.vue'
+import QuantityStepper from '@/ui/QuantityStepper.vue'
 
 const MAX_SLOTS = 5
+
+/**
+ * Equipping the same item more than once is meaningful in Ascension (dual-wielding two
+ * identical weapons, carrying multiple Tomes for extra Spell Slots, etc.), so weapons and
+ * inventory items (shields + general) are tracked as per-item counts rather than a picked/
+ * not-picked set. Armor and Mount stay single-select - only one of each can be worn/ridden.
+ */
+const props = withDefaults(
+  defineProps<{
+    initialEquippedWeaponIds?: string[]
+    initialEquippedArmorId?: string
+    initialInventoryItemIds?: string[]
+    initialMountId?: string
+  }>(),
+  {
+    initialEquippedWeaponIds: () => [],
+    initialInventoryItemIds: () => [],
+  },
+)
 
 const emit = defineEmits<{
   change: [
@@ -16,15 +38,24 @@ const emit = defineEmits<{
   ]
 }>()
 
-function isBulky(qualities: { quality: EquipmentQuality }[]): boolean {
+function countOccurrences(ids: string[]): Record<string, number> {
+  const counts: Record<string, number> = {}
+  for (const id of ids) counts[id] = (counts[id] ?? 0) + 1
+  return counts
+}
+
+function isBulky(qualities: IQualityInstance[]): boolean {
   return qualities.some((q) => q.quality === EquipmentQuality.Bulky)
 }
 
-const selectedWeaponIds = ref<string[]>([])
-const selectedArmorId = ref<string | null>(null)
-const selectedShieldIds = ref<string[]>([])
-const selectedGeneralIds = ref<string[]>([])
-const selectedMountId = ref<string | null>(null)
+function itemCost(qualities: IQualityInstance[]): number {
+  return isBulky(qualities) ? 2 : 1
+}
+
+const weaponCounts = ref<Record<string, number>>(countOccurrences(props.initialEquippedWeaponIds))
+const inventoryCounts = ref<Record<string, number>>(countOccurrences(props.initialInventoryItemIds))
+const selectedArmorId = ref<string | null>(props.initialEquippedArmorId ?? null)
+const selectedMountId = ref<string | null>(props.initialMountId ?? null)
 
 const armorItems = computed(() => [
   { title: 'None', value: null },
@@ -35,43 +66,68 @@ const mountItems = computed(() => [
   ...CoreContent.equipment.mounts.map((m) => ({ title: m.name, value: m.id })),
 ])
 
+const allInventoryItems = [...CoreContent.equipment.shields, ...CoreContent.equipment.general]
+
 const slotsUsed = computed(() => {
   let slots = 0
-  for (const id of selectedWeaponIds.value) {
-    const w = CoreContent.equipment.weapons.find((x) => x.id === id)
-    if (w) slots += isBulky(w.qualities) ? 2 : 1
+  for (const w of CoreContent.equipment.weapons) {
+    slots += (weaponCounts.value[w.id] ?? 0) * itemCost(w.qualities)
   }
   if (selectedArmorId.value) {
     const a = CoreContent.equipment.armor.find((x) => x.id === selectedArmorId.value)
-    if (a) slots += isBulky(a.qualities) ? 2 : 1
+    if (a) slots += itemCost(a.qualities)
   }
-  for (const id of selectedShieldIds.value) {
-    const s = CoreContent.equipment.shields.find((x) => x.id === id)
-    if (s) slots += isBulky(s.qualities) ? 2 : 1
-  }
-  for (const id of selectedGeneralIds.value) {
-    const g = CoreContent.equipment.general.find((x) => x.id === id)
-    if (g) slots += isBulky(g.qualities) ? 2 : 1
+  for (const i of allInventoryItems) {
+    slots += (inventoryCounts.value[i.id] ?? 0) * itemCost(i.qualities)
   }
   return slots
 })
 
-function itemCost(qualities: { quality: EquipmentQuality }[]): number {
-  return isBulky(qualities) ? 2 : 1
+/** Highest count an item could reach without pushing total slots past MAX_SLOTS. */
+function maxCountFor(currentCount: number, qualities: IQualityInstance[]): number {
+  const cost = itemCost(qualities)
+  const otherSlotsUsed = slotsUsed.value - currentCount * cost
+  return currentCount + Math.floor((MAX_SLOTS - otherSlotsUsed) / cost)
 }
 
-function wouldExceed(cost: number): boolean {
-  return slotsUsed.value + cost > MAX_SLOTS
+function setWeaponCount(id: string, value: number) {
+  weaponCounts.value = { ...weaponCounts.value, [id]: value }
+}
+function setInventoryCount(id: string, value: number) {
+  inventoryCounts.value = { ...inventoryCounts.value, [id]: value }
 }
 
-watch([selectedWeaponIds, selectedArmorId, selectedShieldIds, selectedGeneralIds, selectedMountId], () => {
-  emit('change', {
-    equippedWeaponIds: selectedWeaponIds.value,
-    equippedArmorId: selectedArmorId.value ?? undefined,
-    inventoryItemIds: [...selectedShieldIds.value, ...selectedGeneralIds.value],
-    mountId: selectedMountId.value ?? undefined,
-  })
-}, { deep: true })
+function qualityLabel(q: IQualityInstance): string {
+  const label = q.quality
+    .split('_')
+    .map((w) => w[0].toUpperCase() + w.slice(1))
+    .join(' ')
+  return q.value !== undefined ? `${label} ${q.value}` : label
+}
+function qualityTooltip(q: IQualityInstance): string | undefined {
+  return CoreContent.equipment.qualities.find((x) => x.id === q.quality)?.description
+}
+
+function countsToIds(counts: Record<string, number>): string[] {
+  const ids: string[] = []
+  for (const [id, count] of Object.entries(counts)) {
+    for (let i = 0; i < count; i++) ids.push(id)
+  }
+  return ids
+}
+
+watch(
+  [weaponCounts, inventoryCounts, selectedArmorId, selectedMountId],
+  () => {
+    emit('change', {
+      equippedWeaponIds: countsToIds(weaponCounts.value),
+      equippedArmorId: selectedArmorId.value ?? undefined,
+      inventoryItemIds: countsToIds(inventoryCounts.value),
+      mountId: selectedMountId.value ?? undefined,
+    })
+  },
+  { deep: true, immediate: true },
+)
 </script>
 
 <template>
@@ -79,43 +135,29 @@ watch([selectedWeaponIds, selectedArmorId, selectedShieldIds, selectedGeneralIds
     <div class="text-body-2 mb-2">Inventory slots used: {{ slotsUsed }} / {{ MAX_SLOTS }} (Bulky items cost 2)</div>
 
     <div class="text-subtitle-2 mb-1">Weapons</div>
-    <v-checkbox
-      v-for="w in CoreContent.equipment.weapons"
-      :key="w.id"
-      v-model="selectedWeaponIds"
-      :value="w.id"
-      :label="`${w.name} (${w.damageCD}[CD]${itemCost(w.qualities) === 2 ? ', Bulky' : ''})`"
-      density="compact"
-      :disabled="!selectedWeaponIds.includes(w.id) && wouldExceed(itemCost(w.qualities))"
-      hide-details
-    />
+    <div v-for="w in CoreContent.equipment.weapons" :key="w.id" class="d-flex align-center mb-1">
+      <QuantityStepper
+        :model-value="weaponCounts[w.id] ?? 0"
+        :max="maxCountFor(weaponCounts[w.id] ?? 0, w.qualities)"
+        @update:model-value="(v) => setWeaponCount(w.id, v)"
+      />
+      <span class="mx-2">{{ w.name }} ({{ w.damageCD }}[CD]{{ itemCost(w.qualities) === 2 ? ', Bulky' : '' }})</span>
+      <TooltipChip v-for="(q, i) in w.qualities" :key="i" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
+    </div>
 
     <div class="text-subtitle-2 mt-3 mb-1">Armor</div>
     <v-select v-model="selectedArmorId" :items="armorItems" density="compact" label="Armor" />
 
-    <div class="text-subtitle-2 mb-1">Shields</div>
-    <v-checkbox
-      v-for="s in CoreContent.equipment.shields"
-      :key="s.id"
-      v-model="selectedShieldIds"
-      :value="s.id"
-      :label="s.name"
-      density="compact"
-      :disabled="!selectedShieldIds.includes(s.id) && wouldExceed(itemCost(s.qualities))"
-      hide-details
-    />
-
-    <div class="text-subtitle-2 mt-3 mb-1">General Equipment</div>
-    <v-checkbox
-      v-for="g in CoreContent.equipment.general"
-      :key="g.id"
-      v-model="selectedGeneralIds"
-      :value="g.id"
-      :label="g.name"
-      density="compact"
-      :disabled="!selectedGeneralIds.includes(g.id) && wouldExceed(itemCost(g.qualities))"
-      hide-details
-    />
+    <div class="text-subtitle-2 mb-1">Inventory (Shields &amp; General)</div>
+    <div v-for="i in allInventoryItems" :key="i.id" class="d-flex align-center mb-1">
+      <QuantityStepper
+        :model-value="inventoryCounts[i.id] ?? 0"
+        :max="maxCountFor(inventoryCounts[i.id] ?? 0, i.qualities)"
+        @update:model-value="(v) => setInventoryCount(i.id, v)"
+      />
+      <span class="mx-2">{{ i.name }}</span>
+      <TooltipChip v-for="(q, qi) in i.qualities" :key="qi" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
+    </div>
 
     <div class="text-subtitle-2 mt-3 mb-1">Mount (optional, no slot cost)</div>
     <v-select v-model="selectedMountId" :items="mountItems" density="compact" label="Mount" />
