@@ -11,6 +11,7 @@ import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
 import SpellEditorDialog from './components/SpellEditorDialog.vue'
 import SpellsSection from './components/SpellsSection.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
+import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
 
 function qualityLabel(q: IQualityInstance): string {
   const label = q.quality
@@ -149,9 +150,16 @@ function weaponRangeOrReach(weapon: IWeaponData): { label: string; value: number
   return { label: 'Reach', value: extended?.value ?? 1 }
 }
 
-function weaponDamage(weapon: IWeaponData): string {
-  if (!character.value) return `${weapon.damageCD}[CD]`
-  return `${weapon.damageCD + character.value.damageBonus}[CD]`
+/** Base [CD] + the wielder's Damage Bonus (Skirmish) - "weapons gain additional [CD] to
+ * their damage rating equal to the Skirmish Skill of the character," per Chapter Seven. */
+function weaponDamageDisplay(weapon: IWeaponData): string {
+  const bonus = character.value?.damageBonus ?? 0
+  return `${weapon.damageCD + bonus}[CD]`
+}
+
+function weaponDamageTooltip(weapon: IWeaponData): string {
+  const bonus = character.value?.damageBonus ?? 0
+  return `Base ${weapon.damageCD}[CD], Skirmish +${bonus}`
 }
 </script>
 
@@ -286,7 +294,10 @@ function weaponDamage(weapon: IWeaponData): string {
                   <v-col cols="6" sm="3">Task: <strong>{{ weaponTask(g.weapon) }}</strong></v-col>
                   <v-col cols="6" sm="3">Defended by: <strong>{{ weaponDefendedBy(g.weapon) }}</strong></v-col>
                   <v-col cols="6" sm="3">{{ weaponRangeOrReach(g.weapon).label }}: <strong>{{ weaponRangeOrReach(g.weapon).value }}</strong></v-col>
-                  <v-col cols="6" sm="3">Damage: <strong>{{ weaponDamage(g.weapon) }}</strong></v-col>
+                  <v-col cols="6" sm="3">
+                    Damage:
+                    <DerivedValueBadge :display="weaponDamageDisplay(g.weapon)" :tooltip="weaponDamageTooltip(g.weapon)" />
+                  </v-col>
                 </v-row>
                 <div class="mt-1">
                   <TooltipChip
