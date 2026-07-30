@@ -125,9 +125,14 @@ const combatSections = computed(() =>
 watch(
   [selectedNarrativeIds, selectedCombatIds],
   () => {
+    // Spread into plain arrays - selectedNarrativeIds.value/selectedCombatIds.value are Vue
+    // reactive Proxies (refs wrapping arrays get deep-reactive-wrapped), and callers eventually
+    // store this payload verbatim (creationRecord, levelUpHistory) inside character data that
+    // later gets structuredClone()'d; a live Proxy embedded in that graph makes the clone throw
+    // ("could not be cloned"), even though iterating/spreading it elsewhere was always fine.
     emit('change', {
-      narrativeTalentIds: selectedNarrativeIds.value,
-      combatTalentIds: selectedCombatIds.value,
+      narrativeTalentIds: [...selectedNarrativeIds.value],
+      combatTalentIds: [...selectedCombatIds.value],
     })
   },
   { deep: true },

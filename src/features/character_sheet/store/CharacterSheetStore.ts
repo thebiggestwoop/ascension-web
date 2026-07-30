@@ -9,6 +9,20 @@ import { loadCharacter, saveCharacter } from '@/io/Storage'
 
 export type ILevelUpPayload = ILevelUpChoices
 
+/**
+ * Reassigning a ref's `.value` to a freshly-emitted plain object (the `(p) => (x = p)` pattern
+ * LevelUpDialog/TalentPicker use) makes Vue wrap it - and its nested arrays - in reactive
+ * Proxies on the next read, even though the emitted payload started out plain. Harmless until
+ * the whole payload is stored verbatim (levelUpHistory) inside character data that later gets
+ * structuredClone()'d (Character.Deserialize does this on every save): a live Proxy anywhere in
+ * that graph makes the clone throw ("could not be cloned"). Round-tripping through JSON
+ * guarantees a fully plain copy since JSON.stringify only ever reads a Proxy's own enumerable
+ * data.
+ */
+function toPlainRecord<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value)) as T
+}
+
 export const useCharacterSheetStore = defineStore('characterSheet', {
   state: () => ({
     character: null as ICharacterData | null,
@@ -95,7 +109,12 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       if (payload.focusText) this.character.focuses.push(payload.focusText)
       this.character.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
 
-      const record: ILevelUpRecord = { ...payload, level: this.character.level, previousCurrentHp, previousCurrentWillpower }
+      const record: ILevelUpRecord = toPlainRecord({
+        ...payload,
+        level: this.character.level,
+        previousCurrentHp,
+        previousCurrentWillpower,
+      })
       this.character.levelUpHistory = [...(this.character.levelUpHistory ?? []), record]
 
       const modifiers = computeStatModifiers(

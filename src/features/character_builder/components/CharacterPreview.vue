@@ -39,6 +39,10 @@ const pendingTraitNames = computed(() => store.pendingPreview.traitNames.filter(
   <v-card variant="outlined">
     <v-card-title>Character Preview</v-card-title>
     <v-card-text>
+      <p class="text-caption text-medium-emphasis mb-3">
+        Updates live as you make choices below. Everything shown here still counts toward
+        finishing this step - outlined entries just haven't been locked in with Confirm/Finish yet.
+      </p>
       <div class="text-subtitle-2 mb-1">Attributes</div>
       <v-row dense class="mb-3">
         <v-col v-for="attr in CoreContent.attributes" :key="attr.id" cols="6" sm="4">
@@ -77,7 +81,7 @@ const pendingTraitNames = computed(() => store.pendingPreview.traitNames.filter(
           size="small"
           variant="outlined"
         >
-          {{ focus }} <span class="text-medium-emphasis ml-1">(pending)</span>
+          {{ focus }}
         </v-chip>
         <span v-if="!store.draft.focuses.length && !pendingFocusTexts.length" class="text-medium-emphasis">
           None yet
@@ -88,7 +92,7 @@ const pendingTraitNames = computed(() => store.pendingPreview.traitNames.filter(
       <div class="mb-3">
         <div v-for="(value, i) in store.draft.values" :key="`v-${i}`">{{ value.text }}</div>
         <div v-for="(value, i) in pendingValueTexts" :key="`pv-${i}`" class="text-medium-emphasis">
-          {{ value }} (pending)
+          {{ value }}
         </div>
         <span v-if="!store.draft.values.length && !pendingValueTexts.length" class="text-medium-emphasis">
           None yet
@@ -114,7 +118,7 @@ const pendingTraitNames = computed(() => store.pendingPreview.traitNames.filter(
           color="secondary"
           variant="outlined"
         >
-          {{ trait }} <span class="text-medium-emphasis ml-1">(pending)</span>
+          {{ trait }}
         </v-chip>
         <span v-if="!store.draft.traits.length && !pendingTraitNames.length" class="text-medium-emphasis">
           None yet

@@ -87,6 +87,19 @@ function createEmptyPendingPreview(): IPendingPreview {
   return { focusTexts: [], valueTexts: [], traitNames: [] }
 }
 
+/**
+ * Payload objects assembled by the wizard steps can carry live Vue reactive Proxies nested
+ * inside otherwise-plain arrays (e.g. a Talent picker emitting its own ref's array directly) -
+ * harmless as long as only their primitive elements are ever read, but fatal if the whole
+ * payload is later stored verbatim (creationRecord) inside character data that gets
+ * structuredClone()'d (Character.Deserialize does this on every save): a live Proxy anywhere in
+ * that graph makes the clone throw "could not be cloned". Round-tripping through JSON guarantees
+ * a fully plain copy since JSON.stringify only ever reads a Proxy's own enumerable data.
+ */
+function toPlainRecord<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value)) as T
+}
+
 export const useCharacterDraftStore = defineStore('characterDraft', {
   state: () => ({
     draft: createBaseDraft(),
@@ -127,11 +140,11 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.mountId) this.draft.mountId = payload.mountId
 
       const { name: _name, ...finishingTouches } = payload
-      this.draft.creationRecord = {
-        method: 'lifepath',
+      this.draft.creationRecord = toPlainRecord({
+        method: 'lifepath' as const,
         lifepathSelections: this.lifepathSelections,
         finishingTouches,
-      }
+      })
       this.clearPendingPreview()
 
       await this.finalizeCharacter()
@@ -153,7 +166,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.mountId) this.draft.mountId = payload.mountId
 
       const { name: _name, ...quickBuild } = payload
-      this.draft.creationRecord = { method: 'quick_build', quickBuild }
+      this.draft.creationRecord = toPlainRecord({ method: 'quick_build' as const, quickBuild })
       this.clearPendingPreview()
 
       await this.finalizeCharacter()
