@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { SkillId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
 import EquipmentPicker from '@/features/character_builder/components/EquipmentPicker.vue'
 
@@ -35,6 +36,7 @@ const emit = defineEmits<{
           :initial-inventory-item-ids="character.inventoryItemIds"
           :initial-mount-id="character.mountId"
           :talent-ids="character.talentIds"
+          :skirmish-skill="character.skills[SkillId.Skirmish]"
           @change="(p) => emit('change', p)"
         />
       </v-card-text>

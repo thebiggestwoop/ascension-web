@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
-import { EquipmentQuality } from '@/classes/Equipment'
-import type { IQualityInstance } from '@/classes/Equipment'
+import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
+import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
 import TooltipChip from '@/ui/TooltipChip.vue'
 import QuantityStepper from '@/ui/QuantityStepper.vue'
+import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
 
 const MAX_SLOTS = 5
 
@@ -13,6 +14,8 @@ const MAX_SLOTS = 5
  * identical weapons, carrying multiple Tomes for extra Spell Slots, etc.), so weapons and
  * inventory items (shields + general) are tracked as per-item counts rather than a picked/
  * not-picked set. Armor and Mount stay single-select - only one of each can be worn/ridden.
+ * Weapons are further grouped one dropdown per Weapon Tag (Sword/Axe/Spear/Bow/Gauntlet) -
+ * each dropdown defaults to "None", so a character is never forced into owning all five.
  */
 const props = withDefaults(
   defineProps<{
@@ -23,11 +26,16 @@ const props = withDefaults(
     /** Held Talent ids - Flier 1 is required to ride a flying Mount ("You are able to ride a
      * flying mount..."). */
     talentIds?: string[]
+    /** Skirmish Skill value - weapons "gain additional [CD] to their damage rating equal to
+     * the Skirmish Skill of the character" (Chapter Seven), so the damage shown here matches
+     * what the Character Sheet's Equipment card will show once equipped. */
+    skirmishSkill?: number
   }>(),
   {
     initialEquippedWeaponIds: () => [],
     initialInventoryItemIds: () => [],
     talentIds: () => [],
+    skirmishSkill: 0,
   },
 )
 
@@ -61,6 +69,59 @@ const inventoryCounts = ref<Record<string, number>>(countOccurrences(props.initi
 const selectedArmorId = ref<string | null>(props.initialEquippedArmorId ?? null)
 const selectedMountId = ref<string | null>(props.initialMountId ?? null)
 
+const WEAPON_TAG_ORDER = [WeaponTag.Sword, WeaponTag.Axe, WeaponTag.Spear, WeaponTag.Bow, WeaponTag.Gauntlet]
+
+function weaponTagDefinition(tag: WeaponTag) {
+  return CoreContent.equipment.weaponTags.find((t) => t.id === tag)
+}
+
+function weaponsForTag(tag: WeaponTag): IWeaponData[] {
+  return CoreContent.equipment.weapons.filter((w) => w.tag === tag)
+}
+
+function weaponById(id: string): IWeaponData | undefined {
+  return CoreContent.equipment.weapons.find((w) => w.id === id)
+}
+
+/**
+ * Which weapon (if any) is currently selected for each Tag's dropdown, initialized from
+ * whichever weapon of that Tag has a nonzero count. At most one weapon per Tag is
+ * selectable through this UI - if a character somehow had two different weapons of the same
+ * Tag equipped already, only the first encountered here is kept.
+ */
+function initialSelectedWeaponIds(): Record<WeaponTag, string | null> {
+  const result = {} as Record<WeaponTag, string | null>
+  for (const tag of WEAPON_TAG_ORDER) result[tag] = null
+  for (const id of props.initialEquippedWeaponIds) {
+    const weapon = weaponById(id)
+    if (weapon && result[weapon.tag] === null) result[weapon.tag] = id
+  }
+  return result
+}
+const selectedWeaponIds = ref<Record<WeaponTag, string | null>>(initialSelectedWeaponIds())
+
+function weaponSelectItems(tag: WeaponTag) {
+  return [{ title: 'None', value: null }, ...weaponsForTag(tag).map((w) => ({ title: w.name, value: w.id }))]
+}
+
+function selectWeapon(tag: WeaponTag, newId: string | null) {
+  const oldId = selectedWeaponIds.value[tag]
+  const counts = { ...weaponCounts.value }
+  if (oldId) counts[oldId] = 0
+  if (newId) counts[newId] = 1
+  weaponCounts.value = counts
+  selectedWeaponIds.value = { ...selectedWeaponIds.value, [tag]: newId }
+}
+
+/** "weapons gain additional [CD] to their damage rating equal to the Skirmish Skill of the
+ * character," per Chapter Seven - same calculation the Character Sheet's Equipment card shows. */
+function weaponDamageDisplay(weapon: IWeaponData): string {
+  return `${weapon.damageCD + props.skirmishSkill}[CD]`
+}
+function weaponDamageTooltip(weapon: IWeaponData): string {
+  return `Base ${weapon.damageCD}[CD], Skirmish +${props.skirmishSkill}`
+}
+
 const armorItems = computed(() => [
   { title: 'None', value: null },
   ...CoreContent.equipment.armor.map((a) => ({ title: a.name, value: a.id })),
@@ -77,6 +138,7 @@ const mountItems = computed(() => [
 ])
 
 const allInventoryItems = [...CoreContent.equipment.shields, ...CoreContent.equipment.general]
+const generalItemDescriptions = new Map(CoreContent.equipment.general.map((g) => [g.id, g.description]))
 
 const slotsUsed = computed(() => {
   let slots = 0
@@ -153,14 +215,42 @@ watch(
     </v-alert>
 
     <div class="text-subtitle-2 mb-1">Weapons</div>
-    <div v-for="w in CoreContent.equipment.weapons" :key="w.id" class="d-flex align-center mb-1">
-      <QuantityStepper
-        :model-value="weaponCounts[w.id] ?? 0"
-        :max="maxCountFor(weaponCounts[w.id] ?? 0, w.qualities)"
-        @update:model-value="(v) => setWeaponCount(w.id, v)"
+    <div v-for="tag in WEAPON_TAG_ORDER" :key="tag" class="d-flex align-center flex-wrap mb-2">
+      <TooltipChip
+        :label="weaponTagDefinition(tag)?.name ?? tag"
+        :tooltip="weaponTagDefinition(tag)?.description"
+        class="mr-2"
       />
-      <span class="mx-2">{{ w.name }} ({{ w.damageCD }}[CD]{{ itemCost(w.qualities) === 2 ? ', Bulky' : '' }})</span>
-      <TooltipChip v-for="(q, i) in w.qualities" :key="i" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
+      <v-select
+        :model-value="selectedWeaponIds[tag]"
+        :items="weaponSelectItems(tag)"
+        density="compact"
+        hide-details
+        style="max-width: 220px"
+        class="mr-2"
+        @update:model-value="(id) => selectWeapon(tag, id)"
+      />
+      <template v-if="selectedWeaponIds[tag]">
+        <QuantityStepper
+          :model-value="weaponCounts[selectedWeaponIds[tag]!] ?? 1"
+          :min="1"
+          :max="maxCountFor(weaponCounts[selectedWeaponIds[tag]!] ?? 1, weaponById(selectedWeaponIds[tag]!)!.qualities)"
+          @update:model-value="(v) => setWeaponCount(selectedWeaponIds[tag]!, v)"
+        />
+        <span class="mx-2">
+          Damage:
+          <DerivedValueBadge
+            :display="weaponDamageDisplay(weaponById(selectedWeaponIds[tag]!)!)"
+            :tooltip="weaponDamageTooltip(weaponById(selectedWeaponIds[tag]!)!)"
+          />
+        </span>
+        <TooltipChip
+          v-for="(q, i) in weaponById(selectedWeaponIds[tag]!)!.qualities"
+          :key="i"
+          :label="qualityLabel(q)"
+          :tooltip="qualityTooltip(q)"
+        />
+      </template>
     </div>
 
     <div class="text-subtitle-2 mt-3 mb-1">Armor</div>
@@ -173,7 +263,12 @@ watch(
         :max="maxCountFor(inventoryCounts[i.id] ?? 0, i.qualities)"
         @update:model-value="(v) => setInventoryCount(i.id, v)"
       />
-      <span class="mx-2">{{ i.name }}</span>
+      <v-tooltip v-if="generalItemDescriptions.get(i.id)" :text="generalItemDescriptions.get(i.id)" location="top" max-width="320">
+        <template #activator="{ props: activatorProps }">
+          <span v-bind="activatorProps" class="mx-2 item-name-hoverable">{{ i.name }}</span>
+        </template>
+      </v-tooltip>
+      <span v-else class="mx-2">{{ i.name }}</span>
       <TooltipChip v-for="(q, qi) in i.qualities" :key="qi" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
     </div>
 
@@ -181,3 +276,11 @@ watch(
     <v-select v-model="selectedMountId" :items="mountItems" item-props density="compact" label="Mount" />
   </div>
 </template>
+
+<style scoped>
+.item-name-hoverable {
+  cursor: help;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+</style>

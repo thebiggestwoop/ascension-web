@@ -121,6 +121,7 @@ const equippedArmor = computed(() =>
 )
 
 const allInventoryItems = [...CoreContent.equipment.shields, ...CoreContent.equipment.general]
+const generalItemDescriptions = new Map(CoreContent.equipment.general.map((g) => [g.id, g.description]))
 const inventoryGroups = computed(() => {
   if (!store.character) return []
   const counts: Record<string, number> = {}
@@ -364,7 +365,19 @@ function weaponDamageTooltip(weapon: IWeaponData): string {
             <div class="text-subtitle-2 mb-1">Inventory</div>
             <div v-if="!inventoryGroups.length" class="text-medium-emphasis mb-2">Empty</div>
             <div v-for="g in inventoryGroups" :key="g.item.id" class="mb-2">
-              <span class="mr-2">{{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
+              <v-tooltip
+                v-if="generalItemDescriptions.get(g.item.id)"
+                :text="generalItemDescriptions.get(g.item.id)"
+                location="top"
+                max-width="320"
+              >
+                <template #activator="{ props: activatorProps }">
+                  <span v-bind="activatorProps" class="mr-2 item-name-hoverable">
+                    {{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span>
+                  </span>
+                </template>
+              </v-tooltip>
+              <span v-else class="mr-2">{{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
               <TooltipChip
                 v-for="(q, qi) in g.item.qualities"
                 :key="qi"
@@ -443,3 +456,11 @@ function weaponDamageTooltip(weapon: IWeaponData): string {
     </v-row>
   </v-container>
 </template>
+
+<style scoped>
+.item-name-hoverable {
+  cursor: help;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+</style>
