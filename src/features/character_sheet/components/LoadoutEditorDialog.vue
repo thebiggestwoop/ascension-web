@@ -34,6 +34,7 @@ const emit = defineEmits<{
           :initial-equipped-armor-id="character.equippedArmorId"
           :initial-inventory-item-ids="character.inventoryItemIds"
           :initial-mount-id="character.mountId"
+          :talent-ids="character.talentIds"
           @change="(p) => emit('change', p)"
         />
       </v-card-text>

@@ -20,10 +20,14 @@ const props = withDefaults(
     initialEquippedArmorId?: string
     initialInventoryItemIds?: string[]
     initialMountId?: string
+    /** Held Talent ids - Flier 1 is required to ride a flying Mount ("You are able to ride a
+     * flying mount..."). */
+    talentIds?: string[]
   }>(),
   {
     initialEquippedWeaponIds: () => [],
     initialInventoryItemIds: () => [],
+    talentIds: () => [],
   },
 )
 
@@ -61,9 +65,15 @@ const armorItems = computed(() => [
   { title: 'None', value: null },
   ...CoreContent.equipment.armor.map((a) => ({ title: a.name, value: a.id })),
 ])
+const canRideFlyingMounts = computed(() => props.talentIds.includes('flier_1'))
+
 const mountItems = computed(() => [
   { title: 'None', value: null },
-  ...CoreContent.equipment.mounts.map((m) => ({ title: m.name, value: m.id })),
+  ...CoreContent.equipment.mounts.map((m) => ({
+    title: m.canFly && !canRideFlyingMounts.value ? `${m.name} (Requires Flier 1)` : m.name,
+    value: m.id,
+    disabled: m.canFly && !canRideFlyingMounts.value,
+  })),
 ])
 
 const allInventoryItems = [...CoreContent.equipment.shields, ...CoreContent.equipment.general]
@@ -160,6 +170,6 @@ watch(
     </div>
 
     <div class="text-subtitle-2 mt-3 mb-1">Mount (optional, no slot cost)</div>
-    <v-select v-model="selectedMountId" :items="mountItems" density="compact" label="Mount" />
+    <v-select v-model="selectedMountId" :items="mountItems" item-props density="compact" label="Mount" />
   </div>
 </template>
