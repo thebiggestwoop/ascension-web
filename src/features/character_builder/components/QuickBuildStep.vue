@@ -149,20 +149,39 @@ const equipmentPicks = ref<{
   mountId?: string
 }>({ equippedWeaponIds: [], inventoryItemIds: [] })
 
-const isReady = computed(
-  () =>
-    nameText.value.trim().length > 0 &&
-    attributeArrayComplete.value &&
-    attributeBonusAllocations.value.every((v) => v !== null) &&
-    skillArrayComplete.value &&
-    skillBonusAllocations.value.every((v) => v !== null) &&
-    focusTexts.value.every((t) => t.trim().length > 0) &&
-    valueTexts.value.every((t) => t.trim().length > 0) &&
-    traitChoice.value !== null &&
-    definingFeatureText.value.trim().length > 0 &&
-    talentPicks.value.narrativeTalentIds.length === sa.narrativeTalentGrant &&
-    talentPicks.value.combatTalentIds.length === sa.combatTalentGrant.count,
-)
+/**
+ * Explicit list of what's still missing, shown next to the Finish button. With ~29 required
+ * fields across this one step and no per-section "done" indicator, a single missed field
+ * (e.g. one of 6 Focuses) left the button silently disabled with no clue why - this makes
+ * the reason visible instead of "nothing happens" when clicked.
+ */
+const missingRequirements = computed(() => {
+  const missing: string[] = []
+  if (!nameText.value.trim()) missing.push('Character Name')
+  if (!attributeArrayComplete.value) missing.push('Assign all 7 Attributes from the array')
+  if (!attributeBonusAllocations.value.every((v) => v !== null)) {
+    missing.push(`Assign all ${sa.attributeBonusPoints} Attribute bonus points`)
+  }
+  if (!skillArrayComplete.value) missing.push('Assign all 6 Skills from the array')
+  if (!skillBonusAllocations.value.every((v) => v !== null)) {
+    missing.push(`Assign all ${sa.skillBonusPoints} Skill bonus points`)
+  }
+  if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
+  if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
+  if (!traitChoice.value) missing.push('Choose Commoner or Noble')
+  if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
+  if (talentPicks.value.narrativeTalentIds.length !== sa.narrativeTalentGrant) {
+    missing.push(
+      `Choose ${sa.narrativeTalentGrant} Narrative Talents (currently ${talentPicks.value.narrativeTalentIds.length})`,
+    )
+  }
+  if (talentPicks.value.combatTalentIds.length !== sa.combatTalentGrant.count) {
+    missing.push(`Choose ${sa.combatTalentGrant.count} Combat Talents (currently ${talentPicks.value.combatTalentIds.length})`)
+  }
+  return missing
+})
+
+const isReady = computed(() => missingRequirements.value.length === 0)
 
 const finished = ref(false)
 
@@ -320,6 +339,13 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           />
         </v-card-text>
       </v-card>
+
+      <v-alert v-if="missingRequirements.length" type="warning" variant="tonal" density="compact" class="mb-3">
+        <div class="text-subtitle-2 mb-1">Still needed before finishing:</div>
+        <ul>
+          <li v-for="(m, i) in missingRequirements" :key="i">{{ m }}</li>
+        </ul>
+      </v-alert>
 
       <v-btn color="primary" :disabled="!isReady" @click="finish">Finish Character</v-btn>
     </template>

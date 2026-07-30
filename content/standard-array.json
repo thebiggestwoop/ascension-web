@@ -1,12 +1,12 @@
 {
   "attributeArray": [10, 9, 8, 7, 7, 6, 6],
   "attributeBonusPoints": 3,
-  "skillArray": [3, 2, 2, 2, 1, 1],
+  "skillArray": [3, 3, 2, 2, 1, 1],
   "skillBonusPoints": 2,
   "focusCount": 6,
   "valueCount": 4,
   "combatTalentGrant": { "tier": 1, "count": 4 },
   "narrativeTalentGrant": 3,
   "startingTraits": ["Commoner or Noble", "Defining Feature"],
-  "finalCheck": { "attributeSum": 56, "skillSum": 13 }
+  "finalCheck": { "attributeSum": 56, "skillSum": 14 }
 }
