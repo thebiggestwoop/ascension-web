@@ -12,6 +12,7 @@ import SpellEditorDialog from './components/SpellEditorDialog.vue'
 import SpellsSection from './components/SpellsSection.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
+import StatTile from '@/ui/StatTile.vue'
 
 function qualityLabel(q: IQualityInstance): string {
   const label = q.quality
@@ -87,15 +88,13 @@ const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.com
  * pushing a Talent or incrementing an Attribute). Constructing directly over the live proxy
  * keeps every nested read (attributes, talentIds, ...) tracked as a real dependency.
  */
+const modifiers = computed(() => {
+  if (!store.character) return {}
+  return computeStatModifiers(store.character, allTalents, CoreContent.equipment.armor, CoreContent.equipment.general)
+})
 const character = computed(() => {
   if (!store.character) return null
-  const modifiers = computeStatModifiers(
-    store.character,
-    allTalents,
-    CoreContent.equipment.armor,
-    CoreContent.equipment.general,
-  )
-  return new Character(store.character, modifiers)
+  return new Character(store.character, modifiers.value)
 })
 
 const heldTalents = computed(() => {
@@ -169,6 +168,66 @@ function weaponDamageTooltip(weapon: IWeaponData): string {
   const bonus = character.value?.damageBonus ?? 0
   return `Base ${weapon.damageCD}[CD], Skirmish +${bonus}`
 }
+
+/** "Effect Save = floor(Attribute / 2) - 1, one per Attribute" - shown nestled next to each
+ * Attribute's own value since it's directly derived from it. */
+function effectSaveTooltip(id: AttributeId): string {
+  if (!character.value) return ''
+  return `floor(${attributeName(id)} ${character.value.attribute(id)} / 2) - 1`
+}
+
+interface IStatTile {
+  label: string
+  display: string
+  tooltip: string
+  actions?: 'hp' | 'willpower'
+}
+
+/** The character's derived stats (everything besides Attributes/Skills/Effect Saves), each
+ * shown as its own prominent tile with a hover tooltip explaining the calculation - Health/
+ * Willpower additionally carry +/- adjustment controls since they track current vs. max. */
+const derivedTiles = computed<IStatTile[]>(() => {
+  if (!character.value || !store.character) return []
+  const c = character.value
+  const mods = modifiers.value
+  const healthBarBonusText = mods.healthBarBonus ? ` + ${mods.healthBarBonus} (Talent bonus)` : ''
+  const willpowerBonusText = mods.willpowerBonus ? ` + ${mods.willpowerBonus} (Talent bonus)` : ''
+  const spellSlotBonusText = mods.spellSlotBonus ? ` + ${mods.spellSlotBonus} (Tomes)` : ''
+  return [
+    {
+      label: 'Speed',
+      display: `${c.speed}`,
+      tooltip: `3 + floor(Agility ${c.attribute(AttributeId.Agility)} / 2)`,
+    },
+    {
+      label: 'Max HP',
+      display: `${store.character.currentHp} / ${c.maxHp}`,
+      tooltip: `Health Bar (Brawn ${c.attribute(AttributeId.Brawn)} + Skirmish ${c.skill(SkillId.Skirmish)}${healthBarBonusText}) x 3`,
+      actions: 'hp',
+    },
+    {
+      label: 'Willpower',
+      display: `${store.character.currentWillpower} / ${c.maxWillpower}`,
+      tooltip: `Faith ${c.attribute(AttributeId.Faith)}${willpowerBonusText}`,
+      actions: 'willpower',
+    },
+    {
+      label: 'Resistance',
+      display: `${c.resistance}`,
+      tooltip: equippedArmor.value ? `${equippedArmor.value.name}'s Resistance` : 'No Armor equipped',
+    },
+    {
+      label: 'Damage Bonus',
+      display: `${c.damageBonus}`,
+      tooltip: `Equal to Skirmish Skill (${c.skill(SkillId.Skirmish)})`,
+    },
+    {
+      label: 'Spell Slots',
+      display: `${c.spellSlots}`,
+      tooltip: `Study ${c.skill(SkillId.Study)}${spellSlotBonusText}`,
+    },
+  ]
+})
 </script>
 
 <template>
@@ -243,72 +302,78 @@ function weaponDamageTooltip(weapon: IWeaponData): string {
       @change="store.updatePreparedSpells"
     />
 
+    <!-- Top of the visual hierarchy: Attributes/Skills as vertical columns on the left, Effect
+         Saves nestled next to each Attribute, and every other derived stat as its own prominent,
+         hoverable tile to the right. -->
+    <v-row class="mb-2">
+      <v-col cols="12" sm="6" md="3">
+        <v-card variant="outlined" style="height: 100%">
+          <v-card-title>Attributes</v-card-title>
+          <v-card-text>
+            <div
+              v-for="attr in CoreContent.attributes"
+              :key="attr.id"
+              class="d-flex align-center justify-space-between py-1"
+            >
+              <span>{{ attr.name }}</span>
+              <div class="d-flex align-center">
+                <strong class="mr-2">{{ character.attribute(attr.id) }}</strong>
+                <DerivedValueBadge
+                  :display="`Save ${character.effectSave(attr.id)}`"
+                  :tooltip="effectSaveTooltip(attr.id)"
+                />
+              </div>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="3">
+        <v-card variant="outlined" style="height: 100%">
+          <v-card-title>Skills</v-card-title>
+          <v-card-text>
+            <div
+              v-for="skill in CoreContent.skills"
+              :key="skill.id"
+              class="d-flex align-center justify-space-between py-1"
+            >
+              <span>{{ skill.name }}</span>
+              <strong>{{ character.skill(skill.id) }}</strong>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" md="6">
+        <v-row dense>
+          <v-col v-for="tile in derivedTiles" :key="tile.label" cols="6" sm="4">
+            <StatTile :label="tile.label" :display="tile.display" :tooltip="tile.tooltip">
+              <template v-if="tile.actions === 'hp'" #actions>
+                <v-btn size="x-small" icon="mdi-minus" variant="tonal" @click="store.adjustHp(-1, character.maxHp)" />
+                <v-btn size="x-small" icon="mdi-plus" variant="tonal" @click="store.adjustHp(1, character.maxHp)" />
+              </template>
+              <template v-else-if="tile.actions === 'willpower'" #actions>
+                <v-btn
+                  size="x-small"
+                  icon="mdi-minus"
+                  variant="tonal"
+                  @click="store.adjustWillpower(-1, character.maxWillpower)"
+                />
+                <v-btn
+                  size="x-small"
+                  icon="mdi-plus"
+                  variant="tonal"
+                  @click="store.adjustWillpower(1, character.maxWillpower)"
+                />
+              </template>
+            </StatTile>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+
     <v-row>
       <v-col cols="12" md="7">
-        <v-card variant="outlined" class="mb-4">
-          <v-card-title>Health &amp; Willpower</v-card-title>
-          <v-card-text>
-            <div class="d-flex align-center mb-2">
-              <span class="mr-2" style="width: 90px">HP</span>
-              <v-btn size="small" icon="mdi-minus" variant="tonal" @click="store.adjustHp(-1, character.maxHp)" />
-              <span class="mx-3">{{ store.character.currentHp }} / {{ character.maxHp }}</span>
-              <v-btn size="small" icon="mdi-plus" variant="tonal" @click="store.adjustHp(1, character.maxHp)" />
-            </div>
-            <div class="d-flex align-center">
-              <span class="mr-2" style="width: 90px">Willpower</span>
-              <v-btn
-                size="small"
-                icon="mdi-minus"
-                variant="tonal"
-                @click="store.adjustWillpower(-1, character.maxWillpower)"
-              />
-              <span class="mx-3">{{ store.character.currentWillpower }} / {{ character.maxWillpower }}</span>
-              <v-btn
-                size="small"
-                icon="mdi-plus"
-                variant="tonal"
-                @click="store.adjustWillpower(1, character.maxWillpower)"
-              />
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <v-card variant="outlined" class="mb-4">
-          <v-card-title>Derived Stats</v-card-title>
-          <v-card-text>
-            <v-row dense>
-              <v-col cols="6" sm="4">Speed: <strong>{{ character.speed }}</strong></v-col>
-              <v-col cols="6" sm="4">Resistance: <strong>{{ character.resistance }}</strong></v-col>
-              <v-col cols="6" sm="4">Damage Bonus: <strong>{{ character.damageBonus }}</strong></v-col>
-              <v-col cols="6" sm="4">Spell Slots: <strong>{{ character.spellSlots }}</strong></v-col>
-            </v-row>
-            <div class="text-subtitle-2 mt-3 mb-1">Effect Saves</div>
-            <v-row dense>
-              <v-col v-for="attr in CoreContent.attributes" :key="attr.id" cols="6" sm="4">
-                {{ attr.name }}: <strong>{{ character.effectSave(attr.id) }}</strong>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-
-        <v-card variant="outlined" class="mb-4">
-          <v-card-title>Attributes &amp; Skills</v-card-title>
-          <v-card-text>
-            <div class="text-subtitle-2 mb-1">Attributes</div>
-            <v-row dense class="mb-3">
-              <v-col v-for="attr in CoreContent.attributes" :key="attr.id" cols="6" sm="4">
-                {{ attr.name }}: <strong>{{ character.attribute(attr.id) }}</strong>
-              </v-col>
-            </v-row>
-            <div class="text-subtitle-2 mb-1">Skills</div>
-            <v-row dense>
-              <v-col v-for="skill in CoreContent.skills" :key="skill.id" cols="6" sm="4">
-                {{ skill.name }}: <strong>{{ character.skill(skill.id) }}</strong>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
-
         <v-card variant="outlined" class="mb-4">
           <v-card-title class="d-flex align-center justify-space-between">
             <span>Equipment</span>
