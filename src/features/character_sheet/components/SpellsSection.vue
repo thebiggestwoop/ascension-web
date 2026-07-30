@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
-import { SkillId } from '@/classes/enums'
 import { resolveMagickDomainAccess, MAGICK_ATTRIBUTE_BY_DOMAIN } from '@/classes/Spell'
 import type { ISpellData } from '@/classes/Spell'
 import type { Character } from '@/classes/Character'
@@ -27,15 +26,21 @@ function attributeName(spell: ISpellData): string {
   return CoreContent.attributes.find((a) => a.id === attrId)?.name ?? attrId
 }
 
+function skillName(id: string): string {
+  return CoreContent.skills.find((s) => s.id === id)?.name ?? id
+}
+
+/** Only Attack-tagged (or otherwise task-bearing) spells have a Task at all - e.g. Touch of
+ * Haste just grants a flat bonus with no roll, so it has none. */
 function taskValue(spell: ISpellData): number {
   const attrId = MAGICK_ATTRIBUTE_BY_DOMAIN[spell.domain]
-  return props.character.attribute(attrId) + props.character.skill(SkillId.Skirmish)
+  return props.character.attribute(attrId) + props.character.skill(spell.task!.skill)
 }
 
 function taskTooltip(spell: ISpellData): string {
   const attrId = MAGICK_ATTRIBUTE_BY_DOMAIN[spell.domain]
-  const skirmish = props.character.skill(SkillId.Skirmish)
-  return `${attributeName(spell)} ${props.character.attribute(attrId)}, Skirmish +${skirmish}`
+  const skillValue = props.character.skill(spell.task!.skill)
+  return `${attributeName(spell)} ${props.character.attribute(attrId)}, ${skillName(spell.task!.skill)} +${skillValue}`
 }
 
 function usesDisplay(spell: ISpellData, count: number): string {
@@ -61,9 +66,12 @@ function usesDisplay(spell: ISpellData, count: number): string {
     </v-card-subtitle>
     <v-card-text>
       <div class="mb-2">
-        Task: {{ attributeName(g.spell) }}
-        <DerivedValueBadge :display="String(taskValue(g.spell))" :tooltip="taskTooltip(g.spell)" />
-        - Uses: <strong>{{ usesDisplay(g.spell, g.count) }}</strong>
+        <template v-if="g.spell.task">
+          Task: {{ attributeName(g.spell) }}
+          <DerivedValueBadge :display="String(taskValue(g.spell))" :tooltip="taskTooltip(g.spell)" />
+          -
+        </template>
+        Uses: <strong>{{ usesDisplay(g.spell, g.count) }}</strong>
       </div>
       <SpellEffectText
         v-if="g.spell.effectText"

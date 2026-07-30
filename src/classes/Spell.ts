@@ -1,4 +1,4 @@
-import { AttributeId } from './enums'
+import { AttributeId, SkillId } from './enums'
 
 export type MagickDomain = 'arcane' | 'light' | 'dark'
 export type ActionType = 'major' | 'minor' | 'reaction' | 'passive'
@@ -11,23 +11,36 @@ export const MAGICK_ATTRIBUTE_BY_DOMAIN: Record<MagickDomain, AttributeId> = {
 }
 
 /**
+ * The Skill paired with the caster's Magick Attribute for a spell's task, if it has one at
+ * all - most Attack-tagged spells use Skirmish ("Make a Spell Attack..."), but several use a
+ * different Skill entirely (healing spells use Medicine, Castigate uses Diplomacy, a few
+ * "Special Spell Attacks" substitute a Skill for Skirmish outright). Many spells have no task
+ * at all (e.g. Touch of Haste just grants a flat bonus) - those omit this field entirely
+ * rather than defaulting to Skirmish.
+ */
+export interface ISpellTask {
+  skill: SkillId
+}
+
+/**
  * A number in a spell's effectText that's actually determined by the caster - e.g.
  * Penumbra's "2[CD]" base damage, which per Chapter Eight also gains the caster's Skirmish
- * (Spell Attack damage) and scales further per Wound. Only annotated for spells with an
- * unambiguous plain "N[CD]" damage clause (no other Skill already baked into the printed
- * number, e.g. Castigate's "2 + Diplomacy [CD]" is deliberately left alone - whether Skirmish
- * additionally stacks on top of a skill-composite formula isn't stated in the source text).
+ * (Spell Attack damage) and scales further per Wound; or Blood Sickness's "2 + Medicine [CD]",
+ * whose printed number already bakes in Medicine (the Skill its "Special Spell Attack"
+ * substitutes for Skirmish) rather than needing a separate Skirmish addition.
  */
 export interface ISpellComputedValue {
   /** Exact substring in effectText to replace with the live total (first occurrence only,
    * so a later plain-text mention of the same number - e.g. describing "increases by 2[CD]
    * per Wound" - is left as rule-text, not re-substituted). */
   matchText: string
-  /** Base number as printed, before any Skirmish/Wound additions. */
+  /** Base number as printed, before any Skill/Wound additions. */
   base: number
-  /** Adds the caster's Skirmish - true for full Spell Attacks; a Spellblade's flat weapon-
-   * damage bonus omits this since the weapon's own damage already includes Skirmish once. */
-  addsSkirmish?: boolean
+  /** Skill added to the base - Skirmish for a standard Spell Attack's damage, or whichever
+   * Skill the printed number already names (e.g. Medicine for Blood Sickness/Lay on Hands).
+   * Omitted for a Spellblade's flat weapon-damage bonus, whose own weapon damage already
+   * includes Skirmish once. */
+  bonusSkill?: SkillId
   /** Extra amount added per Wound the caster currently has (0-2), e.g. Penumbra's +2[CD] each. */
   perWound?: number
   /** Text appended after the computed number, e.g. "[CD]". */
@@ -53,6 +66,7 @@ export interface ISpellData {
   range?: string
   effectText?: string
   transcribed: boolean
+  task?: ISpellTask
   computedValues?: ISpellComputedValue[]
 }
 

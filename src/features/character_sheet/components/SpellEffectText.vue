@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { SkillId } from '@/classes/enums'
+import { CoreContent } from '@/io/ContentLoader'
 import type { Character } from '@/classes/Character'
 import type { ISpellComputedValue } from '@/classes/Spell'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
+
+function skillName(id: string): string {
+  return CoreContent.skills.find((s) => s.id === id)?.name ?? id
+}
 
 /**
  * Renders a spell's effectText, splicing in live-computed values (e.g. Penumbra's base
@@ -29,7 +33,6 @@ const segments = computed<Segment[]>(() => {
     .filter((m) => m.index !== -1)
     .sort((a, b) => a.index - b.index)
 
-  const skirmish = props.character.skill(SkillId.Skirmish)
   const wounds = props.character.wounds
 
   const result: Segment[] = []
@@ -37,9 +40,10 @@ const segments = computed<Segment[]>(() => {
   for (const { cv, index } of matches) {
     if (index > cursor) result.push({ type: 'text', text: props.effectText.slice(cursor, index) })
 
-    const total = cv.base + (cv.addsSkirmish ? skirmish : 0) + (cv.perWound ?? 0) * wounds
+    const bonus = cv.bonusSkill ? props.character.skill(cv.bonusSkill) : 0
+    const total = cv.base + bonus + (cv.perWound ?? 0) * wounds
     const parts = [`Base ${cv.base}`]
-    if (cv.addsSkirmish) parts.push(`Skirmish +${skirmish}`)
+    if (cv.bonusSkill) parts.push(`${skillName(cv.bonusSkill)} +${bonus}`)
     if (cv.perWound) parts.push(`${wounds} Wound${wounds === 1 ? '' : 's'} x ${cv.perWound} = +${cv.perWound * wounds}`)
     result.push({ type: 'computed', display: `${total}${cv.suffix}`, tooltip: parts.join(', ') })
 
