@@ -1,5 +1,38 @@
+import { AttributeId } from './enums'
+
 export type MagickDomain = 'arcane' | 'light' | 'dark'
 export type ActionType = 'major' | 'minor' | 'reaction' | 'passive'
+
+/** Magick Attribute used for a domain's Spell Attacks/tasks, per Chapter Eight. */
+export const MAGICK_ATTRIBUTE_BY_DOMAIN: Record<MagickDomain, AttributeId> = {
+  arcane: AttributeId.Reason,
+  light: AttributeId.Faith,
+  dark: AttributeId.Presence,
+}
+
+/**
+ * A number in a spell's effectText that's actually determined by the caster - e.g.
+ * Penumbra's "2[CD]" base damage, which per Chapter Eight also gains the caster's Skirmish
+ * (Spell Attack damage) and scales further per Wound. Only annotated for spells with an
+ * unambiguous plain "N[CD]" damage clause (no other Skill already baked into the printed
+ * number, e.g. Castigate's "2 + Diplomacy [CD]" is deliberately left alone - whether Skirmish
+ * additionally stacks on top of a skill-composite formula isn't stated in the source text).
+ */
+export interface ISpellComputedValue {
+  /** Exact substring in effectText to replace with the live total (first occurrence only,
+   * so a later plain-text mention of the same number - e.g. describing "increases by 2[CD]
+   * per Wound" - is left as rule-text, not re-substituted). */
+  matchText: string
+  /** Base number as printed, before any Skirmish/Wound additions. */
+  base: number
+  /** Adds the caster's Skirmish - true for full Spell Attacks; a Spellblade's flat weapon-
+   * damage bonus omits this since the weapon's own damage already includes Skirmish once. */
+  addsSkirmish?: boolean
+  /** Extra amount added per Wound the caster currently has (0-2), e.g. Penumbra's +2[CD] each. */
+  perWound?: number
+  /** Text appended after the computed number, e.g. "[CD]". */
+  suffix: string
+}
 
 /**
  * A spell's mechanical header (tier/tags/cost/action/uses) is enough to list and gate it
@@ -20,6 +53,7 @@ export interface ISpellData {
   range?: string
   effectText?: string
   transcribed: boolean
+  computedValues?: ISpellComputedValue[]
 }
 
 export interface IMagickDomainAccess {

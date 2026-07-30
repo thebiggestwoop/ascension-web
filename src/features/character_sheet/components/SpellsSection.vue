@@ -1,72 +1,76 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
-import { resolveMagickDomainAccess } from '@/classes/Spell'
-import type { ISpellData, MagickDomain } from '@/classes/Spell'
-import QuantityStepper from '@/ui/QuantityStepper.vue'
+import { SkillId } from '@/classes/enums'
+import { resolveMagickDomainAccess, MAGICK_ATTRIBUTE_BY_DOMAIN } from '@/classes/Spell'
+import type { ISpellData } from '@/classes/Spell'
+import type { Character } from '@/classes/Character'
+import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
+import SpellEffectText from './SpellEffectText.vue'
 
-const props = defineProps<{ talentIds: string[]; preparedSpellIds: string[]; spellSlots: number }>()
-const emit = defineEmits<{ change: [ids: string[]] }>()
+const props = defineProps<{ character: Character; preparedSpellIds: string[] }>()
 
-const domainAccess = computed(() => resolveMagickDomainAccess(props.talentIds))
-
-const domainSpells: Record<MagickDomain, ISpellData[]> = {
-  arcane: CoreContent.spells.arcane,
-  light: CoreContent.spells.light,
-  dark: CoreContent.spells.dark,
-}
 const allSpells = [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark]
 
-const preparedCounts = computed(() => {
+const domainAccess = computed(() => resolveMagickDomainAccess(props.character.talentIds))
+
+const preparedGroups = computed(() => {
   const counts: Record<string, number> = {}
   for (const id of props.preparedSpellIds) counts[id] = (counts[id] ?? 0) + 1
-  return counts
+  return Object.entries(counts)
+    .map(([id, count]) => ({ spell: allSpells.find((s) => s.id === id), count }))
+    .filter((g): g is { spell: ISpellData; count: number } => !!g.spell)
 })
 
-const slotsUsed = computed(() => {
-  let used = 0
-  for (const [id, count] of Object.entries(preparedCounts.value)) {
-    const spell = allSpells.find((s) => s.id === id)
-    if (spell) used += spell.slotCost * count
-  }
-  return used
-})
-
-/** Highest count `spell` could reach without pushing total prepared slots past the character's Spell Slots. */
-function maxCountFor(spell: ISpellData): number {
-  const current = preparedCounts.value[spell.id] ?? 0
-  const otherSlotsUsed = slotsUsed.value - current * spell.slotCost
-  return current + Math.floor((props.spellSlots - otherSlotsUsed) / spell.slotCost)
+function attributeName(spell: ISpellData): string {
+  const attrId = MAGICK_ATTRIBUTE_BY_DOMAIN[spell.domain]
+  return CoreContent.attributes.find((a) => a.id === attrId)?.name ?? attrId
 }
 
-function setCount(id: string, value: number) {
-  const counts = { ...preparedCounts.value, [id]: value }
-  const ids: string[] = []
-  for (const [spellId, count] of Object.entries(counts)) {
-    for (let i = 0; i < count; i++) ids.push(spellId)
-  }
-  emit('change', ids)
+function taskValue(spell: ISpellData): number {
+  const attrId = MAGICK_ATTRIBUTE_BY_DOMAIN[spell.domain]
+  return props.character.attribute(attrId) + props.character.skill(SkillId.Skirmish)
+}
+
+function taskTooltip(spell: ISpellData): string {
+  const attrId = MAGICK_ATTRIBUTE_BY_DOMAIN[spell.domain]
+  const skirmish = props.character.skill(SkillId.Skirmish)
+  return `${attributeName(spell)} ${props.character.attribute(attrId)}, Skirmish +${skirmish}`
+}
+
+function usesDisplay(spell: ISpellData, count: number): string {
+  if (spell.usesPerScene === 'passive') return 'Passive'
+  return `${spell.usesPerScene * count} / scene`
 }
 </script>
 
 <template>
-  <div v-if="domainAccess.length">
-    <div class="text-body-2 mb-2">Spell Slots used: {{ slotsUsed }} / {{ spellSlots }}</div>
-    <div v-for="access in domainAccess" :key="access.domain">
-      <div class="text-subtitle-2 text-capitalize mt-2 mb-1">{{ access.domain }} (up to Tier {{ access.maxTier }})</div>
-      <div
-        v-for="spell in domainSpells[access.domain].filter((s) => s.tier <= access.maxTier)"
-        :key="spell.id"
-        class="d-flex align-center mb-1"
-      >
-        <QuantityStepper
-          :model-value="preparedCounts[spell.id] ?? 0"
-          :max="maxCountFor(spell)"
-          @update:model-value="(v) => setCount(spell.id, v)"
-        />
-        <span class="mx-2">{{ spell.name }} (Tier {{ spell.tier }}, {{ spell.slotCost }} slot{{ spell.slotCost > 1 ? 's' : '' }})</span>
-      </div>
-    </div>
+  <div v-if="!domainAccess.length" class="text-medium-emphasis">
+    No Magick Domain Talent held - this character is not a Spellcaster.
   </div>
-  <p v-else class="text-medium-emphasis">No Magick Domain Talent held - this character is not a Spellcaster.</p>
+  <div v-else-if="!preparedGroups.length" class="text-medium-emphasis">No spells prepared.</div>
+  <v-card v-for="g in preparedGroups" :key="g.spell.id" variant="tonal" class="mb-2">
+    <v-card-title class="d-flex align-center justify-space-between">
+      <span>{{ g.spell.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
+      <v-chip size="small">Tier {{ g.spell.tier }}</v-chip>
+    </v-card-title>
+    <v-card-subtitle>
+      {{ g.spell.tags.join(', ') }} - {{ g.spell.slotCost }} Slot{{ g.spell.slotCost > 1 ? 's' : '' }}
+      <span v-if="g.spell.range"> - Range {{ g.spell.range }}</span>
+      <span v-if="g.spell.willpowerCost"> - {{ g.spell.willpowerCost }} Willpower</span>
+    </v-card-subtitle>
+    <v-card-text>
+      <div class="mb-2">
+        Task: {{ attributeName(g.spell) }}
+        <DerivedValueBadge :display="String(taskValue(g.spell))" :tooltip="taskTooltip(g.spell)" />
+        - Uses: <strong>{{ usesDisplay(g.spell, g.count) }}</strong>
+      </div>
+      <SpellEffectText
+        v-if="g.spell.effectText"
+        :effect-text="g.spell.effectText"
+        :computed-values="g.spell.computedValues"
+        :character="character"
+      />
+    </v-card-text>
+  </v-card>
 </template>

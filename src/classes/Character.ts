@@ -118,6 +118,10 @@ export class Character implements ISerializable<ICharacterData> {
     return this.data.level
   }
 
+  get talentIds(): string[] {
+    return this.data.talentIds
+  }
+
   attribute(id: AttributeId): number {
     return this.data.attributes[id]
   }
@@ -167,6 +171,17 @@ export class Character implements ISerializable<ICharacterData> {
 
   get isRattled(): boolean {
     return this.data.statuses.some((s) => s.id === StatusId.Rattled)
+  }
+
+  /**
+   * Wounds are derived from current HP, not stored: Wound 1 at or below 2/3 Max HP (-2
+   * Speed), Wound 2 at or below 1/3 Max HP (also can't take Swift Tasks). Several Dark
+   * Domain spells (Penumbra, Umbra, Nox, Shadow Blade...) scale their damage per Wound.
+   */
+  get wounds(): 0 | 1 | 2 {
+    if (this.data.currentHp <= this.healthBar) return 2
+    if (this.data.currentHp <= this.healthBar * 2) return 1
+    return 0
   }
 
   Serialize(): ICharacterData {

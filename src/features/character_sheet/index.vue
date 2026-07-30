@@ -8,6 +8,7 @@ import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
 import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
+import SpellEditorDialog from './components/SpellEditorDialog.vue'
 import SpellsSection from './components/SpellsSection.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
 
@@ -63,6 +64,7 @@ const props = defineProps<{ id: string }>()
 const store = useCharacterSheetStore()
 const showLevelUp = ref(false)
 const showLoadoutEditor = ref(false)
+const showSpellEditor = ref(false)
 const canLevelUp = computed(() => (store.character?.level ?? 0) < CoreContent.advancement.maxLevel)
 
 onMounted(() => store.loadById(props.id))
@@ -193,6 +195,12 @@ function weaponDamage(weapon: IWeaponData): string {
       v-model="showLoadoutEditor"
       :character="store.character"
       @change="store.updateEquipment"
+    />
+    <SpellEditorDialog
+      v-model="showSpellEditor"
+      :character="store.character"
+      :spell-slots="character.spellSlots"
+      @change="store.updatePreparedSpells"
     />
 
     <v-row>
@@ -331,14 +339,12 @@ function weaponDamage(weapon: IWeaponData): string {
         </v-card>
 
         <v-card variant="outlined" class="mb-4">
-          <v-card-title>Spells</v-card-title>
+          <v-card-title class="d-flex align-center justify-space-between">
+            <span>Spells</span>
+            <v-btn size="small" variant="tonal" @click="showSpellEditor = true">Edit Spells</v-btn>
+          </v-card-title>
           <v-card-text>
-            <SpellsSection
-              :talent-ids="store.character.talentIds"
-              :prepared-spell-ids="store.character.preparedSpellIds"
-              :spell-slots="character.spellSlots"
-              @change="store.updatePreparedSpells"
-            />
+            <SpellsSection :character="character" :prepared-spell-ids="store.character.preparedSpellIds" />
           </v-card-text>
         </v-card>
       </v-col>
