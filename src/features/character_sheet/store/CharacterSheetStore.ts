@@ -12,6 +12,11 @@ export interface ILevelUpPayload {
   focusText?: string
   narrativeTalentIds: string[]
   combatTalentIds: string[]
+  /** "Instead, You May Also" respec options: Talents being replaced away this level. */
+  removeTalentIds?: string[]
+  /** The Focus text being replaced away, and its new replacement text. */
+  removeFocusText?: string
+  replacementFocusText?: string
 }
 
 export const useCharacterSheetStore = defineStore('characterSheet', {
@@ -83,6 +88,15 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       for (const [id, amount] of Object.entries(payload.skillDeltas)) {
         this.character.skills[id as SkillId] += amount ?? 0
       }
+      if (payload.removeTalentIds?.length) {
+        this.character.talentIds = this.character.talentIds.filter((id) => !payload.removeTalentIds!.includes(id))
+      }
+      if (payload.removeFocusText) {
+        const index = this.character.focuses.indexOf(payload.removeFocusText)
+        if (index !== -1) this.character.focuses.splice(index, 1)
+      }
+      if (payload.replacementFocusText) this.character.focuses.push(payload.replacementFocusText)
+
       if (payload.focusText) this.character.focuses.push(payload.focusText)
       this.character.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
 

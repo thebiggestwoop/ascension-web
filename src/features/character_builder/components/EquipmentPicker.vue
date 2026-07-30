@@ -93,11 +93,16 @@ const slotsUsed = computed(() => {
   return slots
 })
 
-/** Highest count an item could reach without pushing total slots past MAX_SLOTS. */
+/**
+ * Highest count an item could reach without pushing total slots past MAX_SLOTS. `otherSlotsUsed`
+ * already excludes this item's own current contribution, so the remaining budget - divided by
+ * this item's cost - IS the max count directly; it must not also add `currentCount` on top
+ * (that double-counts the item's existing slots and let the total silently exceed MAX_SLOTS).
+ */
 function maxCountFor(currentCount: number, qualities: IQualityInstance[]): number {
   const cost = itemCost(qualities)
   const otherSlotsUsed = slotsUsed.value - currentCount * cost
-  return currentCount + Math.floor((MAX_SLOTS - otherSlotsUsed) / cost)
+  return Math.floor((MAX_SLOTS - otherSlotsUsed) / cost)
 }
 
 function setWeaponCount(id: string, value: number) {
@@ -143,6 +148,9 @@ watch(
 <template>
   <div>
     <div class="text-body-2 mb-2">Inventory slots used: {{ slotsUsed }} / {{ MAX_SLOTS }} (Bulky items cost 2)</div>
+    <v-alert v-if="slotsUsed > MAX_SLOTS" type="warning" variant="tonal" density="compact" class="mb-3">
+      Over your {{ MAX_SLOTS }}-slot inventory limit by {{ slotsUsed - MAX_SLOTS }} - remove something before finishing.
+    </v-alert>
 
     <div class="text-subtitle-2 mb-1">Weapons</div>
     <div v-for="w in CoreContent.equipment.weapons" :key="w.id" class="d-flex align-center mb-1">

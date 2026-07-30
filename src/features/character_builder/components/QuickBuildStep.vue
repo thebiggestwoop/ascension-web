@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { AttributeId, SkillId } from '@/classes/enums'
+import { AttributeId, SkillId, SocialClassId } from '@/classes/enums'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { isAllocationDisabledByCeiling } from '@/classes/AllocationCaps'
 import { CoreContent } from '@/io/ContentLoader'
@@ -133,7 +133,23 @@ const finalSkills = computed<Record<SkillId, number>>(() => {
 // --- Step Three: Focuses, Values, Trait, Talents ---
 const focusTexts = ref<string[]>(Array(sa.focusCount).fill(''))
 const valueTexts = ref<string[]>(Array(sa.valueCount).fill(''))
-const traitChoice = ref<'Commoner' | 'Noble' | null>(null)
+
+/**
+ * The rules just say "Commoner or Noble", but that alone can't unlock the Peasant/Merchant/
+ * High Born Narrative Archetypes (their Talents are gated on a `socialClassId` the Lifepath
+ * path sets and Quick Build otherwise never has). Offering these three specific flavors
+ * instead - each setting the matching socialClassId - lets Quick Build characters reach the
+ * same Class Archetypes Lifepath characters can, at the cost of the generic "Commoner/Noble"
+ * wording. High Born itself is an OR across three nobility ranks (Talent.ts's
+ * `socialClassAny`); Petty Nobility is used as the representative choice.
+ */
+const CLASS_TRAIT_SOCIAL_CLASS: Record<'Peasant' | 'Merchant' | 'High Born', SocialClassId> = {
+  Peasant: SocialClassId.CommonerPeasant,
+  Merchant: SocialClassId.CommonerMerchant,
+  'High Born': SocialClassId.PettyNobility,
+}
+const traitChoice = ref<'Peasant' | 'Merchant' | 'High Born' | null>(null)
+const selectedSocialClassId = computed(() => (traitChoice.value ? CLASS_TRAIT_SOCIAL_CLASS[traitChoice.value] : undefined))
 const definingFeatureText = ref('')
 
 const talentPicks = ref<{ narrativeTalentIds: string[]; combatTalentIds: string[] }>({
@@ -168,7 +184,7 @@ const missingRequirements = computed(() => {
   }
   if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
   if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
-  if (!traitChoice.value) missing.push('Choose Commoner or Noble')
+  if (!traitChoice.value) missing.push('Choose Peasant, Merchant, or High Born')
   if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
   if (talentPicks.value.narrativeTalentIds.length !== sa.narrativeTalentGrant) {
     missing.push(
@@ -195,6 +211,7 @@ async function finish() {
     focusTexts: [...focusTexts.value],
     valueTexts: [...valueTexts.value],
     traitName: traitChoice.value,
+    socialClassId: selectedSocialClassId.value,
     definingFeatureText: definingFeatureText.value,
     narrativeTalentIds: talentPicks.value.narrativeTalentIds,
     combatTalentIds: talentPicks.value.combatTalentIds,
@@ -312,9 +329,13 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         <v-card-title>Traits</v-card-title>
         <v-card-text>
           <v-radio-group v-model="traitChoice" inline density="compact" label="Starting Trait">
-            <v-radio label="Commoner" value="Commoner" />
-            <v-radio label="Noble" value="Noble" />
+            <v-radio label="Peasant" value="Peasant" />
+            <v-radio label="Merchant" value="Merchant" />
+            <v-radio label="High Born" value="High Born" />
           </v-radio-group>
+          <p class="text-caption text-medium-emphasis mb-2">
+            Also unlocks the matching Class Archetype (Peasant/Merchant/High Born) Narrative Talents below.
+          </p>
           <v-text-field v-model="definingFeatureText" label="Defining Feature (Trait)" density="compact" />
         </v-card-text>
       </v-card>
@@ -335,6 +356,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           <TalentPicker
             :attributes="finalAttributes"
             :skills="finalSkills"
+            :social-class-id="selectedSocialClassId"
             :narrative-count="sa.narrativeTalentGrant"
             :combat-count="sa.combatTalentGrant.count"
             :max-tier="sa.combatTalentGrant.tier"

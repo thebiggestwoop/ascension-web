@@ -41,11 +41,15 @@ function slotsUsedExcept(excludeId?: string): number {
 
 const totalSlotsUsed = () => slotsUsedExcept(undefined)
 
-/** Highest count `spell` could reach without pushing total prepared slots past the character's Spell Slots. */
+/**
+ * Highest count `spell` could reach without pushing total prepared slots past the character's
+ * Spell Slots. `otherSlotsUsed` already excludes this spell's own current contribution, so the
+ * remaining budget divided by its slot cost IS the max directly - adding `current` on top would
+ * double-count this spell's existing slots and let the total silently exceed Spell Slots.
+ */
 function maxCountFor(spell: ISpellData): number {
-  const current = preparedCounts.value[spell.id] ?? 0
   const otherSlotsUsed = slotsUsedExcept(spell.id)
-  return current + Math.floor((props.spellSlots - otherSlotsUsed) / spell.slotCost)
+  return Math.floor((props.spellSlots - otherSlotsUsed) / spell.slotCost)
 }
 
 function setCount(id: string, value: number) {
@@ -68,6 +72,9 @@ watch(
 <template>
   <div v-if="domainAccess.length">
     <div class="text-body-2 mb-2">Spell Slots used: {{ totalSlotsUsed() }} / {{ spellSlots }}</div>
+    <v-alert v-if="totalSlotsUsed() > spellSlots" type="warning" variant="tonal" density="compact" class="mb-3">
+      Over your {{ spellSlots }} Spell Slots by {{ totalSlotsUsed() - spellSlots }} - unprepare something before finishing.
+    </v-alert>
     <div v-for="access in domainAccess" :key="access.domain">
       <div class="text-subtitle-2 text-capitalize mt-2 mb-1">{{ access.domain }} (up to Tier {{ access.maxTier }})</div>
       <div

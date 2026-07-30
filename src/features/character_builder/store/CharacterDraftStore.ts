@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { toRaw } from 'vue'
-import { AttributeId, SkillId } from '@/classes/enums'
+import { AttributeId, SkillId, SocialClassId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
@@ -80,6 +80,9 @@ export interface IQuickBuildPayload {
   focusTexts: string[]
   valueTexts: string[]
   traitName: string
+  /** Set alongside the Peasant/Merchant/High Born trait choice so Class Archetype Talents
+   * (which gate on socialClassId, same as a Lifepath character) become reachable. */
+  socialClassId?: SocialClassId
   definingFeatureText: string
   narrativeTalentIds: string[]
   combatTalentIds: string[]
@@ -126,6 +129,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
         this.draft.values.push({ text, active: true })
       }
       this.draft.traits.push({ name: payload.traitName }, { name: payload.definingFeatureText })
+      if (payload.socialClassId) this.draft.socialClassId = payload.socialClassId
       this.draft.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
       this.draft.equippedWeaponIds.push(...payload.equippedWeaponIds)
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
