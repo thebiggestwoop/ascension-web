@@ -14,8 +14,9 @@ const MAX_SLOTS = 5
  * identical weapons, carrying multiple Tomes for extra Spell Slots, etc.), so weapons and
  * inventory items (shields + general) are tracked as per-item counts rather than a picked/
  * not-picked set. Armor and Mount stay single-select - only one of each can be worn/ridden.
- * Weapons are further grouped one dropdown per Weapon Tag (Sword/Axe/Spear/Bow/Gauntlet) -
- * each dropdown defaults to "None", so a character is never forced into owning all five.
+ * Weapons are grouped into collapsible sections by Weapon Tag (Sword/Axe/Spear/Bow/Gauntlet)
+ * so the full ~26-weapon list isn't all on screen at once, but every individual weapon
+ * underneath is still equippable (and stackable) independently, same as before grouping.
  */
 const props = withDefaults(
   defineProps<{
@@ -69,6 +70,9 @@ const inventoryCounts = ref<Record<string, number>>(countOccurrences(props.initi
 const selectedArmorId = ref<string | null>(props.initialEquippedArmorId ?? null)
 const selectedMountId = ref<string | null>(props.initialMountId ?? null)
 
+/** The rules' own weapon grouping (Chapter Seven), used here purely to organize the full
+ * weapon list into collapsible sections - every weapon is still equippable independently,
+ * with its own count, same as before this grouping was added. */
 const WEAPON_TAG_ORDER = [WeaponTag.Sword, WeaponTag.Axe, WeaponTag.Spear, WeaponTag.Bow, WeaponTag.Gauntlet]
 
 function weaponTagDefinition(tag: WeaponTag) {
@@ -79,38 +83,9 @@ function weaponsForTag(tag: WeaponTag): IWeaponData[] {
   return CoreContent.equipment.weapons.filter((w) => w.tag === tag)
 }
 
-function weaponById(id: string): IWeaponData | undefined {
-  return CoreContent.equipment.weapons.find((w) => w.id === id)
-}
-
-/**
- * Which weapon (if any) is currently selected for each Tag's dropdown, initialized from
- * whichever weapon of that Tag has a nonzero count. At most one weapon per Tag is
- * selectable through this UI - if a character somehow had two different weapons of the same
- * Tag equipped already, only the first encountered here is kept.
- */
-function initialSelectedWeaponIds(): Record<WeaponTag, string | null> {
-  const result = {} as Record<WeaponTag, string | null>
-  for (const tag of WEAPON_TAG_ORDER) result[tag] = null
-  for (const id of props.initialEquippedWeaponIds) {
-    const weapon = weaponById(id)
-    if (weapon && result[weapon.tag] === null) result[weapon.tag] = id
-  }
-  return result
-}
-const selectedWeaponIds = ref<Record<WeaponTag, string | null>>(initialSelectedWeaponIds())
-
-function weaponSelectItems(tag: WeaponTag) {
-  return [{ title: 'None', value: null }, ...weaponsForTag(tag).map((w) => ({ title: w.name, value: w.id }))]
-}
-
-function selectWeapon(tag: WeaponTag, newId: string | null) {
-  const oldId = selectedWeaponIds.value[tag]
-  const counts = { ...weaponCounts.value }
-  if (oldId) counts[oldId] = 0
-  if (newId) counts[newId] = 1
-  weaponCounts.value = counts
-  selectedWeaponIds.value = { ...selectedWeaponIds.value, [tag]: newId }
+/** Shown on each Tag's (collapsed) header so it's clear what's equipped without expanding it. */
+function tagEquippedCount(tag: WeaponTag): number {
+  return weaponsForTag(tag).reduce((sum, w) => sum + (weaponCounts.value[w.id] ?? 0), 0)
 }
 
 /** "weapons gain additional [CD] to their damage rating equal to the Skirmish Skill of the
@@ -215,43 +190,35 @@ watch(
     </v-alert>
 
     <div class="text-subtitle-2 mb-1">Weapons</div>
-    <div v-for="tag in WEAPON_TAG_ORDER" :key="tag" class="d-flex align-center flex-wrap mb-2">
-      <TooltipChip
-        :label="weaponTagDefinition(tag)?.name ?? tag"
-        :tooltip="weaponTagDefinition(tag)?.description"
-        class="mr-2"
-      />
-      <v-select
-        :model-value="selectedWeaponIds[tag]"
-        :items="weaponSelectItems(tag)"
-        density="compact"
-        hide-details
-        style="max-width: 220px"
-        class="mr-2"
-        @update:model-value="(id) => selectWeapon(tag, id)"
-      />
-      <template v-if="selectedWeaponIds[tag]">
-        <QuantityStepper
-          :model-value="weaponCounts[selectedWeaponIds[tag]!] ?? 1"
-          :min="1"
-          :max="maxCountFor(weaponCounts[selectedWeaponIds[tag]!] ?? 1, weaponById(selectedWeaponIds[tag]!)!.qualities)"
-          @update:model-value="(v) => setWeaponCount(selectedWeaponIds[tag]!, v)"
-        />
-        <span class="mx-2">
-          Damage:
-          <DerivedValueBadge
-            :display="weaponDamageDisplay(weaponById(selectedWeaponIds[tag]!)!)"
-            :tooltip="weaponDamageTooltip(weaponById(selectedWeaponIds[tag]!)!)"
+    <v-expansion-panels variant="accordion" multiple class="mb-2">
+      <v-expansion-panel v-for="tag in WEAPON_TAG_ORDER" :key="tag">
+        <v-expansion-panel-title>
+          <TooltipChip
+            :label="weaponTagDefinition(tag)?.name ?? tag"
+            :tooltip="weaponTagDefinition(tag)?.description"
+            class="mr-2"
           />
-        </span>
-        <TooltipChip
-          v-for="(q, i) in weaponById(selectedWeaponIds[tag]!)!.qualities"
-          :key="i"
-          :label="qualityLabel(q)"
-          :tooltip="qualityTooltip(q)"
-        />
-      </template>
-    </div>
+          <span v-if="tagEquippedCount(tag) > 0" class="text-caption text-medium-emphasis">
+            {{ tagEquippedCount(tag) }} equipped
+          </span>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <div v-for="w in weaponsForTag(tag)" :key="w.id" class="d-flex align-center flex-wrap mb-1">
+            <QuantityStepper
+              :model-value="weaponCounts[w.id] ?? 0"
+              :max="maxCountFor(weaponCounts[w.id] ?? 0, w.qualities)"
+              @update:model-value="(v) => setWeaponCount(w.id, v)"
+            />
+            <span class="mx-2">{{ w.name }}</span>
+            <span class="mx-2">
+              Damage:
+              <DerivedValueBadge :display="weaponDamageDisplay(w)" :tooltip="weaponDamageTooltip(w)" />
+            </span>
+            <TooltipChip v-for="(q, i) in w.qualities" :key="i" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
+          </div>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
 
     <div class="text-subtitle-2 mt-3 mb-1">Armor</div>
     <v-select v-model="selectedArmorId" :items="armorItems" density="compact" label="Armor" />
