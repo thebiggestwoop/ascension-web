@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { toRaw } from 'vue'
-import { AttributeId, SkillId, SocialClassId } from '@/classes/enums'
+import { AttributeId, SkillId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 import { applyLifepathSelection } from '@/classes/Lifepath'
+import type { IFinishingTouchesRecord, IQuickBuildRecord } from '@/classes/CharacterHistory'
 import { CoreContent } from '@/io/ContentLoader'
 import { saveCharacter } from '@/io/Storage'
 
@@ -44,6 +45,7 @@ function createBaseDraft(): ICharacterData {
     equippedWeaponIds: [],
     inventoryItemIds: [],
     preparedSpellIds: [],
+    levelUpHistory: [],
   }
 }
 
@@ -52,19 +54,8 @@ function createBaseDraft(): ICharacterData {
  * option-driven - the wizard resolves cap correction, bonus points, Value/Trait/Talent/
  * Equipment picks itself and hands the net result here as one batch.
  */
-export interface IFinishingTouchesPayload {
+export interface IFinishingTouchesPayload extends IFinishingTouchesRecord {
   name: string
-  /** Net Attribute deltas: cap-correction reductions + freely-reallocated pool + bonus points. */
-  attributeDeltas: Partial<Record<AttributeId, number>>
-  skillDeltas: Partial<Record<SkillId, number>>
-  valueText: string
-  definingFeatureText: string
-  narrativeTalentIds: string[]
-  combatTalentIds: string[]
-  equippedWeaponIds: string[]
-  equippedArmorId?: string
-  inventoryItemIds: string[]
-  mountId?: string
 }
 
 /**
@@ -73,34 +64,24 @@ export interface IFinishingTouchesPayload {
  * there's no earlier stage to build on top of, then hands over the same Focus/Value/Trait/
  * Talent/Equipment grants as Finishing Touches.
  */
-export interface IQuickBuildPayload {
+export interface IQuickBuildPayload extends IQuickBuildRecord {
   name: string
-  attributes: Record<AttributeId, number>
-  skills: Record<SkillId, number>
-  focusTexts: string[]
-  valueTexts: string[]
-  traitName: string
-  /** Set alongside the Peasant/Merchant/High Born trait choice so Class Archetype Talents
-   * (which gate on socialClassId, same as a Lifepath character) become reachable. */
-  socialClassId?: SocialClassId
-  definingFeatureText: string
-  narrativeTalentIds: string[]
-  combatTalentIds: string[]
-  equippedWeaponIds: string[]
-  equippedArmorId?: string
-  inventoryItemIds: string[]
-  mountId?: string
 }
 
 export const useCharacterDraftStore = defineStore('characterDraft', {
   state: () => ({
     draft: createBaseDraft(),
     completedStageIds: [] as string[],
+    /** One entry per completed Lifepath stage, recorded verbatim into creationRecord at
+     * Finishing Touches - not used for anything else, since applyLifepathSelection() has
+     * already applied each stage's effect to the draft as it was picked. */
+    lifepathSelections: [] as ILifepathSelection[],
   }),
   actions: {
     applyStage(stage: ILifepathStageData, selection: ILifepathSelection) {
       applyLifepathSelection(this.draft, selection, stage)
       this.completedStageIds.push(stage.id)
+      this.lifepathSelections.push(selection)
     },
     async applyFinishingTouches(payload: IFinishingTouchesPayload) {
       this.draft.name = payload.name
@@ -117,6 +98,13 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
+
+      const { name: _name, ...finishingTouches } = payload
+      this.draft.creationRecord = {
+        method: 'lifepath',
+        lifepathSelections: this.lifepathSelections,
+        finishingTouches,
+      }
 
       await this.finalizeCharacter()
     },
@@ -135,6 +123,9 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
+
+      const { name: _name, ...quickBuild } = payload
+      this.draft.creationRecord = { method: 'quick_build', quickBuild }
 
       await this.finalizeCharacter()
     },
@@ -158,6 +149,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
     reset() {
       this.draft = createBaseDraft()
       this.completedStageIds = []
+      this.lifepathSelections = []
     },
   },
 })

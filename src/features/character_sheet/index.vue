@@ -1,4 +1,4 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
@@ -66,7 +66,14 @@ const store = useCharacterSheetStore()
 const showLevelUp = ref(false)
 const showLoadoutEditor = ref(false)
 const showSpellEditor = ref(false)
+const showRevertConfirm = ref(false)
 const canLevelUp = computed(() => (store.character?.level ?? 0) < CoreContent.advancement.maxLevel)
+const canRevertLevelUp = computed(() => (store.character?.levelUpHistory?.length ?? 0) > 0)
+
+async function confirmRevertLevelUp() {
+  await store.revertLastLevelUp()
+  showRevertConfirm.value = false
+}
 
 onMounted(() => store.loadById(props.id))
 watch(() => props.id, (id) => store.loadById(id))
@@ -192,6 +199,15 @@ function weaponDamageTooltip(weapon: IWeaponData): string {
       >
         {{ canLevelUp ? 'Level Up' : 'Max Level Reached' }}
       </v-btn>
+      <v-btn
+        v-if="canRevertLevelUp"
+        class="ml-2"
+        variant="text"
+        size="small"
+        @click="showRevertConfirm = true"
+      >
+        Revert to Level {{ character.level - 1 }}
+      </v-btn>
     </div>
 
     <LevelUpDialog
@@ -199,6 +215,21 @@ function weaponDamageTooltip(weapon: IWeaponData): string {
       :character="store.character"
       @confirm="store.levelUp"
     />
+    <v-dialog v-model="showRevertConfirm" max-width="480">
+      <v-card>
+        <v-card-title>Revert to Level {{ character.level - 1 }}?</v-card-title>
+        <v-card-text>
+          This undoes everything granted or chosen at Level {{ character.level }} - Attribute/Skill
+          points, Talents, Focuses, and any "Instead, You May Also" swaps - restoring exactly what
+          the character had beforehand. This cannot be redone automatically.
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn variant="text" @click="showRevertConfirm = false">Cancel</v-btn>
+          <v-btn color="error" @click="confirmRevertLevelUp">Revert</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <LoadoutEditorDialog
       v-model="showLoadoutEditor"
       :character="store.character"

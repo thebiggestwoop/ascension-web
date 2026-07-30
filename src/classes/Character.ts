@@ -2,6 +2,7 @@ import { AttributeId, SkillId, SocialClassId, StatusId } from './enums'
 import type { ISerializable } from './ISerializable'
 import type { ITalentData } from './Talent'
 import type { IArmorData, IGeneralItemData } from './Equipment'
+import type { ICreationRecord, ILevelUpRecord } from './CharacterHistory'
 
 export interface IValue {
   text: string
@@ -51,6 +52,14 @@ export interface ICharacterData {
   /** Set from the Social Class / Career Lifepath stages; used to gate Talent prerequisites. */
   socialClassId?: SocialClassId
   careerId?: string
+
+  /** Every choice made during Lifepath creation/Quick Build - not used by any getter, kept for
+   * the player's own reference. Optional since characters saved before this field existed won't
+   * have it. */
+  creationRecord?: ICreationRecord
+  /** Every completed Level Up, in order ascended - lets the character revert its most recent
+   * Level Up by walking the last entry's grants back off. */
+  levelUpHistory: ILevelUpRecord[]
 }
 
 /**
