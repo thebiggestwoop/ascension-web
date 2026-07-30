@@ -25,5 +25,7 @@ defineProps<{ display: string; tooltip: string }>()
   font-weight: 600;
   cursor: help;
   line-height: 1.6;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 </style>

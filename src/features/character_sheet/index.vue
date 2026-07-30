@@ -314,9 +314,10 @@ const derivedTiles = computed<IStatTile[]>(() => {
               v-for="attr in CoreContent.attributes"
               :key="attr.id"
               class="d-flex align-center justify-space-between py-1"
+              style="flex-wrap: wrap; row-gap: 2px; column-gap: 8px"
             >
               <span>{{ attr.name }}</span>
-              <div class="d-flex align-center">
+              <div class="d-flex align-center" style="flex-shrink: 0">
                 <strong class="mr-2">{{ character.attribute(attr.id) }}</strong>
                 <DerivedValueBadge
                   :display="`Save ${character.effectSave(attr.id)}`"
