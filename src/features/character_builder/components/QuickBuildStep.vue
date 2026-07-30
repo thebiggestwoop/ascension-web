@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { AttributeId, SkillId, SocialClassId } from '@/classes/enums'
 import { Character, computeStatModifiers } from '@/classes/Character'
@@ -151,6 +151,25 @@ const CLASS_TRAIT_SOCIAL_CLASS: Record<'Peasant' | 'Merchant' | 'High Born', Soc
 const traitChoice = ref<'Peasant' | 'Merchant' | 'High Born' | null>(null)
 const selectedSocialClassId = computed(() => (traitChoice.value ? CLASS_TRAIT_SOCIAL_CLASS[traitChoice.value] : undefined))
 const definingFeatureText = ref('')
+
+/** Reports this step's in-progress picks to CharacterPreview immediately, rather than only
+ * once "Finish Character" is pressed. */
+watch(
+  [finalAttributes, finalSkills, focusTexts, valueTexts, traitChoice, definingFeatureText],
+  () => {
+    const traitNames: string[] = []
+    if (traitChoice.value) traitNames.push(traitChoice.value)
+    if (definingFeatureText.value.trim()) traitNames.push(definingFeatureText.value)
+    store.setPendingPreview({
+      attributes: finalAttributes.value,
+      skills: finalSkills.value,
+      focusTexts: focusTexts.value,
+      valueTexts: valueTexts.value,
+      traitNames,
+    })
+  },
+  { deep: true, immediate: true },
+)
 
 const talentPicks = ref<{ narrativeTalentIds: string[]; combatTalentIds: string[] }>({
   narrativeTalentIds: [],

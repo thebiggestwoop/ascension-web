@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { AttributeId, SkillId } from '@/classes/enums'
 import { Character, computeStatModifiers } from '@/classes/Character'
@@ -140,6 +140,22 @@ const projectedSkills = computed(() => {
 const nameText = ref('')
 const valueText = ref('')
 const definingFeatureText = ref('')
+
+/** Reports this step's in-progress picks to CharacterPreview immediately, rather than only
+ * once "Finish Character" is pressed. */
+watch(
+  [projectedAttributes, projectedSkills, valueText, definingFeatureText],
+  () => {
+    store.setPendingPreview({
+      attributes: projectedAttributes.value,
+      skills: projectedSkills.value,
+      focusTexts: [],
+      valueTexts: valueText.value.trim() ? [valueText.value] : [],
+      traitNames: definingFeatureText.value.trim() ? [definingFeatureText.value] : [],
+    })
+  },
+  { deep: true, immediate: true },
+)
 
 const equipmentPicks = ref<{
   equippedWeaponIds: string[]

@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { AttributeId, SkillId } from '@/classes/enums'
 import type { ILifepathOption, ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 import { CoreContent } from '@/io/ContentLoader'
+import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
 
 const props = defineProps<{ stage: ILifepathStageData; excludeOptionIds?: string[] }>()
 const emit = defineEmits<{ confirm: [selection: ILifepathSelection] }>()
+const store = useCharacterDraftStore()
 
 const attributeItems = CoreContent.attributes.map((a) => ({ title: a.name, value: a.id }))
 const skillItems = CoreContent.skills.map((s) => ({ title: s.name, value: s.id }))
@@ -65,6 +67,66 @@ const isReady = computed(() => {
   return attributesResolved && skillsResolved && focusesResolved && valueResolved
 })
 
+/** This option's resolved Attribute/Skill grants as currently filled in - shared by the live
+ * preview (below) and confirm() so the two can never disagree. */
+const previewAttributeDeltas = computed<Partial<Record<AttributeId, number>>>(() => {
+  const option = selectedOption.value
+  if (!option) return {}
+  const result: Partial<Record<AttributeId, number>> = {}
+  option.grants.attributePoints.forEach((grant, i) => {
+    if (isPool(grant)) {
+      for (const id of attributePools.value[i] ?? []) {
+        if (id) result[id] = (result[id] ?? 0) + 1
+      }
+      return
+    }
+    const id = grant.restrictTo?.length === 1 ? grant.restrictTo[0] : attributeChoices.value[i]
+    if (id) result[id] = (result[id] ?? 0) + grant.amount
+  })
+  return result
+})
+const previewSkillDeltas = computed<Partial<Record<SkillId, number>>>(() => {
+  const option = selectedOption.value
+  if (!option) return {}
+  const result: Partial<Record<SkillId, number>> = {}
+  option.grants.skillPoints.forEach((grant, i) => {
+    const id = grant.restrictTo?.length === 1 ? grant.restrictTo[0] : skillChoices.value[i]
+    if (id) result[id] = (result[id] ?? 0) + grant.amount
+  })
+  return result
+})
+
+const previewAttributes = computed(() => {
+  const result = { ...store.draft.attributes }
+  for (const [id, amount] of Object.entries(previewAttributeDeltas.value)) {
+    result[id as AttributeId] += amount ?? 0
+  }
+  return result
+})
+const previewSkills = computed(() => {
+  const result = { ...store.draft.skills }
+  for (const [id, amount] of Object.entries(previewSkillDeltas.value)) {
+    result[id as SkillId] += amount ?? 0
+  }
+  return result
+})
+
+/** Reports this stage's in-progress picks to CharacterPreview immediately, rather than only
+ * once "Confirm & Continue" is pressed. */
+watch(
+  [previewAttributes, previewSkills, focusTexts, valueText, selectedOption],
+  () => {
+    store.setPendingPreview({
+      attributes: previewAttributes.value,
+      skills: previewSkills.value,
+      focusTexts: focusTexts.value,
+      valueTexts: valueText.value.trim() ? [valueText.value] : [],
+      traitNames: selectedOption.value?.grants.trait ? [selectedOption.value.grants.trait] : [],
+    })
+  },
+  { deep: true, immediate: true },
+)
+
 const submitted = ref(false)
 
 function confirm() {
@@ -72,29 +134,11 @@ function confirm() {
   if (!option || !isReady.value || submitted.value) return
   submitted.value = true
 
-  const resolvedAttributePoints: Partial<Record<AttributeId, number>> = {}
-  option.grants.attributePoints.forEach((grant, i) => {
-    if (isPool(grant)) {
-      for (const id of attributePools.value[i] ?? []) {
-        if (id) resolvedAttributePoints[id] = (resolvedAttributePoints[id] ?? 0) + 1
-      }
-      return
-    }
-    const id = grant.restrictTo?.length === 1 ? grant.restrictTo[0] : attributeChoices.value[i]!
-    resolvedAttributePoints[id] = (resolvedAttributePoints[id] ?? 0) + grant.amount
-  })
-
-  const resolvedSkillPoints: Partial<Record<SkillId, number>> = {}
-  option.grants.skillPoints.forEach((grant, i) => {
-    const id = grant.restrictTo?.length === 1 ? grant.restrictTo[0] : skillChoices.value[i]!
-    resolvedSkillPoints[id] = (resolvedSkillPoints[id] ?? 0) + grant.amount
-  })
-
   emit('confirm', {
     stageId: props.stage.id,
     optionId: option.id,
-    resolvedAttributePoints,
-    resolvedSkillPoints,
+    resolvedAttributePoints: previewAttributeDeltas.value,
+    resolvedSkillPoints: previewSkillDeltas.value,
     focusText: [...focusTexts.value],
     valueText: option.grants.valuePrompt ? valueText.value : undefined,
   })

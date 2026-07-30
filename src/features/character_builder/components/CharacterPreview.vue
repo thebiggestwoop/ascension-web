@@ -22,6 +22,17 @@ const character = computed(() => {
   )
   return new Character(store.draft, modifiers)
 })
+
+/**
+ * Whichever step is active reports its in-progress picks into store.pendingPreview (see
+ * CharacterDraftStore) - merged with the confirmed draft here so the preview reacts to every
+ * selection made, not just once that step's Confirm/Finish button is pressed.
+ */
+const previewedAttributes = computed(() => store.pendingPreview.attributes ?? store.draft.attributes)
+const previewedSkills = computed(() => store.pendingPreview.skills ?? store.draft.skills)
+const pendingFocusTexts = computed(() => store.pendingPreview.focusTexts.filter((t) => t.trim()))
+const pendingValueTexts = computed(() => store.pendingPreview.valueTexts.filter((t) => t.trim()))
+const pendingTraitNames = computed(() => store.pendingPreview.traitNames.filter((t) => t.trim()))
 </script>
 
 <template>
@@ -31,37 +42,83 @@ const character = computed(() => {
       <div class="text-subtitle-2 mb-1">Attributes</div>
       <v-row dense class="mb-3">
         <v-col v-for="attr in CoreContent.attributes" :key="attr.id" cols="6" sm="4">
-          {{ attr.name }}: <strong>{{ store.draft.attributes[attr.id] }}</strong>
+          {{ attr.name }}: <strong>{{ previewedAttributes[attr.id] }}</strong>
+          <span
+            v-if="previewedAttributes[attr.id] !== store.draft.attributes[attr.id]"
+            class="text-caption text-medium-emphasis"
+          >
+            (was {{ store.draft.attributes[attr.id] }})
+          </span>
         </v-col>
       </v-row>
 
       <div class="text-subtitle-2 mb-1">Skills</div>
       <v-row dense class="mb-3">
         <v-col v-for="skill in CoreContent.skills" :key="skill.id" cols="6" sm="4">
-          {{ skill.name }}: <strong>{{ store.draft.skills[skill.id] }}</strong>
+          {{ skill.name }}: <strong>{{ previewedSkills[skill.id] }}</strong>
+          <span
+            v-if="previewedSkills[skill.id] !== store.draft.skills[skill.id]"
+            class="text-caption text-medium-emphasis"
+          >
+            (was {{ store.draft.skills[skill.id] }})
+          </span>
         </v-col>
       </v-row>
 
       <div class="text-subtitle-2 mb-1">Focuses</div>
       <div class="mb-3">
-        <v-chip v-for="(focus, i) in store.draft.focuses" :key="i" class="mr-1 mb-1" size="small">
+        <v-chip v-for="(focus, i) in store.draft.focuses" :key="`f-${i}`" class="mr-1 mb-1" size="small">
           {{ focus }}
         </v-chip>
-        <span v-if="!store.draft.focuses.length" class="text-medium-emphasis">None yet</span>
+        <v-chip
+          v-for="(focus, i) in pendingFocusTexts"
+          :key="`pf-${i}`"
+          class="mr-1 mb-1"
+          size="small"
+          variant="outlined"
+        >
+          {{ focus }} <span class="text-medium-emphasis ml-1">(pending)</span>
+        </v-chip>
+        <span v-if="!store.draft.focuses.length && !pendingFocusTexts.length" class="text-medium-emphasis">
+          None yet
+        </span>
       </div>
 
       <div class="text-subtitle-2 mb-1">Values</div>
       <div class="mb-3">
-        <div v-for="(value, i) in store.draft.values" :key="i">{{ value.text }}</div>
-        <span v-if="!store.draft.values.length" class="text-medium-emphasis">None yet</span>
+        <div v-for="(value, i) in store.draft.values" :key="`v-${i}`">{{ value.text }}</div>
+        <div v-for="(value, i) in pendingValueTexts" :key="`pv-${i}`" class="text-medium-emphasis">
+          {{ value }} (pending)
+        </div>
+        <span v-if="!store.draft.values.length && !pendingValueTexts.length" class="text-medium-emphasis">
+          None yet
+        </span>
       </div>
 
       <div class="text-subtitle-2 mb-1">Traits</div>
       <div>
-        <v-chip v-for="(trait, i) in store.draft.traits" :key="i" class="mr-1 mb-1" size="small" color="secondary">
+        <v-chip
+          v-for="(trait, i) in store.draft.traits"
+          :key="`t-${i}`"
+          class="mr-1 mb-1"
+          size="small"
+          color="secondary"
+        >
           {{ trait.name }}
         </v-chip>
-        <span v-if="!store.draft.traits.length" class="text-medium-emphasis">None yet</span>
+        <v-chip
+          v-for="(trait, i) in pendingTraitNames"
+          :key="`pt-${i}`"
+          class="mr-1 mb-1"
+          size="small"
+          color="secondary"
+          variant="outlined"
+        >
+          {{ trait }} <span class="text-medium-emphasis ml-1">(pending)</span>
+        </v-chip>
+        <span v-if="!store.draft.traits.length && !pendingTraitNames.length" class="text-medium-emphasis">
+          None yet
+        </span>
       </div>
 
       <template v-if="isFinished">

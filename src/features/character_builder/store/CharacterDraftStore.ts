@@ -68,6 +68,25 @@ export interface IQuickBuildPayload extends IQuickBuildRecord {
   name: string
 }
 
+/**
+ * Whichever step is currently active reports its in-progress, not-yet-confirmed picks here so
+ * CharacterPreview can show their effect immediately instead of only after "Confirm & Continue"/
+ * "Finish Character". `attributes`/`skills` are absolute preview values (not deltas) since Quick
+ * Build computes its own from scratch rather than building on `draft`; when unset, the preview
+ * just shows `draft` unchanged.
+ */
+export interface IPendingPreview {
+  attributes?: Record<AttributeId, number>
+  skills?: Record<SkillId, number>
+  focusTexts: string[]
+  valueTexts: string[]
+  traitNames: string[]
+}
+
+function createEmptyPendingPreview(): IPendingPreview {
+  return { focusTexts: [], valueTexts: [], traitNames: [] }
+}
+
 export const useCharacterDraftStore = defineStore('characterDraft', {
   state: () => ({
     draft: createBaseDraft(),
@@ -76,12 +95,20 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
      * Finishing Touches - not used for anything else, since applyLifepathSelection() has
      * already applied each stage's effect to the draft as it was picked. */
     lifepathSelections: [] as ILifepathSelection[],
+    pendingPreview: createEmptyPendingPreview() as IPendingPreview,
   }),
   actions: {
+    setPendingPreview(preview: Partial<IPendingPreview>) {
+      this.pendingPreview = { ...createEmptyPendingPreview(), ...preview }
+    },
+    clearPendingPreview() {
+      this.pendingPreview = createEmptyPendingPreview()
+    },
     applyStage(stage: ILifepathStageData, selection: ILifepathSelection) {
       applyLifepathSelection(this.draft, selection, stage)
       this.completedStageIds.push(stage.id)
       this.lifepathSelections.push(selection)
+      this.clearPendingPreview()
     },
     async applyFinishingTouches(payload: IFinishingTouchesPayload) {
       this.draft.name = payload.name
@@ -105,6 +132,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
         lifepathSelections: this.lifepathSelections,
         finishingTouches,
       }
+      this.clearPendingPreview()
 
       await this.finalizeCharacter()
     },
@@ -126,6 +154,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
 
       const { name: _name, ...quickBuild } = payload
       this.draft.creationRecord = { method: 'quick_build', quickBuild }
+      this.clearPendingPreview()
 
       await this.finalizeCharacter()
     },
@@ -150,6 +179,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.draft = createBaseDraft()
       this.completedStageIds = []
       this.lifepathSelections = []
+      this.clearPendingPreview()
     },
   },
 })
