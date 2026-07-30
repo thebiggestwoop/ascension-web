@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { AttributeId, SkillId } from '@/classes/enums'
 import { Character, computeStatModifiers } from '@/classes/Character'
+import { isAllocationDisabledByCeiling } from '@/classes/AllocationCaps'
 import { CoreContent } from '@/io/ContentLoader'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
@@ -78,13 +79,59 @@ const skillAllocatorCount = capCorrection.value.skillPool + SKILL_BONUS
 const attributeAllocations = ref<(AttributeId | null)[]>(Array(attributeAllocatorCount).fill(null))
 const skillAllocations = ref<(SkillId | null)[]>(Array(skillAllocatorCount).fill(null))
 
-/** Reflects cap correction + the allocator's current picks, so the Talent prerequisite check below reacts live. */
-const projectedAttributes = computed(() => {
+const allAttributeIds = CoreContent.attributes.map((a) => a.id as AttributeId)
+const allSkillIds = CoreContent.skills.map((s) => s.id as SkillId)
+
+/** Cap correction already brought every Attribute/Skill to at-or-below the cap with at most
+ * one at the cap exactly - this is the base the bonus-point allocator's own ceiling check
+ * builds on, so those bonus points can't just recreate the overshoot cap correction just fixed. */
+const attributesAfterCapCorrection = computed(() => {
   const result = { ...store.draft.attributes }
   for (const [id, delta] of Object.entries(capCorrection.value.attributeDeltas)) {
     result[id as AttributeId] += delta ?? 0
   }
+  return result
+})
+const skillsAfterCapCorrection = computed(() => {
+  const result = { ...store.draft.skills }
+  for (const [id, delta] of Object.entries(capCorrection.value.skillDeltas)) {
+    result[id as SkillId] += delta ?? 0
+  }
+  return result
+})
+
+function isAttributeDisabled(itemValue: string, slotIndex: number): boolean {
+  return isAllocationDisabledByCeiling(
+    allAttributeIds,
+    attributesAfterCapCorrection.value,
+    attributeAllocations.value,
+    itemValue as AttributeId,
+    slotIndex,
+    ATTRIBUTE_CAP,
+  )
+}
+function isSkillDisabled(itemValue: string, slotIndex: number): boolean {
+  return isAllocationDisabledByCeiling(
+    allSkillIds,
+    skillsAfterCapCorrection.value,
+    skillAllocations.value,
+    itemValue as SkillId,
+    slotIndex,
+    SKILL_CAP,
+  )
+}
+
+/** Reflects cap correction + the allocator's current picks, so the Talent prerequisite check below reacts live. */
+const projectedAttributes = computed(() => {
+  const result = { ...attributesAfterCapCorrection.value }
   for (const id of attributeAllocations.value) {
+    if (id) result[id] += 1
+  }
+  return result
+})
+const projectedSkills = computed(() => {
+  const result = { ...skillsAfterCapCorrection.value }
+  for (const id of skillAllocations.value) {
     if (id) result[id] += 1
   }
   return result
@@ -180,11 +227,15 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             Cap correction freed {{ capCorrection.attributePool }} point(s) from over-cap
             Attributes - combined with your +{{ ATTRIBUTE_BONUS }} bonus points below.
           </p>
+          <p class="text-caption text-medium-emphasis">
+            Max {{ ATTRIBUTE_CAP }}, only one Attribute may reach it.
+          </p>
           <PointAllocator
             v-model="attributeAllocations"
             :count="attributeAllocatorCount"
             :items="attributeItems"
             label="Choose Attribute"
+            :is-item-disabled="isAttributeDisabled"
           />
 
           <div class="text-subtitle-2 mt-4 mb-1">Skills</div>
@@ -192,11 +243,13 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             Cap correction freed {{ capCorrection.skillPool }} point(s) from over-cap Skills -
             combined with your +{{ SKILL_BONUS }} bonus points below.
           </p>
+          <p class="text-caption text-medium-emphasis">Max {{ SKILL_CAP }}, only one Skill may reach it.</p>
           <PointAllocator
             v-model="skillAllocations"
             :count="skillAllocatorCount"
             :items="skillItems"
             label="Choose Skill"
+            :is-item-disabled="isSkillDisabled"
           />
         </v-card-text>
       </v-card>
@@ -224,7 +277,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         <v-card-text>
           <TalentPicker
             :attributes="projectedAttributes"
-            :skills="store.draft.skills"
+            :skills="projectedSkills"
             :social-class-id="store.draft.socialClassId"
             :career-id="store.draft.careerId"
             @change="(p) => (talentPicks = p)"
