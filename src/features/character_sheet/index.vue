@@ -307,40 +307,27 @@ const derivedTiles = computed<IStatTile[]>(() => {
          hoverable tile to the right. -->
     <v-row class="mb-2">
       <v-col cols="12" sm="6" md="3">
-        <v-card variant="outlined" style="height: 100%">
-          <v-card-title>Attributes</v-card-title>
-          <v-card-text>
-            <div
-              v-for="attr in CoreContent.attributes"
-              :key="attr.id"
-              class="d-flex align-center justify-space-between py-1"
-              style="flex-wrap: wrap; row-gap: 2px; column-gap: 8px"
-            >
-              <span>{{ attr.name }}</span>
-              <div class="d-flex align-center" style="flex-shrink: 0">
-                <strong class="mr-2">{{ character.attribute(attr.id) }}</strong>
-                <DerivedValueBadge
-                  :display="`Save ${character.effectSave(attr.id)}`"
-                  :tooltip="effectSaveTooltip(attr.id)"
-                />
-              </div>
+        <div class="text-subtitle-2 mb-1">Attributes</div>
+        <v-card v-for="attr in CoreContent.attributes" :key="attr.id" variant="outlined" class="mb-2">
+          <v-card-text class="text-center py-2">
+            <div class="text-body-2 text-medium-emphasis mb-1">{{ attr.name }}</div>
+            <div class="d-flex align-center justify-center" style="gap: 8px">
+              <strong class="text-h6">{{ character.attribute(attr.id) }}</strong>
+              <DerivedValueBadge
+                :display="`Save ${character.effectSave(attr.id)}`"
+                :tooltip="effectSaveTooltip(attr.id)"
+              />
             </div>
           </v-card-text>
         </v-card>
       </v-col>
 
       <v-col cols="12" sm="6" md="3">
-        <v-card variant="outlined" style="height: 100%">
-          <v-card-title>Skills</v-card-title>
-          <v-card-text>
-            <div
-              v-for="skill in CoreContent.skills"
-              :key="skill.id"
-              class="d-flex align-center justify-space-between py-1"
-            >
-              <span>{{ skill.name }}</span>
-              <strong>{{ character.skill(skill.id) }}</strong>
-            </div>
+        <div class="text-subtitle-2 mb-1">Skills</div>
+        <v-card v-for="skill in CoreContent.skills" :key="skill.id" variant="outlined" class="mb-2">
+          <v-card-text class="text-center py-2">
+            <div class="text-body-2 text-medium-emphasis mb-1">{{ skill.name }}</div>
+            <strong class="text-h6">{{ character.skill(skill.id) }}</strong>
           </v-card-text>
         </v-card>
       </v-col>
