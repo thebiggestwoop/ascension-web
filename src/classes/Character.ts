@@ -178,8 +178,13 @@ export class Character implements ISerializable<ICharacterData> {
     return this.skill(SkillId.Study) + (this.modifiers.spellSlotBonus ?? 0)
   }
 
+  /**
+   * "If a Character's Willpower reaches 0, they are Rattled... A character can clear Rattled
+   * as soon as any amount of Willpower is restored" - derived from currentWillpower, not
+   * stored, the same way Wounds are derived from currentHp rather than tracked as a status.
+   */
   get isRattled(): boolean {
-    return this.data.statuses.some((s) => s.id === StatusId.Rattled)
+    return this.data.currentWillpower <= 0
   }
 
   /**

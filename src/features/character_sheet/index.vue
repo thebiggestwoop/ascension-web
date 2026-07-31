@@ -13,6 +13,10 @@ import SpellsSection from './components/SpellsSection.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
 import StatTile from '@/ui/StatTile.vue'
+import SegmentedBar from '@/ui/SegmentedBar.vue'
+
+const HP_BAR_COLOR = '#750303'
+const WILLPOWER_BAR_COLOR = '#877221'
 
 function qualityLabel(q: IQualityInstance): string {
   const label = q.quality
@@ -180,36 +184,20 @@ interface IStatTile {
   label: string
   display: string
   tooltip: string
-  actions?: 'hp' | 'willpower'
 }
 
-/** The character's derived stats (everything besides Attributes/Skills/Effect Saves), each
- * shown as its own prominent tile with a hover tooltip explaining the calculation - Health/
- * Willpower additionally carry +/- adjustment controls since they track current vs. max. */
+/** The character's simple derived stats - Speed/Resistance/Damage Bonus/Spell Slots - each
+ * shown as its own prominent tile with a hover tooltip explaining the calculation. HP/Willpower
+ * get their own dedicated bar displays instead (see hpTooltip/willpowerTooltip below). */
 const derivedTiles = computed<IStatTile[]>(() => {
-  if (!character.value || !store.character) return []
+  if (!character.value) return []
   const c = character.value
-  const mods = modifiers.value
-  const healthBarBonusText = mods.healthBarBonus ? ` + ${mods.healthBarBonus} (Talent bonus)` : ''
-  const willpowerBonusText = mods.willpowerBonus ? ` + ${mods.willpowerBonus} (Talent bonus)` : ''
-  const spellSlotBonusText = mods.spellSlotBonus ? ` + ${mods.spellSlotBonus} (Tomes)` : ''
+  const spellSlotBonusText = modifiers.value.spellSlotBonus ? ` + ${modifiers.value.spellSlotBonus} (Tomes)` : ''
   return [
     {
       label: 'Speed',
       display: `${c.speed}`,
       tooltip: `3 + floor(Agility ${c.attribute(AttributeId.Agility)} / 2)`,
-    },
-    {
-      label: 'Max HP',
-      display: `${store.character.currentHp} / ${c.maxHp}`,
-      tooltip: `Health Bar (Brawn ${c.attribute(AttributeId.Brawn)} + Skirmish ${c.skill(SkillId.Skirmish)}${healthBarBonusText}) x 3`,
-      actions: 'hp',
-    },
-    {
-      label: 'Willpower',
-      display: `${store.character.currentWillpower} / ${c.maxWillpower}`,
-      tooltip: `Faith ${c.attribute(AttributeId.Faith)}${willpowerBonusText}`,
-      actions: 'willpower',
     },
     {
       label: 'Resistance',
@@ -227,6 +215,45 @@ const derivedTiles = computed<IStatTile[]>(() => {
       tooltip: `Study ${c.skill(SkillId.Study)}${spellSlotBonusText}`,
     },
   ]
+})
+
+const hpTooltip = computed(() => {
+  if (!character.value) return ''
+  const bonus = modifiers.value.healthBarBonus ? ` + ${modifiers.value.healthBarBonus} (Talent bonus)` : ''
+  return `Health Bar (Brawn ${character.value.attribute(AttributeId.Brawn)} + Skirmish ${character.value.skill(SkillId.Skirmish)}${bonus}) x 3`
+})
+const willpowerTooltip = computed(() => {
+  if (!character.value) return ''
+  const bonus = modifiers.value.willpowerBonus ? ` + ${modifiers.value.willpowerBonus} (Talent bonus)` : ''
+  return `Faith ${character.value.attribute(AttributeId.Faith)}${bonus}`
+})
+
+/** Each of the 3 Health Bars covers one Health Bar's worth of Max HP - barIndex 0 is the first
+ * to empty (at or below 2/3 Max HP, triggering Wound 1), barIndex 2 the last (empty at 0 HP,
+ * Incapacitated). */
+function hpBarFilled(barIndex: number): number {
+  if (!character.value || !store.character) return 0
+  const hb = character.value.healthBar
+  const rangeStart = (2 - barIndex) * hb
+  return Math.max(0, Math.min(hb, store.character.currentHp - rangeStart))
+}
+
+/** "Wound 1: reduced by at least 1 Health Bar (<= 2/3 Max HP) - Speed reduced by 2. Wound 2:
+ * reduced by at least 2 Health Bars (<= 1/3 Max HP) - cannot take Swift Tasks, and Wound 1's
+ * Speed penalty still applies," per Chapter Three's Wounds rules. */
+const woundText = computed(() => {
+  const wounds = character.value?.wounds ?? 0
+  if (wounds === 0) return null
+  if (wounds === 1) return 'Wound 1: Speed is reduced by 2.'
+  return 'Wound 2: Speed is reduced by 2, and you cannot take Swift Tasks.'
+})
+
+/** "If a Character's Willpower reaches 0, they are Rattled, and all tasks increase in
+ * Difficulty by 1. A character can clear Rattled as soon as any amount of Willpower is
+ * restored," per Chapter Three. */
+const rattledText = computed(() => {
+  if (!character.value?.isRattled) return null
+  return 'Rattled: All Tasks increase in Difficulty by 1. Clears as soon as you regain any Willpower.'
 })
 </script>
 
@@ -333,28 +360,78 @@ const derivedTiles = computed<IStatTile[]>(() => {
       </v-col>
 
       <v-col cols="12" md="6">
+        <v-card variant="outlined" class="mb-2">
+          <v-card-text>
+            <div class="d-flex align-center justify-space-between mb-2">
+              <span class="text-subtitle-2">Max HP</span>
+              <DerivedValueBadge
+                :display="`${store.character.currentHp} / ${character.maxHp}`"
+                :tooltip="hpTooltip"
+              />
+            </div>
+            <div class="d-flex flex-column" style="gap: 3px">
+              <SegmentedBar
+                v-for="i in 3"
+                :key="i"
+                :filled="hpBarFilled(i - 1)"
+                :total="character.healthBar"
+                :color="HP_BAR_COLOR"
+              />
+            </div>
+            <div class="d-flex justify-center mt-2">
+              <v-btn size="x-small" icon="mdi-minus" variant="tonal" @click="store.adjustHp(-1, character.maxHp)" />
+              <v-btn
+                size="x-small"
+                icon="mdi-plus"
+                variant="tonal"
+                class="ml-2"
+                @click="store.adjustHp(1, character.maxHp)"
+              />
+            </div>
+            <div v-if="woundText" class="text-caption mt-2" :style="{ color: HP_BAR_COLOR }">
+              {{ woundText }}
+            </div>
+          </v-card-text>
+        </v-card>
+
+        <v-card variant="outlined" class="mb-2">
+          <v-card-text>
+            <div class="d-flex align-center justify-space-between mb-2">
+              <span class="text-subtitle-2">Willpower</span>
+              <DerivedValueBadge
+                :display="`${store.character.currentWillpower} / ${character.maxWillpower}`"
+                :tooltip="willpowerTooltip"
+              />
+            </div>
+            <SegmentedBar
+              :filled="store.character.currentWillpower"
+              :total="character.maxWillpower"
+              :color="WILLPOWER_BAR_COLOR"
+            />
+            <div class="d-flex justify-center mt-2">
+              <v-btn
+                size="x-small"
+                icon="mdi-minus"
+                variant="tonal"
+                @click="store.adjustWillpower(-1, character.maxWillpower)"
+              />
+              <v-btn
+                size="x-small"
+                icon="mdi-plus"
+                variant="tonal"
+                class="ml-2"
+                @click="store.adjustWillpower(1, character.maxWillpower)"
+              />
+            </div>
+            <div v-if="rattledText" class="text-caption mt-2" :style="{ color: WILLPOWER_BAR_COLOR }">
+              {{ rattledText }}
+            </div>
+          </v-card-text>
+        </v-card>
+
         <v-row dense>
-          <v-col v-for="tile in derivedTiles" :key="tile.label" cols="6" sm="4">
-            <StatTile :label="tile.label" :display="tile.display" :tooltip="tile.tooltip">
-              <template v-if="tile.actions === 'hp'" #actions>
-                <v-btn size="x-small" icon="mdi-minus" variant="tonal" @click="store.adjustHp(-1, character.maxHp)" />
-                <v-btn size="x-small" icon="mdi-plus" variant="tonal" @click="store.adjustHp(1, character.maxHp)" />
-              </template>
-              <template v-else-if="tile.actions === 'willpower'" #actions>
-                <v-btn
-                  size="x-small"
-                  icon="mdi-minus"
-                  variant="tonal"
-                  @click="store.adjustWillpower(-1, character.maxWillpower)"
-                />
-                <v-btn
-                  size="x-small"
-                  icon="mdi-plus"
-                  variant="tonal"
-                  @click="store.adjustWillpower(1, character.maxWillpower)"
-                />
-              </template>
-            </StatTile>
+          <v-col v-for="tile in derivedTiles" :key="tile.label" cols="6" sm="3">
+            <StatTile :label="tile.label" :display="tile.display" :tooltip="tile.tooltip" />
           </v-col>
         </v-row>
       </v-col>
