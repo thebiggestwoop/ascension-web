@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { AttributeId, SkillId } from '@/classes/enums'
@@ -74,6 +74,66 @@ const showSpellEditor = ref(false)
 const showRevertConfirm = ref(false)
 const canLevelUp = computed(() => (store.character?.level ?? 0) < CoreContent.advancement.maxLevel)
 const canRevertLevelUp = computed(() => (store.character?.levelUpHistory?.length ?? 0) > 0)
+
+type StatKey = 'hp' | 'willpower'
+
+/** Which of currentHp/currentWillpower is being click-to-edited inline, if any. */
+const editingStat = ref<StatKey | null>(null)
+const editValue = ref<number>(0)
+
+function currentValueOf(stat: StatKey): number {
+  if (!store.character) return 0
+  return stat === 'hp' ? store.character.currentHp : store.character.currentWillpower
+}
+function maxValueOf(stat: StatKey): number {
+  if (!character.value) return 0
+  return stat === 'hp' ? character.value.maxHp : character.value.maxWillpower
+}
+function applyDelta(stat: StatKey, delta: number) {
+  if (stat === 'hp') store.adjustHp(delta, maxValueOf('hp'))
+  else store.adjustWillpower(delta, maxValueOf('willpower'))
+}
+
+function startEdit(stat: StatKey) {
+  editingStat.value = stat
+  editValue.value = currentValueOf(stat)
+  nextTick(() => {
+    const el = document.querySelector<HTMLInputElement>('.current-value-input input')
+    el?.focus()
+    el?.select()
+  })
+}
+function commitEdit() {
+  if (!editingStat.value) return
+  applyDelta(editingStat.value, editValue.value - currentValueOf(editingStat.value))
+  editingStat.value = null
+}
+
+/** "Take Damage"/"Recover" pop up this shared dialog with a pre-selected amount field instead
+ * of making the player click a +/- button once per point. */
+const adjustDialog = ref<{ show: boolean; stat: StatKey; mode: 'damage' | 'recover'; amount: number }>({
+  show: false,
+  stat: 'hp',
+  mode: 'damage',
+  amount: 1,
+})
+
+function openAdjustDialog(stat: StatKey, mode: 'damage' | 'recover') {
+  adjustDialog.value = { show: true, stat, mode, amount: 1 }
+}
+function focusAdjustInput() {
+  nextTick(() => {
+    const el = document.querySelector<HTMLInputElement>('.adjust-dialog-input input')
+    el?.focus()
+    el?.select()
+  })
+}
+function confirmAdjustDialog() {
+  const { stat, mode, amount } = adjustDialog.value
+  const delta = mode === 'damage' ? -Math.abs(amount) : Math.abs(amount)
+  applyDelta(stat, delta)
+  adjustDialog.value.show = false
+}
 
 async function confirmRevertLevelUp() {
   await store.revertLastLevelUp()
@@ -363,11 +423,25 @@ const rattledText = computed(() => {
         <v-card variant="outlined" class="mb-2">
           <v-card-text>
             <div class="d-flex align-center justify-space-between mb-2">
-              <span class="text-subtitle-2">Max HP</span>
-              <DerivedValueBadge
-                :display="`${store.character.currentHp} / ${character.maxHp}`"
-                :tooltip="hpTooltip"
-              />
+              <span class="text-subtitle-2">HP</span>
+              <div class="d-flex align-center" style="gap: 4px">
+                <span v-if="editingStat !== 'hp'" class="current-value-display" @click="startEdit('hp')">
+                  {{ store.character.currentHp }}
+                </span>
+                <v-text-field
+                  v-else
+                  v-model.number="editValue"
+                  type="number"
+                  density="compact"
+                  hide-details
+                  class="current-value-input"
+                  style="max-width: 64px"
+                  @blur="commitEdit"
+                  @keyup.enter="commitEdit"
+                />
+                <span class="text-medium-emphasis">/</span>
+                <DerivedValueBadge :display="`${character.maxHp}`" :tooltip="hpTooltip" />
+              </div>
             </div>
             <div class="d-flex flex-column" style="gap: 3px">
               <SegmentedBar
@@ -378,15 +452,13 @@ const rattledText = computed(() => {
                 :color="HP_BAR_COLOR"
               />
             </div>
-            <div class="d-flex justify-center mt-2">
-              <v-btn size="x-small" icon="mdi-minus" variant="tonal" @click="store.adjustHp(-1, character.maxHp)" />
-              <v-btn
-                size="x-small"
-                icon="mdi-plus"
-                variant="tonal"
-                class="ml-2"
-                @click="store.adjustHp(1, character.maxHp)"
-              />
+            <div class="d-flex justify-center mt-2" style="gap: 8px">
+              <v-btn size="small" variant="tonal" color="error" @click="openAdjustDialog('hp', 'damage')">
+                Take Damage
+              </v-btn>
+              <v-btn size="small" variant="tonal" color="success" @click="openAdjustDialog('hp', 'recover')">
+                Recover
+              </v-btn>
             </div>
             <div v-if="woundText" class="text-caption mt-2" :style="{ color: HP_BAR_COLOR }">
               {{ woundText }}
@@ -398,36 +470,73 @@ const rattledText = computed(() => {
           <v-card-text>
             <div class="d-flex align-center justify-space-between mb-2">
               <span class="text-subtitle-2">Willpower</span>
-              <DerivedValueBadge
-                :display="`${store.character.currentWillpower} / ${character.maxWillpower}`"
-                :tooltip="willpowerTooltip"
-              />
+              <div class="d-flex align-center" style="gap: 4px">
+                <span
+                  v-if="editingStat !== 'willpower'"
+                  class="current-value-display"
+                  @click="startEdit('willpower')"
+                >
+                  {{ store.character.currentWillpower }}
+                </span>
+                <v-text-field
+                  v-else
+                  v-model.number="editValue"
+                  type="number"
+                  density="compact"
+                  hide-details
+                  class="current-value-input"
+                  style="max-width: 64px"
+                  @blur="commitEdit"
+                  @keyup.enter="commitEdit"
+                />
+                <span class="text-medium-emphasis">/</span>
+                <DerivedValueBadge :display="`${character.maxWillpower}`" :tooltip="willpowerTooltip" />
+              </div>
             </div>
             <SegmentedBar
               :filled="store.character.currentWillpower"
               :total="character.maxWillpower"
               :color="WILLPOWER_BAR_COLOR"
             />
-            <div class="d-flex justify-center mt-2">
-              <v-btn
-                size="x-small"
-                icon="mdi-minus"
-                variant="tonal"
-                @click="store.adjustWillpower(-1, character.maxWillpower)"
-              />
-              <v-btn
-                size="x-small"
-                icon="mdi-plus"
-                variant="tonal"
-                class="ml-2"
-                @click="store.adjustWillpower(1, character.maxWillpower)"
-              />
+            <div class="d-flex justify-center mt-2" style="gap: 8px">
+              <v-btn size="small" variant="tonal" color="error" @click="openAdjustDialog('willpower', 'damage')">
+                Take Damage
+              </v-btn>
+              <v-btn size="small" variant="tonal" color="success" @click="openAdjustDialog('willpower', 'recover')">
+                Recover
+              </v-btn>
             </div>
             <div v-if="rattledText" class="text-caption mt-2" :style="{ color: WILLPOWER_BAR_COLOR }">
               {{ rattledText }}
             </div>
           </v-card-text>
         </v-card>
+
+        <v-dialog v-model="adjustDialog.show" max-width="320" @after-enter="focusAdjustInput">
+          <v-card>
+            <v-card-title>
+              {{ adjustDialog.mode === 'damage' ? 'Take Damage' : 'Recover' }}
+              ({{ adjustDialog.stat === 'hp' ? 'HP' : 'Willpower' }})
+            </v-card-title>
+            <v-card-text>
+              <v-text-field
+                v-model.number="adjustDialog.amount"
+                type="number"
+                label="Amount"
+                density="compact"
+                class="adjust-dialog-input"
+                @keyup.enter="confirmAdjustDialog"
+              />
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn variant="text" @click="adjustDialog.show = false">Cancel</v-btn>
+              <v-btn color="primary" @click="confirmAdjustDialog">
+                {{ adjustDialog.mode === 'damage' ? 'Apply Damage' : 'Apply Recovery' }}
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
 
         <v-row dense>
           <v-col v-for="tile in derivedTiles" :key="tile.label" cols="6" sm="3">
@@ -592,5 +701,13 @@ const rattledText = computed(() => {
   cursor: help;
   text-decoration: underline dotted;
   text-underline-offset: 3px;
+}
+
+.current-value-display {
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  padding: 0 2px;
 }
 </style>
