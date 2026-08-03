@@ -62,6 +62,12 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       this.character.temporaryResistance = Math.max(0, Math.min(5, Math.round(value)))
       await this.persist()
     },
+    /** Temporary HP from a buff/spell/etc. - player-entered, floored at 0 and capped at 50. */
+    async setTemporaryHp(value: number) {
+      if (!this.character) return
+      this.character.temporaryHp = Math.max(0, Math.min(50, Math.round(value)))
+      await this.persist()
+    },
     async toggleValueActive(index: number) {
       if (!this.character) return
       const value = this.character.values[index]

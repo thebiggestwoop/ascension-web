@@ -110,16 +110,28 @@ function commitEdit() {
 }
 
 /** "Take Damage"/"Recover" pop up this shared dialog with a pre-selected amount field instead
- * of making the player click a +/- button once per point. */
-const adjustDialog = ref<{ show: boolean; stat: StatKey; mode: 'damage' | 'recover'; amount: number }>({
+ * of making the player click a +/- button once per point. Taking Damage to HP additionally
+ * offers "Apply Resistance" (reduce the incoming amount by Total Resistance first) and "Temp
+ * HP first" (drain Temporary HP before real HP) - both on by default, since that's the normal
+ * way damage works; either can be unchecked for damage that bypasses one or the other. */
+const adjustDialog = ref<{
+  show: boolean
+  stat: StatKey
+  mode: 'damage' | 'recover'
+  amount: number
+  applyResistance: boolean
+  tempHpFirst: boolean
+}>({
   show: false,
   stat: 'hp',
   mode: 'damage',
   amount: 1,
+  applyResistance: true,
+  tempHpFirst: true,
 })
 
 function openAdjustDialog(stat: StatKey, mode: 'damage' | 'recover') {
-  adjustDialog.value = { show: true, stat, mode, amount: 1 }
+  adjustDialog.value = { show: true, stat, mode, amount: 1, applyResistance: true, tempHpFirst: true }
 }
 function focusAdjustInput() {
   nextTick(() => {
@@ -130,6 +142,22 @@ function focusAdjustInput() {
 }
 function confirmAdjustDialog() {
   const { stat, mode, amount } = adjustDialog.value
+
+  if (stat === 'hp' && mode === 'damage' && store.character && character.value) {
+    let remaining = Math.abs(amount)
+    if (adjustDialog.value.applyResistance) {
+      remaining = Math.max(0, remaining - character.value.totalResistance)
+    }
+    if (adjustDialog.value.tempHpFirst && store.character.temporaryHp > 0) {
+      const absorbed = Math.min(store.character.temporaryHp, remaining)
+      store.setTemporaryHp(store.character.temporaryHp - absorbed)
+      remaining -= absorbed
+    }
+    if (remaining > 0) applyDelta('hp', -remaining)
+    adjustDialog.value.show = false
+    return
+  }
+
   const delta = mode === 'damage' ? -Math.abs(amount) : Math.abs(amount)
   applyDelta(stat, delta)
   adjustDialog.value.show = false
@@ -452,6 +480,20 @@ const rattledText = computed(() => {
                 :color="HP_BAR_COLOR"
               />
             </div>
+            <div class="d-flex align-center justify-center mt-2" style="gap: 8px">
+              <span class="text-caption text-medium-emphasis">Temp HP</span>
+              <v-text-field
+                :model-value="store.character.temporaryHp"
+                type="number"
+                min="0"
+                max="50"
+                density="compact"
+                hide-details
+                class="no-spin-buttons"
+                style="max-width: 70px"
+                @update:model-value="(v) => store.setTemporaryHp(Number(v))"
+              />
+            </div>
             <div class="d-flex justify-center mt-2" style="gap: 8px">
               <v-btn size="small" variant="tonal" color="error" @click="openAdjustDialog('hp', 'damage')">
                 Take Damage
@@ -527,6 +569,20 @@ const rattledText = computed(() => {
                 class="adjust-dialog-input"
                 @keyup.enter="confirmAdjustDialog"
               />
+              <template v-if="adjustDialog.stat === 'hp' && adjustDialog.mode === 'damage'">
+                <v-checkbox
+                  v-model="adjustDialog.applyResistance"
+                  label="Apply Resistance"
+                  density="compact"
+                  hide-details
+                />
+                <v-checkbox
+                  v-model="adjustDialog.tempHpFirst"
+                  label="Temp HP first"
+                  density="compact"
+                  hide-details
+                />
+              </template>
             </v-card-text>
             <v-card-actions>
               <v-spacer />
@@ -544,24 +600,29 @@ const rattledText = computed(() => {
               <div class="text-caption text-medium-emphasis">Resistance</div>
               <DerivedValueBadge :display="`${character.resistance}`" :tooltip="resistanceTooltip" />
 
-              <div class="text-caption text-medium-emphasis mt-2">Temporary</div>
-              <v-text-field
-                :model-value="store.character.temporaryResistance"
-                type="number"
-                min="0"
-                max="5"
-                density="compact"
-                hide-details
-                class="mx-auto"
-                style="max-width: 70px"
-                @update:model-value="(v) => store.setTemporaryResistance(Number(v))"
-              />
-
-              <div class="text-caption text-medium-emphasis mt-2">Total</div>
-              <DerivedValueBadge
-                :display="`${character.totalResistance}`"
-                :tooltip="totalResistanceTooltip"
-              />
+              <div class="d-flex align-start justify-center mt-2" style="gap: 24px">
+                <div>
+                  <div class="text-caption text-medium-emphasis">Temporary</div>
+                  <v-text-field
+                    :model-value="store.character.temporaryResistance"
+                    type="number"
+                    min="0"
+                    max="5"
+                    density="compact"
+                    hide-details
+                    class="no-spin-buttons mx-auto"
+                    style="max-width: 70px"
+                    @update:model-value="(v) => store.setTemporaryResistance(Number(v))"
+                  />
+                </div>
+                <div>
+                  <div class="text-caption text-medium-emphasis">Total</div>
+                  <DerivedValueBadge
+                    :display="`${character.totalResistance}`"
+                    :tooltip="totalResistanceTooltip"
+                  />
+                </div>
+              </div>
             </v-card>
           </v-col>
           <v-col cols="6" sm="6">
@@ -782,5 +843,16 @@ const rattledText = computed(() => {
   text-decoration: underline dotted;
   text-underline-offset: 3px;
   padding: 0 2px;
+}
+
+/* Hide the native up/down spinner - these are small "type an exact number" fields, not ones
+   meant to be nudged a click at a time. */
+.no-spin-buttons :deep(input[type='number'])::-webkit-inner-spin-button,
+.no-spin-buttons :deep(input[type='number'])::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.no-spin-buttons :deep(input[type='number']) {
+  -moz-appearance: textfield;
 }
 </style>
