@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { useCharacterDraftStore } from './store/CharacterDraftStore'
 import LifepathStageStep from './components/LifepathStageStep.vue'
@@ -41,6 +41,14 @@ function startOver() {
   pickedOptionIdsForCurrentStage.value = []
   creationMethod.value = null
 }
+
+// The draft store is a singleton that outlives this page (e.g. it's still holding the last
+// character's talents/equipment/focuses after "View Character Sheet" navigates away) - reset it
+// every time this page is freshly entered so a new character never inherits leftover state from
+// whichever character was last built. Stages mounted/swapped *within* an active build (Lifepath
+// stage-to-stage, or Lifepath -> Finishing Touches) don't remount this component, so this never
+// fires mid-build.
+onMounted(() => store.reset())
 </script>
 
 <template>
