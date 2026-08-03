@@ -699,13 +699,15 @@ const rattledText = computed(() => {
           </v-card-text>
         </v-card>
 
-        <v-card variant="outlined" class="mb-4">
-          <v-card-title class="d-flex align-center justify-space-between">
-            <span>Spells</span>
-            <v-btn size="small" variant="tonal" @click="showSpellEditor = true">Edit Spells</v-btn>
-          </v-card-title>
+        <v-card variant="outlined">
+          <v-card-title>Talents</v-card-title>
           <v-card-text>
-            <SpellsSection :character="character" :prepared-spell-ids="store.character.preparedSpellIds" />
+            <v-card v-for="t in heldTalents" :key="t.id" variant="tonal" class="mb-2">
+              <v-card-title class="text-subtitle-1">{{ t.name }}</v-card-title>
+              <v-card-subtitle>{{ t.group }}<span v-if="t.tier"> - Tier {{ t.tier }}</span></v-card-subtitle>
+              <v-card-text>{{ t.effectText }}</v-card-text>
+            </v-card>
+            <span v-if="!heldTalents.length" class="text-medium-emphasis">None</span>
           </v-card-text>
         </v-card>
       </v-col>
@@ -748,14 +750,12 @@ const rattledText = computed(() => {
         </v-card>
 
         <v-card variant="outlined">
-          <v-card-title>Talents</v-card-title>
+          <v-card-title class="d-flex align-center justify-space-between">
+            <span>Spells</span>
+            <v-btn size="small" variant="tonal" @click="showSpellEditor = true">Edit Spells</v-btn>
+          </v-card-title>
           <v-card-text>
-            <v-card v-for="t in heldTalents" :key="t.id" variant="tonal" class="mb-2">
-              <v-card-title class="text-subtitle-1">{{ t.name }}</v-card-title>
-              <v-card-subtitle>{{ t.group }}<span v-if="t.tier"> - Tier {{ t.tier }}</span></v-card-subtitle>
-              <v-card-text>{{ t.effectText }}</v-card-text>
-            </v-card>
-            <span v-if="!heldTalents.length" class="text-medium-emphasis">None</span>
+            <SpellsSection :character="character" :prepared-spell-ids="store.character.preparedSpellIds" />
           </v-card-text>
         </v-card>
       </v-col>
