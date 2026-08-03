@@ -279,6 +279,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             :label="attr.name"
             density="compact"
             class="mb-2"
+            clearable
           />
           <p class="text-caption text-medium-emphasis mt-2">
             Then +{{ sa.attributeBonusPoints }} bonus points, freely split (max {{ ATTRIBUTE_ARRAY_CEILING }}, only
@@ -306,6 +307,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             :label="skill.name"
             density="compact"
             class="mb-2"
+            clearable
           />
           <p class="text-caption text-medium-emphasis mt-2">
             Then +{{ sa.skillBonusPoints }} bonus points, freely split (max {{ SKILL_ARRAY_CEILING }}, only one Skill
