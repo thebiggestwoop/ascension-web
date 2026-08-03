@@ -34,8 +34,10 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       this.loading = true
       this.notFound = false
       const data = await loadCharacter(id)
-      // Characters saved before Level Up history was tracked won't have this field.
+      // Characters saved before Level Up history/Temporary Resistance were tracked won't have
+      // these fields.
       if (data && !data.levelUpHistory) data.levelUpHistory = []
+      if (data && data.temporaryResistance === undefined) data.temporaryResistance = 0
       this.character = data
       this.notFound = data === null
       this.loading = false
@@ -52,6 +54,12 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
     async adjustWillpower(delta: number, max: number) {
       if (!this.character) return
       this.character.currentWillpower = Math.max(0, Math.min(max, this.character.currentWillpower + delta))
+      await this.persist()
+    },
+    /** Temporary Resistance from a buff/spell/etc. - player-entered, floored at 0 and capped at 5. */
+    async setTemporaryResistance(value: number) {
+      if (!this.character) return
+      this.character.temporaryResistance = Math.max(0, Math.min(5, Math.round(value)))
       await this.persist()
     },
     async toggleValueActive(index: number) {

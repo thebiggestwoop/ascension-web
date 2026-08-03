@@ -39,6 +39,7 @@ function createBaseDraft(): ICharacterData {
     currentHp: 0,
     currentWillpower: 0,
     temporaryHp: 0,
+    temporaryResistance: 0,
     statuses: [],
     determination: 0,
     talentIds: [],

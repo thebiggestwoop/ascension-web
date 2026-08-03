@@ -246,9 +246,10 @@ interface IStatTile {
   tooltip: string
 }
 
-/** The character's simple derived stats - Speed/Resistance/Damage Bonus/Spell Slots - each
- * shown as its own prominent tile with a hover tooltip explaining the calculation. HP/Willpower
- * get their own dedicated bar displays instead (see hpTooltip/willpowerTooltip below). */
+/** The character's simple derived stats - Speed/Damage Bonus/Spell Slots - each shown as its
+ * own prominent tile with a hover tooltip explaining the calculation. HP/Willpower get their
+ * own dedicated bar displays, and Resistance its own main/temporary/total box, instead (see
+ * below). */
 const derivedTiles = computed<IStatTile[]>(() => {
   if (!character.value) return []
   const c = character.value
@@ -258,11 +259,6 @@ const derivedTiles = computed<IStatTile[]>(() => {
       label: 'Speed',
       display: `${c.speed}`,
       tooltip: `3 + floor(Agility ${c.attribute(AttributeId.Agility)} / 2)`,
-    },
-    {
-      label: 'Resistance',
-      display: `${c.resistance}`,
-      tooltip: equippedArmor.value ? `${equippedArmor.value.name}'s Resistance` : 'No Armor equipped',
     },
     {
       label: 'Damage Bonus',
@@ -275,6 +271,14 @@ const derivedTiles = computed<IStatTile[]>(() => {
       tooltip: `Study ${c.skill(SkillId.Study)}${spellSlotBonusText}`,
     },
   ]
+})
+
+const resistanceTooltip = computed(() =>
+  equippedArmor.value ? `${equippedArmor.value.name}'s Resistance` : 'No Armor equipped',
+)
+const totalResistanceTooltip = computed(() => {
+  if (!character.value) return ''
+  return `Resistance ${character.value.resistance} + Temporary Resistance ${character.value.temporaryResistance}`
 })
 
 const hpTooltip = computed(() => {
@@ -539,6 +543,31 @@ const rattledText = computed(() => {
         </v-dialog>
 
         <v-row dense>
+          <v-col cols="6" sm="3">
+            <v-card variant="tonal" class="resistance-tile">
+              <div class="text-caption text-medium-emphasis">Resistance</div>
+              <DerivedValueBadge :display="`${character.resistance}`" :tooltip="resistanceTooltip" />
+
+              <div class="text-caption text-medium-emphasis mt-2">Temporary</div>
+              <v-text-field
+                :model-value="store.character.temporaryResistance"
+                type="number"
+                min="0"
+                max="5"
+                density="compact"
+                hide-details
+                class="mx-auto"
+                style="max-width: 70px"
+                @update:model-value="(v) => store.setTemporaryResistance(Number(v))"
+              />
+
+              <div class="text-caption text-medium-emphasis mt-2">Total</div>
+              <DerivedValueBadge
+                :display="`${character.totalResistance}`"
+                :tooltip="totalResistanceTooltip"
+              />
+            </v-card>
+          </v-col>
           <v-col v-for="tile in derivedTiles" :key="tile.label" cols="6" sm="3">
             <StatTile :label="tile.label" :display="tile.display" :tooltip="tile.tooltip" />
           </v-col>
@@ -701,6 +730,12 @@ const rattledText = computed(() => {
   cursor: help;
   text-decoration: underline dotted;
   text-underline-offset: 3px;
+}
+
+.resistance-tile {
+  padding: 12px 8px;
+  text-align: center;
+  height: 100%;
 }
 
 .current-value-display {

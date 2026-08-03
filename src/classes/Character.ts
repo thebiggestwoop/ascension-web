@@ -39,6 +39,10 @@ export interface ICharacterData {
   temporaryHp: number
   statuses: IActiveStatus[]
 
+  /** Temporary Resistance from a buff/spell/etc., on top of equipped Armor's Resistance -
+   * player-entered, 0-5. */
+  temporaryResistance: number
+
   determination: number
 
   talentIds: string[]
@@ -171,6 +175,15 @@ export class Character implements ISerializable<ICharacterData> {
   /** Damage subtracted before HP loss; comes entirely from equipped Armor. */
   get resistance(): number {
     return this.modifiers.resistanceBonus ?? 0
+  }
+
+  get temporaryResistance(): number {
+    return this.data.temporaryResistance
+  }
+
+  /** Armor's Resistance plus any Temporary Resistance from a buff/spell/etc. */
+  get totalResistance(): number {
+    return this.resistance + this.temporaryResistance
   }
 
   /** Spell Slots == Study rating, plus 2 (or 3, with Gremorie 1) per equipped Tome. */
