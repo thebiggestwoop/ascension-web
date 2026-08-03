@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ascension</title>
+    <script type="text/javascript">
+      // Single Page Apps for GitHub Pages: https://github.com/rafgraph/spa-github-pages
+      // GitHub Pages has no server-side rewrites, so a hard refresh (or a shared link) on
+      // any route other than "/" - e.g. "/builder" or "/sheet/<id>" - hits this 404 page
+      // instead of index.html. This encodes the real path into a query string and redirects
+      // to "/", where index.html's own restore script (see index.html) decodes it back into
+      // history before Vue Router ever looks at the URL.
+      var pathSegmentsToKeep = 0
+      var l = window.location
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+          l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash,
+      )
+    </script>
+  </head>
+  <body></body>
+</html>
