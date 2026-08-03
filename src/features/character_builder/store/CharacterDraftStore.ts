@@ -154,6 +154,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
+      this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
 
       const { name: _name, ...finishingTouches } = payload
       this.draft.creationRecord = toPlainRecord({
@@ -183,6 +184,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
+      this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
 
       const { name: _name, ...quickBuild } = payload
       this.draft.creationRecord = toPlainRecord({ method: 'quick_build' as const, quickBuild })

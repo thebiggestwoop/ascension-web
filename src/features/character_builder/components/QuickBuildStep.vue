@@ -4,11 +4,13 @@ import { useRouter } from 'vue-router'
 import { AttributeId, SkillId } from '@/classes/enums'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { isAllocationDisabledByCeiling } from '@/classes/AllocationCaps'
+import { SPELLCASTER_TALENT_IDS, resolveMagickDomainAccess } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
 import EquipmentPicker from './EquipmentPicker.vue'
 import TalentPicker from './TalentPicker.vue'
+import SpellPicker from '@/features/character_sheet/components/SpellPicker.vue'
 
 /**
  * Standard Array character creation: assign fixed Attribute/Skill arrays, add bonus points,
@@ -151,13 +153,49 @@ const traitChoice = ref<'Peasant' | 'Merchant' | 'Noble' | null>(null)
 const classTraitNames = computed(() => (traitChoice.value ? CLASS_TRAIT_NAMES[traitChoice.value] : []))
 const definingFeatureText = ref('')
 
+const talentPicks = ref<{ narrativeTalentIds: string[]; combatTalentIds: string[] }>({
+  narrativeTalentIds: [],
+  combatTalentIds: [],
+})
+
+/** True the moment a Tier 1 Magick Domain Talent is picked - same Trait every other
+ * Spellcaster check keys off, shown live here just like every other pending Trait. */
+const hasSpellcasterTrait = computed(() =>
+  talentPicks.value.combatTalentIds.some((id) => SPELLCASTER_TALENT_IDS.includes(id)),
+)
+/** Changes only when the accessible domain/tier set actually changes - keys the Spells card's
+ * SpellPicker so it remounts (and re-reads its now-non-reactive domain access) only when it
+ * needs to, not on every unrelated Talent pick. */
+const spellcasterDomainsKey = computed(() =>
+  resolveMagickDomainAccess([...talentPicks.value.narrativeTalentIds, ...talentPicks.value.combatTalentIds])
+    .map((d) => `${d.domain}:${d.maxTier}`)
+    .join(','),
+)
+const preparedSpellIds = ref<string[]>([])
+/** Mirrors Character.spellSlots' own formula (Study + Tome bonus) against the in-progress,
+ * not-yet-applied-to-draft picks, since store.draft has no Talents/Equipment until Finish. */
+const previewSpellSlots = computed(() => {
+  const modifiers = computeStatModifiers(
+    {
+      talentIds: [...talentPicks.value.narrativeTalentIds, ...talentPicks.value.combatTalentIds],
+      equippedArmorId: equipmentPicks.value.equippedArmorId,
+      inventoryItemIds: equipmentPicks.value.inventoryItemIds,
+    },
+    allTalents,
+    CoreContent.equipment.armor,
+    CoreContent.equipment.general,
+  )
+  return finalSkills.value[SkillId.Study] + (modifiers.spellSlotBonus ?? 0)
+})
+
 /** Reports this step's in-progress picks to CharacterPreview immediately, rather than only
  * once "Finish Character" is pressed. */
 watch(
-  [finalAttributes, finalSkills, focusTexts, valueTexts, traitChoice, definingFeatureText],
+  [finalAttributes, finalSkills, focusTexts, valueTexts, traitChoice, definingFeatureText, talentPicks],
   () => {
     const traitNames: string[] = [...classTraitNames.value]
     if (definingFeatureText.value.trim()) traitNames.push(`Defining Feature: ${definingFeatureText.value}`)
+    if (hasSpellcasterTrait.value) traitNames.push('Spellcaster')
     store.setPendingPreview({
       attributes: finalAttributes.value,
       skills: finalSkills.value,
@@ -168,11 +206,6 @@ watch(
   },
   { deep: true, immediate: true },
 )
-
-const talentPicks = ref<{ narrativeTalentIds: string[]; combatTalentIds: string[] }>({
-  narrativeTalentIds: [],
-  combatTalentIds: [],
-})
 
 // --- Step Four: Equipment ---
 const equipmentPicks = ref<{
@@ -235,6 +268,7 @@ async function finish() {
     equippedArmorId: equipmentPicks.value.equippedArmorId,
     inventoryItemIds: equipmentPicks.value.inventoryItemIds,
     mountId: equipmentPicks.value.mountId,
+    preparedSpellIds: [...preparedSpellIds.value],
   })
 
   finished.value = true
@@ -359,18 +393,6 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
       </v-card>
 
       <v-card class="mb-4" variant="outlined">
-        <v-card-title>Equipment</v-card-title>
-        <v-card-text>
-          <EquipmentPicker
-            :talent-ids="[...talentPicks.narrativeTalentIds, ...talentPicks.combatTalentIds]"
-            :skirmish-skill="finalSkills[SkillId.Skirmish]"
-            :attributes="finalAttributes"
-            @change="(p) => (equipmentPicks = p)"
-          />
-        </v-card-text>
-      </v-card>
-
-      <v-card class="mb-4" variant="outlined">
         <v-card-title>Talents</v-card-title>
         <v-card-text>
           <TalentPicker
@@ -381,6 +403,37 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             :combat-count="sa.combatTalentGrant.count"
             :max-tier="sa.combatTalentGrant.tier"
             @change="(p) => (talentPicks = p)"
+          />
+        </v-card-text>
+      </v-card>
+
+      <v-card class="mb-4" variant="outlined">
+        <v-card-title>Equipment</v-card-title>
+        <v-card-text>
+          <p class="text-caption text-medium-emphasis mb-2">
+            You can adjust your equipment later from the Character Sheet.
+          </p>
+          <EquipmentPicker
+            :talent-ids="[...talentPicks.narrativeTalentIds, ...talentPicks.combatTalentIds]"
+            :skirmish-skill="finalSkills[SkillId.Skirmish]"
+            :attributes="finalAttributes"
+            @change="(p) => (equipmentPicks = p)"
+          />
+        </v-card-text>
+      </v-card>
+
+      <v-card v-if="hasSpellcasterTrait" class="mb-4" variant="outlined">
+        <v-card-title>Spells</v-card-title>
+        <v-card-text>
+          <p class="text-caption text-medium-emphasis mb-2">
+            You can adjust your prepared spells later from the Character Sheet.
+          </p>
+          <SpellPicker
+            :key="spellcasterDomainsKey"
+            :talent-ids="[...talentPicks.narrativeTalentIds, ...talentPicks.combatTalentIds]"
+            :initial-prepared-spell-ids="preparedSpellIds"
+            :spell-slots="previewSpellSlots"
+            @change="(ids) => (preparedSpellIds = [...ids])"
           />
         </v-card-text>
       </v-card>

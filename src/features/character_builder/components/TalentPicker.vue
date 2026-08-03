@@ -166,42 +166,8 @@ watch(
       class="mb-2"
     />
 
-    <template v-if="narrativeCount > 0">
-      <div class="text-subtitle-1 mt-2">
-        Narrative Talents ({{ selectedNarrativeIds.length }} / {{ narrativeCount }})
-      </div>
-      <v-expansion-panels variant="accordion" multiple>
-        <v-expansion-panel v-for="section in narrativeSections" :key="section.subgroup" :title="section.subgroup">
-          <v-expansion-panel-text>
-            <div v-for="g in section.groups" :key="g.groupName" class="mb-3">
-              <div class="text-subtitle-2">{{ g.groupName }}</div>
-              <v-checkbox
-                v-for="t in g.talents"
-                :key="t.id"
-                v-model="selectedNarrativeIds"
-                :value="t.id"
-                :label="t.name"
-                :hint="
-                  meetsTalentPrerequisites(t.prerequisites, prereqContext)
-                    ? t.effectText
-                    : `Prerequisite not met - ${t.effectText}`
-                "
-                persistent-hint
-                density="compact"
-                hide-details="auto"
-                :disabled="
-                  (!selectedNarrativeIds.includes(t.id) && selectedNarrativeIds.length >= narrativeCount) ||
-                  !meetsTalentPrerequisites(t.prerequisites, prereqContext)
-                "
-              />
-            </div>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </template>
-
     <template v-if="combatCount > 0">
-      <div class="text-subtitle-1 mt-4">
+      <div class="text-subtitle-1 mt-2">
         Combat Talents ({{ selectedCombatIds.length }} / {{ combatCount }})
       </div>
       <v-expansion-panels variant="accordion" multiple>
@@ -225,6 +191,40 @@ watch(
                 hide-details="auto"
                 :disabled="
                   (!selectedCombatIds.includes(t.id) && selectedCombatIds.length >= combatCount) ||
+                  !meetsTalentPrerequisites(t.prerequisites, prereqContext)
+                "
+              />
+            </div>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </template>
+
+    <template v-if="narrativeCount > 0">
+      <div class="text-subtitle-1 mt-4">
+        Narrative Talents ({{ selectedNarrativeIds.length }} / {{ narrativeCount }})
+      </div>
+      <v-expansion-panels variant="accordion" multiple>
+        <v-expansion-panel v-for="section in narrativeSections" :key="section.subgroup" :title="section.subgroup">
+          <v-expansion-panel-text>
+            <div v-for="g in section.groups" :key="g.groupName" class="mb-3">
+              <div class="text-subtitle-2">{{ g.groupName }}</div>
+              <v-checkbox
+                v-for="t in g.talents"
+                :key="t.id"
+                v-model="selectedNarrativeIds"
+                :value="t.id"
+                :label="t.name"
+                :hint="
+                  meetsTalentPrerequisites(t.prerequisites, prereqContext)
+                    ? t.effectText
+                    : `Prerequisite not met - ${t.effectText}`
+                "
+                persistent-hint
+                density="compact"
+                hide-details="auto"
+                :disabled="
+                  (!selectedNarrativeIds.includes(t.id) && selectedNarrativeIds.length >= narrativeCount) ||
                   !meetsTalentPrerequisites(t.prerequisites, prereqContext)
                 "
               />

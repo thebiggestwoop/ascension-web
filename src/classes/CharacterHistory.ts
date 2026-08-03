@@ -17,6 +17,7 @@ export interface IFinishingTouchesRecord {
   equippedArmorId?: string
   inventoryItemIds: string[]
   mountId?: string
+  preparedSpellIds: string[]
 }
 
 /** Quick Build's one-shot grants, recorded verbatim as part of a character's creation history. */
@@ -34,6 +35,7 @@ export interface IQuickBuildRecord {
   equippedArmorId?: string
   inventoryItemIds: string[]
   mountId?: string
+  preparedSpellIds: string[]
 }
 
 /** Every choice made while building this character, whichever of the two creation paths was used. */
