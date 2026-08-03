@@ -340,7 +340,7 @@ function confirm() {
           <TalentPicker
             :attributes="finalAttributes"
             :skills="finalSkills"
-            :social-class-id="character.socialClassId"
+            :held-trait-names="character.traits.map((t) => t.name)"
             :career-id="character.careerId"
             :held-talent-ids="heldTalentIdsForPicker"
             :narrative-count="effectiveNarrativeCount"

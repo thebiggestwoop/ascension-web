@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { AttributeId, SkillId, SocialClassId } from '@/classes/enums'
+import { AttributeId, SkillId } from '@/classes/enums'
 import type { ITalentPrereqContext } from '@/classes/Talent'
 import { meetsTalentPrerequisites } from '@/classes/Talent'
+import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
 
 /**
@@ -16,7 +17,8 @@ const props = withDefaults(
   defineProps<{
     attributes: Record<AttributeId, number>
     skills: Record<SkillId, number>
-    socialClassId?: SocialClassId
+    /** Names of Traits the character currently holds - drives `trait`-gated prerequisites. */
+    heldTraitNames?: string[]
     careerId?: string
     /** Talent ids already held - excluded from the pickable pool, but still counted for priorTalentId/Magick Domain access. */
     heldTalentIds?: string[]
@@ -28,6 +30,7 @@ const props = withDefaults(
     level?: number
   }>(),
   {
+    heldTraitNames: () => [],
     heldTalentIds: () => [],
     narrativeCount: 3,
     combatCount: 4,
@@ -70,10 +73,23 @@ const magickDomains = computed(() => {
   return domains
 })
 
+/**
+ * A character becomes a Spellcaster the moment they hold (or, within this same batch, pick)
+ * any Tier 1 Magick Domain Talent - mirroring `magickDomains` above so that Spellcaster-gated
+ * Narrative/Combat Talents unlock immediately in the same sitting.
+ */
+const hasSpellcasterTrait = computed(
+  () =>
+    props.heldTraitNames.includes('Spellcaster') ||
+    [...props.heldTalentIds, ...selectedCombatIds.value].some((id) => SPELLCASTER_TALENT_IDS.includes(id)),
+)
+
 const prereqContext = computed<ITalentPrereqContext>(() => ({
   attributes: props.attributes,
   skills: props.skills,
-  socialClassId: props.socialClassId,
+  traitNames: hasSpellcasterTrait.value
+    ? new Set([...props.heldTraitNames, 'Spellcaster'])
+    : new Set(props.heldTraitNames),
   careerId: props.careerId,
   magickDomains: magickDomains.value,
   talentIds: new Set([...props.heldTalentIds, ...selectedNarrativeIds.value, ...selectedCombatIds.value]),

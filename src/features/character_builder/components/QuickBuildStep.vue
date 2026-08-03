@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { AttributeId, SkillId, SocialClassId } from '@/classes/enums'
+import { AttributeId, SkillId } from '@/classes/enums'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { isAllocationDisabledByCeiling } from '@/classes/AllocationCaps'
 import { CoreContent } from '@/io/ContentLoader'
@@ -135,21 +135,20 @@ const focusTexts = ref<string[]>(Array(sa.focusCount).fill(''))
 const valueTexts = ref<string[]>(Array(sa.valueCount).fill(''))
 
 /**
- * The rules just say "Commoner or Noble", but that alone can't unlock the Peasant/Merchant/
- * High Born Narrative Archetypes (their Talents are gated on a `socialClassId` the Lifepath
- * path sets and Quick Build otherwise never has). Offering these three specific flavors
- * instead - each setting the matching socialClassId - lets Quick Build characters reach the
- * same Class Archetypes Lifepath characters can, at the cost of the generic "Commoner/Noble"
- * wording. High Born itself is an OR across three nobility ranks (Talent.ts's
- * `socialClassAny`); Petty Nobility is used as the representative choice.
+ * Each Social Class choice grants the same Traits the matching Lifepath Social Class option
+ * would: Peasant/Merchant grant a general "Commoner" Trait plus their specific rank, Noble
+ * grants only the general "Noble" Trait (nothing more specific) - see social-classes.json.
+ * Narrative Talents gated on Social Class check these same Trait names (Talent.ts's `trait`
+ * prerequisite), so a Quick Build character reaches the same Class Archetypes a Lifepath
+ * character can.
  */
-const CLASS_TRAIT_SOCIAL_CLASS: Record<'Peasant' | 'Merchant' | 'High Born', SocialClassId> = {
-  Peasant: SocialClassId.CommonerPeasant,
-  Merchant: SocialClassId.CommonerMerchant,
-  'High Born': SocialClassId.PettyNobility,
+const CLASS_TRAIT_NAMES: Record<'Peasant' | 'Merchant' | 'Noble', string[]> = {
+  Peasant: ['Commoner', 'Peasant'],
+  Merchant: ['Commoner', 'Merchant'],
+  Noble: ['Noble'],
 }
-const traitChoice = ref<'Peasant' | 'Merchant' | 'High Born' | null>(null)
-const selectedSocialClassId = computed(() => (traitChoice.value ? CLASS_TRAIT_SOCIAL_CLASS[traitChoice.value] : undefined))
+const traitChoice = ref<'Peasant' | 'Merchant' | 'Noble' | null>(null)
+const classTraitNames = computed(() => (traitChoice.value ? CLASS_TRAIT_NAMES[traitChoice.value] : []))
 const definingFeatureText = ref('')
 
 /** Reports this step's in-progress picks to CharacterPreview immediately, rather than only
@@ -157,9 +156,8 @@ const definingFeatureText = ref('')
 watch(
   [finalAttributes, finalSkills, focusTexts, valueTexts, traitChoice, definingFeatureText],
   () => {
-    const traitNames: string[] = []
-    if (traitChoice.value) traitNames.push(traitChoice.value)
-    if (definingFeatureText.value.trim()) traitNames.push(definingFeatureText.value)
+    const traitNames: string[] = [...classTraitNames.value]
+    if (definingFeatureText.value.trim()) traitNames.push(`Defining Feature: ${definingFeatureText.value}`)
     store.setPendingPreview({
       attributes: finalAttributes.value,
       skills: finalSkills.value,
@@ -203,7 +201,7 @@ const missingRequirements = computed(() => {
   }
   if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
   if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
-  if (!traitChoice.value) missing.push('Choose Peasant, Merchant, or High Born')
+  if (!traitChoice.value) missing.push('Choose Peasant, Merchant, or Noble')
   if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
   if (talentPicks.value.narrativeTalentIds.length !== sa.narrativeTalentGrant) {
     missing.push(
@@ -229,8 +227,7 @@ async function finish() {
     skills: finalSkills.value,
     focusTexts: [...focusTexts.value],
     valueTexts: [...valueTexts.value],
-    traitName: traitChoice.value,
-    socialClassId: selectedSocialClassId.value,
+    traitNames: classTraitNames.value,
     definingFeatureText: definingFeatureText.value,
     narrativeTalentIds: talentPicks.value.narrativeTalentIds,
     combatTalentIds: talentPicks.value.combatTalentIds,
@@ -350,10 +347,10 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           <v-radio-group v-model="traitChoice" inline density="compact" label="Starting Trait">
             <v-radio label="Peasant" value="Peasant" />
             <v-radio label="Merchant" value="Merchant" />
-            <v-radio label="High Born" value="High Born" />
+            <v-radio label="Noble" value="Noble" />
           </v-radio-group>
           <p class="text-caption text-medium-emphasis mb-2">
-            Also unlocks the matching Class Archetype (Peasant/Merchant/High Born) Narrative Talents below.
+            Also unlocks the matching Class Archetype (Peasant/Merchant/Noble) Narrative Talents below.
           </p>
           <v-text-field v-model="definingFeatureText" label="Defining Feature (Trait)" density="compact" />
         </v-card-text>
@@ -377,7 +374,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           <TalentPicker
             :attributes="finalAttributes"
             :skills="finalSkills"
-            :social-class-id="selectedSocialClassId"
+            :held-trait-names="classTraitNames"
             :narrative-count="sa.narrativeTalentGrant"
             :combat-count="sa.combatTalentGrant.count"
             :max-tier="sa.combatTalentGrant.tier"

@@ -22,6 +22,9 @@ export interface ILifepathGrants {
   /** Prompt text shown to the player if this option grants a Value. */
   valuePrompt?: string
   trait?: string
+  /** A second, more specific Trait granted alongside `trait` - e.g. Social Class's general
+   * "Noble"/"Commoner" Trait plus the specific rank ("Petty Nobility", "Peasant", etc.). */
+  additionalTrait?: string
 }
 
 export interface ILifepathOption {
@@ -38,8 +41,11 @@ export interface ILifepathStageData {
   /** How many options the player selects at this stage (Life Events defaults to 2). */
   selectCount: number
   options: ILifepathOption[]
-  /** Stage-level bonus prompt independent of the chosen option, e.g. Social Class's optional "Illegitimate" Trait. */
+  /** Freeform descriptive text for this stage, independent of the chosen option. */
   notes?: string
+  /** An optional checkbox at this stage that grants an extra Trait if the player opts in,
+   * e.g. Upbringing's "Born out of wedlock" -> "Illegitimate". */
+  optionalTrait?: { label: string; trait: string }
 }
 
 /** A choice made by the player while stepping through the wizard, not yet applied to a Character. */
@@ -51,6 +57,21 @@ export interface ILifepathSelection {
   resolvedSkillPoints: Partial<Record<SkillId, number>>
   focusText: string[]
   valueText?: string
+  /** Whether the player opted into the stage's `optionalTrait` (e.g. "Born out of wedlock"). */
+  optionalTraitGranted?: boolean
+}
+
+/**
+ * Stages whose chosen option auto-grants a "{Label}: {option name}" Trait, e.g. Upbringing's
+ * "Upbringing: Agrarian". Social Class instead uses its options' explicit `trait`/
+ * `additionalTrait` fields (a general Noble/Commoner Trait plus a specific rank), since
+ * "Social Class: X" wouldn't read naturally and it already needs two distinct Trait names.
+ */
+export const AUTO_TRAIT_STAGE_LABEL: Partial<Record<LifepathStageId, string>> = {
+  [LifepathStageId.Upbringing]: 'Upbringing',
+  [LifepathStageId.Education]: 'Education',
+  [LifepathStageId.Career]: 'Career',
+  [LifepathStageId.LifeEvents]: 'Life Event',
 }
 
 /**
@@ -101,7 +122,7 @@ export interface IStandardArrayData {
  * 56/14) are validated separately at the Finishing Touches step, not here.
  */
 export function applyLifepathSelection(
-  draft: Pick<ICharacterData, 'attributes' | 'skills' | 'focuses' | 'values' | 'traits' | 'socialClassId' | 'careerId'>,
+  draft: Pick<ICharacterData, 'attributes' | 'skills' | 'focuses' | 'values' | 'traits' | 'careerId'>,
   selection: ILifepathSelection,
   stage: ILifepathStageData,
 ): void {
@@ -110,7 +131,6 @@ export function applyLifepathSelection(
     throw new Error(`Unknown Lifepath option "${selection.optionId}" for stage "${stage.id}"`)
   }
 
-  if (stage.id === LifepathStageId.SocialClass) draft.socialClassId = option.id as ICharacterData['socialClassId']
   if (stage.id === LifepathStageId.Career) draft.careerId = option.id
 
   for (const [id, amount] of Object.entries(selection.resolvedAttributePoints)) {
@@ -129,5 +149,17 @@ export function applyLifepathSelection(
 
   if (option.grants.trait) {
     draft.traits.push({ name: option.grants.trait })
+  }
+  if (option.grants.additionalTrait) {
+    draft.traits.push({ name: option.grants.additionalTrait })
+  }
+
+  const autoLabel = AUTO_TRAIT_STAGE_LABEL[stage.id]
+  if (autoLabel) {
+    draft.traits.push({ name: `${autoLabel}: ${option.name}` })
+  }
+
+  if (selection.optionalTraitGranted && stage.optionalTrait) {
+    draft.traits.push({ name: stage.optionalTrait.trait })
   }
 }

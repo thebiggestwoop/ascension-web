@@ -2,6 +2,7 @@
   "id": "upbringing",
   "name": "Step Two: Upbringing",
   "selectCount": 1,
+  "optionalTrait": { "label": "Born out of wedlock", "trait": "Illegitimate" },
   "options": [
     {
       "id": "agrarian",

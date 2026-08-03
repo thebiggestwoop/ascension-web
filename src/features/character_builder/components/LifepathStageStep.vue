@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue'
 import { AttributeId, SkillId } from '@/classes/enums'
 import type { ILifepathOption, ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
+import { AUTO_TRAIT_STAGE_LABEL } from '@/classes/Lifepath'
 import { CoreContent } from '@/io/ContentLoader'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
@@ -29,10 +30,32 @@ const skillChoices = ref<Record<number, SkillId | null>>({})
 const attributePools = ref<Record<number, (AttributeId | null)[]>>({})
 const focusTexts = ref<string[]>([])
 const valueText = ref('')
+/** Whether the player opted into the stage's `optionalTrait` (e.g. "Born out of wedlock"). */
+const optionalTraitChecked = ref(false)
 
 const selectedOption = computed<ILifepathOption | undefined>(() =>
   props.stage.options.find((o) => o.id === selectedOptionId.value),
 )
+
+/** The auto-generated "{Label}: {option name}" Trait this stage grants, if any (Social Class
+ * uses explicit `trait`/`additionalTrait` fields instead - see AUTO_TRAIT_STAGE_LABEL). */
+const autoTraitName = computed(() => {
+  const label = AUTO_TRAIT_STAGE_LABEL[props.stage.id]
+  return label && selectedOption.value ? `${label}: ${selectedOption.value.name}` : undefined
+})
+
+/** Every Trait name this selection will grant, combined - shared by the live preview and the
+ * template's "Grants Trait" display so the two can never disagree. */
+const previewTraitNames = computed(() => {
+  const option = selectedOption.value
+  if (!option) return []
+  const names: string[] = []
+  if (option.grants.trait) names.push(option.grants.trait)
+  if (option.grants.additionalTrait) names.push(option.grants.additionalTrait)
+  if (autoTraitName.value) names.push(autoTraitName.value)
+  if (optionalTraitChecked.value && props.stage.optionalTrait) names.push(props.stage.optionalTrait.trait)
+  return names
+})
 
 function isPool(grant: { amount: number; restrictTo?: unknown[] }): boolean {
   return grant.amount > 1 && !grant.restrictTo
@@ -49,6 +72,7 @@ function selectOption(option: ILifepathOption) {
   })
   focusTexts.value = Array(option.grants.focusCount).fill('')
   valueText.value = ''
+  optionalTraitChecked.value = false
 }
 
 const isReady = computed(() => {
@@ -114,14 +138,14 @@ const previewSkills = computed(() => {
 /** Reports this stage's in-progress picks to CharacterPreview immediately, rather than only
  * once "Confirm & Continue" is pressed. */
 watch(
-  [previewAttributes, previewSkills, focusTexts, valueText, selectedOption],
+  [previewAttributes, previewSkills, focusTexts, valueText, selectedOption, previewTraitNames],
   () => {
     store.setPendingPreview({
       attributes: previewAttributes.value,
       skills: previewSkills.value,
       focusTexts: focusTexts.value,
       valueTexts: valueText.value.trim() ? [valueText.value] : [],
-      traitNames: selectedOption.value?.grants.trait ? [selectedOption.value.grants.trait] : [],
+      traitNames: previewTraitNames.value,
     })
   },
   { deep: true, immediate: true },
@@ -141,6 +165,7 @@ function confirm() {
     resolvedSkillPoints: previewSkillDeltas.value,
     focusText: [...focusTexts.value],
     valueText: option.grants.valuePrompt ? valueText.value : undefined,
+    optionalTraitGranted: optionalTraitChecked.value,
   })
 }
 </script>
@@ -148,6 +173,7 @@ function confirm() {
 <template>
   <div>
     <h3 class="text-h6 mb-2">{{ stage.name }}</h3>
+    <p v-if="stage.notes" class="text-body-2 text-medium-emphasis mb-2">{{ stage.notes }}</p>
 
     <v-row>
       <v-col v-for="option in availableOptions" :key="option.id" cols="12" sm="6">
@@ -216,8 +242,18 @@ function confirm() {
           density="compact"
         />
 
-        <div v-if="selectedOption.grants.trait" class="text-body-2 mb-2">
-          Grants Trait: <strong>{{ selectedOption.grants.trait }}</strong>
+        <v-checkbox
+          v-if="stage.optionalTrait"
+          v-model="optionalTraitChecked"
+          :label="stage.optionalTrait.label"
+          density="compact"
+          hide-details="auto"
+          class="mb-2"
+        />
+
+        <div v-if="previewTraitNames.length" class="text-body-2 mb-2">
+          Grants Trait{{ previewTraitNames.length > 1 ? 's' : '' }}:
+          <strong>{{ previewTraitNames.join(', ') }}</strong>
         </div>
 
         <v-btn color="primary" :disabled="!isReady || submitted" @click="confirm">Confirm &amp; Continue</v-btn>

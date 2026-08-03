@@ -83,6 +83,12 @@ const DOMAIN_TALENT_PREFIX: Record<MagickDomain, string> = {
 }
 
 /**
+ * Tier-1 Magick Domain Talent ids (Arcane/Light/Dark Magick 1) - picking any one of these
+ * is what makes a character a Spellcaster, and should grant the "Spellcaster" Trait.
+ */
+export const SPELLCASTER_TALENT_IDS: string[] = Object.values(DOMAIN_TALENT_PREFIX).map((prefix) => `${prefix}_1`)
+
+/**
  * Spellcasting access comes from holding a domain's Magick Domain Talent (Arcane/Light/Dark
  * Magick 1/2/3, a strict priorTalentId chain) - its tier sets the highest Spell Tier
  * preparable. Pure function of talentIds (ids are hardcoded, mirroring the same

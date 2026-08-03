@@ -2,7 +2,6 @@
   "id": "social_class",
   "name": "Step One: Social Class",
   "selectCount": 1,
-  "notes": "If your character was born out of wedlock, they additionally gain the Trait \"Illegitimate\".",
   "options": [
     {
       "id": "commoner_peasant",
@@ -16,7 +15,8 @@
         "skillPoints": [],
         "focusCount": 0,
         "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'Commoners must protect each other when the highborn won't.'",
-        "trait": "Commoner"
+        "trait": "Commoner",
+        "additionalTrait": "Peasant"
       }
     },
     {
@@ -31,7 +31,8 @@
         "skillPoints": [],
         "focusCount": 0,
         "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: \"I can prove I'm as good as any nobleman.\"",
-        "trait": "Commoner"
+        "trait": "Commoner",
+        "additionalTrait": "Merchant"
       }
     },
     {
@@ -46,7 +47,8 @@
         "skillPoints": [],
         "focusCount": 0,
         "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'I owe a debt to Lord Fife, and I will repay it.'",
-        "trait": "Noble"
+        "trait": "Noble",
+        "additionalTrait": "Petty Nobility"
       }
     },
     {
@@ -61,7 +63,8 @@
         "skillPoints": [],
         "focusCount": 0,
         "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'The hierarchy of nobility is the natural order of things, and upholding it preserves peace.'",
-        "trait": "Noble"
+        "trait": "Noble",
+        "additionalTrait": "Landed Nobility"
       }
     },
     {
@@ -76,7 +79,8 @@
         "skillPoints": [],
         "focusCount": 0,
         "valuePrompt": "Reflect how the character perceives their place in the social hierarchy, and the lessons they've learned as a result. Example: 'It is better to be feared than loved.'",
-        "trait": "Noble"
+        "trait": "Noble",
+        "additionalTrait": "Royalty"
       }
     }
   ]

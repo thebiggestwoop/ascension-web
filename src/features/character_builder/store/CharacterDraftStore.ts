@@ -6,8 +6,22 @@ import { Character, computeStatModifiers } from '@/classes/Character'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 import { applyLifepathSelection } from '@/classes/Lifepath'
 import type { IFinishingTouchesRecord, IQuickBuildRecord } from '@/classes/CharacterHistory'
+import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
 import { saveCharacter } from '@/io/Storage'
+
+/**
+ * Grants the "Spellcaster" Trait the first time a character picks up any Tier 1 Magick
+ * Domain Talent - everything gated on "Requires Spellcaster" (Talents, Spell slots) checks
+ * this Trait rather than any specific Talent id.
+ */
+function grantSpellcasterTraitIfNeeded(draft: ICharacterData, newTalentIds: string[]) {
+  const alreadyHasTrait = draft.traits.some((t) => t.name === 'Spellcaster')
+  const justBecameSpellcaster = newTalentIds.some((id) => SPELLCASTER_TALENT_IDS.includes(id))
+  if (!alreadyHasTrait && justBecameSpellcaster) {
+    draft.traits.push({ name: 'Spellcaster' })
+  }
+}
 
 /** Every character begins at Attributes=6, Skills=1 per Chapter Two. */
 function createBaseDraft(): ICharacterData {
@@ -133,8 +147,9 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
         this.draft.skills[id as SkillId] += amount ?? 0
       }
       this.draft.values.push({ text: payload.valueText, active: true })
-      this.draft.traits.push({ name: payload.definingFeatureText })
+      this.draft.traits.push({ name: `Defining Feature: ${payload.definingFeatureText}` })
       this.draft.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
+      grantSpellcasterTraitIfNeeded(this.draft, [...payload.narrativeTalentIds, ...payload.combatTalentIds])
       this.draft.equippedWeaponIds.push(...payload.equippedWeaponIds)
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
@@ -158,9 +173,12 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       for (const text of payload.valueTexts) {
         this.draft.values.push({ text, active: true })
       }
-      this.draft.traits.push({ name: payload.traitName }, { name: payload.definingFeatureText })
-      if (payload.socialClassId) this.draft.socialClassId = payload.socialClassId
+      for (const name of payload.traitNames) {
+        this.draft.traits.push({ name })
+      }
+      this.draft.traits.push({ name: `Defining Feature: ${payload.definingFeatureText}` })
       this.draft.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
+      grantSpellcasterTraitIfNeeded(this.draft, [...payload.narrativeTalentIds, ...payload.combatTalentIds])
       this.draft.equippedWeaponIds.push(...payload.equippedWeaponIds)
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)

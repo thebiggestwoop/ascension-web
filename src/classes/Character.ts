@@ -1,4 +1,4 @@
-import { AttributeId, SkillId, SocialClassId, StatusId } from './enums'
+import { AttributeId, SkillId, StatusId } from './enums'
 import type { ISerializable } from './ISerializable'
 import type { ITalentData } from './Talent'
 import type { IArmorData, IGeneralItemData } from './Equipment'
@@ -53,8 +53,7 @@ export interface ICharacterData {
   /** Spells currently prepared, by id; duplicate entries mean multiple copies of the same spell prepared. */
   preparedSpellIds: string[]
 
-  /** Set from the Social Class / Career Lifepath stages; used to gate Talent prerequisites. */
-  socialClassId?: SocialClassId
+  /** Set from the Career Lifepath stage; used to gate Talent prerequisites. */
   careerId?: string
 
   /** Every choice made during Lifepath creation/Quick Build - not used by any getter, kept for

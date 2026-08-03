@@ -151,7 +151,7 @@ watch(
       skills: projectedSkills.value,
       focusTexts: [],
       valueTexts: valueText.value.trim() ? [valueText.value] : [],
-      traitNames: definingFeatureText.value.trim() ? [definingFeatureText.value] : [],
+      traitNames: definingFeatureText.value.trim() ? [`Defining Feature: ${definingFeatureText.value}`] : [],
     })
   },
   { deep: true, immediate: true },
@@ -296,7 +296,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           <TalentPicker
             :attributes="projectedAttributes"
             :skills="projectedSkills"
-            :social-class-id="store.draft.socialClassId"
+            :held-trait-names="store.draft.traits.map((t) => t.name)"
             :career-id="store.draft.careerId"
             @change="(p) => (talentPicks = p)"
           />

@@ -244,7 +244,7 @@
     "name": "Back of Your Hand",
     "category": "narrative",
     "group": "Peasant",
-    "prerequisites": { "socialClass": "commoner_peasant" },
+    "prerequisites": { "trait": "Peasant" },
     "effectText": "When navigating a city or region with which you are familiar, you are able to avoid implicit dangers, potentially avoiding dangerous encounters. You may attempt a Difficulty 2 Awareness + Study Task in order to use this ability in unfamiliar environments."
   },
   {
@@ -252,7 +252,7 @@
     "name": "Folk Hero",
     "category": "narrative",
     "group": "Peasant",
-    "prerequisites": { "socialClass": "commoner_peasant" },
+    "prerequisites": { "trait": "Peasant" },
     "effectText": "You are greatly renowned among the common folk. Once per session, you can automatically succeed on an authority task to encourage a mob to take action, redirect their focus, or disperse. Additionally, commonfolk who know of you will go out of their way to offer you assistance, boarding, and food."
   },
   {
@@ -260,7 +260,7 @@
     "name": "Instantly Forgotten",
     "category": "narrative",
     "group": "Peasant",
-    "prerequisites": { "socialClass": "commoner_peasant" },
+    "prerequisites": { "trait": "Peasant" },
     "effectText": "Your low status makes you easily forgettable. Anyone you interact with or encounter only briefly won't remember your name or description well enough to describe you unless you want them to, allowing you to avoid being found later."
   },
   {
@@ -268,7 +268,7 @@
     "name": "Master of the Trade",
     "category": "narrative",
     "group": "Peasant",
-    "prerequisites": { "socialClass": "commoner_peasant" },
+    "prerequisites": { "trait": "Peasant" },
     "effectText": "When you take this talent, choose a single of your focuses that relates to a trade or craft of some kind. Once per session, when you spend your Determination on a Task where this Focus applies, you may instantly get it back after the roll."
   },
   {
@@ -276,7 +276,7 @@
     "name": "Merchant Solidarity",
     "category": "narrative",
     "group": "Merchant",
-    "prerequisites": { "socialClass": "commoner_merchant" },
+    "prerequisites": { "trait": "Merchant" },
     "effectText": "Once per scene, you can appeal to your status as a common merchant to appeal to another merchant to automatically succeed on a task trying to get information or assistance from them."
   },
   {
@@ -284,7 +284,7 @@
     "name": "Populo Grosso",
     "category": "narrative",
     "group": "Merchant",
-    "prerequisites": { "socialClass": "commoner_merchant" },
+    "prerequisites": { "trait": "Merchant" },
     "effectText": "Your wealth grants you a certain amount of respect across all social classes. Creating an Advantage costs 1 less Momentum when using it to help you with Tasks to interact with someone whose social class is above yours."
   },
   {
@@ -292,7 +292,7 @@
     "name": "Verified Expert",
     "category": "narrative",
     "group": "Merchant",
-    "prerequisites": { "socialClass": "commoner_merchant" },
+    "prerequisites": { "trait": "Merchant" },
     "effectText": "Your skill in your trade has given you a vast amount of expertise in the matter. You may always apply your social class to create a discounted advantage for study tasks that you have an applicable focus for."
   },
   {
@@ -300,7 +300,7 @@
     "name": "In My Employ",
     "category": "narrative",
     "group": "Merchant",
-    "prerequisites": { "socialClass": "commoner_merchant" },
+    "prerequisites": { "trait": "Merchant" },
     "effectText": "When another character that is employed by you or serving you attempts a Task, you may spend your Determination in order to grant its effects to that character. When you do this, you also create an Advantage for yourself related to the task."
   },
   {
@@ -308,7 +308,7 @@
     "name": "Of Want to Please",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
+    "prerequisites": { "trait": "Noble" },
     "effectText": "People want to get on your good side. Once per Session, you can automatically succeed on any Diplomacy task if you promise to help the target Character out in the future (you need not keep this promise, of course, but may suffer a Complication if you don't). Requires the Petty Nobility, Landed Nobility, or Royalty social class."
   },
   {
@@ -316,7 +316,7 @@
     "name": "Noble Privilege",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
+    "prerequisites": { "trait": "Noble" },
     "effectText": "You can never be accused of trespassing or breaking petty laws by anyone who isn't a noble or isn't the direct owner of the property you are violating. Servants and the working class will assume that wherever you are and whatever you are doing, you are allowed - unless they've been told beforehand by their master to particularly look out for you."
   },
   {
@@ -324,7 +324,7 @@
     "name": "Reputation Precedes You",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
+    "prerequisites": { "trait": "Noble" },
     "effectText": "You have something of a reputation and can use it to your advantage. When you attempt a Task to interact with someone you've never met before, you may roll two extra dice without cost, but the Complication range increases by 2. If you roll a Complication, they've heard of you before, but they're not pleased by what your reputation would suggest."
   },
   {
@@ -332,7 +332,7 @@
     "name": "Above the Law",
     "category": "narrative",
     "group": "High Born",
-    "prerequisites": { "socialClassAny": ["petty_nobility", "landed_nobility", "royalty"] },
+    "prerequisites": { "trait": "Noble" },
     "effectText": "Your status places you above the scrutiny that others might face. When you are about to be arrested or face legal consequences of some kind, you may instead take a complication and avoid immediate repercussions."
   },
   {

@@ -4,6 +4,7 @@ import type { AttributeId, SkillId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import type { ILevelUpChoices, ILevelUpRecord } from '@/classes/CharacterHistory'
+import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
 import { loadCharacter, saveCharacter } from '@/io/Storage'
 
@@ -123,11 +124,22 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       if (payload.focusText) this.character.focuses.push(payload.focusText)
       this.character.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
 
+      const grantedTraitNames: string[] = []
+      const newTalentIds = [...payload.narrativeTalentIds, ...payload.combatTalentIds]
+      const alreadySpellcaster = this.character.traits.some((t) => t.name === 'Spellcaster')
+      if (!alreadySpellcaster && newTalentIds.some((id) => SPELLCASTER_TALENT_IDS.includes(id))) {
+        grantedTraitNames.push('Spellcaster')
+      }
+      for (const name of grantedTraitNames) {
+        this.character.traits.push({ name })
+      }
+
       const record: ILevelUpRecord = toPlainRecord({
         ...payload,
         level: this.character.level,
         previousCurrentHp,
         previousCurrentWillpower,
+        grantedTraitNames,
       })
       this.character.levelUpHistory = [...(this.character.levelUpHistory ?? []), record]
 
@@ -173,6 +185,11 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
         if (index !== -1) this.character.talentIds.splice(index, 1)
       }
       if (record.removeTalentIds?.length) this.character.talentIds.push(...record.removeTalentIds)
+
+      for (const name of record.grantedTraitNames ?? []) {
+        const index = this.character.traits.findIndex((t) => t.name === name)
+        if (index !== -1) this.character.traits.splice(index, 1)
+      }
 
       this.character.level -= 1
       this.character.currentHp = record.previousCurrentHp

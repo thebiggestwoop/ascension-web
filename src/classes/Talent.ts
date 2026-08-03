@@ -1,13 +1,12 @@
-import type { AttributeId, SkillId, SocialClassId, TalentCategory, TalentTier } from './enums'
+import type { AttributeId, SkillId, TalentCategory, TalentTier } from './enums'
 
 export interface ITalentPrerequisite {
   attribute?: { id: AttributeId; minRating: number }
   /** OR across attributes, e.g. Gauntlet Adept's "Agility, Brawn, or Coordination 10". */
   attributeAny?: { ids: AttributeId[]; minRating: number }
   skill?: { id: SkillId; minRating: number }
-  socialClass?: SocialClassId
-  /** OR across social classes, e.g. High Born's "Petty Nobility, Landed Nobility, or Royalty". */
-  socialClassAny?: SocialClassId[]
+  /** Name of a Trait the character must hold, e.g. "Noble" or "Spellcaster". */
+  trait?: string
   /** References a content/lifepath/careers.json option id, e.g. "acolyte". */
   career?: string
   magickDomain?: string
@@ -19,7 +18,8 @@ export interface ITalentPrerequisite {
 export interface ITalentPrereqContext {
   attributes: Record<AttributeId, number>
   skills: Record<SkillId, number>
-  socialClassId?: SocialClassId
+  /** Names of Traits the character currently holds. */
+  traitNames: Set<string>
   careerId?: string
   /** Magick domains ('arcane'/'light'/'dark') the character currently has access to via a Magick Domain talent. */
   magickDomains: Set<string>
@@ -34,8 +34,7 @@ export function meetsTalentPrerequisites(prereq: ITalentPrerequisite, ctx: ITale
   if (prereq.attributeAny && !prereq.attributeAny.ids.some((id) => ctx.attributes[id] >= prereq.attributeAny!.minRating))
     return false
   if (prereq.skill && ctx.skills[prereq.skill.id] < prereq.skill.minRating) return false
-  if (prereq.socialClass && ctx.socialClassId !== prereq.socialClass) return false
-  if (prereq.socialClassAny && (!ctx.socialClassId || !prereq.socialClassAny.includes(ctx.socialClassId))) return false
+  if (prereq.trait && !ctx.traitNames.has(prereq.trait)) return false
   if (prereq.career && ctx.careerId !== prereq.career) return false
   if (prereq.magickDomain && !ctx.magickDomains.has(prereq.magickDomain)) return false
   if (prereq.priorTalentId && !ctx.talentIds.has(prereq.priorTalentId)) return false

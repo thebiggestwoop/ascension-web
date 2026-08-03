@@ -1,4 +1,4 @@
-import type { AttributeId, SkillId, SocialClassId } from './enums'
+import type { AttributeId, SkillId } from './enums'
 import type { ILifepathSelection } from './Lifepath'
 
 /**
@@ -25,8 +25,8 @@ export interface IQuickBuildRecord {
   skills: Record<SkillId, number>
   focusTexts: string[]
   valueTexts: string[]
-  traitName: string
-  socialClassId?: SocialClassId
+  /** Traits granted by the chosen Social Class (e.g. Peasant -> ["Commoner", "Peasant"], Noble -> ["Noble"]). */
+  traitNames: string[]
   definingFeatureText: string
   narrativeTalentIds: string[]
   combatTalentIds: string[]
@@ -69,4 +69,7 @@ export interface ILevelUpRecord extends ILevelUpChoices {
    * the player actually had. */
   previousCurrentHp: number
   previousCurrentWillpower: number
+  /** Traits granted as a side effect of this level-up's Talent picks (e.g. "Spellcaster" from
+   * newly taking a Tier 1 Magick Domain Talent) - removed again if this level-up is reverted. */
+  grantedTraitNames?: string[]
 }

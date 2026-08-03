@@ -17,9 +17,6 @@ function attributeName(id: AttributeId): string {
 function skillName(id: SkillId): string {
   return CoreContent.skills.find((s) => s.id === id)?.name ?? id
 }
-function socialClassName(id: string): string {
-  return CoreContent.lifepath.socialClass.options.find((o) => o.id === id)?.name ?? id
-}
 function careerName(id: string): string {
   return CoreContent.lifepath.career.options.find((o) => o.id === id)?.name ?? id
 }
@@ -31,8 +28,7 @@ function describePrerequisite(prereq: ITalentPrerequisite): string {
     parts.push(`${prereq.attributeAny.ids.map(attributeName).join(', ')} (any) ${prereq.attributeAny.minRating}`)
   }
   if (prereq.skill) parts.push(`${skillName(prereq.skill.id)} ${prereq.skill.minRating}`)
-  if (prereq.socialClass) parts.push(socialClassName(prereq.socialClass))
-  if (prereq.socialClassAny) parts.push(`${prereq.socialClassAny.map(socialClassName).join(', ')} (any)`)
+  if (prereq.trait) parts.push(`${prereq.trait} Trait`)
   if (prereq.career) parts.push(`${careerName(prereq.career)} career`)
   if (prereq.magickDomain) parts.push(`${prereq.magickDomain[0].toUpperCase()}${prereq.magickDomain.slice(1)} Magick`)
   if (prereq.priorTalentId) parts.push(talentById.get(prereq.priorTalentId) ?? prereq.priorTalentId)

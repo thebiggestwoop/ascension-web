@@ -17,14 +17,6 @@ export enum SkillId {
   Intrigue = 'intrigue',
 }
 
-export enum SocialClassId {
-  CommonerPeasant = 'commoner_peasant',
-  CommonerMerchant = 'commoner_merchant',
-  PettyNobility = 'petty_nobility',
-  LandedNobility = 'landed_nobility',
-  Royalty = 'royalty',
-}
-
 export enum LifepathStageId {
   SocialClass = 'social_class',
   Upbringing = 'upbringing',
