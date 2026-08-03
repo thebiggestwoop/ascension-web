@@ -143,6 +143,16 @@ const nameText = ref('')
 const valueText = ref('')
 const definingFeatureText = ref('')
 
+/** "Focuses in Combat" optional rule: two distinct Skills chosen at creation gain an expanded
+ * crit range in combat instead of relying on written Focuses - a third can be added at Level 6. */
+const combatFocusSkillA = ref<SkillId | null>(null)
+const combatFocusSkillB = ref<SkillId | null>(null)
+const combatFocusSkillAItems = computed(() => skillItems.filter((s) => s.value !== combatFocusSkillB.value))
+const combatFocusSkillBItems = computed(() => skillItems.filter((s) => s.value !== combatFocusSkillA.value))
+const combatSkillFocuses = computed<SkillId[]>(() =>
+  [combatFocusSkillA.value, combatFocusSkillB.value].filter((s): s is SkillId => s !== null),
+)
+
 const equipmentPicks = ref<{
   equippedWeaponIds: string[]
   equippedArmorId?: string
@@ -211,6 +221,7 @@ const isReady = computed(
     skillAllocations.value.every((v) => v !== null) &&
     valueText.value.trim().length > 0 &&
     definingFeatureText.value.trim().length > 0 &&
+    combatSkillFocuses.value.length === 2 &&
     talentPicks.value.narrativeTalentIds.length === REQUIRED_NARRATIVE_TALENTS &&
     talentPicks.value.combatTalentIds.length === REQUIRED_COMBAT_TALENTS,
 )
@@ -242,6 +253,7 @@ async function finish() {
     inventoryItemIds: equipmentPicks.value.inventoryItemIds,
     mountId: equipmentPicks.value.mountId,
     preparedSpellIds: [...preparedSpellIds.value],
+    combatSkillFocuses: [...combatSkillFocuses.value],
   })
 
   finished.value = true
@@ -303,6 +315,20 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             label="Choose Skill"
             :is-item-disabled="isSkillDisabled"
           />
+
+          <div class="text-subtitle-2 mt-4 mb-1">Combat Skill Focuses</div>
+          <p class="text-caption text-medium-emphasis mb-2">
+            Choose 2 different Skills to specialize in for combat - gains an expanded crit range
+            on Tasks using that Skill in combat. A third can be added at Level 6.
+          </p>
+          <v-row dense>
+            <v-col cols="12" sm="6">
+              <v-select v-model="combatFocusSkillA" :items="combatFocusSkillAItems" label="Combat Focus 1" density="compact" />
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select v-model="combatFocusSkillB" :items="combatFocusSkillBItems" label="Combat Focus 2" density="compact" />
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
 

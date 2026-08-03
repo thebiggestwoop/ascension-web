@@ -511,6 +511,12 @@ const rattledText = computed(() => {
           <v-card-text class="text-center py-2">
             <div class="text-body-2 text-medium-emphasis mb-1">{{ skill.name }}</div>
             <strong class="text-h6">{{ character.skill(skill.id) }}</strong>
+            <div v-if="store.character.combatSkillFocuses.includes(skill.id)">
+              <TooltipChip
+                label="Combat Focus"
+                tooltip="Gains an expanded crit range on Tasks using this Skill in combat, instead of relying on written Focuses."
+              />
+            </div>
           </v-card-text>
         </v-card>
       </v-col>

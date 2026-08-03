@@ -21,6 +21,8 @@ const emit = defineEmits<{
       removeTalentIds?: string[]
       removeFocusText?: string
       replacementFocusText?: string
+      thirdCombatFocusSkillId?: SkillId
+      reassignedCombatSkillFocuses?: SkillId[]
     },
   ]
 }>()
@@ -83,6 +85,23 @@ const respecNarrativeOldId = ref<string | null>(null)
 const respecCombatReplace = ref(false)
 const respecCombatOldId = ref<string | null>(null)
 
+/** Mandatory grant, not a respec option - "you may choose a third Skill at Level 6". */
+const isThirdCombatFocusLevel = computed(() => newLevel.value === CoreContent.advancement.thirdCombatFocusUnlockLevel)
+const thirdCombatFocusSkillId = ref<SkillId | null>(null)
+const thirdCombatFocusItems = computed(() =>
+  skillItems.filter((s) => !props.character.combatSkillFocuses.includes(s.value)),
+)
+
+/** "Instead, You May Also... Reassign which Skills your Combat Focuses are in" - covers only the
+ * Combat Focuses already held (the mandatory Level 6 grant above is independent and additive). */
+const respecCombatFocusReassign = ref(false)
+const respecCombatFocusNewIds = ref<(SkillId | null)[]>([])
+function combatFocusReassignItemsForSlot(slotIndex: number) {
+  return skillItems.filter(
+    (s) => !respecCombatFocusNewIds.value.some((picked, i) => i !== slotIndex && picked === s.value),
+  )
+}
+
 /** Resets the form's picks whenever the dialog is (re)opened for a fresh level. */
 function reset() {
   attributeAllocations.value = Array(row.value?.attributePoints ?? 0).fill(null)
@@ -102,6 +121,9 @@ function reset() {
   respecNarrativeOldId.value = null
   respecCombatReplace.value = false
   respecCombatOldId.value = null
+  thirdCombatFocusSkillId.value = null
+  respecCombatFocusReassign.value = false
+  respecCombatFocusNewIds.value = Array(props.character.combatSkillFocuses.length).fill(null)
 }
 
 watch(
@@ -239,6 +261,9 @@ const isReady = computed(() => {
     !respecFocusReplace.value || (respecFocusOldText.value !== null && respecFocusNewText.value.trim().length > 0)
   const narrativeSwapResolved = !respecNarrativeReplace.value || respecNarrativeOldId.value !== null
   const combatSwapResolved = !respecCombatReplace.value || respecCombatOldId.value !== null
+  const thirdCombatFocusResolved = !isThirdCombatFocusLevel.value || thirdCombatFocusSkillId.value !== null
+  const combatFocusReassignResolved =
+    !respecCombatFocusReassign.value || respecCombatFocusNewIds.value.every((v) => v !== null)
   return (
     attributesResolved &&
     skillsResolved &&
@@ -249,7 +274,9 @@ const isReady = computed(() => {
     skillSwapResolved &&
     focusSwapResolved &&
     narrativeSwapResolved &&
-    combatSwapResolved
+    combatSwapResolved &&
+    thirdCombatFocusResolved &&
+    combatFocusReassignResolved
   )
 })
 
@@ -287,6 +314,10 @@ function confirm() {
     removeTalentIds: removeTalentIds.length ? removeTalentIds : undefined,
     removeFocusText: respecFocusReplace.value ? (respecFocusOldText.value ?? undefined) : undefined,
     replacementFocusText: respecFocusReplace.value ? respecFocusNewText.value : undefined,
+    thirdCombatFocusSkillId: isThirdCombatFocusLevel.value ? (thirdCombatFocusSkillId.value ?? undefined) : undefined,
+    reassignedCombatSkillFocuses: respecCombatFocusReassign.value
+      ? ([...respecCombatFocusNewIds.value] as SkillId[])
+      : undefined,
   })
   emit('update:modelValue', false)
 }
@@ -333,6 +364,16 @@ function confirm() {
         <template v-if="row.newFocus">
           <div class="text-subtitle-2 mt-3 mb-1">New Focus</div>
           <v-text-field v-model="focusText" label="Focus" density="compact" />
+        </template>
+
+        <template v-if="isThirdCombatFocusLevel">
+          <div class="text-subtitle-2 mt-3 mb-1">Third Combat Skill Focus</div>
+          <v-select
+            v-model="thirdCombatFocusSkillId"
+            :items="thirdCombatFocusItems"
+            label="Choose Skill"
+            density="compact"
+          />
         </template>
 
         <template v-if="row.narrativeTalents > 0 || row.combatTalents > 0 || effectiveNarrativeCount > 0 || effectiveCombatCount > 0">
@@ -441,6 +482,24 @@ function confirm() {
           density="compact"
           class="mb-2"
         />
+
+        <v-checkbox
+          v-model="respecCombatFocusReassign"
+          label="Reassign Combat Skill Focuses"
+          density="compact"
+          hide-details
+          :disabled="!character.combatSkillFocuses.length"
+        />
+        <v-row v-if="respecCombatFocusReassign" dense class="mb-2">
+          <v-col v-for="(_, i) in respecCombatFocusNewIds" :key="i" cols="12" sm="6">
+            <v-select
+              v-model="respecCombatFocusNewIds[i]"
+              :items="combatFocusReassignItemsForSlot(i)"
+              :label="`Combat Focus ${i + 1}`"
+              density="compact"
+            />
+          </v-col>
+        </v-row>
       </v-card-text>
       <v-card-actions>
         <v-spacer />

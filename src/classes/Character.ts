@@ -33,6 +33,10 @@ export interface ICharacterData {
   focuses: string[]
   values: IValue[]
   traits: ITrait[]
+  /** Skills chosen as "Combat Focuses" (optional rule): grants an expanded crit range on Tasks
+   * using that Skill in combat instead of relying on written Focuses. Two chosen at character
+   * creation, a third at Level 6 - see Advancement's `thirdCombatFocusUnlockLevel`. */
+  combatSkillFocuses: SkillId[]
 
   currentHp: number
   currentWillpower: number

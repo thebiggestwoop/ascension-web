@@ -50,6 +50,7 @@ function createBaseDraft(): ICharacterData {
     focuses: [],
     values: [],
     traits: [],
+    combatSkillFocuses: [],
     currentHp: 0,
     currentWillpower: 0,
     temporaryHp: 0,
@@ -155,6 +156,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
       this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
+      this.draft.combatSkillFocuses = [...payload.combatSkillFocuses]
 
       const { name: _name, ...finishingTouches } = payload
       this.draft.creationRecord = toPlainRecord({
@@ -185,6 +187,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
       this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
+      this.draft.combatSkillFocuses = [...payload.combatSkillFocuses]
 
       const { name: _name, ...quickBuild } = payload
       this.draft.creationRecord = toPlainRecord({ method: 'quick_build' as const, quickBuild })

@@ -4,13 +4,14 @@
   "xpThresholdPerLevel": 4,
   "tier3TalentUnlockLevel": 3,
   "multipleAt11Or4UnlockLevel": 5,
+  "thirdCombatFocusUnlockLevel": 6,
   "levelAscensionChart": [
     { "level": 1, "combatTalents": 1, "narrativeTalents": 0, "attributePoints": 2, "skillPoints": 0, "newFocus": false },
     { "level": 2, "combatTalents": 1, "narrativeTalents": 0, "attributePoints": 0, "skillPoints": 1, "newFocus": false },
     { "level": 3, "combatTalents": 1, "narrativeTalents": 1, "attributePoints": 1, "skillPoints": 0, "newFocus": false, "unlocks": "Tier 3 Talents unlock." },
     { "level": 4, "combatTalents": 1, "narrativeTalents": 0, "attributePoints": 0, "skillPoints": 1, "newFocus": true },
     { "level": 5, "combatTalents": 1, "narrativeTalents": 0, "attributePoints": 2, "skillPoints": 0, "newFocus": false, "unlocks": "Attribute 12 and Skill 5 maximums unlock; multiple Attributes at 11 and Skills at 4 are now allowed." },
-    { "level": 6, "combatTalents": 1, "narrativeTalents": 1, "attributePoints": 0, "skillPoints": 1, "newFocus": false },
+    { "level": 6, "combatTalents": 1, "narrativeTalents": 1, "attributePoints": 0, "skillPoints": 1, "newFocus": false, "unlocks": "You may choose a third Combat Skill Focus." },
     { "level": 7, "combatTalents": 1, "narrativeTalents": 0, "attributePoints": 1, "skillPoints": 0, "newFocus": false },
     { "level": 8, "combatTalents": 1, "narrativeTalents": 0, "attributePoints": 0, "skillPoints": 1, "newFocus": true },
     { "level": 9, "combatTalents": 1, "narrativeTalents": 1, "attributePoints": 2, "skillPoints": 0, "newFocus": false },
@@ -29,6 +30,7 @@
     "Decrease one Skill by 1 (to a minimum of 1) and increase another by 1 (to the level-appropriate maximum).",
     "Replace a Combat Talent that is not a prerequisite for anything else you have with any other Combat Talent you meet the prerequisites for.",
     "Replace a Narrative Talent with any other Narrative Talent you meet the prerequisites for.",
-    "Replace one of your Focuses."
+    "Replace one of your Focuses.",
+    "Reassign which Skills your Combat Focuses are in."
   ]
 }

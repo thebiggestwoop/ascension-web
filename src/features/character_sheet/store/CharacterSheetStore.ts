@@ -39,6 +39,7 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       // these fields.
       if (data && !data.levelUpHistory) data.levelUpHistory = []
       if (data && data.temporaryResistance === undefined) data.temporaryResistance = 0
+      if (data && !data.combatSkillFocuses) data.combatSkillFocuses = []
       this.character = data
       this.notFound = data === null
       this.loading = false
@@ -104,6 +105,7 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       if (!this.character) return
       const previousCurrentHp = this.character.currentHp
       const previousCurrentWillpower = this.character.currentWillpower
+      const previousCombatSkillFocuses = [...this.character.combatSkillFocuses]
 
       this.character.level += 1
       for (const [id, amount] of Object.entries(payload.attributeDeltas)) {
@@ -134,14 +136,29 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
         this.character.traits.push({ name })
       }
 
+      if (payload.reassignedCombatSkillFocuses) {
+        this.character.combatSkillFocuses = [...payload.reassignedCombatSkillFocuses]
+      }
+      if (payload.thirdCombatFocusSkillId) {
+        this.character.combatSkillFocuses = [...this.character.combatSkillFocuses, payload.thirdCombatFocusSkillId]
+      }
+
       const record: ILevelUpRecord = toPlainRecord({
         ...payload,
         level: this.character.level,
         previousCurrentHp,
         previousCurrentWillpower,
         grantedTraitNames,
+        previousCombatSkillFocuses,
       })
-      this.character.levelUpHistory = [...(this.character.levelUpHistory ?? []), record]
+      // toPlainRecord() the WHOLE array, not just `record`: once a prior level-up's history
+      // array was reassigned onto this reactive `character`, Vue re-wraps its entries in its
+      // own reactive Proxies on next read - spreading the array only copies those Proxy
+      // references, not their contents, so old entries stay Proxied even though `record` here
+      // is fresh and plain. That's harmless until persist()'s structuredClone() hits the first
+      // Proxy anywhere in the tree and throws - so every level-up after the first would fail
+      // to save without this.
+      this.character.levelUpHistory = toPlainRecord([...(this.character.levelUpHistory ?? []), record])
 
       const modifiers = computeStatModifiers(
         toRaw(this.character),
@@ -194,7 +211,9 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       this.character.level -= 1
       this.character.currentHp = record.previousCurrentHp
       this.character.currentWillpower = record.previousCurrentWillpower
-      this.character.levelUpHistory = history.slice(0, -1)
+      if (record.previousCombatSkillFocuses) this.character.combatSkillFocuses = record.previousCombatSkillFocuses
+      // Same Proxy-re-wrapping risk as levelUp()'s own history assignment - see its comment.
+      this.character.levelUpHistory = toPlainRecord(history.slice(0, -1))
 
       await this.persist()
     },

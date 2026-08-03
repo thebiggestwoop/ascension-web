@@ -132,6 +132,16 @@ const finalSkills = computed<Record<SkillId, number>>(() => {
   return result
 })
 
+/** "Focuses in Combat" optional rule: two distinct Skills chosen at creation gain an expanded
+ * crit range in combat instead of relying on written Focuses - a third can be added at Level 6. */
+const combatFocusSkillA = ref<SkillId | null>(null)
+const combatFocusSkillB = ref<SkillId | null>(null)
+const combatFocusSkillAItems = computed(() => skillItems.filter((s) => s.value !== combatFocusSkillB.value))
+const combatFocusSkillBItems = computed(() => skillItems.filter((s) => s.value !== combatFocusSkillA.value))
+const combatSkillFocuses = computed<SkillId[]>(() =>
+  [combatFocusSkillA.value, combatFocusSkillB.value].filter((s): s is SkillId => s !== null),
+)
+
 // --- Step Three: Focuses, Values, Trait, Talents ---
 const focusTexts = ref<string[]>(Array(sa.focusCount).fill(''))
 const valueTexts = ref<string[]>(Array(sa.valueCount).fill(''))
@@ -232,6 +242,7 @@ const missingRequirements = computed(() => {
   if (!skillBonusAllocations.value.every((v) => v !== null)) {
     missing.push(`Assign all ${sa.skillBonusPoints} Skill bonus points`)
   }
+  if (combatSkillFocuses.value.length !== 2) missing.push('Choose 2 Combat Skill Focuses')
   if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
   if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
   if (!traitChoice.value) missing.push('Choose Peasant, Merchant, or Noble')
@@ -269,6 +280,7 @@ async function finish() {
     inventoryItemIds: equipmentPicks.value.inventoryItemIds,
     mountId: equipmentPicks.value.mountId,
     preparedSpellIds: [...preparedSpellIds.value],
+    combatSkillFocuses: [...combatSkillFocuses.value],
   })
 
   finished.value = true
@@ -354,6 +366,20 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             label="Choose Skill"
             :is-item-disabled="isSkillBonusDisabled"
           />
+
+          <div class="text-subtitle-2 mt-4 mb-1">Combat Skill Focuses</div>
+          <p class="text-caption text-medium-emphasis mb-2">
+            Choose 2 different Skills to specialize in for combat - gains an expanded crit range
+            on Tasks using that Skill in combat. A third can be added at Level 6.
+          </p>
+          <v-row dense>
+            <v-col cols="12" sm="6">
+              <v-select v-model="combatFocusSkillA" :items="combatFocusSkillAItems" label="Combat Focus 1" density="compact" />
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select v-model="combatFocusSkillB" :items="combatFocusSkillBItems" label="Combat Focus 2" density="compact" />
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
 

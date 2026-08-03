@@ -21,6 +21,8 @@ export interface IAdvancementData {
   xpThresholdPerLevel: number
   tier3TalentUnlockLevel: number
   multipleAt11Or4UnlockLevel: number
+  /** "Focuses in Combat" optional rule: a third Combat Skill Focus may be chosen at this level. */
+  thirdCombatFocusUnlockLevel: number
   levelAscensionChart: ILevelAscensionRow[]
   experiencePoints: IExperiencePointsRow[]
   /** On level-up, in addition to the chart's grants, a character may also do one of these. */

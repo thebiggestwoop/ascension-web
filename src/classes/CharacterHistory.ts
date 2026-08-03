@@ -18,6 +18,8 @@ export interface IFinishingTouchesRecord {
   inventoryItemIds: string[]
   mountId?: string
   preparedSpellIds: string[]
+  /** The two Skills chosen as "Combat Focuses" (Chapter Six's optional rule). */
+  combatSkillFocuses: SkillId[]
 }
 
 /** Quick Build's one-shot grants, recorded verbatim as part of a character's creation history. */
@@ -36,6 +38,8 @@ export interface IQuickBuildRecord {
   inventoryItemIds: string[]
   mountId?: string
   preparedSpellIds: string[]
+  /** The two Skills chosen as "Combat Focuses" (Chapter Six's optional rule). */
+  combatSkillFocuses: SkillId[]
 }
 
 /** Every choice made while building this character, whichever of the two creation paths was used. */
@@ -60,6 +64,13 @@ export interface ILevelUpChoices {
   removeTalentIds?: string[]
   removeFocusText?: string
   replacementFocusText?: string
+  /** Granted only at Advancement's `thirdCombatFocusUnlockLevel` (Level 6) - the new third
+   * Combat Focus Skill, additive to whichever two (or three, post-reassign) are already held. */
+  thirdCombatFocusSkillId?: SkillId
+  /** "Instead, You May Also... Reassign which Skills your Combat Focuses are in" - the full
+   * replacement set (same count as currently held), applied before any thirdCombatFocusSkillId
+   * grant from this same level-up is appended on top. */
+  reassignedCombatSkillFocuses?: SkillId[]
 }
 
 /** One completed Level Up, everything needed to walk it back exactly. */
@@ -74,4 +85,9 @@ export interface ILevelUpRecord extends ILevelUpChoices {
   /** Traits granted as a side effect of this level-up's Talent picks (e.g. "Spellcaster" from
    * newly taking a Tier 1 Magick Domain Talent) - removed again if this level-up is reverted. */
   grantedTraitNames?: string[]
+  /** combatSkillFocuses immediately before this level-up - restored verbatim on revert, the same
+   * "snapshot and restore" approach as previousCurrentHp/previousCurrentWillpower, since this one
+   * field can change via either the mandatory Level 6 grant or the reassign respec (or both).
+   * Optional since level-ups recorded before this field existed won't have it. */
+  previousCombatSkillFocuses?: SkillId[]
 }
