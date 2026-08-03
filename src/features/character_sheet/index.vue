@@ -109,6 +109,50 @@ function commitEdit() {
   editingStat.value = null
 }
 
+/**
+ * Temp HP/Temp Resistance are always-visible number fields (not click-to-edit like current
+ * HP/Willpower), so they can't just bind :model-value straight to the store: typing a second
+ * digit (e.g. "1" then "0" for "10") emits an intermediate value that gets clamped and written
+ * back immediately, and the store's echoed-back prop then overwrites the input mid-keystroke -
+ * visually "snapping" the field back before the second digit lands. Editing a plain string
+ * draft instead (no live coercion) and only clamping/committing on blur avoids that; a watch
+ * keeps the draft in sync with external changes (e.g. Take Damage's Temp HP absorption) except
+ * while the field is actively focused, so it doesn't fight the player's typing.
+ */
+const tempHpDraft = ref('0')
+const tempHpFocused = ref(false)
+const tempResistanceDraft = ref('0')
+const tempResistanceFocused = ref(false)
+
+watch(
+  () => store.character?.temporaryHp,
+  (v) => {
+    if (v !== undefined && !tempHpFocused.value) tempHpDraft.value = String(v)
+  },
+  { immediate: true },
+)
+watch(
+  () => store.character?.temporaryResistance,
+  (v) => {
+    if (v !== undefined && !tempResistanceFocused.value) tempResistanceDraft.value = String(v)
+  },
+  { immediate: true },
+)
+
+function commitTempHp() {
+  tempHpFocused.value = false
+  const parsed = Math.round(Number(tempHpDraft.value))
+  store.setTemporaryHp(Number.isFinite(parsed) ? parsed : 0)
+}
+function commitTempResistance() {
+  tempResistanceFocused.value = false
+  const parsed = Math.round(Number(tempResistanceDraft.value))
+  store.setTemporaryResistance(Number.isFinite(parsed) ? parsed : 0)
+}
+function blurActiveElement(event: Event) {
+  ;(event.target as HTMLInputElement | null)?.blur()
+}
+
 /** "Take Damage"/"Recover" pop up this shared dialog with a pre-selected amount field instead
  * of making the player click a +/- button once per point. Taking Damage to HP additionally
  * offers "Apply Resistance" (reduce the incoming amount by Total Resistance first) and "Temp
@@ -480,21 +524,23 @@ const rattledText = computed(() => {
                 :color="HP_BAR_COLOR"
               />
             </div>
-            <div class="d-flex align-center justify-center mt-2" style="gap: 8px">
-              <span class="text-caption text-medium-emphasis">Temp HP</span>
-              <v-text-field
-                :model-value="store.character.temporaryHp"
-                type="number"
-                min="0"
-                max="50"
-                density="compact"
-                hide-details
-                class="no-spin-buttons"
-                style="max-width: 70px"
-                @update:model-value="(v) => store.setTemporaryHp(Number(v))"
-              />
-            </div>
-            <div class="d-flex justify-center mt-2" style="gap: 8px">
+            <div class="d-flex align-center justify-center mt-2 flex-wrap" style="gap: 12px">
+              <div class="d-flex align-center" style="gap: 8px">
+                <span class="text-caption text-medium-emphasis">Temp HP</span>
+                <v-text-field
+                  v-model="tempHpDraft"
+                  type="number"
+                  min="0"
+                  max="50"
+                  density="compact"
+                  hide-details
+                  class="no-spin-buttons centered-number-input"
+                  style="max-width: 70px"
+                  @focus="tempHpFocused = true"
+                  @blur="commitTempHp"
+                  @keyup.enter="blurActiveElement"
+                />
+              </div>
               <v-btn size="small" variant="tonal" color="error" @click="openAdjustDialog('hp', 'damage')">
                 Take Damage
               </v-btn>
@@ -604,15 +650,17 @@ const rattledText = computed(() => {
                 <div>
                   <div class="text-caption text-medium-emphasis">Temporary</div>
                   <v-text-field
-                    :model-value="store.character.temporaryResistance"
+                    v-model="tempResistanceDraft"
                     type="number"
                     min="0"
                     max="5"
                     density="compact"
                     hide-details
-                    class="no-spin-buttons mx-auto"
+                    class="no-spin-buttons centered-number-input mx-auto"
                     style="max-width: 70px"
-                    @update:model-value="(v) => store.setTemporaryResistance(Number(v))"
+                    @focus="tempResistanceFocused = true"
+                    @blur="commitTempResistance"
+                    @keyup.enter="blurActiveElement"
                   />
                 </div>
                 <div>
@@ -854,5 +902,9 @@ const rattledText = computed(() => {
 }
 .no-spin-buttons :deep(input[type='number']) {
   -moz-appearance: textfield;
+}
+
+.centered-number-input :deep(input) {
+  text-align: center;
 }
 </style>
