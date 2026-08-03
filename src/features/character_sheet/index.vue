@@ -261,16 +261,20 @@ const speedTooltip = computed(() => {
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
-/** "While mounted, your Speed is effectively replaced by the mount's." */
+/** "While mounted, your Speed is effectively replaced by the mount's" - but a Wound reduces
+ * "your Speed" generally, so the -2 penalty still applies to whichever Speed is currently in
+ * effect, mounted or not. */
 const mountedSpeedValue = computed(() => {
   if (!character.value || !mount.value) return 0
-  return mountedSpeed(mount.value, character.value.attribute(mount.value.ridingAttribute))
+  const base = mountedSpeed(mount.value, character.value.attribute(mount.value.ridingAttribute))
+  return base - (speedWoundPenalty.value ? 2 : 0)
 })
 const mountedSpeedTooltip = computed(() => {
   if (!character.value || !mount.value) return ''
   const attrName = attributeName(mount.value.ridingAttribute)
   const attrValue = character.value.attribute(mount.value.ridingAttribute)
-  return `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2) - replaces your own Speed while mounted`
+  const base = `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2) - replaces your own Speed while mounted`
+  return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
 const hpTooltip = computed(() => {
@@ -571,7 +575,11 @@ const rattledText = computed(() => {
 
               <template v-if="mount">
                 <div class="text-caption text-medium-emphasis mt-2">Mounted Speed</div>
-                <DerivedValueBadge :display="`${mountedSpeedValue}`" :tooltip="mountedSpeedTooltip" />
+                <DerivedValueBadge
+                  :display="`${mountedSpeedValue}`"
+                  :tooltip="mountedSpeedTooltip"
+                  :warn="speedWoundPenalty"
+                />
               </template>
             </v-card>
           </v-col>
@@ -667,7 +675,11 @@ const rattledText = computed(() => {
                     <v-col cols="6" sm="4">Riding: <strong>{{ attributeName(mount.ridingAttribute) }}</strong></v-col>
                     <v-col cols="6" sm="4">
                       Speed:
-                      <DerivedValueBadge :display="`${mountedSpeedValue}`" :tooltip="mountedSpeedTooltip" />
+                      <DerivedValueBadge
+                        :display="`${mountedSpeedValue}`"
+                        :tooltip="mountedSpeedTooltip"
+                        :warn="speedWoundPenalty"
+                      />
                     </v-col>
                   </v-row>
                   <div class="mt-1">
