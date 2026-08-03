@@ -49,6 +49,15 @@ export interface IQualityInstance {
   value?: number
 }
 
+/** "You may carry 5 items... Bulky items count as 2" (Chapter Seven) - shared by the builder's
+ * EquipmentPicker and the Character Sheet's Inventory Slots display so the two can't drift. */
+export const MAX_INVENTORY_SLOTS = 5
+
+/** Bulky items cost 2 inventory slots; everything else costs 1. */
+export function equipmentSlotCost(qualities: IQualityInstance[]): number {
+  return qualities.some((q) => q.quality === EquipmentQuality.Bulky) ? 2 : 1
+}
+
 export interface IWeaponData {
   id: string
   name: string

@@ -2,15 +2,13 @@
 import { computed, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import type { AttributeId } from '@/classes/enums'
-import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
+import { WeaponTag, MAX_INVENTORY_SLOTS, equipmentSlotCost } from '@/classes/Equipment'
 import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
 import type { IMountData } from '@/classes/Mount'
 import { mountedSpeed } from '@/classes/Mount'
 import TooltipChip from '@/ui/TooltipChip.vue'
 import QuantityStepper from '@/ui/QuantityStepper.vue'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
-
-const MAX_SLOTS = 5
 
 /**
  * Equipping the same item more than once is meaningful in Ascension (dual-wielding two
@@ -62,14 +60,6 @@ function countOccurrences(ids: string[]): Record<string, number> {
   const counts: Record<string, number> = {}
   for (const id of ids) counts[id] = (counts[id] ?? 0) + 1
   return counts
-}
-
-function isBulky(qualities: IQualityInstance[]): boolean {
-  return qualities.some((q) => q.quality === EquipmentQuality.Bulky)
-}
-
-function itemCost(qualities: IQualityInstance[]): number {
-  return isBulky(qualities) ? 2 : 1
 }
 
 const weaponCounts = ref<Record<string, number>>(countOccurrences(props.initialEquippedWeaponIds))
@@ -130,28 +120,29 @@ const generalItemDescriptions = new Map(CoreContent.equipment.general.map((g) =>
 const slotsUsed = computed(() => {
   let slots = 0
   for (const w of CoreContent.equipment.weapons) {
-    slots += (weaponCounts.value[w.id] ?? 0) * itemCost(w.qualities)
+    slots += (weaponCounts.value[w.id] ?? 0) * equipmentSlotCost(w.qualities)
   }
   if (selectedArmorId.value) {
     const a = CoreContent.equipment.armor.find((x) => x.id === selectedArmorId.value)
-    if (a) slots += itemCost(a.qualities)
+    if (a) slots += equipmentSlotCost(a.qualities)
   }
   for (const i of allInventoryItems) {
-    slots += (inventoryCounts.value[i.id] ?? 0) * itemCost(i.qualities)
+    slots += (inventoryCounts.value[i.id] ?? 0) * equipmentSlotCost(i.qualities)
   }
   return slots
 })
 
 /**
- * Highest count an item could reach without pushing total slots past MAX_SLOTS. `otherSlotsUsed`
- * already excludes this item's own current contribution, so the remaining budget - divided by
- * this item's cost - IS the max count directly; it must not also add `currentCount` on top
- * (that double-counts the item's existing slots and let the total silently exceed MAX_SLOTS).
+ * Highest count an item could reach without pushing total slots past MAX_INVENTORY_SLOTS.
+ * `otherSlotsUsed` already excludes this item's own current contribution, so the remaining
+ * budget - divided by this item's cost - IS the max count directly; it must not also add
+ * `currentCount` on top (that double-counts the item's existing slots and lets the total
+ * silently exceed MAX_INVENTORY_SLOTS).
  */
 function maxCountFor(currentCount: number, qualities: IQualityInstance[]): number {
-  const cost = itemCost(qualities)
+  const cost = equipmentSlotCost(qualities)
   const otherSlotsUsed = slotsUsed.value - currentCount * cost
-  return Math.floor((MAX_SLOTS - otherSlotsUsed) / cost)
+  return Math.floor((MAX_INVENTORY_SLOTS - otherSlotsUsed) / cost)
 }
 
 function setWeaponCount(id: string, value: number) {
@@ -196,9 +187,9 @@ watch(
 
 <template>
   <div>
-    <div class="text-body-2 mb-2">Inventory slots used: {{ slotsUsed }} / {{ MAX_SLOTS }} (Bulky items cost 2)</div>
-    <v-alert v-if="slotsUsed > MAX_SLOTS" type="warning" variant="tonal" density="compact" class="mb-3">
-      Over your {{ MAX_SLOTS }}-slot inventory limit by {{ slotsUsed - MAX_SLOTS }} - remove something before finishing.
+    <div class="text-body-2 mb-2">Inventory slots used: {{ slotsUsed }} / {{ MAX_INVENTORY_SLOTS }} (Bulky items cost 2)</div>
+    <v-alert v-if="slotsUsed > MAX_INVENTORY_SLOTS" type="warning" variant="tonal" density="compact" class="mb-3">
+      Over your {{ MAX_INVENTORY_SLOTS }}-slot inventory limit by {{ slotsUsed - MAX_INVENTORY_SLOTS }} - remove something before finishing.
     </v-alert>
 
     <div class="text-subtitle-2 mb-1">Weapons</div>

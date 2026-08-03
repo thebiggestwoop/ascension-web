@@ -4,7 +4,7 @@ import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { AttributeId, SkillId, TalentCategory } from '@/classes/enums'
 import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
-import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
+import { EquipmentQuality, WeaponTag, MAX_INVENTORY_SLOTS, equipmentSlotCost } from '@/classes/Equipment'
 import { mountedSpeed } from '@/classes/Mount'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
@@ -272,6 +272,27 @@ const inventoryGroups = computed(() => {
 const mount = computed(() =>
   store.character?.mountId ? CoreContent.equipment.mounts.find((m) => m.id === store.character!.mountId) : undefined,
 )
+
+/** Weapons + Armor + Inventory items all draw from the same 5-slot cap (Bulky = 2) - Mounts
+ * aren't carried, so they don't count. */
+const usedInventorySlots = computed(() => {
+  let slots = 0
+  for (const g of equippedWeaponGroups.value) slots += g.count * equipmentSlotCost(g.weapon.qualities)
+  if (equippedArmor.value) slots += equipmentSlotCost(equippedArmor.value.qualities)
+  for (const g of inventoryGroups.value) slots += g.count * equipmentSlotCost(g.item.qualities)
+  return slots
+})
+
+const allSpells = [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark]
+const usedSpellSlots = computed(() => {
+  if (!store.character) return 0
+  let slots = 0
+  for (const id of store.character.preparedSpellIds) {
+    const spell = allSpells.find((s) => s.id === id)
+    if (spell) slots += spell.slotCost
+  }
+  return slots
+})
 
 /** "Agility / 17" style Task display: attribute(s) + that attribute's value plus Skirmish. */
 function weaponTask(weapon: IWeaponData): string {
@@ -702,9 +723,14 @@ const rattledText = computed(() => {
     <v-row>
       <v-col cols="12" md="7">
         <v-card variant="outlined" class="mb-4">
-          <v-card-title class="d-flex align-center justify-space-between">
+          <v-card-title class="d-flex align-center justify-space-between flex-wrap ga-2">
             <span>Equipment</span>
-            <v-btn size="small" variant="tonal" @click="showLoadoutEditor = true">Edit Loadout</v-btn>
+            <div class="d-flex align-center ga-3">
+              <span class="text-body-2 text-medium-emphasis">
+                Inventory Slots: {{ usedInventorySlots }} / {{ MAX_INVENTORY_SLOTS }}
+              </span>
+              <v-btn size="small" variant="tonal" @click="showLoadoutEditor = true">Edit Loadout</v-btn>
+            </div>
           </v-card-title>
           <v-card-text>
             <div class="text-subtitle-2 mb-1">Weapons</div>
@@ -868,9 +894,14 @@ const rattledText = computed(() => {
         </v-card>
 
         <v-card variant="outlined">
-          <v-card-title class="d-flex align-center justify-space-between">
+          <v-card-title class="d-flex align-center justify-space-between flex-wrap ga-2">
             <span>Spells</span>
-            <v-btn size="small" variant="tonal" @click="showSpellEditor = true">Edit Spells</v-btn>
+            <div class="d-flex align-center ga-3">
+              <span class="text-body-2 text-medium-emphasis">
+                Spell Slots: {{ usedSpellSlots }} / {{ character.spellSlots }}
+              </span>
+              <v-btn size="small" variant="tonal" @click="showSpellEditor = true">Edit Spells</v-btn>
+            </div>
           </v-card-title>
           <v-card-text>
             <SpellsSection :character="character" :prepared-spell-ids="store.character.preparedSpellIds" />
