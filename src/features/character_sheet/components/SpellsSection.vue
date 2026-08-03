@@ -55,7 +55,7 @@ function usesDisplay(spell: ISpellData, count: number): string {
   </div>
   <div v-else-if="!preparedGroups.length" class="text-medium-emphasis">No spells prepared.</div>
   <v-card v-for="g in preparedGroups" :key="g.spell.id" variant="tonal" class="mb-2">
-    <v-card-title class="d-flex align-center justify-space-between">
+    <v-card-title class="text-subtitle-1 d-flex align-center justify-space-between">
       <span>{{ g.spell.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
       <v-chip size="small">Tier {{ g.spell.tier }}</v-chip>
     </v-card-title>
