@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { toRaw } from 'vue'
 import type { AttributeId, SkillId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
-import { Character, computeStatModifiers } from '@/classes/Character'
+import { Character, computeStatModifiers, migrateLegacyCharacterData } from '@/classes/Character'
 import type { ILevelUpChoices, ILevelUpRecord } from '@/classes/CharacterHistory'
 import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
@@ -35,12 +35,7 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       this.loading = true
       this.notFound = false
       const data = await loadCharacter(id)
-      // Characters saved before Level Up history/Temporary Resistance were tracked won't have
-      // these fields.
-      if (data && !data.levelUpHistory) data.levelUpHistory = []
-      if (data && data.temporaryResistance === undefined) data.temporaryResistance = 0
-      if (data && !data.combatSkillFocuses) data.combatSkillFocuses = []
-      if (data && data.notes === undefined) data.notes = ''
+      if (data) migrateLegacyCharacterData(data)
       this.character = data
       this.notFound = data === null
       this.loading = false

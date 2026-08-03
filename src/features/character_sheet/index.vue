@@ -6,6 +6,7 @@ import { AttributeId, SkillId, TalentCategory } from '@/classes/enums'
 import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
 import { EquipmentQuality, WeaponTag, MAX_INVENTORY_SLOTS, equipmentSlotCost } from '@/classes/Equipment'
 import { mountedSpeed } from '@/classes/Mount'
+import { exportCharacterToFile } from '@/io/CharacterTransfer'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
 import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
@@ -427,9 +428,12 @@ const rattledText = computed(() => {
   </v-container>
 
   <v-container v-else-if="character && store.character">
-    <div class="d-flex align-center justify-space-between mb-1">
+    <div class="d-flex align-center justify-space-between mb-1 flex-wrap ga-2">
       <h2 class="text-h5">{{ character.name || 'Unnamed Character' }}</h2>
-      <v-btn variant="text" size="small" to="/sheet">Back to Characters</v-btn>
+      <div class="d-flex align-center ga-2">
+        <v-btn variant="text" size="small" @click="exportCharacterToFile(store.character)">Export</v-btn>
+        <v-btn variant="text" size="small" to="/sheet">Back to Characters</v-btn>
+      </div>
     </div>
     <div class="d-flex align-center mb-4">
       <p class="text-body-2 text-medium-emphasis mr-4 mb-0">Level {{ character.level }}</p>

@@ -73,6 +73,20 @@ export interface ICharacterData {
 }
 
 /**
+ * Backfills fields added after a character may have been saved (loaded from IndexedDB, or an
+ * imported export file from an older version of the app) - each check mirrors the field's own
+ * "optional since older saves won't have it" doc comment on ICharacterData. Mutates and returns
+ * the same object for convenient chaining at a call site.
+ */
+export function migrateLegacyCharacterData(data: ICharacterData): ICharacterData {
+  if (!data.levelUpHistory) data.levelUpHistory = []
+  if (data.temporaryResistance === undefined) data.temporaryResistance = 0
+  if (!data.combatSkillFocuses) data.combatSkillFocuses = []
+  if (data.notes === undefined) data.notes = ''
+  return data
+}
+
+/**
  * Passive bonuses to derived stats resolved from a character's held Talents and equipped
  * items. Not part of ICharacterData - it's derived from talentIds/equipment against the
  * rules content, so it's computed fresh via computeStatModifiers() rather than stored.
