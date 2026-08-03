@@ -5,7 +5,9 @@ import { characterSheetRoutes } from '@/features/character_sheet/routes'
 import { compendiumRoutes } from '@/features/compendium/routes'
 
 const router = createRouter({
-  history: createWebHistory(),
+  // Matches vite.config.ts's `base` - this app is served at heroclub.app/ascension-web/, not
+  // the domain root.
+  history: createWebHistory('/ascension-web/'),
   routes: [
     {
       path: '/',

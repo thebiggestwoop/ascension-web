@@ -1,31 +1,51 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ascension</title>
-    <script type="text/javascript">
-      // Single Page Apps for GitHub Pages: https://github.com/rafgraph/spa-github-pages
-      // Undoes 404.html's redirect encoding, restoring the real path into browser history
-      // *before* Vue Router reads the URL, so a hard refresh on e.g. "/builder" lands back
-      // on "/builder" instead of getting stuck on "/".
-      ;(function (l) {
-        if (l.search[1] === '/') {
-          var decoded = l.search
-            .slice(1)
-            .split('&')
-            .map(function (s) {
-              return s.replace(/~and~/g, '&')
-            })
-            .join('?')
-          window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash)
-        }
-      })(window.location)
-    </script>
-    <script type="module" crossorigin src="/assets/index-CggWNLZ1.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-RI0Ol9aL.css">
+    <title>HeroClub</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background: #121212;
+        color: #eee;
+      }
+      main {
+        text-align: center;
+        padding: 2rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin: 0 0 1rem;
+      }
+      p {
+        color: #aaa;
+        margin: 0 0 2rem;
+      }
+      a.app-link {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        background: #6750a4;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      a.app-link:hover {
+        background: #7f67be;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <main>
+      <h1>HeroClub</h1>
+      <p>A home for tabletop companion apps.</p>
+      <a class="app-link" href="/ascension-web/">Open Ascension</a>
+    </main>
   </body>
 </html>
