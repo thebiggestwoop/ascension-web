@@ -2,7 +2,7 @@
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
-import { AttributeId, SkillId } from '@/classes/enums'
+import { AttributeId, SkillId, TalentCategory } from '@/classes/enums'
 import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
 import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
 import { mountedSpeed } from '@/classes/Mount'
@@ -238,6 +238,9 @@ const heldTalents = computed(() => {
   const ids = store.character.talentIds
   return allTalents.filter((t) => ids.includes(t.id))
 })
+
+const talentCategoryFilter = ref<TalentCategory>(TalentCategory.Narrative)
+const filteredHeldTalents = computed(() => heldTalents.value.filter((t) => t.category === talentCategoryFilter.value))
 
 /** Weapons equipped, grouped by id with a count (dual-wielding two of the same weapon is common). */
 const equippedWeaponGroups = computed(() => {
@@ -809,14 +812,20 @@ const rattledText = computed(() => {
         </v-card>
 
         <v-card variant="outlined">
-          <v-card-title>Talents</v-card-title>
+          <v-card-title class="d-flex align-center justify-space-between flex-wrap ga-2">
+            Talents
+            <v-btn-toggle v-model="talentCategoryFilter" mandatory density="compact" color="primary" variant="outlined">
+              <v-btn :value="TalentCategory.Narrative" size="small">Narrative</v-btn>
+              <v-btn :value="TalentCategory.Combat" size="small">Combat</v-btn>
+            </v-btn-toggle>
+          </v-card-title>
           <v-card-text>
-            <v-card v-for="t in heldTalents" :key="t.id" variant="tonal" class="mb-2">
+            <v-card v-for="t in filteredHeldTalents" :key="t.id" variant="tonal" class="mb-2">
               <v-card-title class="text-subtitle-1">{{ t.name }}</v-card-title>
               <v-card-subtitle>{{ t.group }}<span v-if="t.tier"> - Tier {{ t.tier }}</span></v-card-subtitle>
               <v-card-text>{{ t.effectText }}</v-card-text>
             </v-card>
-            <span v-if="!heldTalents.length" class="text-medium-emphasis">None</span>
+            <span v-if="!filteredHeldTalents.length" class="text-medium-emphasis">None</span>
           </v-card-text>
         </v-card>
       </v-col>
