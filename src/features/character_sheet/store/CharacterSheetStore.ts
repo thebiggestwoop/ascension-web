@@ -40,6 +40,7 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       if (data && !data.levelUpHistory) data.levelUpHistory = []
       if (data && data.temporaryResistance === undefined) data.temporaryResistance = 0
       if (data && !data.combatSkillFocuses) data.combatSkillFocuses = []
+      if (data && data.notes === undefined) data.notes = ''
       this.character = data
       this.notFound = data === null
       this.loading = false
@@ -98,6 +99,11 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
     async updatePreparedSpells(preparedSpellIds: string[]) {
       if (!this.character) return
       this.character.preparedSpellIds = preparedSpellIds
+      await this.persist()
+    },
+    async updateNotes(notes: string) {
+      if (!this.character) return
+      this.character.notes = notes
       await this.persist()
     },
     /** Applies one Level Ascension Chart entry's grants and refills HP/Willpower to the new max. */

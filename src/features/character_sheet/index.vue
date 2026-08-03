@@ -11,6 +11,7 @@ import LevelUpDialog from './components/LevelUpDialog.vue'
 import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
 import SpellEditorDialog from './components/SpellEditorDialog.vue'
 import SpellsSection from './components/SpellsSection.vue'
+import NotesEditor from './components/NotesEditor.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
 import SegmentedBar from '@/ui/SegmentedBar.vue'
@@ -282,6 +283,8 @@ const usedInventorySlots = computed(() => {
   for (const g of inventoryGroups.value) slots += g.count * equipmentSlotCost(g.item.qualities)
   return slots
 })
+
+const isSpellcaster = computed(() => store.character?.traits.some((t) => t.name === 'Spellcaster') ?? false)
 
 const allSpells = [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark]
 const usedSpellSlots = computed(() => {
@@ -899,7 +902,7 @@ const rattledText = computed(() => {
           </v-card-text>
         </v-card>
 
-        <v-card variant="outlined">
+        <v-card v-if="isSpellcaster" variant="outlined" class="mb-4">
           <v-card-title class="d-flex align-center justify-space-between flex-wrap ga-2">
             <span>Spells</span>
             <div class="d-flex align-center ga-3">
@@ -911,6 +914,13 @@ const rattledText = computed(() => {
           </v-card-title>
           <v-card-text>
             <SpellsSection :character="character" :prepared-spell-ids="store.character.preparedSpellIds" />
+          </v-card-text>
+        </v-card>
+
+        <v-card variant="outlined">
+          <v-card-title>Notes</v-card-title>
+          <v-card-text>
+            <NotesEditor :model-value="store.character.notes" @change="store.updateNotes" />
           </v-card-text>
         </v-card>
       </v-col>

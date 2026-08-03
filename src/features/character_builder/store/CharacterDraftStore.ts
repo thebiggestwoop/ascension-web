@@ -62,6 +62,7 @@ function createBaseDraft(): ICharacterData {
     inventoryItemIds: [],
     preparedSpellIds: [],
     levelUpHistory: [],
+    notes: '',
   }
 }
 

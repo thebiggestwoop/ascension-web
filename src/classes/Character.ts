@@ -67,6 +67,9 @@ export interface ICharacterData {
   /** Every completed Level Up, in order ascended - lets the character revert its most recent
    * Level Up by walking the last entry's grants back off. */
   levelUpHistory: ILevelUpRecord[]
+
+  /** Freeform player notes, entered as simple Markdown. */
+  notes: string
 }
 
 /**
