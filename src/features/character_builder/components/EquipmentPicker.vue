@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
+import type { AttributeId } from '@/classes/enums'
 import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
 import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
+import type { IMountData } from '@/classes/Mount'
+import { mountedSpeed } from '@/classes/Mount'
 import TooltipChip from '@/ui/TooltipChip.vue'
 import QuantityStepper from '@/ui/QuantityStepper.vue'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
@@ -31,12 +34,16 @@ const props = withDefaults(
      * the Skirmish Skill of the character" (Chapter Seven), so the damage shown here matches
      * what the Character Sheet's Equipment card will show once equipped. */
     skirmishSkill?: number
+    /** Current Attributes - a Mount's Speed is baseSpeed + floor(its Riding Attribute / 2), so
+     * the value shown here matches what the Character Sheet will show once equipped. */
+    attributes?: Record<AttributeId, number>
   }>(),
   {
     initialEquippedWeaponIds: () => [],
     initialInventoryItemIds: () => [],
     talentIds: () => [],
     skirmishSkill: 0,
+    attributes: () => ({}) as Record<AttributeId, number>,
   },
 )
 
@@ -103,14 +110,19 @@ const armorItems = computed(() => [
 ])
 const canRideFlyingMounts = computed(() => props.talentIds.includes('flier_1'))
 
-const mountItems = computed(() => [
-  { title: 'None', value: null },
-  ...CoreContent.equipment.mounts.map((m) => ({
-    title: m.canFly && !canRideFlyingMounts.value ? `${m.name} (Requires Flier 1)` : m.name,
-    value: m.id,
-    disabled: m.canFly && !canRideFlyingMounts.value,
-  })),
-])
+function ridingAttributeName(id: AttributeId): string {
+  return CoreContent.attributes.find((a) => a.id === id)?.name ?? id
+}
+/** "A [Mount] has a Speed equal to [baseSpeed] + half your Riding (rounded down)" - live so it
+ * matches what the Character Sheet will show once this Mount is equipped. */
+function mountSpeedDisplay(mount: IMountData): string {
+  const attrValue = props.attributes[mount.ridingAttribute] ?? 0
+  return `${mountedSpeed(mount, attrValue)}`
+}
+function mountSpeedTooltip(mount: IMountData): string {
+  const attrValue = props.attributes[mount.ridingAttribute] ?? 0
+  return `${mount.baseSpeed} + floor(${ridingAttributeName(mount.ridingAttribute)} ${attrValue} / 2) - replaces your own Speed while mounted`
+}
 
 const allInventoryItems = [...CoreContent.equipment.shields, ...CoreContent.equipment.general]
 const generalItemDescriptions = new Map(CoreContent.equipment.general.map((g) => [g.id, g.description]))
@@ -240,7 +252,29 @@ watch(
     </div>
 
     <div class="text-subtitle-2 mt-3 mb-1">Mount (optional, no slot cost)</div>
-    <v-select v-model="selectedMountId" :items="mountItems" item-props density="compact" label="Mount" />
+    <v-radio-group v-model="selectedMountId" hide-details>
+      <div
+        v-for="m in CoreContent.equipment.mounts"
+        :key="m.id"
+        class="d-flex align-center flex-wrap mb-1"
+        style="gap: 8px"
+      >
+        <v-radio :value="m.id" :label="m.name" :disabled="m.canFly && !canRideFlyingMounts" />
+        <span class="text-body-2">Riding: <strong>{{ ridingAttributeName(m.ridingAttribute) }}</strong></span>
+        <span class="text-body-2">
+          Speed:
+          <DerivedValueBadge :display="mountSpeedDisplay(m)" :tooltip="mountSpeedTooltip(m)" />
+        </span>
+        <TooltipChip v-if="m.canFly" label="Flies" />
+        <TooltipChip
+          v-if="m.canFly && !canRideFlyingMounts"
+          label="Requires Flier 1"
+          tooltip="You must have the Flier 1 Talent to ride a flying Mount."
+        />
+        <TooltipChip v-if="m.specialRules" label="Special Rules" :tooltip="m.specialRules" />
+      </div>
+      <v-radio :value="null" label="None" />
+    </v-radio-group>
   </div>
 </template>
 

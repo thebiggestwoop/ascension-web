@@ -5,6 +5,7 @@ import { Character, computeStatModifiers } from '@/classes/Character'
 import { AttributeId, SkillId } from '@/classes/enums'
 import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
 import { EquipmentQuality, WeaponTag } from '@/classes/Equipment'
+import { mountedSpeed } from '@/classes/Mount'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
 import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
@@ -12,7 +13,6 @@ import SpellEditorDialog from './components/SpellEditorDialog.vue'
 import SpellsSection from './components/SpellsSection.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
-import StatTile from '@/ui/StatTile.vue'
 import SegmentedBar from '@/ui/SegmentedBar.vue'
 
 const HP_BAR_COLOR = '#750303'
@@ -240,45 +240,37 @@ function effectSaveTooltip(id: AttributeId): string {
   return `floor(${attributeName(id)} ${character.value.attribute(id)} / 2) - 1`
 }
 
-interface IStatTile {
-  label: string
-  display: string
-  tooltip: string
-}
-
-/** The character's simple derived stats - Speed/Damage Bonus/Spell Slots - each shown as its
- * own prominent tile with a hover tooltip explaining the calculation. HP/Willpower get their
- * own dedicated bar displays, and Resistance its own main/temporary/total box, instead (see
- * below). */
-const derivedTiles = computed<IStatTile[]>(() => {
-  if (!character.value) return []
-  const c = character.value
-  const spellSlotBonusText = modifiers.value.spellSlotBonus ? ` + ${modifiers.value.spellSlotBonus} (Tomes)` : ''
-  return [
-    {
-      label: 'Speed',
-      display: `${c.speed}`,
-      tooltip: `3 + floor(Agility ${c.attribute(AttributeId.Agility)} / 2)`,
-    },
-    {
-      label: 'Damage Bonus',
-      display: `${c.damageBonus}`,
-      tooltip: `Equal to Skirmish Skill (${c.skill(SkillId.Skirmish)})`,
-    },
-    {
-      label: 'Spell Slots',
-      display: `${c.spellSlots}`,
-      tooltip: `Study ${c.skill(SkillId.Study)}${spellSlotBonusText}`,
-    },
-  ]
-})
-
 const resistanceTooltip = computed(() =>
   equippedArmor.value ? `${equippedArmor.value.name}'s Resistance` : 'No Armor equipped',
 )
 const totalResistanceTooltip = computed(() => {
   if (!character.value) return ''
   return `Resistance ${character.value.resistance} + Temporary Resistance ${character.value.temporaryResistance}`
+})
+
+/** "Wound 1... causing their speed to be reduced by 2" - Wound 2 doesn't stack a second
+ * reduction, it just keeps Wound 1's penalty in effect, so any Wound at all means -2 Speed. */
+const speedWoundPenalty = computed(() => (character.value?.wounds ?? 0) >= 1)
+const effectiveSpeed = computed(() => {
+  if (!character.value) return 0
+  return character.value.speed - (speedWoundPenalty.value ? 2 : 0)
+})
+const speedTooltip = computed(() => {
+  if (!character.value) return ''
+  const base = `3 + floor(Agility ${character.value.attribute(AttributeId.Agility)} / 2)`
+  return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
+})
+
+/** "While mounted, your Speed is effectively replaced by the mount's." */
+const mountedSpeedValue = computed(() => {
+  if (!character.value || !mount.value) return 0
+  return mountedSpeed(mount.value, character.value.attribute(mount.value.ridingAttribute))
+})
+const mountedSpeedTooltip = computed(() => {
+  if (!character.value || !mount.value) return ''
+  const attrName = attributeName(mount.value.ridingAttribute)
+  const attrValue = character.value.attribute(mount.value.ridingAttribute)
+  return `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2) - replaces your own Speed while mounted`
 })
 
 const hpTooltip = computed(() => {
@@ -543,7 +535,7 @@ const rattledText = computed(() => {
         </v-dialog>
 
         <v-row dense>
-          <v-col cols="6" sm="3">
+          <v-col cols="6" sm="6">
             <v-card variant="tonal" class="resistance-tile">
               <div class="text-caption text-medium-emphasis">Resistance</div>
               <DerivedValueBadge :display="`${character.resistance}`" :tooltip="resistanceTooltip" />
@@ -568,8 +560,20 @@ const rattledText = computed(() => {
               />
             </v-card>
           </v-col>
-          <v-col v-for="tile in derivedTiles" :key="tile.label" cols="6" sm="3">
-            <StatTile :label="tile.label" :display="tile.display" :tooltip="tile.tooltip" />
+          <v-col cols="6" sm="6">
+            <v-card variant="tonal" class="resistance-tile">
+              <div class="text-caption text-medium-emphasis">Speed</div>
+              <DerivedValueBadge
+                :display="`${effectiveSpeed}`"
+                :tooltip="speedTooltip"
+                :warn="speedWoundPenalty"
+              />
+
+              <template v-if="mount">
+                <div class="text-caption text-medium-emphasis mt-2">Mounted Speed</div>
+                <DerivedValueBadge :display="`${mountedSpeedValue}`" :tooltip="mountedSpeedTooltip" />
+              </template>
+            </v-card>
           </v-col>
         </v-row>
       </v-col>
@@ -656,7 +660,29 @@ const rattledText = computed(() => {
 
             <template v-if="mount">
               <div class="text-subtitle-2 mb-1">Mount</div>
-              <div class="text-medium-emphasis">{{ mount.name }}</div>
+              <v-card variant="tonal" class="mb-2">
+                <v-card-title class="text-subtitle-1">{{ mount.name }}</v-card-title>
+                <v-card-text>
+                  <v-row dense>
+                    <v-col cols="6" sm="4">Riding: <strong>{{ attributeName(mount.ridingAttribute) }}</strong></v-col>
+                    <v-col cols="6" sm="4">
+                      Speed:
+                      <DerivedValueBadge :display="`${mountedSpeedValue}`" :tooltip="mountedSpeedTooltip" />
+                    </v-col>
+                  </v-row>
+                  <div class="mt-1">
+                    <TooltipChip v-if="mount.canFly" label="Flies" />
+                    <TooltipChip
+                      v-if="mount.groundImmobile"
+                      label="Ground Immobile"
+                      tooltip="Cannot move on the ground; must be flying to move."
+                    />
+                  </div>
+                  <p v-if="mount.specialRules" class="text-body-2 text-medium-emphasis mt-1 mb-0">
+                    {{ mount.specialRules }}
+                  </p>
+                </v-card-text>
+              </v-card>
             </template>
           </v-card-text>
         </v-card>

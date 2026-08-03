@@ -365,6 +365,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           <EquipmentPicker
             :talent-ids="[...talentPicks.narrativeTalentIds, ...talentPicks.combatTalentIds]"
             :skirmish-skill="finalSkills[SkillId.Skirmish]"
+            :attributes="finalAttributes"
             @change="(p) => (equipmentPicks = p)"
           />
         </v-card-text>

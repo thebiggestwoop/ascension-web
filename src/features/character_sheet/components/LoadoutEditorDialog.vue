@@ -37,6 +37,7 @@ const emit = defineEmits<{
           :initial-mount-id="character.mountId"
           :talent-ids="character.talentIds"
           :skirmish-skill="character.skills[SkillId.Skirmish]"
+          :attributes="character.attributes"
           @change="(p) => emit('change', p)"
         />
       </v-card-text>
