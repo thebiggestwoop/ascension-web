@@ -94,9 +94,36 @@ function maxValueOf(stat: StatKey): number {
   if (!character.value) return 0
   return stat === 'hp' ? character.value.maxHp : character.value.maxWillpower
 }
+/** The current HP value immediately before the last change made to it (from any source - a
+ * pip click, Take Damage/Recover, or the inline exact-value edit) - lets the Undo button
+ * step back exactly one change. Clicking Undo swaps this to the value it just replaced, so a
+ * second click redoes the undo instead of doing nothing. Resets (only) when a different
+ * character loads, so it never undoes across characters. */
+const previousHp = ref<number | null>(null)
+
 function applyDelta(stat: StatKey, delta: number) {
-  if (stat === 'hp') store.adjustHp(delta, maxValueOf('hp'))
-  else store.adjustWillpower(delta, maxValueOf('willpower'))
+  if (stat === 'hp') {
+    if (!store.character || delta === 0) return
+    previousHp.value = store.character.currentHp
+    store.adjustHp(delta, maxValueOf('hp'))
+  } else {
+    store.adjustWillpower(delta, maxValueOf('willpower'))
+  }
+}
+
+/** A Health Bar pip's own click handler - sets current HP directly to that pip's absolute
+ * value rather than the +/- buttons' relative delta, but goes through the same applyDelta()
+ * so it's still tracked for Undo. Never touches Temporary HP. */
+function pickHp(value: number) {
+  if (!store.character) return
+  applyDelta('hp', value - store.character.currentHp)
+}
+
+function undoHp() {
+  if (previousHp.value === null || !store.character) return
+  const current = store.character.currentHp
+  store.adjustHp(previousHp.value - current, maxValueOf('hp'))
+  previousHp.value = current
 }
 
 function startEdit(stat: StatKey) {
@@ -218,7 +245,10 @@ async function confirmRevertLevelUp() {
 }
 
 onMounted(() => store.loadById(props.id))
-watch(() => props.id, (id) => store.loadById(id))
+watch(() => props.id, (id) => {
+  previousHp.value = null
+  store.loadById(id)
+})
 
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
 
@@ -618,6 +648,10 @@ const rattledText = computed(() => {
                 :filled="hpBarFilled(i - 1)"
                 :total="character.healthBar"
                 :color="HP_BAR_COLOR"
+                interactive
+                :range-start="(2 - (i - 1)) * character.healthBar"
+                :current-value="store.character.currentHp"
+                @pick="pickHp"
               />
             </div>
             <div class="d-flex align-center justify-center mt-2 flex-wrap" style="gap: 12px">
@@ -642,6 +676,9 @@ const rattledText = computed(() => {
               </v-btn>
               <v-btn size="small" variant="tonal" color="success" @click="openAdjustDialog('hp', 'recover')">
                 Recover
+              </v-btn>
+              <v-btn size="small" variant="tonal" :disabled="previousHp === null" @click="undoHp">
+                Undo
               </v-btn>
             </div>
             <div v-if="woundText" class="text-caption mt-2" :style="{ color: HP_BAR_COLOR }">
