@@ -13,6 +13,7 @@ import type {
 import type { IMountData } from '@/classes/Mount'
 import type { ITalentData, ITalentGroupIndexEntry } from '@/classes/Talent'
 import type { ISpellData } from '@/classes/Spell'
+import type { IArchetypeCategoryData, IArchetypeCharacterData } from '@/classes/Archetype'
 
 import attributesJson from '@content/attributes.json'
 import skillsJson from '@content/skills.json'
@@ -38,6 +39,10 @@ import talentIndexJson from '@content/talents/_index.json'
 import arcaneSpellsJson from '@content/spells/arcane.json'
 import lightSpellsJson from '@content/spells/light.json'
 import darkSpellsJson from '@content/spells/dark.json'
+import archetypeIndexJson from '@content/archetypes/_index.json'
+import archetypeHeroJson from '@content/archetypes/sword/hero.json'
+import archetypeTwinbladeJson from '@content/archetypes/sword/twinblade.json'
+import archetypeCavalierJson from '@content/archetypes/spear/cavalier.json'
 
 /**
  * Central place the rest of the app pulls rules content from. Right now this reads the
@@ -77,5 +82,15 @@ export const CoreContent = {
     arcane: arcaneSpellsJson as ISpellData[],
     light: lightSpellsJson as ISpellData[],
     dark: darkSpellsJson as ISpellData[],
+  },
+  archetypes: {
+    categories: archetypeIndexJson as IArchetypeCategoryData[],
+    /** Keyed by the archetype id used in _index.json - add an entry here whenever a new
+     * content/archetypes/<category>/<id>.json pregen is added. */
+    characters: {
+      hero: archetypeHeroJson as IArchetypeCharacterData,
+      twinblade: archetypeTwinbladeJson as IArchetypeCharacterData,
+      cavalier: archetypeCavalierJson as IArchetypeCharacterData,
+    } as Record<string, IArchetypeCharacterData>,
   },
 }

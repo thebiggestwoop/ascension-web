@@ -29,6 +29,10 @@ const props = withDefaults(
     maxTier?: number
     /** Character level *after* this batch is applied, for minLevel-gated (Tier 3) prerequisites. */
     level?: number
+    /** Pre-checks these Talents on mount - e.g. an Archetype pregen's own picks, so starting
+     * from an Archetype shows the same picker as Quick Build with its choices already made. */
+    initialNarrativeTalentIds?: string[]
+    initialCombatTalentIds?: string[]
   }>(),
   {
     heldTraitNames: () => [],
@@ -37,6 +41,8 @@ const props = withDefaults(
     combatCount: 4,
     maxTier: 1,
     level: 0,
+    initialNarrativeTalentIds: () => [],
+    initialCombatTalentIds: () => [],
   },
 )
 const emit = defineEmits<{ change: [payload: { narrativeTalentIds: string[]; combatTalentIds: string[] }] }>()
@@ -55,8 +61,8 @@ const combatPool = computed(() =>
   CoreContent.talents.combat.filter((t) => (t.tier ?? 1) <= props.maxTier && !props.heldTalentIds.includes(t.id)),
 )
 
-const selectedNarrativeIds = ref<string[]>([])
-const selectedCombatIds = ref<string[]>([])
+const selectedNarrativeIds = ref<string[]>([...props.initialNarrativeTalentIds])
+const selectedCombatIds = ref<string[]>([...props.initialCombatTalentIds])
 const searchText = ref('')
 
 /**
@@ -201,7 +207,10 @@ watch(
       combatTalentIds: [...selectedCombatIds.value],
     })
   },
-  { deep: true },
+  // immediate: so a caller that passes initialNarrativeTalentIds/initialCombatTalentIds (an
+  // Archetype's own picks) gets an immediate 'change' reflecting them, rather than the parent's
+  // own talentPicks ref sitting empty until the player manually touches a checkbox.
+  { deep: true, immediate: true },
 )
 </script>
 

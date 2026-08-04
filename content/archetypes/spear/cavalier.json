@@ -1,0 +1,153 @@
+{
+  "id": "1456fdec-65c6-42ba-8067-bfb49f7a0ce8",
+  "name": "Cavalier",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 6,
+    "awareness": 7,
+    "brawn": 8,
+    "coordination": 11,
+    "faith": 8,
+    "presence": 10,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 3,
+    "diplomacy": 3,
+    "study": 2,
+    "medicine": 1,
+    "intrigue": 1
+  },
+  "focuses": [
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder"
+  ],
+  "values": [
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    }
+  ],
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "authority"
+  ],
+  "currentHp": 36,
+  "currentWillpower": 8,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 0,
+  "talentIds": [
+    "knight_chivalry",
+    "knight_tourney_knight",
+    "knight_bold_and_brave",
+    "spear_adept",
+    "cavalry_adept",
+    "duelist_1",
+    "resilient_1"
+  ],
+  "equippedWeaponIds": [
+    "lance"
+  ],
+  "inventoryItemIds": [
+    "round_shield",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "mountId": "horse",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 6,
+        "awareness": 7,
+        "brawn": 8,
+        "coordination": 11,
+        "faith": 8,
+        "presence": 10,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 3,
+        "diplomacy": 3,
+        "study": 2,
+        "medicine": 1,
+        "intrigue": 1
+      },
+      "focusTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "valueTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "knight_chivalry",
+        "knight_tourney_knight",
+        "knight_bold_and_brave"
+      ],
+      "combatTalentIds": [
+        "spear_adept",
+        "cavalry_adept",
+        "duelist_1",
+        "opportunist_1"
+      ],
+      "equippedWeaponIds": [
+        "lance"
+      ],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "round_shield",
+        "healing_potion"
+      ],
+      "mountId": "horse",
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "authority"
+      ]
+    }
+  }
+}

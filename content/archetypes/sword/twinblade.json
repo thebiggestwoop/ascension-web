@@ -1,0 +1,157 @@
+{
+  "id": "8037b881-61b4-42da-80c8-004b27c5fa94",
+  "name": "Twinblade",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 11,
+    "awareness": 10,
+    "brawn": 8,
+    "coordination": 6,
+    "faith": 6,
+    "presence": 8,
+    "reason": 7
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 3
+  },
+  "focuses": [
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder"
+  ],
+  "values": [
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    }
+  ],
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Merchant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "intrigue"
+  ],
+  "currentHp": 36,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 0,
+  "talentIds": [
+    "warrior_predator",
+    "scoundrel_wallflower",
+    "scoundrel_eavesdropper",
+    "sword_adept",
+    "dual_wielding",
+    "swift_steps_1",
+    "skirmisher_1"
+  ],
+  "equippedWeaponIds": [
+    "shortsword",
+    "shortsword",
+    "throwing_knife"
+  ],
+  "inventoryItemIds": [
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 11,
+        "awareness": 10,
+        "brawn": 8,
+        "coordination": 6,
+        "faith": 6,
+        "presence": 8,
+        "reason": 7
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 3
+      },
+      "focusTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "valueTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "traitNames": [
+        "Commoner",
+        "Merchant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "warrior_predator",
+        "scoundrel_wallflower",
+        "scoundrel_eavesdropper"
+      ],
+      "combatTalentIds": [
+        "sword_adept",
+        "dual_wielding",
+        "swift_steps_1",
+        "skirmisher_1"
+      ],
+      "equippedWeaponIds": [
+        "shortsword",
+        "shortsword",
+        "throwing_knife"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "intrigue"
+      ]
+    }
+  }
+}

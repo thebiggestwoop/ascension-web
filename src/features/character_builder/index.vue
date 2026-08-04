@@ -5,6 +5,7 @@ import { useCharacterDraftStore } from './store/CharacterDraftStore'
 import LifepathStageStep from './components/LifepathStageStep.vue'
 import FinishingTouchesStep from './components/FinishingTouchesStep.vue'
 import QuickBuildStep from './components/QuickBuildStep.vue'
+import ArchetypeSelectStep from './components/ArchetypeSelectStep.vue'
 import CharacterPreview from './components/CharacterPreview.vue'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 
@@ -18,7 +19,13 @@ const stages: ILifepathStageData[] = [
 const currentStageIndex = ref(0)
 const pickedOptionIdsForCurrentStage = ref<string[]>([])
 const store = useCharacterDraftStore()
-const creationMethod = ref<'lifepath' | 'quick_build' | null>(null)
+const creationMethod = ref<'lifepath' | 'quick_build' | 'archetype' | null>(null)
+/** Set once a pregen is picked in ArchetypeSelectStep - looked up to feed QuickBuildStep's
+ * `prefill` prop, reusing that same form (pre-filled) instead of a separate one. */
+const selectedArchetypeId = ref<string | null>(null)
+const selectedArchetypeData = computed(() =>
+  selectedArchetypeId.value ? CoreContent.archetypes.characters[selectedArchetypeId.value] : undefined,
+)
 
 const currentStage = computed(() => stages[currentStageIndex.value])
 const allStagesDone = computed(() => currentStageIndex.value >= stages.length)
@@ -40,6 +47,7 @@ function startOver() {
   currentStageIndex.value = 0
   pickedOptionIdsForCurrentStage.value = []
   creationMethod.value = null
+  selectedArchetypeId.value = null
 }
 
 // The draft store is a singleton that outlives this page (e.g. it's still holding the last
@@ -61,7 +69,7 @@ onMounted(() => store.reset())
     <template v-if="!creationMethod">
       <p class="text-body-2 text-medium-emphasis mb-4">Choose how you'd like to create your character.</p>
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="4">
           <v-card variant="outlined" @click="creationMethod = 'lifepath'">
             <v-card-title>Lifepath Creation</v-card-title>
             <v-card-text>
@@ -70,7 +78,7 @@ onMounted(() => store.reset())
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="4">
           <v-card variant="outlined" @click="creationMethod = 'quick_build'">
             <v-card-title>Quick Build</v-card-title>
             <v-card-text>
@@ -79,7 +87,20 @@ onMounted(() => store.reset())
             </v-card-text>
           </v-card>
         </v-col>
+        <v-col cols="12" sm="4">
+          <v-card variant="outlined" @click="creationMethod = 'archetype'">
+            <v-card-title>Start from an Archetype</v-card-title>
+            <v-card-text>
+              Pick a pregen character built around a weapon and playstyle, then tweak anything you like -
+              a quick way to jump straight into playing.
+            </v-card-text>
+          </v-card>
+        </v-col>
       </v-row>
+    </template>
+
+    <template v-else-if="creationMethod === 'archetype' && !selectedArchetypeData">
+      <ArchetypeSelectStep @select="(id) => (selectedArchetypeId = id)" />
     </template>
 
     <v-row v-else>
@@ -94,7 +115,7 @@ onMounted(() => store.reset())
           />
           <FinishingTouchesStep v-else />
         </template>
-        <QuickBuildStep v-else />
+        <QuickBuildStep v-else :prefill="selectedArchetypeData" />
       </v-col>
       <v-col cols="12" md="5">
         <CharacterPreview />

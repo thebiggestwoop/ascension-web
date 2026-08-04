@@ -6,6 +6,7 @@ import { Character, computeStatModifiers } from '@/classes/Character'
 import { isAllocationDisabledByCeiling } from '@/classes/AllocationCaps'
 import { SPELLCASTER_TALENT_IDS, resolveMagickDomainAccess } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
+import type { IArchetypeCharacterData } from '@/classes/Archetype'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
 import EquipmentPicker from './EquipmentPicker.vue'
@@ -17,7 +18,17 @@ import SpellPicker from '@/features/character_sheet/components/SpellPicker.vue'
  * then the same Focus/Value/Talent/Trait/Equipment grants as Finishing Touches - all in one
  * step, with no Lifepath stages (so no Social Class/Career, and no Talent prerequisites tied
  * to either can ever be met via this path, matching the rules' own scope for Standard Array).
+ *
+ * Also doubles as the "Start from an Archetype" step: when `prefill` is set (an Archetype
+ * pregen), every mechanical field below (Attributes, Skills, Combat Focuses, Trait, Talents,
+ * Equipment, Spells) is pre-populated from its `creationRecord.quickBuild` record, identical to
+ * what a player choosing those same options by hand would produce - free-text fields (Focuses,
+ * Values, Defining Feature) are left blank since those are personal narrative details no
+ * Archetype can predetermine, even though the pregen JSON carries "placeholder" text for them.
  */
+const props = defineProps<{ prefill?: IArchetypeCharacterData }>()
+const prefillRecord = props.prefill?.creationRecord?.quickBuild
+
 const sa = CoreContent.standardArray
 const router = useRouter()
 const store = useCharacterDraftStore()
@@ -32,11 +43,60 @@ const ATTRIBUTE_ARRAY_CEILING = 11
 /** "Only one Skill may be equal to 4 at start, and the rest may not exceed 3." */
 const SKILL_ARRAY_CEILING = 4
 
-const nameText = ref('')
+/**
+ * Reverse-engineers a Standard Array "array slot + bonus points" allocation that reproduces a
+ * set of already-authored final values - lets an Archetype's final Attributes/Skills prefill
+ * this form's array-assignment selects instead of just the totals. Assigns each (sorted-
+ * descending) final value the largest remaining array value that still fits under it; this
+ * greedy exchange always finds a valid decomposition when one exists, and one always exists
+ * here since every Archetype is authored to fit within this same array + bonus points scheme
+ * (its final values sum to the same target the array + bonus points sum to).
+ */
+function decomposeArray(
+  finalValues: number[],
+  arrayValues: number[],
+  bonusPoints: number,
+): { arraySlots: number[]; bonusPerIndex: number[] } | null {
+  const order = finalValues.map((v, i) => ({ v, i })).sort((a, b) => b.v - a.v)
+  const remaining = [...arrayValues].sort((a, b) => b - a)
+  const arraySlots: number[] = Array(finalValues.length).fill(0)
+  const bonusPerIndex: number[] = Array(finalValues.length).fill(0)
+  for (const { v, i } of order) {
+    const pickIdx = remaining.findIndex((val) => val <= v)
+    if (pickIdx === -1) return null
+    const picked = remaining.splice(pickIdx, 1)[0]
+    arraySlots[i] = picked
+    bonusPerIndex[i] = v - picked
+  }
+  if (bonusPerIndex.reduce((a, b) => a + b, 0) !== bonusPoints) return null
+  return { arraySlots, bonusPerIndex }
+}
+
+/** Expands a per-attribute/skill bonus count (e.g. Reason +2, Agility +1) into the flat list of
+ * "which id gets the next bonus point" slots that PointAllocator's v-model expects. */
+function bonusPerIndexToSlots<T>(bonusPerIndex: number[], ids: T[], slotCount: number): (T | null)[] {
+  const slots: (T | null)[] = []
+  bonusPerIndex.forEach((count, idx) => {
+    for (let k = 0; k < count; k++) slots.push(ids[idx])
+  })
+  while (slots.length < slotCount) slots.push(null)
+  return slots
+}
+
+const nameText = ref(props.prefill?.name ?? '')
+
+const attributeDecomposition = prefillRecord
+  ? decomposeArray(allAttributeIds.map((id) => prefillRecord.attributes[id]), sa.attributeArray, sa.attributeBonusPoints)
+  : null
+const skillDecomposition = prefillRecord
+  ? decomposeArray(allSkillIds.map((id) => prefillRecord.skills[id]), sa.skillArray, sa.skillBonusPoints)
+  : null
 
 // --- Step One: assign the fixed Attribute array, one value per Attribute (no picking twice
 // past the array's own duplicates - it holds two 7s and two 6s). ---
-const attributeArrayAssignments = ref<(number | null)[]>(Array(allAttributeIds.length).fill(null))
+const attributeArrayAssignments = ref<(number | null)[]>(
+  attributeDecomposition ? [...attributeDecomposition.arraySlots] : Array(allAttributeIds.length).fill(null),
+)
 
 function remainingArrayCounts(array: number[], assignments: (number | null)[], excludeIndex: number): Map<number, number> {
   const counts = new Map<number, number>()
@@ -66,7 +126,11 @@ const baseAttributes = computed<Record<AttributeId, number>>(() => {
 })
 
 // --- Attribute bonus points (+3, freely split, capped so only one Attribute reaches 11) ---
-const attributeBonusAllocations = ref<(AttributeId | null)[]>(Array(sa.attributeBonusPoints).fill(null))
+const attributeBonusAllocations = ref<(AttributeId | null)[]>(
+  attributeDecomposition
+    ? bonusPerIndexToSlots(attributeDecomposition.bonusPerIndex, allAttributeIds, sa.attributeBonusPoints)
+    : Array(sa.attributeBonusPoints).fill(null),
+)
 const attributeItems = CoreContent.attributes.map((a) => ({ title: a.name, value: a.id }))
 
 function isAttributeBonusDisabled(itemValue: string, slotIndex: number): boolean {
@@ -89,7 +153,9 @@ const finalAttributes = computed<Record<AttributeId, number>>(() => {
 })
 
 // --- Step Two: assign the fixed Skill array ---
-const skillArrayAssignments = ref<(number | null)[]>(Array(allSkillIds.length).fill(null))
+const skillArrayAssignments = ref<(number | null)[]>(
+  skillDecomposition ? [...skillDecomposition.arraySlots] : Array(allSkillIds.length).fill(null),
+)
 
 function skillArrayItemsForSlot(slotIndex: number) {
   const counts = remainingArrayCounts(sa.skillArray, skillArrayAssignments.value, slotIndex)
@@ -110,7 +176,11 @@ const baseSkills = computed<Record<SkillId, number>>(() => {
 })
 
 // --- Skill bonus points (+2, freely split, capped so only one Skill reaches 4) ---
-const skillBonusAllocations = ref<(SkillId | null)[]>(Array(sa.skillBonusPoints).fill(null))
+const skillBonusAllocations = ref<(SkillId | null)[]>(
+  skillDecomposition
+    ? bonusPerIndexToSlots(skillDecomposition.bonusPerIndex, allSkillIds, sa.skillBonusPoints)
+    : Array(sa.skillBonusPoints).fill(null),
+)
 const skillItems = CoreContent.skills.map((s) => ({ title: s.name, value: s.id }))
 
 function isSkillBonusDisabled(itemValue: string, slotIndex: number): boolean {
@@ -134,8 +204,8 @@ const finalSkills = computed<Record<SkillId, number>>(() => {
 
 /** "Focuses in Combat" optional rule: two distinct Skills chosen at creation gain an expanded
  * crit range in combat instead of relying on written Focuses - a third can be added at Level 6. */
-const combatFocusSkillA = ref<SkillId | null>(null)
-const combatFocusSkillB = ref<SkillId | null>(null)
+const combatFocusSkillA = ref<SkillId | null>(prefillRecord?.combatSkillFocuses[0] ?? null)
+const combatFocusSkillB = ref<SkillId | null>(prefillRecord?.combatSkillFocuses[1] ?? null)
 const combatFocusSkillAItems = computed(() => skillItems.filter((s) => s.value !== combatFocusSkillB.value))
 const combatFocusSkillBItems = computed(() => skillItems.filter((s) => s.value !== combatFocusSkillA.value))
 const combatSkillFocuses = computed<SkillId[]>(() =>
@@ -159,13 +229,22 @@ const CLASS_TRAIT_NAMES: Record<'Peasant' | 'Merchant' | 'Noble', string[]> = {
   Merchant: ['Commoner', 'Merchant'],
   Noble: ['Noble'],
 }
-const traitChoice = ref<'Peasant' | 'Merchant' | 'Noble' | null>(null)
+
+function inferTraitChoice(traitNames: string[] | undefined): 'Peasant' | 'Merchant' | 'Noble' | null {
+  if (!traitNames) return null
+  for (const choice of Object.keys(CLASS_TRAIT_NAMES) as ('Peasant' | 'Merchant' | 'Noble')[]) {
+    const names = CLASS_TRAIT_NAMES[choice]
+    if (names.length === traitNames.length && names.every((n) => traitNames.includes(n))) return choice
+  }
+  return null
+}
+const traitChoice = ref<'Peasant' | 'Merchant' | 'Noble' | null>(inferTraitChoice(prefillRecord?.traitNames))
 const classTraitNames = computed(() => (traitChoice.value ? CLASS_TRAIT_NAMES[traitChoice.value] : []))
 const definingFeatureText = ref('')
 
 const talentPicks = ref<{ narrativeTalentIds: string[]; combatTalentIds: string[] }>({
-  narrativeTalentIds: [],
-  combatTalentIds: [],
+  narrativeTalentIds: prefillRecord ? [...prefillRecord.narrativeTalentIds] : [],
+  combatTalentIds: prefillRecord ? [...prefillRecord.combatTalentIds] : [],
 })
 
 /** True the moment a Tier 1 Magick Domain Talent is picked - same Trait every other
@@ -181,7 +260,7 @@ const spellcasterDomainsKey = computed(() =>
     .map((d) => `${d.domain}:${d.maxTier}`)
     .join(','),
 )
-const preparedSpellIds = ref<string[]>([])
+const preparedSpellIds = ref<string[]>(props.prefill ? [...props.prefill.preparedSpellIds] : [])
 /** Mirrors Character.spellSlots' own formula (Study + Tome bonus) against the in-progress,
  * not-yet-applied-to-draft picks, since store.draft has no Talents/Equipment until Finish. */
 const previewSpellSlots = computed(() => {
@@ -302,7 +381,10 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
 
 <template>
   <div>
-    <h3 class="text-h6 mb-2">Quick Build (Standard Array)</h3>
+    <h3 class="text-h6 mb-2">{{ prefill ? `${prefill.name} (Archetype)` : 'Quick Build (Standard Array)' }}</h3>
+    <p v-if="prefill" class="text-body-2 text-medium-emphasis mb-2">
+      Everything below is pre-filled from this Archetype - change anything you like before finishing.
+    </p>
 
     <template v-if="!finished">
       <v-card class="mb-4" variant="outlined">
@@ -428,6 +510,8 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             :narrative-count="sa.narrativeTalentGrant"
             :combat-count="sa.combatTalentGrant.count"
             :max-tier="sa.combatTalentGrant.tier"
+            :initial-narrative-talent-ids="prefillRecord?.narrativeTalentIds ?? []"
+            :initial-combat-talent-ids="prefillRecord?.combatTalentIds ?? []"
             @change="(p) => (talentPicks = p)"
           />
         </v-card-text>
@@ -443,6 +527,10 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             :talent-ids="[...talentPicks.narrativeTalentIds, ...talentPicks.combatTalentIds]"
             :skirmish-skill="finalSkills[SkillId.Skirmish]"
             :attributes="finalAttributes"
+            :initial-equipped-weapon-ids="prefillRecord?.equippedWeaponIds ?? []"
+            :initial-equipped-armor-id="prefillRecord?.equippedArmorId"
+            :initial-inventory-item-ids="prefillRecord?.inventoryItemIds ?? []"
+            :initial-mount-id="prefillRecord?.mountId"
             @change="(p) => (equipmentPicks = p)"
           />
         </v-card-text>

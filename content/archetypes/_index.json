@@ -1,0 +1,19 @@
+[
+  {
+    "id": "sword",
+    "name": "Sword",
+    "description": "Sword wielders have high Agility, allowing them to dart across the battlefield and overwhelm their foes with rapid, precise strikes.",
+    "archetypes": [
+      { "id": "hero", "name": "Hero", "description": "With shining sword and shield, lead the front line and inspire your allies." },
+      { "id": "twinblade", "name": "Twinblade", "description": "Dual wield swords with dizzying speed and careful footwork." }
+    ]
+  },
+  {
+    "id": "spear",
+    "name": "Spear",
+    "description": "Spear wielders have high Coordination, striking with precision and reach to keep foes at bay or run them through from horseback.",
+    "archetypes": [
+      { "id": "cavalier", "name": "Cavalier", "description": "Well armored atop a trusty steed, charge ahead and through your foes." }
+    ]
+  }
+]

@@ -1,0 +1,153 @@
+{
+  "id": "da014725-a0ff-46e8-a180-d32abbed7473",
+  "name": "Hero",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 11,
+    "awareness": 7,
+    "brawn": 10,
+    "coordination": 6,
+    "faith": 7,
+    "presence": 9,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 3,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 1
+  },
+  "focuses": [
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder"
+  ],
+  "values": [
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    }
+  ],
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "authority"
+  ],
+  "currentHp": 42,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 0,
+  "talentIds": [
+    "captain_bolstering_word",
+    "warrior_never_show_fear",
+    "knight_rallying_cry",
+    "sword_adept",
+    "icon",
+    "shield_master",
+    "rally_1"
+  ],
+  "equippedWeaponIds": [
+    "longsword",
+    "throwing_knife"
+  ],
+  "inventoryItemIds": [
+    "round_shield",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 11,
+        "awareness": 7,
+        "brawn": 10,
+        "coordination": 6,
+        "faith": 7,
+        "presence": 9,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 3,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 1
+      },
+      "focusTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "valueTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "captain_bolstering_word",
+        "warrior_never_show_fear",
+        "knight_rallying_cry"
+      ],
+      "combatTalentIds": [
+        "sword_adept",
+        "icon",
+        "shield_master",
+        "rally_1"
+      ],
+      "equippedWeaponIds": [
+        "longsword",
+        "throwing_knife"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "round_shield",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "authority"
+      ]
+    }
+  }
+}
