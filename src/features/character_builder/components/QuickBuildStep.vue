@@ -41,6 +41,7 @@ const store = useCharacterDraftStore()
 const emit = defineEmits<{ finish: [] }>()
 
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
+const allSpells = [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark]
 const allAttributeIds = CoreContent.attributes.map((a) => a.id as AttributeId)
 const allSkillIds = CoreContent.skills.map((s) => s.id as SkillId)
 
@@ -411,6 +412,8 @@ const finalCharacter = computed(() => {
     allTalents,
     CoreContent.equipment.armor,
     CoreContent.equipment.general,
+    allSpells,
+    CoreContent.equipment.shields,
   )
   return new Character(store.draft, modifiers)
 })
@@ -513,13 +516,6 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         <v-card class="mb-4" variant="outlined">
           <v-card-title>Focuses &amp; Values</v-card-title>
           <v-card-text>
-            <v-checkbox
-              v-model="skipFocusesValues"
-              label="I'll add these later."
-              density="compact"
-              hide-details
-              class="mb-2"
-            />
             <v-text-field
               v-for="(_, i) in focusTexts"
               :key="`focus-${i}`"
@@ -533,6 +529,13 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
               v-model="valueTexts[i]"
               :label="`Value ${i + 1}`"
               density="compact"
+            />
+            <v-checkbox
+              v-model="skipFocusesValues"
+              label="I'll add these later."
+              density="compact"
+              hide-details
+              class="skip-checkbox mt-1"
             />
           </v-card-text>
         </v-card>
@@ -648,3 +651,9 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
     </v-card>
   </div>
 </template>
+
+<style scoped>
+.skip-checkbox :deep(.v-label) {
+  font-size: 0.8rem;
+}
+</style>

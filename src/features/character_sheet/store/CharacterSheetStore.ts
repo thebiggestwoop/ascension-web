@@ -238,6 +238,8 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
         [...CoreContent.talents.narrative, ...CoreContent.talents.combat],
         CoreContent.equipment.armor,
         CoreContent.equipment.general,
+        [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark],
+        CoreContent.equipment.shields,
       )
       const char = Character.Deserialize(toRaw(this.character), modifiers)
       this.character.currentHp = char.maxHp

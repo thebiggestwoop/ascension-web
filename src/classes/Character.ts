@@ -3,6 +3,8 @@ import type { ISerializable } from './ISerializable'
 import type { ITalentData } from './Talent'
 import type { IArmorData, IGeneralItemData } from './Equipment'
 import type { ICreationRecord, ILevelUpRecord } from './CharacterHistory'
+import type { ISpellData } from './Spell'
+import { MAGICK_ATTRIBUTE_BY_DOMAIN } from './Spell'
 
 export interface IValue {
   text: string
@@ -117,20 +119,43 @@ export interface ICharacterStatModifiers {
   willpowerBonus?: number
   resistanceBonus?: number
   spellSlotBonus?: number
+  /** Angel's Wings (light 3): Flying Speed = Half the caster's Magick Attribute, while
+   * prepared. Undefined (not 0) when not prepared, so callers can hide the stat entirely
+   * rather than showing a Flying Speed of 0. */
+  flyingSpeed?: number
+}
+
+/** Wound 1 at or below 2/3 Max HP, Wound 2 at or below 1/3 Max HP - shared by Character's own
+ * `wounds` getter and computeStatModifiers (Court Death's Resistance floor needs a caster's
+ * Wounds before a Character instance exists to ask it). */
+export function computeWoundsFromHp(currentHp: number, healthBar: number): 0 | 1 | 2 {
+  if (currentHp <= healthBar) return 2
+  if (currentHp <= healthBar * 2) return 1
+  return 0
 }
 
 /**
- * Resolves a character's talentIds/equipment against the rules content to find passive stat
- * bonuses (e.g. Resilient 1's +2 Health Bar, an equipped Armor's Resistance). Pure function of
- * explicitly-passed content so src/classes stays free of ContentLoader/io imports - callers
- * (Vue components/stores, which already read CoreContent) resolve this and pass it to
- * Character's constructor or Deserialize.
+ * Resolves a character's talentIds/equipment/prepared Spells against the rules content to
+ * find passive stat bonuses (e.g. Resilient 1's +2 Health Bar, an equipped Armor's
+ * Resistance, Armis Arcane's conditional Resistance). Pure function of explicitly-passed
+ * content so src/classes stays free of ContentLoader/io imports - callers (Vue components/
+ * stores, which already read CoreContent) resolve this and pass it to Character's
+ * constructor or Deserialize.
+ *
+ * `preparedSpellIds`/`attributes`/`skills`/`currentHp` are optional (unlike the required
+ * `talentIds`/`equippedArmorId`/`inventoryItemIds`) since a couple of call sites only need
+ * this for spellSlotBonus against an in-progress, not-yet-a-real-character draft (see
+ * FinishingTouchesStep/QuickBuildStep's previewSpellSlots) - omitting them just skips every
+ * Spell-based modifier below rather than requiring a fully-formed character to call this at all.
  */
 export function computeStatModifiers(
-  data: Pick<ICharacterData, 'talentIds' | 'equippedArmorId' | 'inventoryItemIds'>,
+  data: Pick<ICharacterData, 'talentIds' | 'equippedArmorId' | 'inventoryItemIds'> &
+    Partial<Pick<ICharacterData, 'preparedSpellIds' | 'attributes' | 'skills' | 'currentHp'>>,
   talents: ITalentData[],
   armor: IArmorData[],
   generalItems: IGeneralItemData[],
+  spells: ISpellData[] = [],
+  shields: IArmorData[] = [],
 ): ICharacterStatModifiers {
   const heldTalentIds = new Set(data.talentIds)
   let healthBarBonus = 0
@@ -141,7 +166,38 @@ export function computeStatModifiers(
     willpowerBonus += t.passiveModifiers.willpowerBonus ?? 0
   }
 
-  const resistanceBonus = armor.find((a) => a.id === data.equippedArmorId)?.resistance ?? 0
+  let resistanceBonus = armor.find((a) => a.id === data.equippedArmorId)?.resistance ?? 0
+
+  const preparedSpellIds = new Set(data.preparedSpellIds ?? [])
+  const hasArmorEquipped = !!data.equippedArmorId
+  const hasShieldEquipped = shields.some((s) => data.inventoryItemIds.includes(s.id))
+
+  /** Armis Arcane (arcane 1): "you have 2 Resistance while unarmored and not wielding a
+   * Shield," as long as prepared - a floor, not additive (armor's own Resistance is always 0
+   * in that state anyway, since the condition requires no armor equipped). */
+  if (preparedSpellIds.has('armis_arcane') && !hasArmorEquipped && !hasShieldEquipped) {
+    resistanceBonus = Math.max(resistanceBonus, 2)
+  }
+
+  /** Court Death (dark 2): "resistance increases to a minimum of 3 if you have 1 Wound, and
+   * to a minimum of 5 if you have 2 Wounds" - needs the caster's own Wounds, computed here
+   * directly (currentHp vs. healthBar, itself already including healthBarBonus above) rather
+   * than via a Character instance, which doesn't exist yet at this point. */
+  if (preparedSpellIds.has('court_death') && data.attributes && data.skills && data.currentHp !== undefined) {
+    const healthBar = data.attributes[AttributeId.Brawn] + data.skills[SkillId.Skirmish] + healthBarBonus
+    const wounds = computeWoundsFromHp(data.currentHp, healthBar)
+    if (wounds === 2) resistanceBonus = Math.max(resistanceBonus, 5)
+    else if (wounds === 1) resistanceBonus = Math.max(resistanceBonus, 3)
+  }
+
+  /** Angel's Wings (light 3): "granting you a Flying speed of Half your Magick," as long as
+   * prepared - "Magick" is the caster's Magick Attribute for the spell's own domain (Faith,
+   * since Angel's Wings is a Light Domain spell). */
+  let flyingSpeed: number | undefined
+  if (preparedSpellIds.has('angels_wings') && data.attributes) {
+    const angelsWings = spells.find((s) => s.id === 'angels_wings')
+    if (angelsWings) flyingSpeed = Math.floor(data.attributes[MAGICK_ATTRIBUTE_BY_DOMAIN[angelsWings.domain]] / 2)
+  }
 
   /** "Each Tome you have grants 2 additional Spell Slots" (Gremorie 1 raises this to 3). */
   const tomeId = generalItems.find((g) => g.name === 'Tome')?.id
@@ -149,7 +205,7 @@ export function computeStatModifiers(
   const spellSlotsPerTome = heldTalentIds.has('gremorie_1') ? 3 : 2
   const spellSlotBonus = tomeCount * spellSlotsPerTome
 
-  return { healthBarBonus, willpowerBonus, resistanceBonus, spellSlotBonus }
+  return { healthBarBonus, willpowerBonus, resistanceBonus, spellSlotBonus, flyingSpeed }
 }
 
 /**
@@ -226,9 +282,17 @@ export class Character implements ISerializable<ICharacterData>, ICharacterStatS
     return this.skill(SkillId.Skirmish)
   }
 
-  /** Damage subtracted before HP loss; comes entirely from equipped Armor. */
+  /** Damage subtracted before HP loss - from equipped Armor, plus any conditional passive
+   * Spell bonus that currently applies (e.g. Armis Arcane, Court Death - see
+   * computeStatModifiers). */
   get resistance(): number {
     return this.modifiers.resistanceBonus ?? 0
+  }
+
+  /** Angel's Wings (light 3), while prepared: Flying Speed = Half Magick. Undefined (not 0)
+   * when not prepared - callers should hide the tile entirely rather than showing 0. */
+  get flyingSpeed(): number | undefined {
+    return this.modifiers.flyingSpeed
   }
 
   get temporaryResistance(): number {
@@ -260,9 +324,7 @@ export class Character implements ISerializable<ICharacterData>, ICharacterStatS
    * Domain spells (Penumbra, Umbra, Nox, Shadow Blade...) scale their damage per Wound.
    */
   get wounds(): 0 | 1 | 2 {
-    if (this.data.currentHp <= this.healthBar) return 2
-    if (this.data.currentHp <= this.healthBar * 2) return 1
-    return 0
+    return computeWoundsFromHp(this.data.currentHp, this.healthBar)
   }
 
   Serialize(): ICharacterData {

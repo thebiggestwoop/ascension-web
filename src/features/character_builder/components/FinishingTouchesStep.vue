@@ -15,6 +15,7 @@ import SpellPicker from '@/features/character_sheet/components/SpellPicker.vue'
 
 const router = useRouter()
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
+const allSpells = [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark]
 
 const ATTRIBUTE_CAP = 11
 const SKILL_CAP = 4
@@ -296,6 +297,8 @@ const finalCharacter = computed(() => {
     allTalents,
     CoreContent.equipment.armor,
     CoreContent.equipment.general,
+    allSpells,
+    CoreContent.equipment.shields,
   )
   return new Character(store.draft, modifiers)
 })

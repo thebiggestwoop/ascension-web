@@ -7,6 +7,7 @@ import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 const store = useCharacterDraftStore()
 const isFinished = computed(() => store.completedStageIds.includes('finishing_touches'))
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
+const allSpells = [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark]
 /**
  * Deliberately NOT Character.Deserialize()/toRaw(): those strip Vue's reactive Proxy via
  * structuredClone, so this computed would only re-run when `store.draft` is reassigned
@@ -19,6 +20,8 @@ const character = computed(() => {
     allTalents,
     CoreContent.equipment.armor,
     CoreContent.equipment.general,
+    allSpells,
+    CoreContent.equipment.shields,
   )
   return new Character(store.draft, modifiers)
 })

@@ -261,7 +261,14 @@ const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.com
  */
 const modifiers = computed(() => {
   if (!store.character) return {}
-  return computeStatModifiers(store.character, allTalents, CoreContent.equipment.armor, CoreContent.equipment.general)
+  return computeStatModifiers(
+    store.character,
+    allTalents,
+    CoreContent.equipment.armor,
+    CoreContent.equipment.general,
+    allSpells,
+    CoreContent.equipment.shields,
+  )
 })
 const character = computed(() => {
   if (!store.character) return null
@@ -448,9 +455,29 @@ function effectSaveTooltip(id: AttributeId): string {
   return `floor(${attributeName(id)} ${character.value.attribute(id)} / 2) - 1`
 }
 
-const resistanceTooltip = computed(() =>
-  equippedArmor.value ? `${equippedArmor.value.name}'s Resistance` : 'No Armor equipped',
-)
+/**
+ * Explains any passive Spell currently contributing to Resistance (Armis Arcane, Court
+ * Death - see computeStatModifiers) so the tooltip doesn't just show a number that doesn't
+ * match "Armor's Resistance" with no indication why.
+ */
+const activeResistanceSpellNotes = computed(() => {
+  if (!store.character || !character.value) return []
+  const prepared = new Set(store.character.preparedSpellIds)
+  const hasShield = CoreContent.equipment.shields.some((s) => store.character!.inventoryItemIds.includes(s.id))
+  const notes: string[] = []
+  if (prepared.has('armis_arcane') && !equippedArmor.value && !hasShield) {
+    notes.push('Armis Arcane (2 Resistance while unarmored, no Shield)')
+  }
+  if (prepared.has('court_death')) {
+    if (character.value.wounds === 2) notes.push('Court Death (Resistance minimum 5 at Wound 2)')
+    else if (character.value.wounds === 1) notes.push('Court Death (Resistance minimum 3 at Wound 1)')
+  }
+  return notes
+})
+const resistanceTooltip = computed(() => {
+  const base = equippedArmor.value ? `${equippedArmor.value.name}'s Resistance` : 'No Armor equipped'
+  return activeResistanceSpellNotes.value.length ? `${base} - ${activeResistanceSpellNotes.value.join('; ')}` : base
+})
 const totalResistanceTooltip = computed(() => {
   if (!character.value) return ''
   return `Resistance ${character.value.resistance} + Temporary Resistance ${character.value.temporaryResistance}`
@@ -482,6 +509,19 @@ const mountedSpeedTooltip = computed(() => {
   const attrName = attributeName(mount.value.ridingAttribute)
   const attrValue = character.value.attribute(mount.value.ridingAttribute)
   const base = `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2) - replaces your own Speed while mounted`
+  return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
+})
+
+/** Angel's Wings (light 3), while prepared - same Wound penalty as every other Speed value
+ * (see mountedSpeedValue's own comment on why a Wound applies regardless of which Speed is
+ * currently in effect). */
+const effectiveFlyingSpeed = computed(() => {
+  if (character.value?.flyingSpeed === undefined) return 0
+  return character.value.flyingSpeed - (speedWoundPenalty.value ? 2 : 0)
+})
+const flyingSpeedTooltip = computed(() => {
+  if (!character.value) return ''
+  const base = `floor(Faith ${character.value.attribute(AttributeId.Faith)} / 2) - Angel's Wings`
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
@@ -856,6 +896,15 @@ const rattledText = computed(() => {
                 <DerivedValueBadge
                   :display="`${mountedSpeedValue}`"
                   :tooltip="mountedSpeedTooltip"
+                  :warn="speedWoundPenalty"
+                />
+              </template>
+
+              <template v-if="character.flyingSpeed !== undefined">
+                <div class="text-caption text-medium-emphasis mt-2">Flying Speed</div>
+                <DerivedValueBadge
+                  :display="`${effectiveFlyingSpeed}`"
+                  :tooltip="flyingSpeedTooltip"
                   :warn="speedWoundPenalty"
                 />
               </template>

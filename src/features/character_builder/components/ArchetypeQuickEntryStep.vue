@@ -69,13 +69,6 @@ function submit() {
     <v-card class="mb-4" variant="outlined">
       <v-card-title>Focuses &amp; Values</v-card-title>
       <v-card-text>
-        <v-checkbox
-          v-model="skipFocusesValues"
-          label="I'll add these later."
-          density="compact"
-          hide-details
-          class="mb-2"
-        />
         <v-text-field
           v-for="(_, i) in focusTexts"
           :key="`focus-${i}`"
@@ -89,6 +82,13 @@ function submit() {
           v-model="valueTexts[i]"
           :label="`Value ${i + 1}`"
           density="compact"
+        />
+        <v-checkbox
+          v-model="skipFocusesValues"
+          label="I'll add these later."
+          density="compact"
+          hide-details
+          class="skip-checkbox mt-1"
         />
       </v-card-text>
     </v-card>
@@ -111,3 +111,9 @@ function submit() {
     <v-btn color="primary" :disabled="!isReady" @click="submit">Continue</v-btn>
   </div>
 </template>
+
+<style scoped>
+.skip-checkbox :deep(.v-label) {
+  font-size: 0.8rem;
+}
+</style>
