@@ -66,6 +66,12 @@
         "name": "Lord",
         "description": "A frontline leader whose presence alone can turn the tide, rallying allies with authority and a rapier's precision.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "strategist",
+        "name": "Strategist",
+        "description": "A calculating tactician who sets traps, reads the battlefield, and directs allies to strike at the perfect moment.",
+        "playstyle": "placeholder"
       }
     ]
   },

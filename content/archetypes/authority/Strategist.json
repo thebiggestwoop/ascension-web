@@ -1,0 +1,124 @@
+{
+  "id": "a6f50f89-ae0c-4bd8-af54-0591ee96174c",
+  "name": "Strategist",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 7,
+    "awareness": 10,
+    "brawn": 7,
+    "coordination": 6,
+    "faith": 6,
+    "presence": 11,
+    "reason": 9
+  },
+  "skills": {
+    "skirmish": 2,
+    "authority": 3,
+    "diplomacy": 1,
+    "study": 4,
+    "medicine": 1,
+    "intrigue": 3
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "study",
+    "authority"
+  ],
+  "currentHp": 27,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "scholar_polymath",
+    "scholar_meticulous",
+    "scoundrel_eavesdropper",
+    "commander",
+    "helping_hand_1",
+    "tactician",
+    "trapper_1"
+  ],
+  "equippedWeaponIds": [
+    "shortbow"
+  ],
+  "inventoryItemIds": [
+    "healing_potion",
+    "healing_potion",
+    "banner"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 7,
+        "awareness": 10,
+        "brawn": 7,
+        "coordination": 6,
+        "faith": 6,
+        "presence": 11,
+        "reason": 9
+      },
+      "skills": {
+        "skirmish": 2,
+        "authority": 3,
+        "diplomacy": 1,
+        "study": 4,
+        "medicine": 1,
+        "intrigue": 3
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "scholar_polymath",
+        "scholar_meticulous",
+        "scoundrel_eavesdropper"
+      ],
+      "combatTalentIds": [
+        "commander",
+        "helping_hand_1",
+        "tactician",
+        "trapper_1"
+      ],
+      "equippedWeaponIds": [
+        "shortbow"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "healing_potion",
+        "healing_potion",
+        "banner"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "study",
+        "authority"
+      ]
+    }
+  }
+}

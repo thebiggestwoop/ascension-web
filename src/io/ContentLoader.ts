@@ -47,6 +47,7 @@ import archetypeCavalierJson from '@content/archetypes/spear/cavalier.json'
 import archetypeMendicantJson from '@content/archetypes/light_magick/mendicant.json'
 import archetypeBishopJson from '@content/archetypes/authority/Bishop.json'
 import archetypeLordJson from '@content/archetypes/authority/Lord.json'
+import archetypeStrategistJson from '@content/archetypes/authority/Strategist.json'
 import archetypeDeathKnightJson from '@content/archetypes/axe/Death-Knight.json'
 
 /**
@@ -100,6 +101,7 @@ export const CoreContent = {
       mendicant: archetypeMendicantJson as IArchetypeCharacterData,
       bishop: archetypeBishopJson as IArchetypeCharacterData,
       lord: archetypeLordJson as IArchetypeCharacterData,
+      strategist: archetypeStrategistJson as IArchetypeCharacterData,
       death_knight: archetypeDeathKnightJson as IArchetypeCharacterData,
     } as Record<string, IArchetypeCharacterData>,
   },
