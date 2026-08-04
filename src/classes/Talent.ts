@@ -86,6 +86,9 @@ export interface ITalentGroupIndexEntry {
   subgroup: string
   /** Raw prerequisite text as printed in the rules (e.g. "Requires Agility 10"). */
   prerequisiteText: string
+  /** One-sentence rules-text blurb introducing the Archetype/Talent Tree, e.g. "You're a fighter,
+   * first and foremost, and know how to apply your skills on and off the battlefield." */
+  flavorText?: string
   /** True once this group's abilities have been fully transcribed into ITalentData entries. */
   transcribed: boolean
 }

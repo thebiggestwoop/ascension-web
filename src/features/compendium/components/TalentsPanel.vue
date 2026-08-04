@@ -62,6 +62,12 @@ const selectedGroupTalents = computed(() =>
   selectedGroupName.value ? allTalents.value.filter((t) => t.group === selectedGroupName.value) : [],
 )
 
+const selectedGroupFlavorText = computed(() =>
+  CoreContent.talents.index.find(
+    (e) => e.name === selectedGroupName.value && e.category === activeCategory.value,
+  )?.flavorText,
+)
+
 function selectCategory(category: TalentCategory) {
   activeCategory.value = category
   selectedGroupName.value = null
@@ -104,7 +110,10 @@ function selectCategory(category: TalentCategory) {
 
       <v-col cols="12" md="8">
         <template v-if="selectedGroupTalents.length">
-          <h3 class="text-h6 mb-2">{{ selectedGroupName }}</h3>
+          <h3 class="text-h6 mb-1">{{ selectedGroupName }}</h3>
+          <p v-if="selectedGroupFlavorText" class="text-medium-emphasis font-italic mb-3">
+            {{ selectedGroupFlavorText }}
+          </p>
           <v-card v-for="t in selectedGroupTalents" :key="t.id" variant="outlined" class="mb-2">
             <v-card-title class="d-flex align-center justify-space-between">
               <span>{{ t.name }}</span>
