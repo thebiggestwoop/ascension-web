@@ -221,6 +221,9 @@ const combatSkillFocuses = computed<SkillId[]>(() =>
 // --- Step Three: Focuses, Values, Trait, Talents ---
 const focusTexts = ref<string[]>(Array(sa.focusCount).fill(''))
 const valueTexts = ref<string[]>(Array(sa.valueCount).fill(''))
+/** "I'll add these later." - lets the player finish without writing any Focus/Value text now;
+ * whatever they did type is still kept (blanks are dropped), same as leaving the field alone. */
+const skipFocusesValues = ref(false)
 
 /**
  * Each Social Class choice grants the same Traits the matching Lifepath Social Class option
@@ -337,8 +340,10 @@ const missingRequirements = computed(() => {
   }
   if (combatSkillFocuses.value.length !== 2) missing.push('Choose 2 Combat Skill Focuses')
   if (!props.archetypeFinishingTouchesOnly) {
-    if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
-    if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
+    if (!skipFocusesValues.value) {
+      if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
+      if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
+    }
     if (!traitChoice.value) missing.push('Choose Peasant, Merchant, or Noble')
     if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
   }
@@ -381,8 +386,8 @@ async function finish() {
       name: nameText.value,
       attributes: finalAttributes.value,
       skills: finalSkills.value,
-      focusTexts: [...focusTexts.value],
-      valueTexts: [...valueTexts.value],
+      focusTexts: focusTexts.value.filter((t) => t.trim()),
+      valueTexts: valueTexts.value.filter((t) => t.trim()),
       traitNames: classTraitNames.value,
       definingFeatureText: definingFeatureText.value,
       narrativeTalentIds: talentPicks.value.narrativeTalentIds,
@@ -508,6 +513,13 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         <v-card class="mb-4" variant="outlined">
           <v-card-title>Focuses &amp; Values</v-card-title>
           <v-card-text>
+            <v-checkbox
+              v-model="skipFocusesValues"
+              label="I'll add these later."
+              density="compact"
+              hide-details
+              class="mb-2"
+            />
             <v-text-field
               v-for="(_, i) in focusTexts"
               :key="`focus-${i}`"

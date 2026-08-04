@@ -15,6 +15,9 @@ const emit = defineEmits<{ finish: [] }>()
 
 const focusTexts = ref<string[]>(Array(sa.focusCount).fill(''))
 const valueTexts = ref<string[]>(Array(sa.valueCount).fill(''))
+/** "I'll add these later." - lets the player finish without writing any Focus/Value text now;
+ * whatever they did type is still kept (blanks are dropped), same as leaving the field alone. */
+const skipFocusesValues = ref(false)
 
 const CLASS_TRAIT_NAMES: Record<'Peasant' | 'Merchant' | 'Noble', string[]> = {
   Peasant: ['Commoner', 'Peasant'],
@@ -26,8 +29,8 @@ const definingFeatureText = ref('')
 
 const isReady = computed(
   () =>
-    focusTexts.value.every((t) => t.trim()) &&
-    valueTexts.value.every((t) => t.trim()) &&
+    (skipFocusesValues.value ||
+      (focusTexts.value.every((t) => t.trim()) && valueTexts.value.every((t) => t.trim()))) &&
     !!traitChoice.value &&
     definingFeatureText.value.trim().length > 0,
 )
@@ -50,8 +53,8 @@ watch(
 function submit() {
   if (!isReady.value || !traitChoice.value) return
   store.applyFocusValueTraitQuickEntry({
-    focusTexts: [...focusTexts.value],
-    valueTexts: [...valueTexts.value],
+    focusTexts: focusTexts.value.filter((t) => t.trim()),
+    valueTexts: valueTexts.value.filter((t) => t.trim()),
     traitNames: [...CLASS_TRAIT_NAMES[traitChoice.value]],
     definingFeatureText: definingFeatureText.value,
   })
@@ -66,6 +69,13 @@ function submit() {
     <v-card class="mb-4" variant="outlined">
       <v-card-title>Focuses &amp; Values</v-card-title>
       <v-card-text>
+        <v-checkbox
+          v-model="skipFocusesValues"
+          label="I'll add these later."
+          density="compact"
+          hide-details
+          class="mb-2"
+        />
         <v-text-field
           v-for="(_, i) in focusTexts"
           :key="`focus-${i}`"
