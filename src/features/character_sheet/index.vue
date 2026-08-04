@@ -35,6 +35,15 @@ function qualityTooltip(q: IQualityInstance): string | undefined {
   return CoreContent.equipment.qualities.find((x) => x.id === q.quality)?.description
 }
 
+/** Weapons always have this; general items/shields only when they actually need a hand free
+ * to wield (e.g. Banner, Spell Implement - a Healing Potion or Tome don't). Same as
+ * EquipmentPicker's own handsChip, mirrored here for the read-only Equipment card. */
+function handsChip(hands: number | undefined): { label: string; tooltip: string } | null {
+  if (hands === 1) return { label: '1H', tooltip: 'One-Handed' }
+  if (hands === 2) return { label: '2H', tooltip: 'Two-Handed' }
+  return null
+}
+
 function damageEffectLabel(effect: string): string {
   return CoreContent.equipment.damageEffects.find((e) => e.id === effect)?.name ?? effect
 }
@@ -969,8 +978,13 @@ const rattledText = computed(() => {
             <div class="text-subtitle-2 mb-1">Weapons</div>
             <div v-if="!equippedWeaponGroups.length" class="text-medium-emphasis mb-2">None equipped</div>
             <v-card v-for="g in equippedWeaponGroups" :key="g.weapon.id" variant="tonal" class="mb-2">
-              <v-card-title class="text-subtitle-1">
-                {{ g.weapon.name }}<span v-if="g.count > 1"> x{{ g.count }}</span>
+              <v-card-title class="text-subtitle-1 d-flex align-center" style="gap: 8px">
+                <span>{{ g.weapon.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
+                <TooltipChip
+                  v-if="handsChip(g.weapon.hands)"
+                  :label="handsChip(g.weapon.hands)!.label"
+                  :tooltip="handsChip(g.weapon.hands)!.tooltip"
+                />
               </v-card-title>
               <v-card-text>
                 <v-row dense>
@@ -1035,6 +1049,11 @@ const rattledText = computed(() => {
                 </template>
               </v-tooltip>
               <span v-else>{{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
+              <TooltipChip
+                v-if="handsChip(g.item.hands)"
+                :label="handsChip(g.item.hands)!.label"
+                :tooltip="handsChip(g.item.hands)!.tooltip"
+              />
               <TooltipChip
                 v-for="(q, qi) in g.item.qualities"
                 :key="qi"
