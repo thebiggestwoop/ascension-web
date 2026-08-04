@@ -214,17 +214,38 @@ watch(
   { deep: true, immediate: true },
 )
 
-const isReady = computed(
-  () =>
-    nameText.value.trim().length > 0 &&
-    attributeAllocations.value.every((v) => v !== null) &&
-    skillAllocations.value.every((v) => v !== null) &&
-    valueText.value.trim().length > 0 &&
-    definingFeatureText.value.trim().length > 0 &&
-    combatSkillFocuses.value.length === 2 &&
-    talentPicks.value.narrativeTalentIds.length === REQUIRED_NARRATIVE_TALENTS &&
-    talentPicks.value.combatTalentIds.length === REQUIRED_COMBAT_TALENTS,
-)
+/**
+ * Explicit list of what's still missing, shown next to the Finish button - same treatment as
+ * Quick Build's own missingRequirements, since this step has just as many required fields
+ * (Attributes/Skills/Combat Focuses/Value/Defining Feature/Talents) and the same "button is
+ * silently disabled with no clue why" problem otherwise.
+ */
+const missingRequirements = computed(() => {
+  const missing: string[] = []
+  if (!nameText.value.trim()) missing.push('Character Name')
+  if (!attributeAllocations.value.every((v) => v !== null)) {
+    missing.push(`Assign all ${attributeAllocatorCount} Attribute points`)
+  }
+  if (!skillAllocations.value.every((v) => v !== null)) {
+    missing.push(`Assign all ${skillAllocatorCount} Skill points`)
+  }
+  if (combatSkillFocuses.value.length !== 2) missing.push('Choose 2 Combat Skill Focuses')
+  if (!valueText.value.trim()) missing.push('Fill in your 4th Value')
+  if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
+  if (talentPicks.value.narrativeTalentIds.length !== REQUIRED_NARRATIVE_TALENTS) {
+    missing.push(
+      `Choose ${REQUIRED_NARRATIVE_TALENTS} Narrative Talents (currently ${talentPicks.value.narrativeTalentIds.length})`,
+    )
+  }
+  if (talentPicks.value.combatTalentIds.length !== REQUIRED_COMBAT_TALENTS) {
+    missing.push(
+      `Choose ${REQUIRED_COMBAT_TALENTS} Combat Talents (currently ${talentPicks.value.combatTalentIds.length})`,
+    )
+  }
+  return missing
+})
+
+const isReady = computed(() => missingRequirements.value.length === 0)
 
 const finished = ref(false)
 
@@ -385,6 +406,13 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           />
         </v-card-text>
       </v-card>
+
+      <v-alert v-if="missingRequirements.length" type="warning" variant="tonal" density="compact" class="mb-3">
+        <div class="text-subtitle-2 mb-1">Still needed before finishing:</div>
+        <ul>
+          <li v-for="(m, i) in missingRequirements" :key="i">{{ m }}</li>
+        </ul>
+      </v-alert>
 
       <v-btn color="primary" :disabled="!isReady" @click="finish">Finish Character</v-btn>
     </template>
