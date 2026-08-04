@@ -148,6 +148,14 @@ function setInventoryCount(id: string, value: number) {
   inventoryCounts.value = { ...inventoryCounts.value, [id]: value }
 }
 
+/** Weapons always have this; general items/shields only when they actually need a hand free
+ * to wield (e.g. Banner, Spell Implement - a Healing Potion or Tome don't). */
+function handsChip(hands: number | undefined): { label: string; tooltip: string } | null {
+  if (hands === 1) return { label: '1H', tooltip: 'One-Handed' }
+  if (hands === 2) return { label: '2H', tooltip: 'Two-Handed' }
+  return null
+}
+
 function qualityLabel(q: IQualityInstance): string {
   const label = q.quality
     .split('_')
@@ -209,6 +217,11 @@ watch(
               @update:model-value="(v) => setWeaponCount(w.id, v)"
             />
             <span class="mx-2">{{ w.name }}</span>
+            <TooltipChip
+              v-if="handsChip(w.hands)"
+              :label="handsChip(w.hands)!.label"
+              :tooltip="handsChip(w.hands)!.tooltip"
+            />
             <span class="mx-2">
               Damage:
               <DerivedValueBadge :display="weaponDamageDisplay(w)" :tooltip="weaponDamageTooltip(w)" />
@@ -243,6 +256,7 @@ watch(
         </template>
       </v-tooltip>
       <span v-else class="mx-2">{{ i.name }}</span>
+      <TooltipChip v-if="handsChip(i.hands)" :label="handsChip(i.hands)!.label" :tooltip="handsChip(i.hands)!.tooltip" />
       <TooltipChip v-for="(q, qi) in i.qualities" :key="qi" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
     </div>
 
