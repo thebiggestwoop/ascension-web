@@ -98,6 +98,35 @@ const prereqContext = computed<ITalentPrereqContext>(() => ({
   level: props.level,
 }))
 
+/** Group names the character already holds at least one Talent from - drives the "continue a
+ * Talent Tree you already have" quick list so leveling up doesn't require hunting through the
+ * full alphabetical list below just to take the next tier of a tree already started. */
+const heldCombatGroups = computed(() => {
+  const groups = new Set<string>()
+  for (const id of props.heldTalentIds) {
+    const talent = CoreContent.talents.combat.find((t) => t.id === id)
+    if (talent) groups.add(talent.group)
+  }
+  return groups
+})
+const heldNarrativeGroups = computed(() => {
+  const groups = new Set<string>()
+  for (const id of props.heldTalentIds) {
+    const talent = CoreContent.talents.narrative.find((t) => t.id === id)
+    if (talent) groups.add(talent.group)
+  }
+  return groups
+})
+
+function groupByName<T extends { group: string }>(items: T[]) {
+  const byGroup = new Map<string, T[]>()
+  for (const item of items) {
+    if (!byGroup.has(item.group)) byGroup.set(item.group, [])
+    byGroup.get(item.group)!.push(item)
+  }
+  return [...byGroup.entries()].map(([groupName, talents]) => ({ groupName, talents }))
+}
+
 function groupByArchetype<T extends { group: string }>(items: T[]) {
   const bySubgroup = new Map<string, Map<string, T[]>>()
   for (const item of items) {
@@ -140,6 +169,17 @@ const combatSections = computed(() =>
     .filter((s) => s.groups.length > 0),
 )
 
+const narrativeContinuationGroups = computed(() =>
+  groupByName(narrativePool.value.filter((t) => heldNarrativeGroups.value.has(t.group)))
+    .map((g) => ({ ...g, talents: g.talents.filter((t) => matchesSearch(t.name) || matchesSearch(g.groupName)) }))
+    .filter((g) => g.talents.length > 0),
+)
+const combatContinuationGroups = computed(() =>
+  groupByName(combatPool.value.filter((t) => heldCombatGroups.value.has(t.group)))
+    .map((g) => ({ ...g, talents: g.talents.filter((t) => matchesSearch(t.name) || matchesSearch(g.groupName)) }))
+    .filter((g) => g.talents.length > 0),
+)
+
 watch(
   [selectedNarrativeIds, selectedCombatIds],
   () => {
@@ -172,6 +212,36 @@ watch(
       <div class="text-subtitle-1 mt-2">
         Combat Talents ({{ selectedCombatIds.length }} / {{ combatCount }})
       </div>
+
+      <template v-if="combatContinuationGroups.length">
+        <div class="text-subtitle-2 text-medium-emphasis mt-1 mb-1">Continue a Talent Tree You Already Have</div>
+        <div v-for="g in combatContinuationGroups" :key="g.groupName" class="mb-3">
+          <div class="text-body-1 font-weight-medium">{{ g.groupName }}</div>
+          <v-checkbox
+            v-for="t in g.talents"
+            :key="t.id"
+            class="talent-checkbox"
+            v-model="selectedCombatIds"
+            :value="t.id"
+            :label="t.tier ? `${t.name} (Tier ${t.tier})` : t.name"
+            :hint="
+              `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
+              (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
+              ` - ${t.effectText}`
+            "
+            persistent-hint
+            density="compact"
+            hide-details="auto"
+            :disabled="
+              (!selectedCombatIds.includes(t.id) && selectedCombatIds.length >= combatCount) ||
+              !meetsTalentPrerequisites(t.prerequisites, prereqContext)
+            "
+          />
+        </div>
+        <v-divider class="mb-3" />
+        <div class="text-subtitle-2 text-medium-emphasis mb-1">All Talent Trees</div>
+      </template>
+
       <v-expansion-panels variant="accordion" multiple>
         <v-expansion-panel v-for="section in combatSections" :key="section.subgroup" :title="section.subgroup">
           <v-expansion-panel-text>
@@ -210,6 +280,36 @@ watch(
       <div class="text-subtitle-1 mt-4">
         Narrative Talents ({{ selectedNarrativeIds.length }} / {{ narrativeCount }})
       </div>
+
+      <template v-if="narrativeContinuationGroups.length">
+        <div class="text-subtitle-2 text-medium-emphasis mt-1 mb-1">Continue a Talent Tree You Already Have</div>
+        <div v-for="g in narrativeContinuationGroups" :key="g.groupName" class="mb-3">
+          <div class="text-body-1 font-weight-medium">{{ g.groupName }}</div>
+          <v-checkbox
+            v-for="t in g.talents"
+            :key="t.id"
+            class="talent-checkbox"
+            v-model="selectedNarrativeIds"
+            :value="t.id"
+            :label="t.name"
+            :hint="
+              `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
+              (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
+              ` - ${t.effectText}`
+            "
+            persistent-hint
+            density="compact"
+            hide-details="auto"
+            :disabled="
+              (!selectedNarrativeIds.includes(t.id) && selectedNarrativeIds.length >= narrativeCount) ||
+              !meetsTalentPrerequisites(t.prerequisites, prereqContext)
+            "
+          />
+        </div>
+        <v-divider class="mb-3" />
+        <div class="text-subtitle-2 text-medium-emphasis mb-1">All Talent Trees</div>
+      </template>
+
       <v-expansion-panels variant="accordion" multiple>
         <v-expansion-panel v-for="section in narrativeSections" :key="section.subgroup" :title="section.subgroup">
           <v-expansion-panel-text>
