@@ -79,6 +79,7 @@
   { "id": "arcane_magick", "name": "Arcane Magick", "category": "combat", "subgroup": "Magick", "prerequisiteText": "Requires Reason 10", "transcribed": true },
   { "id": "dark_magick", "name": "Dark Magick", "category": "combat", "subgroup": "Magick", "prerequisiteText": "Requires Presence 10", "transcribed": true },
   { "id": "light_magick", "name": "Light Magick", "category": "combat", "subgroup": "Magick", "prerequisiteText": "Requires Faith 10", "transcribed": true },
+  { "id": "augmentier", "name": "Augmentier", "category": "combat", "subgroup": "Magick", "prerequisiteText": "Requires Spellcaster", "transcribed": true },
   { "id": "auraturge", "name": "Auraturge", "category": "combat", "subgroup": "Magick", "prerequisiteText": "Requires Spellcaster", "transcribed": true },
   { "id": "counterspell", "name": "Counterspell", "category": "combat", "subgroup": "Magick", "prerequisiteText": "Requires Spellcaster", "transcribed": true },
   { "id": "cryomancer", "name": "Cryomancer", "category": "combat", "subgroup": "Magick", "prerequisiteText": "Requires Spellcaster", "transcribed": true },
