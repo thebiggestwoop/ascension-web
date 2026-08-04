@@ -42,13 +42,55 @@ export interface IQuickBuildRecord {
   combatSkillFocuses: SkillId[]
 }
 
-/** Every choice made while building this character, whichever of the two creation paths was used. */
+/** Focuses/Values/Traits chosen by hand, matching Quick Build's own such fields - used both by
+ * Quick Build itself and by the Archetype path's "Quick Entry" option. */
+export interface IFocusValueTraitEntry {
+  focusTexts: string[]
+  valueTexts: string[]
+  traitNames: string[]
+  definingFeatureText: string
+}
+
+/** The Archetype path's Step Three ("Finishing Touches"): the same shape as Quick Build's own
+ * grants, minus Focuses/Values/Traits - those were already applied in Step Two, by whichever of
+ * Lifepath or Quick Entry the player chose (see ICreationRecord.archetype below). */
+export interface IArchetypeFinishingTouchesRecord {
+  attributes: Record<AttributeId, number>
+  skills: Record<SkillId, number>
+  narrativeTalentIds: string[]
+  combatTalentIds: string[]
+  equippedWeaponIds: string[]
+  equippedArmorId?: string
+  inventoryItemIds: string[]
+  mountId?: string
+  preparedSpellIds: string[]
+  combatSkillFocuses: SkillId[]
+}
+
+/** The "Start from an Archetype" path's full record: which pregen it started from, how
+ * Focuses/Values/Traits were chosen (Lifepath's own stages, minus Attribute/Skill grants - see
+ * `lifepathSelections` below - or Quick Entry's flat form), and the final Finishing Touches
+ * grants (Attributes/Skills/Talents/Equipment/Spells), pre-filled from the Archetype but
+ * editable before finishing. */
+export interface IArchetypeCreationRecord {
+  archetypeId: string
+  focusValueTraitMethod: 'lifepath' | 'quick_entry'
+  quickEntry?: IFocusValueTraitEntry
+  finishingTouches: IArchetypeFinishingTouchesRecord
+}
+
+/** Every choice made while building this character, whichever of the three creation paths was used. */
 export interface ICreationRecord {
-  method: 'lifepath' | 'quick_build'
-  /** One entry per Lifepath stage (Social Class through Life Events), in the order completed. */
+  method: 'lifepath' | 'quick_build' | 'archetype'
+  /** One entry per Lifepath stage (Social Class through Life Events), in the order completed -
+   * for `method: 'archetype'` with `archetype.focusValueTraitMethod === 'lifepath'`, these
+   * carry empty resolvedAttributePoints/resolvedSkillPoints throughout (see
+   * LifepathStageStep's `skipAttributeSkillGrants`), since the Archetype's own Attributes/
+   * Skills aren't touched by that sub-flow. */
   lifepathSelections?: ILifepathSelection[]
   finishingTouches?: IFinishingTouchesRecord
   quickBuild?: IQuickBuildRecord
+  archetype?: IArchetypeCreationRecord
 }
 
 /** The choices a player makes in the Level Up dialog - both the chart's normal grants and any

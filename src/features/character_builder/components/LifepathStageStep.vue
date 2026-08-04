@@ -7,7 +7,14 @@ import { CoreContent } from '@/io/ContentLoader'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
 
-const props = defineProps<{ stage: ILifepathStageData; excludeOptionIds?: string[] }>()
+const props = defineProps<{
+  stage: ILifepathStageData
+  excludeOptionIds?: string[]
+  /** Start from an Archetype's Lifepath sub-flow: the Archetype's own Attributes/Skills are
+   * already fixed, so this stage's Attribute/Skill Point grants are hidden and never applied -
+   * only its Trait/Focus/Value grants (identical to the normal Lifepath flow otherwise). */
+  skipAttributeSkillGrants?: boolean
+}>()
 const emit = defineEmits<{ confirm: [selection: ILifepathSelection] }>()
 const store = useCharacterDraftStore()
 
@@ -78,24 +85,27 @@ function selectOption(option: ILifepathOption) {
 const isReady = computed(() => {
   const option = selectedOption.value
   if (!option) return false
-  const attributesResolved = option.grants.attributePoints.every((grant, i) => {
-    if (grant.restrictTo?.length === 1) return true
-    if (isPool(grant)) return attributePools.value[i]?.every((v) => v !== null) ?? false
-    return !!attributeChoices.value[i]
-  })
-  const skillsResolved = option.grants.skillPoints.every(
-    (grant, i) => (grant.restrictTo?.length === 1 ? true : !!skillChoices.value[i]),
-  )
+  const attributesResolved =
+    props.skipAttributeSkillGrants ||
+    option.grants.attributePoints.every((grant, i) => {
+      if (grant.restrictTo?.length === 1) return true
+      if (isPool(grant)) return attributePools.value[i]?.every((v) => v !== null) ?? false
+      return !!attributeChoices.value[i]
+    })
+  const skillsResolved =
+    props.skipAttributeSkillGrants ||
+    option.grants.skillPoints.every((grant, i) => (grant.restrictTo?.length === 1 ? true : !!skillChoices.value[i]))
   const focusesResolved = focusTexts.value.every((t) => t.trim().length > 0)
   const valueResolved = option.grants.valuePrompt ? valueText.value.trim().length > 0 : true
   return attributesResolved && skillsResolved && focusesResolved && valueResolved
 })
 
 /** This option's resolved Attribute/Skill grants as currently filled in - shared by the live
- * preview (below) and confirm() so the two can never disagree. */
+ * preview (below) and confirm() so the two can never disagree. Always empty when
+ * skipAttributeSkillGrants is set (Start from an Archetype's Lifepath sub-flow). */
 const previewAttributeDeltas = computed<Partial<Record<AttributeId, number>>>(() => {
   const option = selectedOption.value
-  if (!option) return {}
+  if (!option || props.skipAttributeSkillGrants) return {}
   const result: Partial<Record<AttributeId, number>> = {}
   option.grants.attributePoints.forEach((grant, i) => {
     if (isPool(grant)) {
@@ -111,7 +121,7 @@ const previewAttributeDeltas = computed<Partial<Record<AttributeId, number>>>(()
 })
 const previewSkillDeltas = computed<Partial<Record<SkillId, number>>>(() => {
   const option = selectedOption.value
-  if (!option) return {}
+  if (!option || props.skipAttributeSkillGrants) return {}
   const result: Partial<Record<SkillId, number>> = {}
   option.grants.skillPoints.forEach((grant, i) => {
     const id = grant.restrictTo?.length === 1 ? grant.restrictTo[0] : skillChoices.value[i]
@@ -190,6 +200,7 @@ function confirm() {
 
     <v-card v-if="selectedOption" class="mt-4" variant="outlined">
       <v-card-text>
+        <template v-if="!skipAttributeSkillGrants">
         <template v-for="(grant, i) in selectedOption.grants.attributePoints" :key="`attr-${i}`">
           <div v-if="grant.restrictTo?.length === 1" class="mb-3">
             +{{ grant.amount }} {{ attributeName(grant.restrictTo[0]) }} (fixed)
@@ -223,6 +234,7 @@ function confirm() {
             density="compact"
           />
         </div>
+        </template>
 
         <v-text-field
           v-for="(_, i) in focusTexts"

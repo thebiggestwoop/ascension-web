@@ -6,6 +6,8 @@ import LifepathStageStep from './components/LifepathStageStep.vue'
 import FinishingTouchesStep from './components/FinishingTouchesStep.vue'
 import QuickBuildStep from './components/QuickBuildStep.vue'
 import ArchetypeSelectStep from './components/ArchetypeSelectStep.vue'
+import ArchetypePreviewStep from './components/ArchetypePreviewStep.vue'
+import ArchetypeQuickEntryStep from './components/ArchetypeQuickEntryStep.vue'
 import CharacterPreview from './components/CharacterPreview.vue'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 
@@ -20,12 +22,35 @@ const currentStageIndex = ref(0)
 const pickedOptionIdsForCurrentStage = ref<string[]>([])
 const store = useCharacterDraftStore()
 const creationMethod = ref<'lifepath' | 'quick_build' | 'archetype' | null>(null)
-/** Set once a pregen is picked in ArchetypeSelectStep - looked up to feed QuickBuildStep's
- * `prefill` prop, reusing that same form (pre-filled) instead of a separate one. */
+
+/**
+ * "Start from an Archetype" runs its own four-step sequence, independent of the Lifepath/
+ * Quick Build methods above: pick a pregen (ArchetypeSelectStep) -> review it read-only
+ * (ArchetypePreviewStep) -> choose how to pick Focuses/Values/Traits (Lifepath's own five
+ * stages, minus Attribute/Skill grants, or a flat Quick Entry form) -> Finishing Touches
+ * (QuickBuildStep, pre-filled from the Archetype, Focuses/Values/Traits hidden since Step
+ * Two already applied them).
+ */
 const selectedArchetypeId = ref<string | null>(null)
 const selectedArchetypeData = computed(() =>
   selectedArchetypeId.value ? CoreContent.archetypes.characters[selectedArchetypeId.value] : undefined,
 )
+const archetypePhase = ref<'preview' | 'focus_value_trait_choice' | 'lifepath' | 'quick_entry' | 'finishing_touches'>(
+  'preview',
+)
+
+function selectArchetype(id: string) {
+  selectedArchetypeId.value = id
+  archetypePhase.value = 'preview'
+}
+
+function chooseFocusValueTraitMethod(method: 'lifepath' | 'quick_entry') {
+  if (method === 'lifepath') {
+    currentStageIndex.value = 0
+    pickedOptionIdsForCurrentStage.value = []
+  }
+  archetypePhase.value = method
+}
 
 const currentStage = computed(() => stages[currentStageIndex.value])
 const allStagesDone = computed(() => currentStageIndex.value >= stages.length)
@@ -39,6 +64,9 @@ function handleConfirm(selection: ILifepathSelection) {
   if (pickedOptionIdsForCurrentStage.value.length >= currentStage.value.selectCount) {
     currentStageIndex.value++
     pickedOptionIdsForCurrentStage.value = []
+    if (currentStageIndex.value >= stages.length && creationMethod.value === 'archetype') {
+      archetypePhase.value = 'finishing_touches'
+    }
   }
 }
 
@@ -48,6 +76,7 @@ function startOver() {
   pickedOptionIdsForCurrentStage.value = []
   creationMethod.value = null
   selectedArchetypeId.value = null
+  archetypePhase.value = 'preview'
 }
 
 // The draft store is a singleton that outlives this page (e.g. it's still holding the last
@@ -100,7 +129,41 @@ onMounted(() => store.reset())
     </template>
 
     <template v-else-if="creationMethod === 'archetype' && !selectedArchetypeData">
-      <ArchetypeSelectStep @select="(id) => (selectedArchetypeId = id)" />
+      <ArchetypeSelectStep @select="selectArchetype" />
+    </template>
+
+    <template v-else-if="creationMethod === 'archetype' && archetypePhase === 'preview'">
+      <ArchetypePreviewStep
+        :archetype="selectedArchetypeData!"
+        @continue="archetypePhase = 'focus_value_trait_choice'"
+      />
+    </template>
+
+    <template v-else-if="creationMethod === 'archetype' && archetypePhase === 'focus_value_trait_choice'">
+      <p class="text-body-2 text-medium-emphasis mb-4">
+        How would you like to choose Focuses, Values, and Traits?
+      </p>
+      <v-row>
+        <v-col cols="12" sm="6">
+          <v-card variant="outlined" @click="chooseFocusValueTraitMethod('lifepath')">
+            <v-card-title>Lifepath (Recommended)</v-card-title>
+            <v-card-text>
+              Step through Social Class, Upbringing, Education, Career, and Life Events for their
+              Trait/Focus/Value grants - the same choices as full Lifepath Creation, just without
+              its Attribute/Skill points (the Archetype's own are already set).
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-card variant="outlined" @click="chooseFocusValueTraitMethod('quick_entry')">
+            <v-card-title>Quick Entry</v-card-title>
+            <v-card-text>
+              Skip the narrative steps and fill in Focuses, Values, and a starting Trait directly -
+              the same fields Quick Build itself uses.
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </template>
 
     <v-row v-else>
@@ -115,7 +178,30 @@ onMounted(() => store.reset())
           />
           <FinishingTouchesStep v-else />
         </template>
-        <QuickBuildStep v-else :prefill="selectedArchetypeData" />
+
+        <template v-else-if="creationMethod === 'archetype' && archetypePhase === 'lifepath'">
+          <LifepathStageStep
+            :key="`archetype-${currentStage.id}-${pickedOptionIdsForCurrentStage.length}`"
+            :stage="currentStage"
+            :exclude-option-ids="pickedOptionIdsForCurrentStage"
+            skip-attribute-skill-grants
+            @confirm="handleConfirm"
+          />
+        </template>
+
+        <ArchetypeQuickEntryStep
+          v-else-if="creationMethod === 'archetype' && archetypePhase === 'quick_entry'"
+          @finish="archetypePhase = 'finishing_touches'"
+        />
+
+        <QuickBuildStep
+          v-else-if="creationMethod === 'archetype' && archetypePhase === 'finishing_touches'"
+          :prefill="selectedArchetypeData"
+          :archetype-id="selectedArchetypeId ?? undefined"
+          archetype-finishing-touches-only
+        />
+
+        <QuickBuildStep v-else-if="creationMethod === 'quick_build'" />
       </v-col>
       <v-col cols="12" md="5">
         <CharacterPreview />

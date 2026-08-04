@@ -19,14 +19,20 @@ import SpellPicker from '@/features/character_sheet/components/SpellPicker.vue'
  * step, with no Lifepath stages (so no Social Class/Career, and no Talent prerequisites tied
  * to either can ever be met via this path, matching the rules' own scope for Standard Array).
  *
- * Also doubles as the "Start from an Archetype" step: when `prefill` is set (an Archetype
- * pregen), every mechanical field below (Attributes, Skills, Combat Focuses, Trait, Talents,
- * Equipment, Spells) is pre-populated from its `creationRecord.quickBuild` record, identical to
- * what a player choosing those same options by hand would produce - free-text fields (Focuses,
- * Values, Defining Feature) are left blank since those are personal narrative details no
- * Archetype can predetermine, even though the pregen JSON carries "placeholder" text for them.
+ * Also doubles as "Start from an Archetype"'s Step Three ("Finishing Touches"): when `prefill`
+ * is set (an Archetype pregen), Attributes, Skills, Combat Focuses, Talents, and Equipment/
+ * Spells are all pre-populated from its `creationRecord.quickBuild` record, identical to what a
+ * player choosing those same options by hand would produce. With `archetypeFinishingTouchesOnly`
+ * additionally set, the Focuses/Values/Traits card is hidden entirely (Step Two already applied
+ * them, via Lifepath or Quick Entry) and finishing calls applyArchetypeFinishingTouches instead
+ * of applyQuickBuild; Character Name is always left for the player to type, in both modes.
  */
-const props = defineProps<{ prefill?: IArchetypeCharacterData }>()
+const props = defineProps<{
+  prefill?: IArchetypeCharacterData
+  archetypeFinishingTouchesOnly?: boolean
+  /** The Archetype catalog id (e.g. "hero") - recorded into creationRecord.archetype.archetypeId. */
+  archetypeId?: string
+}>()
 const prefillRecord = props.prefill?.creationRecord?.quickBuild
 
 const sa = CoreContent.standardArray
@@ -83,7 +89,7 @@ function bonusPerIndexToSlots<T>(bonusPerIndex: number[], ids: T[], slotCount: n
   return slots
 }
 
-const nameText = ref(props.prefill?.name ?? '')
+const nameText = ref('')
 
 const attributeDecomposition = prefillRecord
   ? decomposeArray(allAttributeIds.map((id) => prefillRecord.attributes[id]), sa.attributeArray, sa.attributeBonusPoints)
@@ -242,6 +248,14 @@ const traitChoice = ref<'Peasant' | 'Merchant' | 'Noble' | null>(inferTraitChoic
 const classTraitNames = computed(() => (traitChoice.value ? CLASS_TRAIT_NAMES[traitChoice.value] : []))
 const definingFeatureText = ref('')
 
+/** In archetypeFinishingTouchesOnly mode, Traits (Class Archetype gates included) were already
+ * applied to store.draft in Step Two (Lifepath or Quick Entry) - the local traitChoice/
+ * classTraitNames above stay unused (that card is hidden), so Talent prerequisite checks need
+ * to read the real Trait names from the draft instead. */
+const heldTraitNamesForPicker = computed(() =>
+  props.archetypeFinishingTouchesOnly ? store.draft.traits.map((t) => t.name) : classTraitNames.value,
+)
+
 const talentPicks = ref<{ narrativeTalentIds: string[]; combatTalentIds: string[] }>({
   narrativeTalentIds: prefillRecord ? [...prefillRecord.narrativeTalentIds] : [],
   combatTalentIds: prefillRecord ? [...prefillRecord.combatTalentIds] : [],
@@ -322,10 +336,12 @@ const missingRequirements = computed(() => {
     missing.push(`Assign all ${sa.skillBonusPoints} Skill bonus points`)
   }
   if (combatSkillFocuses.value.length !== 2) missing.push('Choose 2 Combat Skill Focuses')
-  if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
-  if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
-  if (!traitChoice.value) missing.push('Choose Peasant, Merchant, or Noble')
-  if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
+  if (!props.archetypeFinishingTouchesOnly) {
+    if (!focusTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.focusCount} Focuses`)
+    if (!valueTexts.value.every((t) => t.trim())) missing.push(`Fill in all ${sa.valueCount} Values`)
+    if (!traitChoice.value) missing.push('Choose Peasant, Merchant, or Noble')
+    if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
+  }
   if (talentPicks.value.narrativeTalentIds.length !== sa.narrativeTalentGrant) {
     missing.push(
       `Choose ${sa.narrativeTalentGrant} Narrative Talents (currently ${talentPicks.value.narrativeTalentIds.length})`,
@@ -342,25 +358,43 @@ const isReady = computed(() => missingRequirements.value.length === 0)
 const finished = ref(false)
 
 async function finish() {
-  if (!isReady.value || finished.value || !traitChoice.value) return
+  if (!isReady.value || finished.value) return
 
-  await store.applyQuickBuild({
-    name: nameText.value,
-    attributes: finalAttributes.value,
-    skills: finalSkills.value,
-    focusTexts: [...focusTexts.value],
-    valueTexts: [...valueTexts.value],
-    traitNames: classTraitNames.value,
-    definingFeatureText: definingFeatureText.value,
-    narrativeTalentIds: talentPicks.value.narrativeTalentIds,
-    combatTalentIds: talentPicks.value.combatTalentIds,
-    equippedWeaponIds: equipmentPicks.value.equippedWeaponIds,
-    equippedArmorId: equipmentPicks.value.equippedArmorId,
-    inventoryItemIds: equipmentPicks.value.inventoryItemIds,
-    mountId: equipmentPicks.value.mountId,
-    preparedSpellIds: [...preparedSpellIds.value],
-    combatSkillFocuses: [...combatSkillFocuses.value],
-  })
+  if (props.archetypeFinishingTouchesOnly) {
+    await store.applyArchetypeFinishingTouches({
+      name: nameText.value,
+      archetypeId: props.archetypeId ?? '',
+      attributes: finalAttributes.value,
+      skills: finalSkills.value,
+      narrativeTalentIds: talentPicks.value.narrativeTalentIds,
+      combatTalentIds: talentPicks.value.combatTalentIds,
+      equippedWeaponIds: equipmentPicks.value.equippedWeaponIds,
+      equippedArmorId: equipmentPicks.value.equippedArmorId,
+      inventoryItemIds: equipmentPicks.value.inventoryItemIds,
+      mountId: equipmentPicks.value.mountId,
+      preparedSpellIds: [...preparedSpellIds.value],
+      combatSkillFocuses: [...combatSkillFocuses.value],
+    })
+  } else {
+    if (!traitChoice.value) return
+    await store.applyQuickBuild({
+      name: nameText.value,
+      attributes: finalAttributes.value,
+      skills: finalSkills.value,
+      focusTexts: [...focusTexts.value],
+      valueTexts: [...valueTexts.value],
+      traitNames: classTraitNames.value,
+      definingFeatureText: definingFeatureText.value,
+      narrativeTalentIds: talentPicks.value.narrativeTalentIds,
+      combatTalentIds: talentPicks.value.combatTalentIds,
+      equippedWeaponIds: equipmentPicks.value.equippedWeaponIds,
+      equippedArmorId: equipmentPicks.value.equippedArmorId,
+      inventoryItemIds: equipmentPicks.value.inventoryItemIds,
+      mountId: equipmentPicks.value.mountId,
+      preparedSpellIds: [...preparedSpellIds.value],
+      combatSkillFocuses: [...combatSkillFocuses.value],
+    })
+  }
 
   finished.value = true
   emit('finish')
@@ -381,8 +415,13 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
 
 <template>
   <div>
-    <h3 class="text-h6 mb-2">{{ prefill ? `${prefill.name} (Archetype)` : 'Quick Build (Standard Array)' }}</h3>
-    <p v-if="prefill" class="text-body-2 text-medium-emphasis mb-2">
+    <h3 class="text-h6 mb-2">
+      {{ archetypeFinishingTouchesOnly ? 'Finishing Touches' : prefill ? `${prefill.name} (Archetype)` : 'Quick Build (Standard Array)' }}
+    </h3>
+    <p v-if="archetypeFinishingTouchesOnly" class="text-body-2 text-medium-emphasis mb-2">
+      Pre-filled from {{ prefill?.name }} - change anything you like, then name your character to finish.
+    </p>
+    <p v-else-if="prefill" class="text-body-2 text-medium-emphasis mb-2">
       Everything below is pre-filled from this Archetype - change anything you like before finishing.
     </p>
 
@@ -465,40 +504,42 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
         </v-card-text>
       </v-card>
 
-      <v-card class="mb-4" variant="outlined">
-        <v-card-title>Focuses &amp; Values</v-card-title>
-        <v-card-text>
-          <v-text-field
-            v-for="(_, i) in focusTexts"
-            :key="`focus-${i}`"
-            v-model="focusTexts[i]"
-            :label="`Focus ${i + 1}`"
-            density="compact"
-          />
-          <v-text-field
-            v-for="(_, i) in valueTexts"
-            :key="`value-${i}`"
-            v-model="valueTexts[i]"
-            :label="`Value ${i + 1}`"
-            density="compact"
-          />
-        </v-card-text>
-      </v-card>
+      <template v-if="!archetypeFinishingTouchesOnly">
+        <v-card class="mb-4" variant="outlined">
+          <v-card-title>Focuses &amp; Values</v-card-title>
+          <v-card-text>
+            <v-text-field
+              v-for="(_, i) in focusTexts"
+              :key="`focus-${i}`"
+              v-model="focusTexts[i]"
+              :label="`Focus ${i + 1}`"
+              density="compact"
+            />
+            <v-text-field
+              v-for="(_, i) in valueTexts"
+              :key="`value-${i}`"
+              v-model="valueTexts[i]"
+              :label="`Value ${i + 1}`"
+              density="compact"
+            />
+          </v-card-text>
+        </v-card>
 
-      <v-card class="mb-4" variant="outlined">
-        <v-card-title>Traits</v-card-title>
-        <v-card-text>
-          <v-radio-group v-model="traitChoice" inline density="compact" label="Starting Trait">
-            <v-radio label="Peasant" value="Peasant" />
-            <v-radio label="Merchant" value="Merchant" />
-            <v-radio label="Noble" value="Noble" />
-          </v-radio-group>
-          <p class="text-caption text-medium-emphasis mb-2">
-            Also unlocks the matching Class Archetype (Peasant/Merchant/Noble) Narrative Talents below.
-          </p>
-          <v-text-field v-model="definingFeatureText" label="Defining Feature (Trait)" density="compact" />
-        </v-card-text>
-      </v-card>
+        <v-card class="mb-4" variant="outlined">
+          <v-card-title>Traits</v-card-title>
+          <v-card-text>
+            <v-radio-group v-model="traitChoice" inline density="compact" label="Starting Trait">
+              <v-radio label="Peasant" value="Peasant" />
+              <v-radio label="Merchant" value="Merchant" />
+              <v-radio label="Noble" value="Noble" />
+            </v-radio-group>
+            <p class="text-caption text-medium-emphasis mb-2">
+              Also unlocks the matching Class Archetype (Peasant/Merchant/Noble) Narrative Talents below.
+            </p>
+            <v-text-field v-model="definingFeatureText" label="Defining Feature (Trait)" density="compact" />
+          </v-card-text>
+        </v-card>
+      </template>
 
       <v-card class="mb-4" variant="outlined">
         <v-card-title>Talents</v-card-title>
@@ -506,7 +547,7 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
           <TalentPicker
             :attributes="finalAttributes"
             :skills="finalSkills"
-            :held-trait-names="classTraitNames"
+            :held-trait-names="heldTraitNamesForPicker"
             :narrative-count="sa.narrativeTalentGrant"
             :combat-count="sa.combatTalentGrant.count"
             :max-tier="sa.combatTalentGrant.tier"

@@ -5,7 +5,12 @@ import type { ICharacterData } from '@/classes/Character'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 import { applyLifepathSelection } from '@/classes/Lifepath'
-import type { IFinishingTouchesRecord, IQuickBuildRecord } from '@/classes/CharacterHistory'
+import type {
+  IFinishingTouchesRecord,
+  IQuickBuildRecord,
+  IFocusValueTraitEntry,
+  IArchetypeFinishingTouchesRecord,
+} from '@/classes/CharacterHistory'
 import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
 import { saveCharacter } from '@/io/Storage'
@@ -86,6 +91,19 @@ export interface IQuickBuildPayload extends IQuickBuildRecord {
 }
 
 /**
+ * Start from an Archetype, Step Three ("Finishing Touches"): the Archetype's pre-filled
+ * Attributes/Skills/Talents/Equipment/Spells, edited (or not) by the player. Doesn't carry
+ * Focuses/Values/Traits - those were already applied to `draft` in Step Two, either via the
+ * normal Lifepath stage flow (`applyStage`, unchanged) or `applyFocusValueTraitQuickEntry`
+ * below - `applyArchetypeFinishingTouches` only reads back which one happened
+ * (`archetypeQuickEntry` set, or not) to build an accurate creationRecord.
+ */
+export interface IArchetypeFinishingTouchesPayload extends IArchetypeFinishingTouchesRecord {
+  name: string
+  archetypeId: string
+}
+
+/**
  * Whichever step is currently active reports its in-progress, not-yet-confirmed picks here so
  * CharacterPreview can show their effect immediately instead of only after "Confirm & Continue"/
  * "Finish Character". `attributes`/`skills` are absolute preview values (not deltas) since Quick
@@ -126,6 +144,11 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
      * already applied each stage's effect to the draft as it was picked. */
     lifepathSelections: [] as ILifepathSelection[],
     pendingPreview: createEmptyPendingPreview() as IPendingPreview,
+    /** Set once the Archetype path's "Quick Entry" Focus/Value/Trait form is submitted -
+     * recorded verbatim into creationRecord.archetype at Finishing Touches. Left null when the
+     * Lifepath sub-flow was used instead (that path's picks live in `lifepathSelections`, same
+     * as the top-level Lifepath creation method). */
+    archetypeQuickEntry: null as IFocusValueTraitEntry | null,
   }),
   actions: {
     setPendingPreview(preview: Partial<IPendingPreview>) {
@@ -139,6 +162,53 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.completedStageIds.push(stage.id)
       this.lifepathSelections.push(selection)
       this.clearPendingPreview()
+    },
+    /** Start from an Archetype, Step Two's "Quick Entry" option: applies Focuses/Values/Traits
+     * directly, the same way applyQuickBuild's own such fields do - not a full stage, so it
+     * doesn't touch completedStageIds/lifepathSelections. */
+    applyFocusValueTraitQuickEntry(payload: IFocusValueTraitEntry) {
+      this.draft.focuses.push(...payload.focusTexts)
+      for (const text of payload.valueTexts) {
+        this.draft.values.push({ text, active: true })
+      }
+      for (const name of payload.traitNames) {
+        this.draft.traits.push({ name })
+      }
+      this.draft.traits.push({ name: `Defining Feature: ${payload.definingFeatureText}` })
+      this.archetypeQuickEntry = toPlainRecord(payload)
+      this.clearPendingPreview()
+    },
+    /** Start from an Archetype, Step Three: sets the final (editable, pre-filled) Attributes/
+     * Skills/Talents/Equipment/Spells and finishes the character - Focuses/Values/Traits are
+     * left untouched since Step Two already applied them (via applyStage or
+     * applyFocusValueTraitQuickEntry above). */
+    async applyArchetypeFinishingTouches(payload: IArchetypeFinishingTouchesPayload) {
+      this.draft.name = payload.name
+      this.draft.attributes = { ...payload.attributes }
+      this.draft.skills = { ...payload.skills }
+      this.draft.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
+      grantSpellcasterTraitIfNeeded(this.draft, [...payload.narrativeTalentIds, ...payload.combatTalentIds])
+      this.draft.equippedWeaponIds.push(...payload.equippedWeaponIds)
+      if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
+      this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
+      if (payload.mountId) this.draft.mountId = payload.mountId
+      this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
+      this.draft.combatSkillFocuses = [...payload.combatSkillFocuses]
+
+      const { name: _name, archetypeId, ...finishingTouches } = payload
+      this.draft.creationRecord = toPlainRecord({
+        method: 'archetype' as const,
+        lifepathSelections: this.lifepathSelections.length ? this.lifepathSelections : undefined,
+        archetype: {
+          archetypeId,
+          focusValueTraitMethod: this.archetypeQuickEntry ? ('quick_entry' as const) : ('lifepath' as const),
+          quickEntry: this.archetypeQuickEntry ?? undefined,
+          finishingTouches,
+        },
+      })
+      this.clearPendingPreview()
+
+      await this.finalizeCharacter()
     },
     async applyFinishingTouches(payload: IFinishingTouchesPayload) {
       this.draft.name = payload.name
@@ -217,6 +287,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.draft = createBaseDraft()
       this.completedStageIds = []
       this.lifepathSelections = []
+      this.archetypeQuickEntry = null
       this.clearPendingPreview()
     },
   },
