@@ -7,6 +7,7 @@ import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
 import { EquipmentQuality, WeaponTag, MAX_INVENTORY_SLOTS, equipmentSlotCost } from '@/classes/Equipment'
 import { mountedSpeed } from '@/classes/Mount'
 import { exportCharacterToFile } from '@/io/CharacterTransfer'
+import { downloadStatblock } from '@/io/StatblockExport'
 import MarkdownText from '@/ui/MarkdownText.vue'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
@@ -600,6 +601,7 @@ const rattledText = computed(() => {
       <h2 class="text-h5">{{ character.name || 'Unnamed Character' }}</h2>
       <div class="d-flex align-center ga-2">
         <v-btn variant="text" size="small" @click="exportCharacterToFile(store.character)">Export</v-btn>
+        <v-btn variant="text" size="small" @click="downloadStatblock(store.character)">Generate Statblock</v-btn>
         <v-btn variant="text" size="small" to="/sheet">Back to Characters</v-btn>
       </div>
     </div>

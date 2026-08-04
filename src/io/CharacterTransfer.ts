@@ -3,7 +3,7 @@ import { migrateLegacyCharacterData } from '@/classes/Character'
 import { saveCharacter } from './Storage'
 
 /** Turns "Sir Reginald the Bold" into "Sir-Reginald-the-Bold" - safe on every OS's filesystem. */
-function sanitizeFilename(name: string): string {
+export function sanitizeFilename(name: string): string {
   const cleaned = name.trim().replace(/[\\/:*?"<>|]+/g, '').replace(/\s+/g, '-')
   return cleaned || 'character'
 }
