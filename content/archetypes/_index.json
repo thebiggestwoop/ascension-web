@@ -49,5 +49,37 @@
         "playstyle": "placeholder"
       }
     ]
+  },
+  {
+    "id": "authority",
+    "name": "Authority",
+    "description": "Authority archetypes have high Presence, leading allies from the front and turning the tide of battle through command and inspiration rather than the blade alone.",
+    "archetypes": [
+      {
+        "id": "bishop",
+        "name": "Bishop",
+        "description": "A noble priest who leads from horseback, blending Light Magick and authority to guide the faithful in battle.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "lord",
+        "name": "Lord",
+        "description": "A commanding noble whose presence alone can turn the tide, rallying allies with authority and a rapier's precision.",
+        "playstyle": "placeholder"
+      }
+    ]
+  },
+  {
+    "id": "axe",
+    "name": "Axe",
+    "description": "Axe wielders have high Brawn, cleaving through enemies with raw, relentless power.",
+    "archetypes": [
+      {
+        "id": "death_knight",
+        "name": "Death Knight",
+        "description": "A dark, battle-scarred noble who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
+        "playstyle": "placeholder"
+      }
+    ]
   }
 ]

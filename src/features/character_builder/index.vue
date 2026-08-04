@@ -143,6 +143,7 @@ onMounted(() => store.reset())
         :archetype="selectedArchetypeData!"
         :playstyle="selectedArchetypeSummary?.playstyle ?? ''"
         @continue="archetypePhase = 'focus_value_trait_choice'"
+        @back="selectedArchetypeId = null"
       />
     </template>
 

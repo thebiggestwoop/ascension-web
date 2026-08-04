@@ -15,7 +15,7 @@ import TooltipChip from '@/ui/TooltipChip.vue'
  * there's nothing pending yet to compare against; no editing controls at all.
  */
 const props = defineProps<{ archetype: IArchetypeCharacterData; playstyle: string }>()
-const emit = defineEmits<{ continue: [] }>()
+const emit = defineEmits<{ continue: []; back: [] }>()
 
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
 const heldTalents = computed(() => allTalents.filter((t) => props.archetype.talentIds.includes(t.id)))
@@ -71,6 +71,9 @@ function qualityTooltip(q: IQualityInstance): string | undefined {
 
 <template>
   <div>
+    <v-btn variant="text" size="small" prepend-icon="mdi-arrow-left" class="mb-2" @click="emit('back')">
+      Archetypes
+    </v-btn>
     <h3 class="text-h6 mb-1">{{ archetype.name }}</h3>
     <div class="text-subtitle-2 mb-1">Playstyle</div>
     <MarkdownText :source="playstyle" class="text-body-2 text-medium-emphasis mb-4" />
