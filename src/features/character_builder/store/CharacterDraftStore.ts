@@ -12,6 +12,7 @@ import type {
   IArchetypeFinishingTouchesRecord,
 } from '@/classes/CharacterHistory'
 import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
+import type { IArchetypeCharacterData } from '@/classes/Archetype'
 import { CoreContent } from '@/io/ContentLoader'
 import { saveCharacter } from '@/io/Storage'
 
@@ -162,6 +163,18 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.completedStageIds.push(stage.id)
       this.lifepathSelections.push(selection)
       this.clearPendingPreview()
+    },
+    /** Start from an Archetype, Step One: seeds the draft's Attributes/Skills with the
+     * Archetype's own values as soon as it's picked, so CharacterPreview - and Step Two's
+     * Lifepath sub-flow, which deliberately applies no Attribute/Skill deltas of its own - show
+     * the Archetype's real starting point throughout instead of the base 6/1 draft minimums.
+     * Step Three's applyArchetypeFinishingTouches later overwrites these with whatever the
+     * player's final Attributes/Skills selection ends up being (identical unless they changed
+     * something there), so this seeding only affects what's shown in the meantime - including
+     * the "(was X)" comparison Finishing Touches' own pre-filled form triggers against it. */
+    seedArchetypeAttributesSkills(archetype: IArchetypeCharacterData) {
+      this.draft.attributes = { ...archetype.attributes }
+      this.draft.skills = { ...archetype.skills }
     },
     /** Start from an Archetype, Step Two's "Quick Entry" option: applies Focuses/Values/Traits
      * directly, the same way applyQuickBuild's own such fields do - not a full stage, so it

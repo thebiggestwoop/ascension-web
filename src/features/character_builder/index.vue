@@ -42,6 +42,8 @@ const archetypePhase = ref<'preview' | 'focus_value_trait_choice' | 'lifepath' |
 function selectArchetype(id: string) {
   selectedArchetypeId.value = id
   archetypePhase.value = 'preview'
+  const data = CoreContent.archetypes.characters[id]
+  if (data) store.seedArchetypeAttributesSkills(data)
 }
 
 function chooseFocusValueTraitMethod(method: 'lifepath' | 'quick_entry') {
