@@ -56,6 +56,7 @@ function createBaseDraft(): ICharacterData {
     },
     focuses: [],
     values: [],
+    commonCause: { text: '', active: true, challenged: false },
     traits: [],
     combatSkillFocuses: [],
     currentHp: 0,

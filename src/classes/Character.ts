@@ -38,6 +38,12 @@ export interface ICharacterData {
   skills: Record<SkillId, number>
   focuses: string[]
   values: IValue[]
+  /** "Each party should have a Common Cause, an agreed upon directive which defines the
+   * characters' general goal or goals" (Chapter Three) - a fifth, party-wide Value: same
+   * Called Upon/Challenged mechanics as `values` above, but tracked as its own field (not a
+   * 5th array entry) since it's conceptually distinct and always exactly one. Blank until the
+   * party agrees on one in play; not part of any creation flow's grants. */
+  commonCause: IValue
   traits: ITrait[]
   /** Skills chosen as "Combat Focuses" (optional rule): grants an expanded crit range on Tasks
    * using that Skill in combat instead of relying on written Focuses. Two chosen at character
@@ -89,6 +95,7 @@ export function migrateLegacyCharacterData(data: ICharacterData): ICharacterData
   if (data.temporaryResistance === undefined) data.temporaryResistance = 0
   if (!data.combatSkillFocuses) data.combatSkillFocuses = []
   if (data.notes === undefined) data.notes = ''
+  if (data.commonCause === undefined) data.commonCause = { text: '', active: true, challenged: false }
   for (const value of data.values) {
     if (value.challenged === undefined) value.challenged = false
   }

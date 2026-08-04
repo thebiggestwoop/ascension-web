@@ -50,6 +50,7 @@
       "challenged": false
     }
   ],
+  "commonCause": { "text": "", "active": true, "challenged": false },
   "traits": [
     {
       "name": "Noble"

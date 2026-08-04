@@ -97,14 +97,22 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       value.text = text
       await this.persist()
     },
-    async addValue() {
+    /** The Common Cause is a fifth, party-wide Value (see IValue.commonCause's doc comment) -
+     * always exactly one, so unlike `values` above it has no add/remove, just the same
+     * text/Called-Upon/Challenged mutations. */
+    async updateCommonCauseText(text: string) {
       if (!this.character) return
-      this.character.values.push({ text: '', active: true, challenged: false })
+      this.character.commonCause.text = text
       await this.persist()
     },
-    async removeValue(index: number) {
+    async toggleCommonCauseActive() {
       if (!this.character) return
-      this.character.values.splice(index, 1)
+      this.character.commonCause.active = !this.character.commonCause.active
+      await this.persist()
+    },
+    async toggleCommonCauseChallenged() {
+      if (!this.character) return
+      this.character.commonCause.challenged = !this.character.commonCause.challenged
       await this.persist()
     },
     async adjustXp(delta: number) {

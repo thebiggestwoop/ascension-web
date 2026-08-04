@@ -914,11 +914,10 @@ const rattledText = computed(() => {
             </div>
             <v-divider class="mb-2" />
 
-            <div v-if="store.character.values.length" class="values-grid values-header text-caption text-medium-emphasis">
+            <div class="values-grid values-header text-caption text-medium-emphasis">
               <span />
               <span class="text-center">Called Upon</span>
               <span class="text-center">Challenge</span>
-              <span />
             </div>
 
             <template v-for="(v, i) in store.character.values" :key="i">
@@ -952,15 +951,45 @@ const rattledText = computed(() => {
                     @update:model-value="store.toggleValueChallenged(i)"
                   />
                 </div>
-                <div class="d-flex justify-center">
-                  <v-btn icon="mdi-close" size="x-small" variant="text" @click="store.removeValue(i)" />
-                </div>
               </div>
             </template>
-            <span v-if="!store.character.values.length" class="text-medium-emphasis">None</span>
-            <v-btn size="small" variant="text" prepend-icon="mdi-plus" class="mt-1" @click="store.addValue()">
-              Add Value
-            </v-btn>
+
+            <v-divider class="my-2" />
+
+            <div class="values-grid py-1">
+              <v-text-field
+                :model-value="store.character.commonCause.text"
+                variant="underlined"
+                density="compact"
+                placeholder="Common Cause"
+                hide-details
+                class="value-text"
+                :class="{
+                  'value-inactive': !store.character.commonCause.active || store.character.commonCause.challenged,
+                  'value-challenged': store.character.commonCause.challenged,
+                }"
+                @update:model-value="(text) => store.updateCommonCauseText(text as string)"
+              />
+              <div class="d-flex justify-center">
+                <v-checkbox
+                  :model-value="!store.character.commonCause.active"
+                  aria-label="Called Upon: Common Cause"
+                  density="compact"
+                  hide-details
+                  :disabled="store.character.commonCause.challenged"
+                  @update:model-value="store.toggleCommonCauseActive()"
+                />
+              </div>
+              <div class="d-flex justify-center">
+                <v-checkbox
+                  :model-value="store.character.commonCause.challenged"
+                  aria-label="Challenge: Common Cause"
+                  density="compact"
+                  hide-details
+                  @update:model-value="store.toggleCommonCauseChallenged()"
+                />
+              </div>
+            </div>
           </v-card-text>
         </v-card>
 
@@ -1038,9 +1067,9 @@ const rattledText = computed(() => {
 
 .values-grid {
   display: grid;
-  grid-template-columns: 1fr 56px 56px 24px;
+  grid-template-columns: 1fr 64px 64px;
   align-items: center;
-  column-gap: 4px;
+  column-gap: 8px;
 }
 .values-header {
   padding-bottom: 2px;
