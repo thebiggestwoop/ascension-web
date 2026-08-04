@@ -45,7 +45,7 @@
       {
         "id": "mendicant",
         "name": "Mendicant",
-        "description": "A wandering healer who channels Light Magick to mend the wounded and shield the faithful.",
+        "description": "A holy healer who channels Light Magick to mend the wounded and shield the faithful.",
         "playstyle": "placeholder"
       }
     ]
@@ -58,13 +58,13 @@
       {
         "id": "bishop",
         "name": "Bishop",
-        "description": "A noble priest who leads from horseback, blending Light Magick and authority to guide the faithful in battle.",
+        "description": "A commanding priest who leads from horseback, blending Light Magick and authority to guide the faithful in battle.",
         "playstyle": "placeholder"
       },
       {
         "id": "lord",
         "name": "Lord",
-        "description": "A commanding noble whose presence alone can turn the tide, rallying allies with authority and a rapier's precision.",
+        "description": "A frontline leader whose presence alone can turn the tide, rallying allies with authority and a rapier's precision.",
         "playstyle": "placeholder"
       }
     ]
@@ -77,7 +77,7 @@
       {
         "id": "death_knight",
         "name": "Death Knight",
-        "description": "A dark, battle-scarred noble who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
+        "description": "A dark, battle-scarred warrior who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
         "playstyle": "placeholder"
       }
     ]
