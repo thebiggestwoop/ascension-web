@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { resolveMagickDomainAccess, MAGICK_ATTRIBUTE_BY_DOMAIN } from '@/classes/Spell'
-import type { ISpellData } from '@/classes/Spell'
+import type { ActionType, ISpellData } from '@/classes/Spell'
 import type { Character } from '@/classes/Character'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
 import SpellEffectText from './SpellEffectText.vue'
@@ -47,6 +47,16 @@ function usesDisplay(spell: ISpellData, count: number): string {
   if (spell.usesPerScene === 'passive') return 'Passive'
   return `${spell.usesPerScene * count} / scene`
 }
+
+const ACTION_LABELS: Record<ActionType, string> = {
+  major: 'Major Action',
+  minor: 'Minor Action',
+  reaction: 'Reaction',
+  passive: 'Passive',
+}
+function actionLabel(action: ActionType): string {
+  return ACTION_LABELS[action]
+}
 </script>
 
 <template>
@@ -55,9 +65,12 @@ function usesDisplay(spell: ISpellData, count: number): string {
   </div>
   <div v-else-if="!preparedGroups.length" class="text-medium-emphasis">No spells prepared.</div>
   <v-card v-for="g in preparedGroups" :key="g.spell.id" variant="tonal" class="mb-2">
-    <v-card-title class="text-subtitle-1 d-flex align-center justify-space-between">
+    <v-card-title class="text-subtitle-1 d-flex align-center justify-space-between flex-wrap ga-1">
       <span>{{ g.spell.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
-      <v-chip size="small">Tier {{ g.spell.tier }}</v-chip>
+      <div class="d-flex ga-1">
+        <v-chip size="small" variant="tonal">{{ actionLabel(g.spell.action) }}</v-chip>
+        <v-chip size="small">Tier {{ g.spell.tier }}</v-chip>
+      </div>
     </v-card-title>
     <v-card-subtitle>
       {{ g.spell.tags.join(', ') }} - {{ g.spell.slotCost }} Slot{{ g.spell.slotCost > 1 ? 's' : '' }}

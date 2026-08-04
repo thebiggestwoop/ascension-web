@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { AttributeId, SkillId } from '@/classes/enums'
 import { resolveMagickDomainAccess, MAGICK_ATTRIBUTE_BY_DOMAIN } from '@/classes/Spell'
-import type { ISpellData, MagickDomain } from '@/classes/Spell'
+import type { ActionType, ISpellData, MagickDomain } from '@/classes/Spell'
 import type { ICharacterStatSource } from '@/classes/Character'
 import QuantityStepper from '@/ui/QuantityStepper.vue'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
@@ -64,6 +64,16 @@ function taskTooltip(spell: ISpellData): string {
 function usesDisplay(spell: ISpellData, count: number): string {
   if (spell.usesPerScene === 'passive') return 'Passive'
   return `${spell.usesPerScene * Math.max(1, count)} / scene`
+}
+
+const ACTION_LABELS: Record<ActionType, string> = {
+  major: 'Major Action',
+  minor: 'Minor Action',
+  reaction: 'Reaction',
+  passive: 'Passive',
+}
+function actionLabel(action: ActionType): string {
+  return ACTION_LABELS[action]
 }
 
 function countOccurrences(ids: string[]): Record<string, number> {
@@ -129,9 +139,12 @@ watch(
         variant="outlined"
         class="mb-2"
       >
-        <v-card-title class="text-subtitle-1 d-flex align-center justify-space-between">
+        <v-card-title class="text-subtitle-1 d-flex align-center justify-space-between flex-wrap ga-1">
           <span>{{ spell.name }}</span>
-          <v-chip size="small">Tier {{ spell.tier }}</v-chip>
+          <div class="d-flex ga-1">
+            <v-chip size="small" variant="tonal">{{ actionLabel(spell.action) }}</v-chip>
+            <v-chip size="small">Tier {{ spell.tier }}</v-chip>
+          </div>
         </v-card-title>
         <v-card-subtitle>
           {{ spell.tags.join(', ') }} - {{ spell.slotCost }} Slot{{ spell.slotCost > 1 ? 's' : '' }}
