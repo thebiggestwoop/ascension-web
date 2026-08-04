@@ -42,7 +42,9 @@ import darkSpellsJson from '@content/spells/dark.json'
 import archetypeIndexJson from '@content/archetypes/_index.json'
 import archetypeHeroJson from '@content/archetypes/sword/hero.json'
 import archetypeTwinbladeJson from '@content/archetypes/sword/twinblade.json'
+import archetypeSpellswordJson from '@content/archetypes/sword/spellsword.json'
 import archetypeCavalierJson from '@content/archetypes/spear/cavalier.json'
+import archetypeMendicantJson from '@content/archetypes/light_magick/mendicant.json'
 
 /**
  * Central place the rest of the app pulls rules content from. Right now this reads the
@@ -90,7 +92,9 @@ export const CoreContent = {
     characters: {
       hero: archetypeHeroJson as IArchetypeCharacterData,
       twinblade: archetypeTwinbladeJson as IArchetypeCharacterData,
+      spellsword: archetypeSpellswordJson as IArchetypeCharacterData,
       cavalier: archetypeCavalierJson as IArchetypeCharacterData,
+      mendicant: archetypeMendicantJson as IArchetypeCharacterData,
     } as Record<string, IArchetypeCharacterData>,
   },
 }

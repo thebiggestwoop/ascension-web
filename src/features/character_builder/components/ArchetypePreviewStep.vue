@@ -73,7 +73,7 @@ function qualityTooltip(q: IQualityInstance): string | undefined {
   <div>
     <h3 class="text-h6 mb-1">{{ archetype.name }}</h3>
     <div class="text-subtitle-2 mb-1">Playstyle</div>
-    <p class="text-body-2 text-medium-emphasis mb-4">{{ playstyle }}</p>
+    <MarkdownText :source="playstyle" class="text-body-2 text-medium-emphasis mb-4" />
 
     <v-row class="mb-2">
       <v-col cols="12" sm="6">
