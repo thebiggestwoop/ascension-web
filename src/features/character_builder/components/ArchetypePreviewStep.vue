@@ -106,6 +106,7 @@ function qualityTooltip(q: IQualityInstance): string | undefined {
         <div v-if="!equippedWeaponGroups.length" class="text-medium-emphasis mb-2">None</div>
         <div v-for="g in equippedWeaponGroups" :key="g.weapon.id" class="d-flex align-center flex-wrap mb-2" style="gap: 4px">
           <span class="mr-1">{{ g.weapon.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
+          <span v-if="g.weapon.range" class="mr-1 text-body-2">Range: <strong>{{ g.weapon.range }}</strong></span>
           <TooltipChip
             v-for="(q, i) in g.weapon.qualities"
             :key="i"

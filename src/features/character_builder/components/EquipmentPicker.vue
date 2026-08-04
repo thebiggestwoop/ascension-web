@@ -213,6 +213,7 @@ watch(
               Damage:
               <DerivedValueBadge :display="weaponDamageDisplay(w)" :tooltip="weaponDamageTooltip(w)" />
             </span>
+            <span v-if="w.range" class="mx-2 text-body-2">Range: <strong>{{ w.range }}</strong></span>
             <TooltipChip v-for="(q, i) in w.qualities" :key="i" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
           </div>
         </v-expansion-panel-text>
