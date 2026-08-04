@@ -1,5 +1,5 @@
 ﻿<script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import { AttributeId, SkillId, TalentCategory } from '@/classes/enums'
@@ -94,36 +94,35 @@ function maxValueOf(stat: StatKey): number {
   if (!character.value) return 0
   return stat === 'hp' ? character.value.maxHp : character.value.maxWillpower
 }
-/** The current HP value immediately before the last change made to it (from any source - a
- * pip click, Take Damage/Recover, or the inline exact-value edit) - lets the Undo button
- * step back exactly one change. Clicking Undo swaps this to the value it just replaced, so a
- * second click redoes the undo instead of doing nothing. Resets (only) when a different
- * character loads, so it never undoes across characters. */
-const previousHp = ref<number | null>(null)
+/** The value of each stat immediately before the last change made to it (from any source - a
+ * segment click, Take Damage/Recover, or the inline exact-value edit) - lets each stat's own
+ * Undo button step back exactly one change. Clicking Undo swaps this to the value it just
+ * replaced, so a second click redoes the undo instead of doing nothing. Reset (only) when a
+ * different character loads, so neither ever undoes across characters. */
+const previousValues: Record<StatKey, number | null> = reactive({ hp: null, willpower: null })
 
 function applyDelta(stat: StatKey, delta: number) {
-  if (stat === 'hp') {
-    if (!store.character || delta === 0) return
-    previousHp.value = store.character.currentHp
-    store.adjustHp(delta, maxValueOf('hp'))
-  } else {
-    store.adjustWillpower(delta, maxValueOf('willpower'))
-  }
+  if (!store.character || delta === 0) return
+  previousValues[stat] = currentValueOf(stat)
+  if (stat === 'hp') store.adjustHp(delta, maxValueOf('hp'))
+  else store.adjustWillpower(delta, maxValueOf('willpower'))
 }
 
-/** A Health Bar pip's own click handler - sets current HP directly to that pip's absolute
- * value rather than the +/- buttons' relative delta, but goes through the same applyDelta()
- * so it's still tracked for Undo. Never touches Temporary HP. */
-function pickHp(value: number) {
+/** A segment's own click handler (Health Bar pip / Willpower point) - sets the stat directly
+ * to that segment's absolute value rather than the +/- buttons' relative delta, but goes
+ * through the same applyDelta() so it's still tracked for Undo. Never touches Temporary HP. */
+function pickStat(stat: StatKey, value: number) {
   if (!store.character) return
-  applyDelta('hp', value - store.character.currentHp)
+  applyDelta(stat, value - currentValueOf(stat))
 }
 
-function undoHp() {
-  if (previousHp.value === null || !store.character) return
-  const current = store.character.currentHp
-  store.adjustHp(previousHp.value - current, maxValueOf('hp'))
-  previousHp.value = current
+function undoStat(stat: StatKey) {
+  const previous = previousValues[stat]
+  if (previous === null || !store.character) return
+  const current = currentValueOf(stat)
+  if (stat === 'hp') store.adjustHp(previous - current, maxValueOf('hp'))
+  else store.adjustWillpower(previous - current, maxValueOf('willpower'))
+  previousValues[stat] = current
 }
 
 function startEdit(stat: StatKey) {
@@ -246,7 +245,8 @@ async function confirmRevertLevelUp() {
 
 onMounted(() => store.loadById(props.id))
 watch(() => props.id, (id) => {
-  previousHp.value = null
+  previousValues.hp = null
+  previousValues.willpower = null
   store.loadById(id)
 })
 
@@ -675,7 +675,7 @@ const rattledText = computed(() => {
                 interactive
                 :range-start="(2 - (i - 1)) * character.healthBar"
                 :current-value="store.character.currentHp"
-                @pick="pickHp"
+                @pick="(v) => pickStat('hp', v)"
               />
             </div>
             <div class="d-flex align-center justify-center mt-2 flex-wrap" style="gap: 12px">
@@ -701,7 +701,7 @@ const rattledText = computed(() => {
               <v-btn size="small" variant="tonal" color="success" @click="openAdjustDialog('hp', 'recover')">
                 Recover
               </v-btn>
-              <v-btn size="small" variant="tonal" :disabled="previousHp === null" @click="undoHp">
+              <v-btn size="small" variant="tonal" :disabled="previousValues.hp === null" @click="undoStat('hp')">
                 Undo
               </v-btn>
             </div>
@@ -742,13 +742,25 @@ const rattledText = computed(() => {
               :filled="store.character.currentWillpower"
               :total="character.maxWillpower"
               :color="WILLPOWER_BAR_COLOR"
+              interactive
+              :range-start="0"
+              :current-value="store.character.currentWillpower"
+              @pick="(v) => pickStat('willpower', v)"
             />
-            <div class="d-flex justify-center mt-2" style="gap: 8px">
+            <div class="d-flex justify-center mt-2 flex-wrap" style="gap: 8px">
               <v-btn size="small" variant="tonal" color="error" @click="openAdjustDialog('willpower', 'damage')">
                 Take Damage
               </v-btn>
               <v-btn size="small" variant="tonal" color="success" @click="openAdjustDialog('willpower', 'recover')">
                 Recover
+              </v-btn>
+              <v-btn
+                size="small"
+                variant="tonal"
+                :disabled="previousValues.willpower === null"
+                @click="undoStat('willpower')"
+              >
+                Undo
               </v-btn>
             </div>
             <div v-if="rattledText" class="text-caption mt-2" :style="{ color: WILLPOWER_BAR_COLOR }">
