@@ -176,13 +176,14 @@ watch(
         <v-expansion-panel v-for="section in combatSections" :key="section.subgroup" :title="section.subgroup">
           <v-expansion-panel-text>
             <div v-for="g in section.groups" :key="g.groupName" class="mb-3">
-              <div class="text-subtitle-2">{{ g.groupName }}</div>
+              <div class="text-body-1 font-weight-medium">{{ g.groupName }}</div>
               <p v-if="flavorTextByGroupName.get(g.groupName)" class="text-medium-emphasis font-italic text-body-2 mb-1">
                 {{ flavorTextByGroupName.get(g.groupName) }}
               </p>
               <v-checkbox
                 v-for="t in g.talents"
                 :key="t.id"
+                class="talent-checkbox"
                 v-model="selectedCombatIds"
                 :value="t.id"
                 :label="t.tier ? `${t.name} (Tier ${t.tier})` : t.name"
@@ -213,13 +214,14 @@ watch(
         <v-expansion-panel v-for="section in narrativeSections" :key="section.subgroup" :title="section.subgroup">
           <v-expansion-panel-text>
             <div v-for="g in section.groups" :key="g.groupName" class="mb-3">
-              <div class="text-subtitle-2">{{ g.groupName }}</div>
+              <div class="text-body-1 font-weight-medium">{{ g.groupName }}</div>
               <p v-if="flavorTextByGroupName.get(g.groupName)" class="text-medium-emphasis font-italic text-body-2 mb-1">
                 {{ flavorTextByGroupName.get(g.groupName) }}
               </p>
               <v-checkbox
                 v-for="t in g.talents"
                 :key="t.id"
+                class="talent-checkbox"
                 v-model="selectedNarrativeIds"
                 :value="t.id"
                 :label="t.name"
@@ -243,3 +245,11 @@ watch(
     </template>
   </div>
 </template>
+
+<style scoped>
+/* Swapped with the group name above: the group heading now reads larger than the individual
+   talent labels beneath it, matching normal heading/list-item hierarchy. */
+.talent-checkbox :deep(.v-label) {
+  font-size: 14px;
+}
+</style>
