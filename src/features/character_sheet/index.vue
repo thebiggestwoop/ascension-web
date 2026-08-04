@@ -243,6 +243,7 @@ const heldTalents = computed(() => {
 })
 
 const talentCategoryFilter = ref<TalentCategory>(TalentCategory.Narrative)
+const focusesMode = ref<'view' | 'edit'>('view')
 const filteredHeldTalents = computed(() => heldTalents.value.filter((t) => t.category === talentCategoryFilter.value))
 
 /** Weapons equipped, grouped by id with a count (dual-wielding two of the same weapon is common). */
@@ -872,10 +873,31 @@ const rattledText = computed(() => {
 
       <v-col cols="12" md="5">
         <v-card variant="outlined" class="mb-4">
-          <v-card-title>Focuses</v-card-title>
+          <v-card-title class="d-flex align-center justify-space-between flex-wrap ga-2">
+            <span>Focuses</span>
+            <v-btn-toggle v-model="focusesMode" mandatory density="compact" color="primary" variant="outlined">
+              <v-btn value="view" size="small">View</v-btn>
+              <v-btn value="edit" size="small">Edit</v-btn>
+            </v-btn-toggle>
+          </v-card-title>
           <v-card-text>
-            <v-chip v-for="(f, i) in store.character.focuses" :key="i" class="mr-1 mb-1" size="small">{{ f }}</v-chip>
-            <span v-if="!store.character.focuses.length" class="text-medium-emphasis">None</span>
+            <template v-if="focusesMode === 'view'">
+              <v-chip v-for="(f, i) in store.character.focuses" :key="i" class="mr-1 mb-1" size="small">{{ f }}</v-chip>
+              <span v-if="!store.character.focuses.length" class="text-medium-emphasis">None</span>
+            </template>
+            <template v-else>
+              <v-text-field
+                v-for="(f, i) in store.character.focuses"
+                :key="i"
+                :model-value="f"
+                variant="underlined"
+                density="compact"
+                hide-details
+                class="mb-1"
+                @update:model-value="(text) => store.updateFocusText(i, text as string)"
+              />
+              <span v-if="!store.character.focuses.length" class="text-medium-emphasis">None</span>
+            </template>
           </v-card-text>
         </v-card>
 

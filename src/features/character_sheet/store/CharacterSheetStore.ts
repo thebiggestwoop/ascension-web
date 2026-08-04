@@ -97,6 +97,12 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       value.text = text
       await this.persist()
     },
+    async updateFocusText(index: number, text: string) {
+      if (!this.character) return
+      if (this.character.focuses[index] === undefined) return
+      this.character.focuses[index] = text
+      await this.persist()
+    },
     /** The Common Cause is a fifth, party-wide Value (see IValue.commonCause's doc comment) -
      * always exactly one, so unlike `values` above it has no add/remove, just the same
      * text/Called-Upon/Challenged mutations. */
