@@ -11,6 +11,7 @@
     "name": "Healing Potion",
     "hands": 0,
     "qualities": [],
+    "healsHealthBars": 1,
     "description": "As a Minor Action, you can drink a Healing Potion and immediately restore HP equal to one health bar, and the Healing Potion is removed from your inventory. You may administer a potion to an adjacent ally as a Major Action."
   },
   {

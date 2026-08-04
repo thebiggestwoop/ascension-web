@@ -68,6 +68,10 @@ export interface ICharacterData {
   mountId?: string
   /** Spells currently prepared, by id; duplicate entries mean multiple copies of the same spell prepared. */
   preparedSpellIds: string[]
+  /** General items (see IGeneralItemData.healsHealthBars) currently marked "used" via the
+   * Character Sheet's Use/Reset buttons - by item id, not per stacked copy, so using one
+   * Healing Potion greys out every copy of it until Reset. */
+  usedGeneralItemIds: string[]
 
   /** Set from the Career Lifepath stage; used to gate Talent prerequisites. */
   careerId?: string
@@ -99,6 +103,7 @@ export function migrateLegacyCharacterData(data: ICharacterData): ICharacterData
   for (const value of data.values) {
     if (value.challenged === undefined) value.challenged = false
   }
+  if (!data.usedGeneralItemIds) data.usedGeneralItemIds = []
   return data
 }
 

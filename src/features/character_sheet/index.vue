@@ -351,13 +351,37 @@ const inventoryGroups = computed(() => {
   const counts: Record<string, number> = {}
   for (const id of store.character.inventoryItemIds) counts[id] = (counts[id] ?? 0) + 1
   return Object.entries(counts)
-    .map(([id, count]) => ({ item: allInventoryItems.find((i) => i.id === id), count }))
-    .filter((g): g is { item: (typeof allInventoryItems)[number]; count: number } => !!g.item)
+    .map(([id, count]) => {
+      const item = allInventoryItems.find((i) => i.id === id)
+      // Only IGeneralItemData ever has this - Shields (IArmorData) don't, hence the `in` guard.
+      const healsHealthBars = item && 'healsHealthBars' in item ? item.healsHealthBars : undefined
+      return { item, count, healsHealthBars }
+    })
+    .filter(
+      (g): g is { item: (typeof allInventoryItems)[number]; count: number; healsHealthBars: number | undefined } =>
+        !!g.item,
+    )
 })
 
 const mount = computed(() =>
   store.character?.mountId ? CoreContent.equipment.mounts.find((m) => m.id === store.character!.mountId) : undefined,
 )
+
+/** "Use" (see IGeneralItemData.healsHealthBars, e.g. the Healing Potion): heals through the
+ * same applyDelta('hp', ...) every other HP change goes through (so Undo can step it back
+ * too), then greys the item out via usedGeneralItemIds until "Reset" clears it. Never touches
+ * Temporary HP. */
+function isGeneralItemUsed(itemId: string): boolean {
+  return store.character?.usedGeneralItemIds.includes(itemId) ?? false
+}
+function healAmountFor(healsHealthBars: number): number {
+  return healsHealthBars * (character.value?.healthBar ?? 0)
+}
+function useHealingItem(itemId: string, healsHealthBars: number) {
+  if (isGeneralItemUsed(itemId)) return
+  applyDelta('hp', healAmountFor(healsHealthBars))
+  store.setGeneralItemUsed(itemId, true)
+}
 
 /** Weapons + Armor + Inventory items all draw from the same 5-slot cap (Bulky = 2) - Mounts
  * aren't carried, so they don't count. */
@@ -891,7 +915,13 @@ const rattledText = computed(() => {
 
             <div class="text-subtitle-2 mb-1">Inventory</div>
             <div v-if="!inventoryGroups.length" class="text-medium-emphasis mb-2">Empty</div>
-            <div v-for="g in inventoryGroups" :key="g.item.id" class="mb-2">
+            <div
+              v-for="g in inventoryGroups"
+              :key="g.item.id"
+              class="mb-2 d-flex align-center flex-wrap"
+              style="gap: 6px"
+              :class="{ 'item-used': isGeneralItemUsed(g.item.id) }"
+            >
               <v-tooltip
                 v-if="generalItemDescriptions.get(g.item.id)"
                 :text="generalItemDescriptions.get(g.item.id)"
@@ -899,18 +929,43 @@ const rattledText = computed(() => {
                 max-width="320"
               >
                 <template #activator="{ props: activatorProps }">
-                  <span v-bind="activatorProps" class="mr-2 item-name-hoverable">
+                  <span v-bind="activatorProps" class="item-name-hoverable">
                     {{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span>
                   </span>
                 </template>
               </v-tooltip>
-              <span v-else class="mr-2">{{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
+              <span v-else>{{ g.item.name }}<span v-if="g.count > 1"> x{{ g.count }}</span></span>
               <TooltipChip
                 v-for="(q, qi) in g.item.qualities"
                 :key="qi"
                 :label="qualityLabel(q)"
                 :tooltip="qualityTooltip(q)"
               />
+              <template v-if="g.healsHealthBars">
+                <v-tooltip location="top">
+                  <template #activator="{ props: activatorProps }">
+                    <v-btn
+                      v-bind="activatorProps"
+                      size="x-small"
+                      variant="tonal"
+                      color="success"
+                      :disabled="isGeneralItemUsed(g.item.id)"
+                      @click="useHealingItem(g.item.id, g.healsHealthBars)"
+                    >
+                      Use
+                    </v-btn>
+                  </template>
+                  <span>Restores {{ g.healsHealthBars }} Health Bar ({{ healAmountFor(g.healsHealthBars) }} HP)</span>
+                </v-tooltip>
+                <v-btn
+                  size="x-small"
+                  variant="text"
+                  :disabled="!isGeneralItemUsed(g.item.id)"
+                  @click="store.setGeneralItemUsed(g.item.id, false)"
+                >
+                  Reset
+                </v-btn>
+              </template>
             </div>
 
             <template v-if="mount">
@@ -1163,6 +1218,10 @@ const rattledText = computed(() => {
   cursor: help;
   text-decoration: underline dotted;
   text-underline-offset: 3px;
+}
+
+.item-used {
+  opacity: var(--v-medium-emphasis-opacity, 0.6);
 }
 
 .resistance-tile {

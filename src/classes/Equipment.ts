@@ -85,6 +85,9 @@ export interface IGeneralItemData {
   hands: 0 | 1 | 2
   qualities: IQualityInstance[]
   description: string
+  /** Set on consumables like the Healing Potion: using it (Character Sheet only, tracked per
+   * item id, not per stacked copy) restores this many Health Bars' worth of HP. */
+  healsHealthBars?: number
 }
 
 /** Reference text for a Weapon Tag, shown as a tooltip wherever the tag appears (e.g. "Sword"). */

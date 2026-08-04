@@ -70,6 +70,7 @@ function createBaseDraft(): ICharacterData {
     equippedWeaponIds: [],
     inventoryItemIds: [],
     preparedSpellIds: [],
+    usedGeneralItemIds: [],
     levelUpHistory: [],
     notes: '',
   }

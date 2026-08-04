@@ -86,6 +86,7 @@
     "healing_potion"
   ],
   "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
   "levelUpHistory": [],
   "notes": "",
   "equippedArmorId": "heavy_armor",

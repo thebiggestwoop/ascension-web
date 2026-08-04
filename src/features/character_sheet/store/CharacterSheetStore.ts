@@ -139,6 +139,17 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       this.character.xp = Math.max(0, this.character.xp + delta)
       await this.persist()
     },
+    /** The Inventory list's "Use"/"Reset" buttons (see IGeneralItemData.healsHealthBars) -
+     * marks/unmarks a general item id as used, keyed by id (not per stacked copy), so using one
+     * copy greys out every copy of that item until Reset. */
+    async setGeneralItemUsed(itemId: string, used: boolean) {
+      if (!this.character) return
+      const set = new Set(this.character.usedGeneralItemIds)
+      if (used) set.add(itemId)
+      else set.delete(itemId)
+      this.character.usedGeneralItemIds = [...set]
+      await this.persist()
+    },
     async updateEquipment(payload: {
       equippedWeaponIds: string[]
       equippedArmorId?: string
