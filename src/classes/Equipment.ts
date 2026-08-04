@@ -26,7 +26,7 @@ export enum EquipmentQuality {
   Concealing = 'concealing',
   Exhausting = 'exhausting',
   Overt = 'overt',
-  Shield = 'shield',
+  Defensive = 'defensive',
 }
 
 /** Triggered by rolling an Effect [!] face on a Challenge Die; checked against an Effect Save. */
