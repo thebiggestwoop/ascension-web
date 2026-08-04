@@ -5,6 +5,7 @@ import type { ITalentPrereqContext } from '@/classes/Talent'
 import { meetsTalentPrerequisites } from '@/classes/Talent'
 import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
+import { describeTalentPrerequisite } from '@/ui/describeTalentPrerequisite'
 
 /**
  * Free-pick Talent selection, used both by Step Six ("four Tier 1 Combat Talents and three
@@ -47,6 +48,7 @@ const DOMAIN_BY_GROUP: Record<string, string> = {
 }
 
 const subgroupByGroupName = new Map(CoreContent.talents.index.map((e) => [e.name, e.subgroup]))
+const flavorTextByGroupName = new Map(CoreContent.talents.index.map((e) => [e.name, e.flavorText]))
 
 const narrativePool = computed(() => CoreContent.talents.narrative.filter((t) => !props.heldTalentIds.includes(t.id)))
 const combatPool = computed(() =>
@@ -175,6 +177,9 @@ watch(
           <v-expansion-panel-text>
             <div v-for="g in section.groups" :key="g.groupName" class="mb-3">
               <div class="text-subtitle-2">{{ g.groupName }}</div>
+              <p v-if="flavorTextByGroupName.get(g.groupName)" class="text-medium-emphasis font-italic text-body-2 mb-1">
+                {{ flavorTextByGroupName.get(g.groupName) }}
+              </p>
               <v-checkbox
                 v-for="t in g.talents"
                 :key="t.id"
@@ -182,9 +187,9 @@ watch(
                 :value="t.id"
                 :label="t.tier ? `${t.name} (Tier ${t.tier})` : t.name"
                 :hint="
-                  meetsTalentPrerequisites(t.prerequisites, prereqContext)
-                    ? t.effectText
-                    : `Prerequisite not met - ${t.effectText}`
+                  `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
+                  (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
+                  ` - ${t.effectText}`
                 "
                 persistent-hint
                 density="compact"
@@ -209,6 +214,9 @@ watch(
           <v-expansion-panel-text>
             <div v-for="g in section.groups" :key="g.groupName" class="mb-3">
               <div class="text-subtitle-2">{{ g.groupName }}</div>
+              <p v-if="flavorTextByGroupName.get(g.groupName)" class="text-medium-emphasis font-italic text-body-2 mb-1">
+                {{ flavorTextByGroupName.get(g.groupName) }}
+              </p>
               <v-checkbox
                 v-for="t in g.talents"
                 :key="t.id"
@@ -216,9 +224,9 @@ watch(
                 :value="t.id"
                 :label="t.name"
                 :hint="
-                  meetsTalentPrerequisites(t.prerequisites, prereqContext)
-                    ? t.effectText
-                    : `Prerequisite not met - ${t.effectText}`
+                  `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
+                  (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
+                  ` - ${t.effectText}`
                 "
                 persistent-hint
                 density="compact"

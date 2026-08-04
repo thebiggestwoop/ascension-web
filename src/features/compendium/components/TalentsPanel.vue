@@ -1,41 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
-import type { ITalentData, ITalentPrerequisite } from '@/classes/Talent'
-import { AttributeId, SkillId, TalentCategory } from '@/classes/enums'
+import type { ITalentData } from '@/classes/Talent'
+import { TalentCategory } from '@/classes/enums'
 import MarkdownText from '@/ui/MarkdownText.vue'
+import { describeTalentPrerequisite } from '@/ui/describeTalentPrerequisite'
 
 const activeCategory = ref<TalentCategory>(TalentCategory.Narrative)
 const searchText = ref('')
-
-const talentById = new Map(
-  [...CoreContent.talents.narrative, ...CoreContent.talents.combat].map((t) => [t.id, t.name]),
-)
-
-function attributeName(id: AttributeId): string {
-  return CoreContent.attributes.find((a) => a.id === id)?.name ?? id
-}
-function skillName(id: SkillId): string {
-  return CoreContent.skills.find((s) => s.id === id)?.name ?? id
-}
-function careerName(id: string): string {
-  return CoreContent.lifepath.career.options.find((o) => o.id === id)?.name ?? id
-}
-
-function describePrerequisite(prereq: ITalentPrerequisite): string {
-  const parts: string[] = []
-  if (prereq.attribute) parts.push(`${attributeName(prereq.attribute.id)} ${prereq.attribute.minRating}`)
-  if (prereq.attributeAny) {
-    parts.push(`${prereq.attributeAny.ids.map(attributeName).join(', ')} (any) ${prereq.attributeAny.minRating}`)
-  }
-  if (prereq.skill) parts.push(`${skillName(prereq.skill.id)} ${prereq.skill.minRating}`)
-  if (prereq.trait) parts.push(`${prereq.trait} Trait`)
-  if (prereq.career) parts.push(`${careerName(prereq.career)} career`)
-  if (prereq.magickDomain) parts.push(`${prereq.magickDomain[0].toUpperCase()}${prereq.magickDomain.slice(1)} Magick`)
-  if (prereq.priorTalentId) parts.push(talentById.get(prereq.priorTalentId) ?? prereq.priorTalentId)
-  if (prereq.minLevel) parts.push(`Level ${prereq.minLevel}+`)
-  return parts.length ? parts.join(', ') : 'None'
-}
 
 /** Groups the index (name/subgroup) by subgroup, in source order. */
 const groupSections = computed(() => {
@@ -119,7 +91,7 @@ function selectCategory(category: TalentCategory) {
               <span>{{ t.name }}</span>
               <v-chip v-if="t.tier" size="small">Tier {{ t.tier }}</v-chip>
             </v-card-title>
-            <v-card-subtitle>Requires: {{ describePrerequisite(t.prerequisites) }}</v-card-subtitle>
+            <v-card-subtitle>Requires: {{ describeTalentPrerequisite(t.prerequisites) }}</v-card-subtitle>
             <v-card-text><MarkdownText :source="t.effectText" /></v-card-text>
           </v-card>
         </template>
