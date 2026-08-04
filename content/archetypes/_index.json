@@ -38,6 +38,31 @@
     ]
   },
   {
+    "id": "bow",
+    "name": "Bow",
+    "description": "Bow wielders have high Awareness, striking foes from range with unerring precision before they can close the distance.",
+    "archetypes": [
+      {
+        "id": "heavy_bowman",
+        "name": "Heavy Bowman",
+        "description": "A versatile skirmisher who peppers foes with arrows before closing in with axe in hand, fighting dirty when the odds demand it.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "outrider",
+        "name": "Outrider",
+        "description": "A mounted scout who hunts prey from horseback, striking from range with a bow or skewering foes with a lance at full gallop.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "ranger",
+        "name": "Ranger",
+        "description": "A resourceful hunter who tracks foes with a keen eye, striking from afar and patching up allies between skirmishes.",
+        "playstyle": "placeholder"
+      }
+    ]
+  },
+  {
     "id": "light_magick",
     "name": "Light Magick",
     "description": "Light Magick practitioners have high Faith, channeling divine power to heal allies and ward off harm.",

@@ -1,0 +1,128 @@
+{
+  "id": "ba2037c6-659b-4f63-823f-e4d447772c58",
+  "name": "Ranger",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 10,
+    "awareness": 11,
+    "brawn": 8,
+    "coordination": 6,
+    "faith": 7,
+    "presence": 6,
+    "reason": 8
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 3,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "study"
+  ],
+  "currentHp": 36,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "scholar_meticulous",
+    "warrior_predator",
+    "warrior_go_for_a_walk",
+    "bow_adept",
+    "combat_medic",
+    "hunter_seeker_1",
+    "tactician"
+  ],
+  "equippedWeaponIds": [
+    "shortbow",
+    "shortsword"
+  ],
+  "inventoryItemIds": [
+    "healing_potion",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 10,
+        "awareness": 11,
+        "brawn": 8,
+        "coordination": 6,
+        "faith": 7,
+        "presence": 6,
+        "reason": 8
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 3,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "scholar_meticulous",
+        "warrior_predator",
+        "warrior_go_for_a_walk"
+      ],
+      "combatTalentIds": [
+        "bow_adept",
+        "combat_medic",
+        "hunter_seeker_1",
+        "tactician"
+      ],
+      "equippedWeaponIds": [
+        "shortbow",
+        "shortsword"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "healing_potion",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "study"
+      ]
+    }
+  }
+}

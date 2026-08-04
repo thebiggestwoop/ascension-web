@@ -1,0 +1,128 @@
+{
+  "id": "79be56b5-65e8-4fed-a867-cb8f18800320",
+  "name": "Outrider",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 7,
+    "awareness": 11,
+    "brawn": 9,
+    "coordination": 10,
+    "faith": 7,
+    "presence": 6,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 3,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 2,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "authority"
+  ],
+  "currentHp": 39,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "warrior_glare",
+    "warrior_predator",
+    "warrior_never_show_fear",
+    "bow_adept",
+    "cavalry_adept",
+    "insurmountable_1",
+    "hunter_seeker_1"
+  ],
+  "equippedWeaponIds": [
+    "shortbow",
+    "lance"
+  ],
+  "inventoryItemIds": [
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "mountId": "horse",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 7,
+        "awareness": 11,
+        "brawn": 9,
+        "coordination": 10,
+        "faith": 7,
+        "presence": 6,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 3,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 2,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "warrior_glare",
+        "warrior_predator",
+        "warrior_never_show_fear"
+      ],
+      "combatTalentIds": [
+        "bow_adept",
+        "cavalry_adept",
+        "insurmountable_1",
+        "hunter_seeker_1"
+      ],
+      "equippedWeaponIds": [
+        "shortbow",
+        "lance"
+      ],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "healing_potion"
+      ],
+      "mountId": "horse",
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "authority"
+      ]
+    }
+  }
+}

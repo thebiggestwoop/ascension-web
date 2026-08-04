@@ -1,0 +1,128 @@
+{
+  "id": "c4cd2ed7-d6ae-4960-927a-f6b29647056e",
+  "name": "Heavy Bowman",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 9,
+    "awareness": 11,
+    "brawn": 10,
+    "coordination": 7,
+    "faith": 7,
+    "presence": 6,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 3
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "intrigue"
+  ],
+  "currentHp": 42,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "carouser_heavyweight",
+    "carouser_never_stop_gambling",
+    "warrior_breaking_point",
+    "bow_adept",
+    "dirty_fighter",
+    "stealthy_fighter_1",
+    "insurmountable_1"
+  ],
+  "equippedWeaponIds": [
+    "longbow",
+    "battleaxe",
+    "throwing_axe"
+  ],
+  "inventoryItemIds": [
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "light_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 9,
+        "awareness": 11,
+        "brawn": 10,
+        "coordination": 7,
+        "faith": 7,
+        "presence": 6,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 3
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "carouser_heavyweight",
+        "carouser_never_stop_gambling",
+        "warrior_breaking_point"
+      ],
+      "combatTalentIds": [
+        "bow_adept",
+        "dirty_fighter",
+        "stealthy_fighter_1",
+        "insurmountable_1"
+      ],
+      "equippedWeaponIds": [
+        "longbow",
+        "battleaxe",
+        "throwing_axe"
+      ],
+      "equippedArmorId": "light_armor",
+      "inventoryItemIds": [
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "intrigue"
+      ]
+    }
+  }
+}
