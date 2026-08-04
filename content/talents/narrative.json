@@ -500,7 +500,7 @@
     "name": "Blessings Abound",
     "category": "narrative",
     "group": "Priest",
-    "prerequisites": { "career": "acolyte" },
+    "prerequisites": {},
     "effectText": "1/scene, when you assist an ally using Faith, you may roll two dice."
   },
   {
@@ -508,7 +508,7 @@
     "name": "Heavenly Authority",
     "category": "narrative",
     "group": "Priest",
-    "prerequisites": { "career": "acolyte" },
+    "prerequisites": {},
     "effectText": "You speak with an authority invested in you by Heaven Itself. When you use Faith to make an Authority or Diplomacy Task, you may reroll a single d20 in your dice pool for that Task."
   },
   {
@@ -516,7 +516,7 @@
     "name": "Of Sacred Order",
     "category": "narrative",
     "group": "Priest",
-    "prerequisites": { "career": "acolyte" },
+    "prerequisites": {},
     "effectText": "You are in community with the ascetic and/or monastic members of your faith and can call on them for assistance. When you are in need of information, you may seek out answers from your fellow acolytes, who will either give you what you need or point you in the right direction. You also gain an Advantage to be used on a Task acting on information you receive."
   },
   {
@@ -524,7 +524,7 @@
     "name": "Pillar of Salt",
     "category": "narrative",
     "group": "Priest",
-    "prerequisites": { "career": "acolyte" },
+    "prerequisites": {},
     "effectText": "When someone acts against the tenets of your faith and you rebuke them, you may give them a Complication representing their status as someone in opposition to your faith, affecting all Tasks to interact with other members of your faith. This Complication lasts until either you or the GM decides that they have sufficiently repented."
   },
   {
@@ -532,7 +532,7 @@
     "name": "Penitent",
     "category": "narrative",
     "group": "Priest",
-    "prerequisites": { "career": "acolyte" },
+    "prerequisites": {},
     "effectText": "When you humble yourself before Heaven, your humility is rewarded. When you attempt any Faith Task for which you have a focus that applies, you may choose not to use that focus. If you still succeed on the roll, you gain 2 bonus momentum that can be spent to either get rid of an existing Complication, or create a new Advantage."
   },
   {

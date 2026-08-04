@@ -1,0 +1,166 @@
+{
+  "id": "e06715b4-3736-4e38-bb5d-a7f764977681",
+  "name": "Spellsword",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 11,
+    "awareness": 7,
+    "brawn": 9,
+    "coordination": 7,
+    "faith": 6,
+    "presence": 6,
+    "reason": 10
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 2,
+    "intrigue": 3
+  },
+  "focuses": [
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder"
+  ],
+  "values": [
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    }
+  ],
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "study"
+  ],
+  "currentHp": 39,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 0,
+  "talentIds": [
+    "scholar_polymath",
+    "scholar_meticulous",
+    "scholar_historian",
+    "sword_adept",
+    "arcane_magick_1",
+    "spellblade_1",
+    "warp_1"
+  ],
+  "equippedWeaponIds": [
+    "longsword"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "skip",
+    "thunderous_strike",
+    "frigid_grasp",
+    "volcanic_strike",
+    "arcane_parry"
+  ],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 11,
+        "awareness": 7,
+        "brawn": 9,
+        "coordination": 7,
+        "faith": 6,
+        "presence": 6,
+        "reason": 10
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 2,
+        "intrigue": 3
+      },
+      "focusTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "valueTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "scholar_polymath",
+        "scholar_meticulous",
+        "scholar_historian"
+      ],
+      "combatTalentIds": [
+        "sword_adept",
+        "arcane_magick_1",
+        "spellblade_1",
+        "warp_1"
+      ],
+      "equippedWeaponIds": [
+        "longsword"
+      ],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "tome",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "skip",
+        "thunderous_strike",
+        "frigid_grasp",
+        "volcanic_strike",
+        "arcane_parry"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "study"
+      ]
+    }
+  }
+}
