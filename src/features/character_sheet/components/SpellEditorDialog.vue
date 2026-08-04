@@ -26,6 +26,8 @@ const emit = defineEmits<{
           :talent-ids="character.talentIds"
           :initial-prepared-spell-ids="character.preparedSpellIds"
           :spell-slots="spellSlots"
+          :attributes="character.attributes"
+          :skills="character.skills"
           @change="(ids) => emit('change', ids)"
         />
       </v-card-text>

@@ -94,10 +94,6 @@ function weaponDamageTooltip(weapon: IWeaponData): string {
   return `Base ${weapon.damageCD}[CD], Skirmish +${props.skirmishSkill}`
 }
 
-const armorItems = computed(() => [
-  { title: 'None', value: null },
-  ...CoreContent.equipment.armor.map((a) => ({ title: a.name, value: a.id })),
-])
 const canRideFlyingMounts = computed(() => props.talentIds.includes('flier_1'))
 
 function ridingAttributeName(id: AttributeId): string {
@@ -224,7 +220,14 @@ watch(
     </v-expansion-panels>
 
     <div class="text-subtitle-2 mt-3 mb-1">Armor</div>
-    <v-select v-model="selectedArmorId" :items="armorItems" density="compact" label="Armor" />
+    <v-radio-group v-model="selectedArmorId" hide-details>
+      <div v-for="a in CoreContent.equipment.armor" :key="a.id" class="d-flex align-center flex-wrap mb-1" style="gap: 8px">
+        <v-radio :value="a.id" :label="a.name" />
+        <span class="text-body-2">Resistance: <strong>{{ a.resistance }}</strong></span>
+        <TooltipChip v-for="(q, i) in a.qualities" :key="i" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
+      </div>
+      <v-radio :value="null" label="None" />
+    </v-radio-group>
 
     <div class="text-subtitle-2 mb-1">Inventory (Shields &amp; General)</div>
     <div v-for="i in allInventoryItems" :key="i.id" class="d-flex align-center mb-1">

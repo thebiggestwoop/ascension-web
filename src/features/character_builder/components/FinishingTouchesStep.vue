@@ -379,6 +379,8 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
             :talent-ids="[...talentPicks.narrativeTalentIds, ...talentPicks.combatTalentIds]"
             :initial-prepared-spell-ids="preparedSpellIds"
             :spell-slots="previewSpellSlots"
+            :attributes="projectedAttributes"
+            :skills="projectedSkills"
             @change="(ids) => (preparedSpellIds = [...ids])"
           />
         </v-card-text>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
-import type { Character } from '@/classes/Character'
+import type { ICharacterStatSource } from '@/classes/Character'
 import type { ISpellComputedValue } from '@/classes/Spell'
 import DerivedValueBadge from '@/ui/DerivedValueBadge.vue'
 
@@ -17,7 +17,7 @@ function skillName(id: string): string {
  * (e.g. "increases by 2[CD] for each Wound") reuses the same printed number and is
  * deliberately left as plain rule text, not re-substituted.
  */
-const props = defineProps<{ effectText: string; computedValues?: ISpellComputedValue[]; character: Character }>()
+const props = defineProps<{ effectText: string; computedValues?: ISpellComputedValue[]; character: ICharacterStatSource }>()
 
 interface Segment {
   type: 'text' | 'computed'

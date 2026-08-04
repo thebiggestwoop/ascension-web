@@ -148,12 +148,25 @@ export function computeStatModifiers(
 }
 
 /**
+ * The minimal slice of Character that spell-text rendering needs (SpellEffectText's live
+ * computed-value badges) - lets the character builder, which has Attributes/Skills but no
+ * full ICharacterData/Character instance yet, satisfy the same prop with a plain object
+ * instead of fabricating a fake full character just to construct one. A real `Character`
+ * already structurally satisfies this.
+ */
+export interface ICharacterStatSource {
+  attribute(id: AttributeId): number
+  skill(id: SkillId): number
+  wounds: 0 | 1 | 2
+}
+
+/**
  * The core character domain model. Attributes/Skills/Focuses/Values/Traits are the
  * raw inputs (set during Lifepath or Standard Array creation); everything below is
  * derived per the Chapter Three formulas in the rules doc, plus any passive bonuses from
  * held Talents/equipped items resolved into `modifiers`.
  */
-export class Character implements ISerializable<ICharacterData> {
+export class Character implements ISerializable<ICharacterData>, ICharacterStatSource {
   constructor(
     private data: ICharacterData,
     private modifiers: ICharacterStatModifiers = {},
