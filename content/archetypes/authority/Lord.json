@@ -1,0 +1,122 @@
+{
+  "id": "7018db0f-35e6-4f51-bab6-2969a11d7ee7",
+  "name": "Lord",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 10,
+    "awareness": 8,
+    "brawn": 8,
+    "coordination": 6,
+    "faith": 7,
+    "presence": 11,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 3,
+    "authority": 4,
+    "diplomacy": 3,
+    "study": 2,
+    "medicine": 1,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "authority",
+    "skirmish"
+  ],
+  "currentHp": 33,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "captain_thats_an_order",
+    "captain_bolstering_word",
+    "diplomat_keep_them_talking",
+    "rapier_adept",
+    "commander",
+    "rally_1",
+    "icon"
+  ],
+  "equippedWeaponIds": [
+    "rapier"
+  ],
+  "inventoryItemIds": [
+    "buckler",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 10,
+        "awareness": 8,
+        "brawn": 8,
+        "coordination": 6,
+        "faith": 7,
+        "presence": 11,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 3,
+        "authority": 4,
+        "diplomacy": 3,
+        "study": 2,
+        "medicine": 1,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "captain_thats_an_order",
+        "captain_bolstering_word",
+        "diplomat_keep_them_talking"
+      ],
+      "combatTalentIds": [
+        "rapier_adept",
+        "commander",
+        "rally_1",
+        "icon"
+      ],
+      "equippedWeaponIds": [
+        "rapier"
+      ],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "buckler",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "authority",
+        "skirmish"
+      ]
+    }
+  }
+}

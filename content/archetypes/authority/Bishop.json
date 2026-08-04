@@ -1,0 +1,134 @@
+{
+  "id": "5ca5d024-6763-4cb4-9261-8063216fab06",
+  "name": "Bishop",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 6,
+    "awareness": 7,
+    "brawn": 7,
+    "coordination": 9,
+    "faith": 10,
+    "presence": 11,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 3,
+    "authority": 4,
+    "diplomacy": 1,
+    "study": 2,
+    "medicine": 3,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "authority",
+    "medicine"
+  ],
+  "currentHp": 30,
+  "currentWillpower": 10,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "priest_heavenly_authority",
+    "priest_of_sacred_order",
+    "priest_pillar_of_salt",
+    "light_magick_1",
+    "cavalry_adept",
+    "bannerlord_1",
+    "commander"
+  ],
+  "equippedWeaponIds": [],
+  "inventoryItemIds": [
+    "tome",
+    "spell_implement",
+    "banner",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "prayer_of_fortune",
+    "lay_on_hands",
+    "guiding_ray"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 6,
+        "awareness": 7,
+        "brawn": 7,
+        "coordination": 9,
+        "faith": 10,
+        "presence": 11,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 3,
+        "authority": 4,
+        "diplomacy": 1,
+        "study": 2,
+        "medicine": 3,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "priest_heavenly_authority",
+        "priest_of_sacred_order",
+        "priest_pillar_of_salt"
+      ],
+      "combatTalentIds": [
+        "light_magick_1",
+        "cavalry_adept",
+        "bannerlord_1",
+        "commander"
+      ],
+      "equippedWeaponIds": [],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "tome",
+        "spell_implement",
+        "banner",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "prayer_of_fortune",
+        "lay_on_hands",
+        "divine_protection"
+      ],
+      "combatSkillFocuses": [
+        "authority",
+        "medicine"
+      ]
+    }
+  },
+  "mountId": "horse"
+}

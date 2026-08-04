@@ -1,0 +1,135 @@
+{
+  "id": "5ed4d7f6-3566-4a0c-a1a3-d023439f751d",
+  "name": "Death Knight",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "awareness": 6,
+    "brawn": 11,
+    "coordination": 7,
+    "faith": 8,
+    "presence": 10,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 3,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "diplomacy"
+  ],
+  "currentHp": 45,
+  "currentWillpower": 8,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "witch_bargain_with_darkness",
+    "warrior_glare",
+    "diplomat_translator",
+    "axe_adept",
+    "dark_magick_1",
+    "spellblade_1",
+    "vengeful"
+  ],
+  "equippedWeaponIds": [
+    "battleaxe"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "tome",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "siphoning_strike",
+    "siphoning_strike",
+    "penumbra",
+    "soul_drain"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "awareness": 6,
+        "brawn": 11,
+        "coordination": 7,
+        "faith": 8,
+        "presence": 10,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 3,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "witch_bargain_with_darkness",
+        "warrior_glare",
+        "diplomat_translator"
+      ],
+      "combatTalentIds": [
+        "axe_adept",
+        "dark_magick_1",
+        "spellblade_1",
+        "vengeful"
+      ],
+      "equippedWeaponIds": [
+        "greataxe"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "tome",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "siphoning_strike",
+        "siphoning_strike",
+        "penumbra"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "diplomacy"
+      ]
+    }
+  }
+}
