@@ -246,6 +246,56 @@ const talentCategoryFilter = ref<TalentCategory>(TalentCategory.Narrative)
 const focusesMode = ref<'view' | 'edit'>('view')
 const filteredHeldTalents = computed(() => heldTalents.value.filter((t) => t.category === talentCategoryFilter.value))
 
+/**
+ * Focuses/Values/Common Cause text fields can't just bind `:model-value` straight to the
+ * store the way the rest of this file does read-only stats: every keystroke writes through
+ * to the store immediately, and the store's echoed-back prop re-rendering the field mid-edit
+ * risks the same "snap back before the next keystroke lands" issue documented above for Temp
+ * HP/Temp Resistance. Editing a local draft instead (synced from the store only while the
+ * field isn't focused) avoids that entirely.
+ */
+const focusDrafts = ref<string[]>([])
+const editingFocusIndex = ref<number | null>(null)
+watch(
+  () => store.character?.focuses,
+  (focuses) => {
+    if (focuses && editingFocusIndex.value === null) focusDrafts.value = [...focuses]
+  },
+  { immediate: true, deep: true },
+)
+function commitFocusText(i: number, text: string) {
+  focusDrafts.value[i] = text
+  store.updateFocusText(i, text)
+}
+
+const valueDrafts = ref<string[]>([])
+const editingValueIndex = ref<number | null>(null)
+watch(
+  () => store.character?.values,
+  (values) => {
+    if (values && editingValueIndex.value === null) valueDrafts.value = values.map((v) => v.text)
+  },
+  { immediate: true, deep: true },
+)
+function commitValueText(i: number, text: string) {
+  valueDrafts.value[i] = text
+  store.updateValueText(i, text)
+}
+
+const commonCauseDraft = ref('')
+const editingCommonCause = ref(false)
+watch(
+  () => store.character?.commonCause?.text,
+  (text) => {
+    if (text !== undefined && !editingCommonCause.value) commonCauseDraft.value = text
+  },
+  { immediate: true },
+)
+function commitCommonCauseText(text: string) {
+  commonCauseDraft.value = text
+  store.updateCommonCauseText(text)
+}
+
 /** Weapons equipped, grouped by id with a count (dual-wielding two of the same weapon is common). */
 const equippedWeaponGroups = computed(() => {
   if (!store.character) return []
@@ -887,14 +937,16 @@ const rattledText = computed(() => {
             </template>
             <template v-else>
               <v-text-field
-                v-for="(f, i) in store.character.focuses"
+                v-for="(_, i) in focusDrafts"
                 :key="i"
-                :model-value="f"
+                v-model="focusDrafts[i]"
                 variant="underlined"
                 density="compact"
                 hide-details
                 class="mb-1"
-                @update:model-value="(text) => store.updateFocusText(i, text as string)"
+                @focus="editingFocusIndex = i"
+                @blur="editingFocusIndex = null"
+                @update:model-value="(text) => commitFocusText(i, text as string)"
               />
               <span v-if="!store.character.focuses.length" class="text-medium-emphasis">None</span>
             </template>
@@ -944,15 +996,19 @@ const rattledText = computed(() => {
 
             <template v-for="(v, i) in store.character.values" :key="i">
               <div class="values-grid py-1">
-                <v-text-field
-                  :model-value="v.text"
+                <v-textarea
+                  v-model="valueDrafts[i]"
                   variant="underlined"
                   density="compact"
                   placeholder="Value"
                   hide-details
+                  auto-grow
+                  rows="1"
                   class="value-text"
                   :class="{ 'value-inactive': !v.active || v.challenged, 'value-challenged': v.challenged }"
-                  @update:model-value="(text) => store.updateValueText(i, text as string)"
+                  @focus="editingValueIndex = i"
+                  @blur="editingValueIndex = null"
+                  @update:model-value="(text) => commitValueText(i, text as string)"
                 />
                 <div class="d-flex justify-center">
                   <v-checkbox
@@ -979,18 +1035,22 @@ const rattledText = computed(() => {
             <v-divider class="my-2" />
 
             <div class="values-grid py-1">
-              <v-text-field
-                :model-value="store.character.commonCause.text"
+              <v-textarea
+                v-model="commonCauseDraft"
                 variant="underlined"
                 density="compact"
                 placeholder="Common Cause"
                 hide-details
+                auto-grow
+                rows="1"
                 class="value-text"
                 :class="{
                   'value-inactive': !store.character.commonCause.active || store.character.commonCause.challenged,
                   'value-challenged': store.character.commonCause.challenged,
                 }"
-                @update:model-value="(text) => store.updateCommonCauseText(text as string)"
+                @focus="editingCommonCause = true"
+                @blur="editingCommonCause = false"
+                @update:model-value="(text) => commitCommonCauseText(text as string)"
               />
               <div class="d-flex justify-center">
                 <v-checkbox
@@ -1090,24 +1150,29 @@ const rattledText = computed(() => {
 .values-grid {
   display: grid;
   grid-template-columns: 1fr 64px 64px;
-  align-items: center;
+  align-items: start;
   column-gap: 8px;
 }
 .values-header {
   padding-bottom: 2px;
+  align-items: center;
 }
 .values-header span {
   white-space: normal;
   line-height: 1.1;
 }
-
-.value-text :deep(input) {
-  font-size: 1.15rem;
+.values-grid > div {
+  padding-top: 6px;
 }
-.value-text.value-inactive :deep(input) {
+
+.value-text :deep(textarea) {
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+.value-text.value-inactive :deep(textarea) {
   opacity: var(--v-medium-emphasis-opacity, 0.6);
 }
-.value-text.value-challenged :deep(input) {
+.value-text.value-challenged :deep(textarea) {
   text-decoration: line-through;
 }
 </style>
