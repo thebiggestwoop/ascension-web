@@ -14,7 +14,7 @@
         "id": "twinblade",
         "name": "Twinblade",
         "description": "Dual wield swords with dizzying speed and careful footwork.",
-        "playstyle": "placeholder."
+        "playstyle": "While dual-wielding shortswords, after attacking once with one shortsword you can **always Swift Task to attack with the other**, at no Momentum cost (Sword Adept + Dual Wielding talents reduce the normal cost after attacking to 0). \n **Skirmisher** punishes enemies who fail to hit you with opportunity attacks - later levels of Skirmisher make this more reliable. \n **Swift Steps** allows you to immediately Swift Task after taking the Sprint Action (by granting the 2 Momentum needed to Swift Task), useful for Sprinting into position and striking once with a sword. Be weary about running into danger though, you can quickly get surrounded and defeated if separated from your allies."
       },
       {
         "id": "spellsword",
