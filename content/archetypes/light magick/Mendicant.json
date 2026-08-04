@@ -1,0 +1,168 @@
+{
+  "id": "de18efe0-c3bf-4d9d-b4de-f04e7db6ac62",
+  "name": "Mendicant",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 10,
+    "awareness": 7,
+    "brawn": 8,
+    "coordination": 6,
+    "faith": 11,
+    "presence": 8,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 2,
+    "authority": 1,
+    "diplomacy": 2,
+    "study": 4,
+    "medicine": 4,
+    "intrigue": 1
+  },
+  "focuses": [
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder",
+    "placeholder"
+  ],
+  "values": [
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    },
+    {
+      "text": "placeholder",
+      "active": true
+    }
+  ],
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "medicine",
+    "skirmish"
+  ],
+  "currentHp": 30,
+  "currentWillpower": 11,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 0,
+  "talentIds": [
+    "theurgist_divine_healer",
+    "theurgist_warding",
+    "theurgist_intercession",
+    "light_magick_1",
+    "vitalurge_1",
+    "augmentier_1",
+    "counterspell_1"
+  ],
+  "equippedWeaponIds": [
+    "shortsword"
+  ],
+  "inventoryItemIds": [
+    "spell_implement",
+    "tome",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "lay_on_hands",
+    "lay_on_hands",
+    "divine_protection",
+    "guiding_ray",
+    "touch_of_haste"
+  ],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 10,
+        "awareness": 7,
+        "brawn": 8,
+        "coordination": 6,
+        "faith": 11,
+        "presence": 8,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 2,
+        "authority": 1,
+        "diplomacy": 2,
+        "study": 4,
+        "medicine": 4,
+        "intrigue": 1
+      },
+      "focusTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "valueTexts": [
+        "placeholder",
+        "placeholder",
+        "placeholder",
+        "placeholder"
+      ],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "theurgist_divine_healer",
+        "theurgist_warding",
+        "theurgist_intercession"
+      ],
+      "combatTalentIds": [
+        "light_magick_1",
+        "vitalurge_1",
+        "augmentier_1",
+        "counterspell_1"
+      ],
+      "equippedWeaponIds": [
+        "shortsword"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "spell_implement",
+        "tome",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "lay_on_hands",
+        "lay_on_hands",
+        "divine_protection",
+        "guiding_ray",
+        "touch_of_haste"
+      ],
+      "combatSkillFocuses": [
+        "medicine",
+        "skirmish"
+      ]
+    }
+  }
+}
