@@ -107,3 +107,17 @@ export function resolveMagickDomainAccess(talentIds: string[]): IMagickDomainAcc
   }
   return result
 }
+
+/**
+ * Aura of Speed (light 2) grants "+2 speed" while its condition holds (start of turn, within
+ * Range) - since this app has no turn-order/Range simulation to know exactly when that's
+ * true, its bonus lives in the Character Sheet's editable Speed "Bonus/Penalty" field instead
+ * of an always-on modifier. This seeds that field with +2 the moment the spell is freshly
+ * prepared (the not-prepared -> prepared transition only, so it never clobbers a value the
+ * player has since adjusted by hand - re-preparing it after unpreparing it seeds it again,
+ * which is the expected "starting over" case).
+ */
+export function auraOfSpeedDefaultBonus(previousPreparedSpellIds: string[], newPreparedSpellIds: string[]): number | null {
+  const gained = newPreparedSpellIds.includes('aura_of_speed') && !previousPreparedSpellIds.includes('aura_of_speed')
+  return gained ? 2 : null
+}

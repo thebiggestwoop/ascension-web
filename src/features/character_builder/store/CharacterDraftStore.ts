@@ -11,7 +11,7 @@ import type {
   IFocusValueTraitEntry,
   IArchetypeFinishingTouchesRecord,
 } from '@/classes/CharacterHistory'
-import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
+import { SPELLCASTER_TALENT_IDS, auraOfSpeedDefaultBonus } from '@/classes/Spell'
 import type { IArchetypeCharacterData } from '@/classes/Archetype'
 import { findArchetypeSummary } from '@/classes/Archetype'
 import { CoreContent } from '@/io/ContentLoader'
@@ -66,6 +66,7 @@ function createBaseDraft(): ICharacterData {
     statuses: [],
     // "Every character begins each session with one point of Determination" (Chapter Three).
     determination: 1,
+    speedBonus: 0,
     talentIds: [],
     equippedWeaponIds: [],
     inventoryItemIds: [],
@@ -214,7 +215,9 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
+      const auraOfSpeedBonus = auraOfSpeedDefaultBonus(this.draft.preparedSpellIds, payload.preparedSpellIds)
       this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
+      if (auraOfSpeedBonus !== null) this.draft.speedBonus = auraOfSpeedBonus
       this.draft.combatSkillFocuses = [...payload.combatSkillFocuses]
 
       const { name: _name, archetypeId, ...finishingTouches } = payload
@@ -248,7 +251,9 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
+      const auraOfSpeedBonus = auraOfSpeedDefaultBonus(this.draft.preparedSpellIds, payload.preparedSpellIds)
       this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
+      if (auraOfSpeedBonus !== null) this.draft.speedBonus = auraOfSpeedBonus
       this.draft.combatSkillFocuses = [...payload.combatSkillFocuses]
 
       const { name: _name, ...finishingTouches } = payload
@@ -279,7 +284,9 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       if (payload.equippedArmorId) this.draft.equippedArmorId = payload.equippedArmorId
       this.draft.inventoryItemIds.push(...payload.inventoryItemIds)
       if (payload.mountId) this.draft.mountId = payload.mountId
+      const auraOfSpeedBonus = auraOfSpeedDefaultBonus(this.draft.preparedSpellIds, payload.preparedSpellIds)
       this.draft.preparedSpellIds.push(...payload.preparedSpellIds)
+      if (auraOfSpeedBonus !== null) this.draft.speedBonus = auraOfSpeedBonus
       this.draft.combatSkillFocuses = [...payload.combatSkillFocuses]
 
       const { name: _name, ...quickBuild } = payload

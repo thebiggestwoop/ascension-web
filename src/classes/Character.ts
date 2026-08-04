@@ -63,6 +63,14 @@ export interface ICharacterData {
 
   determination: number
 
+  /** Player-entered flat modifier (-10 to 10) applied to every Speed value (Speed, Mounted
+   * Speed, Flying Speed) - the Character Sheet's "Bonus/Penalty" field. Exists because Speed
+   * buffs/penalties (e.g. Aura of Speed's "+2 speed while X") often depend on turn order/Range
+   * this app doesn't simulate, so rather than guessing when they apply, the field is simply
+   * editable - see updatePreparedSpells' Aura of Speed prepopulation for the one case that
+   * seeds a starting value automatically. */
+  speedBonus: number
+
   talentIds: string[]
   equippedWeaponIds: string[]
   equippedArmorId?: string
@@ -106,6 +114,7 @@ export function migrateLegacyCharacterData(data: ICharacterData): ICharacterData
     if (value.challenged === undefined) value.challenged = false
   }
   if (!data.usedGeneralItemIds) data.usedGeneralItemIds = []
+  if (data.speedBonus === undefined) data.speedBonus = 0
   return data
 }
 
@@ -253,9 +262,9 @@ export class Character implements ISerializable<ICharacterData>, ICharacterStatS
     return this.data.skills[id]
   }
 
-  /** Speed = 3 + floor(Agility / 2) */
+  /** Speed = 3 + floor(Agility / 2), plus the player-entered Bonus/Penalty field. */
   get speed(): number {
-    return 3 + Math.floor(this.attribute(AttributeId.Agility) / 2)
+    return 3 + Math.floor(this.attribute(AttributeId.Agility) / 2) + this.data.speedBonus
   }
 
   /** Health Bar = Brawn + Skirmish (+ passive Talent bonuses, e.g. Resilient 1's +2); Max HP = Health Bar x 3. */
@@ -289,10 +298,11 @@ export class Character implements ISerializable<ICharacterData>, ICharacterStatS
     return this.modifiers.resistanceBonus ?? 0
   }
 
-  /** Angel's Wings (light 3), while prepared: Flying Speed = Half Magick. Undefined (not 0)
+  /** Angel's Wings (light 3), while prepared: Flying Speed = Half Magick, plus the
+   * player-entered Bonus/Penalty field (see ICharacterData.speedBonus). Undefined (not 0)
    * when not prepared - callers should hide the tile entirely rather than showing 0. */
   get flyingSpeed(): number | undefined {
-    return this.modifiers.flyingSpeed
+    return this.modifiers.flyingSpeed !== undefined ? this.modifiers.flyingSpeed + this.data.speedBonus : undefined
   }
 
   get temporaryResistance(): number {

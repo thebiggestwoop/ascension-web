@@ -154,6 +154,8 @@ const tempHpDraft = ref('0')
 const tempHpFocused = ref(false)
 const tempResistanceDraft = ref('0')
 const tempResistanceFocused = ref(false)
+const speedBonusDraft = ref('0')
+const speedBonusFocused = ref(false)
 
 watch(
   () => store.character?.temporaryHp,
@@ -169,6 +171,13 @@ watch(
   },
   { immediate: true },
 )
+watch(
+  () => store.character?.speedBonus,
+  (v) => {
+    if (v !== undefined && !speedBonusFocused.value) speedBonusDraft.value = String(v)
+  },
+  { immediate: true },
+)
 
 function commitTempHp() {
   tempHpFocused.value = false
@@ -179,6 +188,11 @@ function commitTempResistance() {
   tempResistanceFocused.value = false
   const parsed = Math.round(Number(tempResistanceDraft.value))
   store.setTemporaryResistance(Number.isFinite(parsed) ? parsed : 0)
+}
+function commitSpeedBonus() {
+  speedBonusFocused.value = false
+  const parsed = Math.round(Number(speedBonusDraft.value))
+  store.setSpeedBonus(Number.isFinite(parsed) ? parsed : 0)
 }
 function blurActiveElement(event: Event) {
   ;(event.target as HTMLInputElement | null)?.blur()
@@ -490,38 +504,44 @@ const effectiveSpeed = computed(() => {
   if (!character.value) return 0
   return character.value.speed - (speedWoundPenalty.value ? 2 : 0)
 })
+/** Shared by every Speed value's tooltip below - the player-entered Bonus/Penalty field
+ * (see ICharacterData.speedBonus) applies to all of them equally. */
+const speedBonusNote = computed(() => {
+  const bonus = store.character?.speedBonus ?? 0
+  return bonus ? `, ${bonus > 0 ? '+' : ''}${bonus} (Bonus/Penalty)` : ''
+})
 const speedTooltip = computed(() => {
   if (!character.value) return ''
-  const base = `3 + floor(Agility ${character.value.attribute(AttributeId.Agility)} / 2)`
+  const base = `3 + floor(Agility ${character.value.attribute(AttributeId.Agility)} / 2)${speedBonusNote.value}`
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
 /** "While mounted, your Speed is effectively replaced by the mount's" - but a Wound reduces
  * "your Speed" generally, so the -2 penalty still applies to whichever Speed is currently in
- * effect, mounted or not. */
+ * effect, mounted or not; the Bonus/Penalty field applies to every Speed value the same way. */
 const mountedSpeedValue = computed(() => {
-  if (!character.value || !mount.value) return 0
+  if (!character.value || !mount.value || !store.character) return 0
   const base = mountedSpeed(mount.value, character.value.attribute(mount.value.ridingAttribute))
-  return base - (speedWoundPenalty.value ? 2 : 0)
+  return base + store.character.speedBonus - (speedWoundPenalty.value ? 2 : 0)
 })
 const mountedSpeedTooltip = computed(() => {
   if (!character.value || !mount.value) return ''
   const attrName = attributeName(mount.value.ridingAttribute)
   const attrValue = character.value.attribute(mount.value.ridingAttribute)
-  const base = `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2) - replaces your own Speed while mounted`
+  const base = `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2)${speedBonusNote.value} - replaces your own Speed while mounted`
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
 /** Angel's Wings (light 3), while prepared - same Wound penalty as every other Speed value
  * (see mountedSpeedValue's own comment on why a Wound applies regardless of which Speed is
- * currently in effect). */
+ * currently in effect); Character.flyingSpeed already folds in the Bonus/Penalty field. */
 const effectiveFlyingSpeed = computed(() => {
   if (character.value?.flyingSpeed === undefined) return 0
   return character.value.flyingSpeed - (speedWoundPenalty.value ? 2 : 0)
 })
 const flyingSpeedTooltip = computed(() => {
   if (!character.value) return ''
-  const base = `floor(Faith ${character.value.attribute(AttributeId.Faith)} / 2) - Angel's Wings`
+  const base = `floor(Faith ${character.value.attribute(AttributeId.Faith)} / 2)${speedBonusNote.value} - Angel's Wings`
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
@@ -908,6 +928,23 @@ const rattledText = computed(() => {
                   :warn="speedWoundPenalty"
                 />
               </template>
+
+              <div class="d-flex align-center justify-center mt-2" style="gap: 8px">
+                <span class="text-caption text-medium-emphasis">Bonus/Penalty</span>
+                <v-text-field
+                  v-model="speedBonusDraft"
+                  type="number"
+                  min="-10"
+                  max="10"
+                  density="compact"
+                  hide-details
+                  class="no-spin-buttons centered-number-input"
+                  style="max-width: 70px"
+                  @focus="speedBonusFocused = true"
+                  @blur="commitSpeedBonus"
+                  @keyup.enter="blurActiveElement"
+                />
+              </div>
             </v-card>
           </v-col>
         </v-row>

@@ -69,6 +69,7 @@
   "temporaryResistance": 0,
   "statuses": [],
   "determination": 0,
+  "speedBonus": 0,
   "talentIds": [
     "captain_bolstering_word",
     "warrior_never_show_fear",

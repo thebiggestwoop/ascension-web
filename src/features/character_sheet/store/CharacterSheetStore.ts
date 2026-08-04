@@ -4,7 +4,7 @@ import type { AttributeId, SkillId } from '@/classes/enums'
 import type { ICharacterData, ITrait } from '@/classes/Character'
 import { Character, computeStatModifiers, migrateLegacyCharacterData } from '@/classes/Character'
 import type { ILevelUpChoices, ILevelUpRecord } from '@/classes/CharacterHistory'
-import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
+import { SPELLCASTER_TALENT_IDS, auraOfSpeedDefaultBonus } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
 import { loadCharacter, saveCharacter } from '@/io/Storage'
 
@@ -58,6 +58,13 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
     async setTemporaryResistance(value: number) {
       if (!this.character) return
       this.character.temporaryResistance = Math.max(0, Math.min(5, Math.round(value)))
+      await this.persist()
+    },
+    /** Speed "Bonus/Penalty" field - player-entered, applies to every Speed value (Speed,
+     * Mounted Speed, Flying Speed), clamped -10 to 10. */
+    async setSpeedBonus(value: number) {
+      if (!this.character) return
+      this.character.speedBonus = Math.max(-10, Math.min(10, Math.round(value)))
       await this.persist()
     },
     /** Temporary HP from a buff/spell/etc. - player-entered, floored at 0 and capped at 50. */
@@ -165,7 +172,9 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
     },
     async updatePreparedSpells(preparedSpellIds: string[]) {
       if (!this.character) return
+      const auraOfSpeedBonus = auraOfSpeedDefaultBonus(this.character.preparedSpellIds, preparedSpellIds)
       this.character.preparedSpellIds = preparedSpellIds
+      if (auraOfSpeedBonus !== null) this.character.speedBonus = auraOfSpeedBonus
       await this.persist()
     },
     async updateNotes(notes: string) {

@@ -69,6 +69,7 @@
   "temporaryResistance": 0,
   "statuses": [],
   "determination": 0,
+  "speedBonus": 0,
   "talentIds": [
     "knight_chivalry",
     "knight_tourney_knight",
