@@ -6,8 +6,14 @@ import type { ICreationRecord, ILevelUpRecord } from './CharacterHistory'
 
 export interface IValue {
   text: string
-  /** Values get Challenged/Complied-with in play; a spent Value is inactive until refreshed. */
+  /** "Called upon" (spent to grant an advantage) - inactive until refreshed, e.g. at the start
+   * of the next session. Distinct from `challenged` below: a called-upon Value comes back, a
+   * challenged one doesn't until deliberately recovered. */
   active: boolean
+  /** "Challenged" per Chapter Three: crossed out on the sheet and unusable until recovered (see
+   * "Recovering Values"), in exchange for a point of Determination - a longer-lived state than
+   * simply being called upon. */
+  challenged: boolean
 }
 
 export interface ITrait {
@@ -83,6 +89,9 @@ export function migrateLegacyCharacterData(data: ICharacterData): ICharacterData
   if (data.temporaryResistance === undefined) data.temporaryResistance = 0
   if (!data.combatSkillFocuses) data.combatSkillFocuses = []
   if (data.notes === undefined) data.notes = ''
+  for (const value of data.values) {
+    if (value.challenged === undefined) value.challenged = false
+  }
   return data
 }
 

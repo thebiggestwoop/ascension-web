@@ -143,7 +143,7 @@ export function applyLifepathSelection(
   draft.focuses.push(...selection.focusText)
 
   if (option.grants.valuePrompt && selection.valueText) {
-    const value: IValue = { text: selection.valueText, active: true }
+    const value: IValue = { text: selection.valueText, active: true, challenged: false }
     draft.values.push(value)
   }
 

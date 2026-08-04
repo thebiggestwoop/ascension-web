@@ -882,17 +882,66 @@ const rattledText = computed(() => {
         <v-card variant="outlined" class="mb-4">
           <v-card-title>Values</v-card-title>
           <v-card-text>
-            <v-chip
-              v-for="(v, i) in store.character.values"
-              :key="i"
-              class="mr-1 mb-1"
-              size="small"
-              :variant="v.active ? 'tonal' : 'outlined'"
-              :color="v.active ? 'primary' : undefined"
-              @click="store.toggleValueActive(i)"
-            >
-              {{ v.text }}
-            </v-chip>
+            <div class="d-flex align-center justify-space-between flex-wrap ga-2 mb-3">
+              <span class="text-subtitle-2">Determination</span>
+              <div class="d-flex align-center" style="gap: 10px">
+                <v-btn
+                  size="small"
+                  variant="tonal"
+                  :disabled="store.character.determination <= 0"
+                  @click="store.adjustDetermination(-1)"
+                >
+                  Spend
+                </v-btn>
+                <div class="d-flex align-center" style="gap: 4px">
+                  <v-icon
+                    v-for="i in 3"
+                    :key="i"
+                    :icon="i <= store.character.determination ? 'mdi-circle' : 'mdi-circle-outline'"
+                    color="primary"
+                    size="22"
+                  />
+                </div>
+                <v-btn
+                  size="small"
+                  variant="tonal"
+                  :disabled="store.character.determination >= 3"
+                  @click="store.adjustDetermination(1)"
+                >
+                  Gain
+                </v-btn>
+              </div>
+            </div>
+            <v-divider class="mb-2" />
+
+            <template v-for="(v, i) in store.character.values" :key="i">
+              <div class="d-flex align-center justify-space-between flex-wrap ga-2 py-2">
+                <span
+                  class="text-body-1 value-text"
+                  :class="{ 'text-medium-emphasis': !v.active || v.challenged, 'text-decoration-line-through': v.challenged }"
+                >
+                  {{ v.text }}
+                </span>
+                <div class="d-flex align-center flex-wrap" style="gap: 8px">
+                  <v-checkbox
+                    :model-value="!v.active"
+                    label="Called Upon"
+                    density="compact"
+                    hide-details
+                    :disabled="v.challenged"
+                    @update:model-value="store.toggleValueActive(i)"
+                  />
+                  <v-checkbox
+                    :model-value="v.challenged"
+                    label="Challenge"
+                    density="compact"
+                    hide-details
+                    @update:model-value="store.toggleValueChallenged(i)"
+                  />
+                </div>
+              </div>
+              <v-divider v-if="i < store.character.values.length - 1" />
+            </template>
             <span v-if="!store.character.values.length" class="text-medium-emphasis">None</span>
           </v-card-text>
         </v-card>
@@ -967,5 +1016,9 @@ const rattledText = computed(() => {
 
 .centered-number-input :deep(input) {
   text-align: center;
+}
+
+.value-text {
+  font-size: 1.15rem;
 }
 </style>

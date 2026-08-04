@@ -73,6 +73,23 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       value.active = !value.active
       await this.persist()
     },
+    /** "Challenge: ...crossing it out on your character sheet... cannot use your crossed out
+     * Value again" (Chapter Three) - a separate, longer-lived state from simply being called
+     * upon (`active`). */
+    async toggleValueChallenged(index: number) {
+      if (!this.character) return
+      const value = this.character.values[index]
+      if (!value) return
+      value.challenged = !value.challenged
+      await this.persist()
+    },
+    /** "Characters may not have more than 3 points of Determination at a time" (Chapter Three) -
+     * the Spend/Gain buttons on the Values card. */
+    async adjustDetermination(delta: number) {
+      if (!this.character) return
+      this.character.determination = Math.max(0, Math.min(3, this.character.determination + delta))
+      await this.persist()
+    },
     async adjustXp(delta: number) {
       if (!this.character) return
       this.character.xp = Math.max(0, this.character.xp + delta)

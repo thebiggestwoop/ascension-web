@@ -31,19 +31,23 @@
   "values": [
     {
       "text": "placeholder",
-      "active": true
+      "active": true,
+      "challenged": false
     },
     {
       "text": "placeholder",
-      "active": true
+      "active": true,
+      "challenged": false
     },
     {
       "text": "placeholder",
-      "active": true
+      "active": true,
+      "challenged": false
     },
     {
       "text": "placeholder",
-      "active": true
+      "active": true,
+      "challenged": false
     }
   ],
   "traits": [

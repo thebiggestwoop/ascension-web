@@ -63,7 +63,8 @@ function createBaseDraft(): ICharacterData {
     temporaryHp: 0,
     temporaryResistance: 0,
     statuses: [],
-    determination: 0,
+    // "Every character begins each session with one point of Determination" (Chapter Three).
+    determination: 1,
     talentIds: [],
     equippedWeaponIds: [],
     inventoryItemIds: [],
@@ -183,7 +184,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
     applyFocusValueTraitQuickEntry(payload: IFocusValueTraitEntry) {
       this.draft.focuses.push(...payload.focusTexts)
       for (const text of payload.valueTexts) {
-        this.draft.values.push({ text, active: true })
+        this.draft.values.push({ text, active: true, challenged: false })
       }
       for (const name of payload.traitNames) {
         this.draft.traits.push({ name })
@@ -237,7 +238,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       for (const [id, amount] of Object.entries(payload.skillDeltas)) {
         this.draft.skills[id as SkillId] += amount ?? 0
       }
-      this.draft.values.push({ text: payload.valueText, active: true })
+      this.draft.values.push({ text: payload.valueText, active: true, challenged: false })
       this.draft.traits.push({ name: `Defining Feature: ${payload.definingFeatureText}` })
       this.draft.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
       grantSpellcasterTraitIfNeeded(this.draft, [...payload.narrativeTalentIds, ...payload.combatTalentIds])
@@ -264,7 +265,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.draft.skills = { ...payload.skills }
       this.draft.focuses.push(...payload.focusTexts)
       for (const text of payload.valueTexts) {
-        this.draft.values.push({ text, active: true })
+        this.draft.values.push({ text, active: true, challenged: false })
       }
       for (const name of payload.traitNames) {
         this.draft.traits.push({ name })
