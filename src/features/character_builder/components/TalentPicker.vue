@@ -342,8 +342,13 @@ watch(
 }
 
 /* Each checkbox's :messages array renders as two stacked lines: the prerequisite (kept at
-   Vuetify's default hint size) then the rules description, bumped up to 14px for readability. */
+   Vuetify's default hint size) then the rules description, bumped up to 14px for readability.
+   Vuetify's default line-height (12px) was sized for the original 12px hint text, so it has to
+   be widened too or the bumped-up text reads as cramped/overlapping, especially once it wraps
+   to multiple lines. */
 .talent-checkbox :deep(.v-messages__message:last-child) {
   font-size: 14px;
+  line-height: 1.5;
+  margin-top: 4px;
 }
 </style>
