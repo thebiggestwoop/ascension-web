@@ -14,7 +14,7 @@ import TooltipChip from '@/ui/TooltipChip.vue'
  * before touching anything. No "(was X)" comparison text like CharacterPreview.vue, since
  * there's nothing pending yet to compare against; no editing controls at all.
  */
-const props = defineProps<{ archetype: IArchetypeCharacterData }>()
+const props = defineProps<{ archetype: IArchetypeCharacterData; playstyle: string }>()
 const emit = defineEmits<{ continue: [] }>()
 
 const allTalents = [...CoreContent.talents.narrative, ...CoreContent.talents.combat]
@@ -72,10 +72,8 @@ function qualityTooltip(q: IQualityInstance): string | undefined {
 <template>
   <div>
     <h3 class="text-h6 mb-1">{{ archetype.name }}</h3>
-    <p class="text-body-2 text-medium-emphasis mb-4">
-      Here's what this Archetype comes with. Nothing here is editable yet - the next steps let
-      you personalize Focuses, Values, and Traits, then tweak everything else before finishing.
-    </p>
+    <div class="text-subtitle-2 mb-1">Playstyle</div>
+    <p class="text-body-2 text-medium-emphasis mb-4">{{ playstyle }}</p>
 
     <v-row class="mb-2">
       <v-col cols="12" sm="6">

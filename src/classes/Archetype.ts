@@ -4,6 +4,10 @@ export interface IArchetypeSummary {
   id: string
   name: string
   description: string
+  /** Tips for how to actually play this Archetype - shown on ArchetypePreviewStep in place of
+   * the generic "here's what this comes with" text, and defaulted into the finished
+   * character's Notes field (see applyArchetypeFinishingTouches). */
+  playstyle: string
 }
 
 export interface IArchetypeCategoryData {
@@ -11,6 +15,17 @@ export interface IArchetypeCategoryData {
   name: string
   description: string
   archetypes: IArchetypeSummary[]
+}
+
+export function findArchetypeSummary(
+  categories: IArchetypeCategoryData[],
+  archetypeId: string,
+): IArchetypeSummary | undefined {
+  for (const category of categories) {
+    const found = category.archetypes.find((a) => a.id === archetypeId)
+    if (found) return found
+  }
+  return undefined
 }
 
 /**

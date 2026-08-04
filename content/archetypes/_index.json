@@ -4,8 +4,18 @@
     "name": "Sword",
     "description": "Sword wielders have high Agility, allowing them to dart across the battlefield and overwhelm their foes with rapid, precise strikes.",
     "archetypes": [
-      { "id": "hero", "name": "Hero", "description": "With shining sword and shield, lead the front line and inspire your allies." },
-      { "id": "twinblade", "name": "Twinblade", "description": "Dual wield swords with dizzying speed and careful footwork." }
+      {
+        "id": "hero",
+        "name": "Hero",
+        "description": "With shining sword and shield, lead the front line and inspire your allies.",
+        "playstyle": "You're less a lone striker and more the anchor your party rallies around. Stand at the front with your Round Shield and Shield Master, then spend your actions lifting everyone else up: Rally hands out a bonus die, Bolstering Word turns your assists into two dice for free, and Icon lets you Console as a Minor Action to keep spirits high. Never Show Fear and Rallying Cry mean you're just as hard to rattle as you are to break through - let enemies bounce off you while your allies do the heavy lifting, using your Longsword and Throwing Knife to punish anyone who gets too greedy."
+      },
+      {
+        "id": "twinblade",
+        "name": "Twinblade",
+        "description": "Dual wield swords with dizzying speed and careful footwork.",
+        "playstyle": "You win fights by not being where the enemy expects. Dual Wielding and Swift Steps make you fast and hard to pin down, while Skirmisher lets you dive in and slip back out in the same breath - strike, then reposition before anyone can retaliate. Predator makes you especially good at running down anyone who tries to flee, and Wallflower and Eavesdropper mean you're just as effective when the scene isn't about swords at all: gathering information and reading a room without drawing attention. Play this Archetype like a duelist who'd rather pick their fights than get pinned into one."
+      }
     ]
   },
   {
@@ -13,7 +23,12 @@
     "name": "Spear",
     "description": "Spear wielders have high Coordination, striking with precision and reach to keep foes at bay or run them through from horseback.",
     "archetypes": [
-      { "id": "cavalier", "name": "Cavalier", "description": "Well armored atop a trusty steed, charge ahead and through your foes." }
+      {
+        "id": "cavalier",
+        "name": "Cavalier",
+        "description": "Well armored atop a trusty steed, charge ahead and through your foes.",
+        "playstyle": "You're built to open a fight, not grind through one. Mount your Horse and use Cavalry Adept's mounted bonuses to charge in with your Lance, then lean on Opportunist and Duelist to punish whoever you've singled out. Chivalry and Bold and Brave reward you for playing the honorable knight - protecting allies and pushing through danger head-on - while Tourney Knight keeps opposed contests from spiraling against you if a gambit doesn't land. Heavy Armor and a Round Shield mean you can afford to be the one enemies focus on; just remember your Speed (and your effectiveness) is best on horseback, not standing still."
+      }
     ]
   }
 ]

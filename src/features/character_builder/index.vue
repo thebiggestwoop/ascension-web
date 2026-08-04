@@ -10,6 +10,7 @@ import ArchetypePreviewStep from './components/ArchetypePreviewStep.vue'
 import ArchetypeQuickEntryStep from './components/ArchetypeQuickEntryStep.vue'
 import CharacterPreview from './components/CharacterPreview.vue'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
+import { findArchetypeSummary } from '@/classes/Archetype'
 
 const stages: ILifepathStageData[] = [
   CoreContent.lifepath.socialClass,
@@ -34,6 +35,9 @@ const creationMethod = ref<'lifepath' | 'quick_build' | 'archetype' | null>(null
 const selectedArchetypeId = ref<string | null>(null)
 const selectedArchetypeData = computed(() =>
   selectedArchetypeId.value ? CoreContent.archetypes.characters[selectedArchetypeId.value] : undefined,
+)
+const selectedArchetypeSummary = computed(() =>
+  selectedArchetypeId.value ? findArchetypeSummary(CoreContent.archetypes.categories, selectedArchetypeId.value) : undefined,
 )
 const archetypePhase = ref<'preview' | 'focus_value_trait_choice' | 'lifepath' | 'quick_entry' | 'finishing_touches'>(
   'preview',
@@ -137,6 +141,7 @@ onMounted(() => store.reset())
     <template v-else-if="creationMethod === 'archetype' && archetypePhase === 'preview'">
       <ArchetypePreviewStep
         :archetype="selectedArchetypeData!"
+        :playstyle="selectedArchetypeSummary?.playstyle ?? ''"
         @continue="archetypePhase = 'focus_value_trait_choice'"
       />
     </template>

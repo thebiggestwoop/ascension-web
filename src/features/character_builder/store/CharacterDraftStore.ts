@@ -13,6 +13,7 @@ import type {
 } from '@/classes/CharacterHistory'
 import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import type { IArchetypeCharacterData } from '@/classes/Archetype'
+import { findArchetypeSummary } from '@/classes/Archetype'
 import { CoreContent } from '@/io/ContentLoader'
 import { saveCharacter } from '@/io/Storage'
 
@@ -199,6 +200,11 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       this.draft.name = payload.name
       this.draft.attributes = { ...payload.attributes }
       this.draft.skills = { ...payload.skills }
+      // Default the Notes field to the Archetype's own playstyle tips - NotesEditor shows
+      // Preview mode by default whenever it mounts with non-empty content, so this alone is
+      // what makes the finished sheet open on Preview rather than Edit.
+      const summary = findArchetypeSummary(CoreContent.archetypes.categories, payload.archetypeId)
+      if (summary?.playstyle) this.draft.notes = summary.playstyle
       this.draft.talentIds.push(...payload.narrativeTalentIds, ...payload.combatTalentIds)
       grantSpellcasterTraitIfNeeded(this.draft, [...payload.narrativeTalentIds, ...payload.combatTalentIds])
       this.draft.equippedWeaponIds.push(...payload.equippedWeaponIds)
