@@ -210,9 +210,24 @@ onMounted(() => store.reset())
 
         <QuickBuildStep v-else-if="creationMethod === 'quick_build'" />
       </v-col>
-      <v-col cols="12" md="5">
+      <v-col cols="12" md="5" class="preview-col">
         <CharacterPreview />
       </v-col>
     </v-row>
   </v-container>
 </template>
+
+<style scoped>
+/* Keeps the preview in view while the (often much longer) form column scrolls - only once it's
+   genuinely a side column (md+); at cols=12 it's stacked above the form and should scroll with
+   the page like everything else. */
+@media (min-width: 960px) {
+  .preview-col {
+    position: sticky;
+    top: 80px;
+    align-self: flex-start;
+    max-height: calc(100vh - 96px);
+    overflow-y: auto;
+  }
+}
+</style>
