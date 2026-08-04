@@ -2,6 +2,7 @@
   "id": "education",
   "name": "Step Three: Education",
   "selectCount": 1,
+  "notes": "The quality and kind of education available to each person varies vastly across backgrounds, and is often determined first and foremost by one's class and the wealth of their family. Though literacy is uncommon amongst commoners, for those with educated parents or connections to a wealthy patron, higher levels of education can be obtained without the need for noble blood. The level of education expected of a noble is often dependent on the person's role and background. While it may be expected for a prince to read, write, and speak four languages as well as know how to wield a sword, a squire or a knight of petty noble heritage may not know how to read at all, while their skill with weaponry is unmatched.\n\nIn this step of the lifepath, characters gain two points to add to one or two Attributes, and one point to add to one Skill. They also gain a Focus, which should reflect the special skills that they acquired in their learning.",
   "options": [
     {
       "id": "academy",

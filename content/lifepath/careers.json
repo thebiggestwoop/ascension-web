@@ -2,6 +2,7 @@
   "id": "career",
   "name": "Step Four: Career",
   "selectCount": 1,
+  "notes": "Perhaps one of the most defining parts of the lifepath, this step determines your character's career: the path that they have chosen to follow. A character's career has a significant impact on them, narratively and mechanically, and these benefits are explained below.",
   "options": [
     {
       "id": "acolyte",

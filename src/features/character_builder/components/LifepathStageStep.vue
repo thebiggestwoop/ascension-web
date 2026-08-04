@@ -4,6 +4,7 @@ import { AttributeId, SkillId } from '@/classes/enums'
 import type { ILifepathOption, ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
 import { AUTO_TRAIT_STAGE_LABEL } from '@/classes/Lifepath'
 import { CoreContent } from '@/io/ContentLoader'
+import MarkdownText from '@/ui/MarkdownText.vue'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
 
@@ -66,6 +67,39 @@ const previewTraitNames = computed(() => {
 
 function isPool(grant: { amount: number; restrictTo?: unknown[] }): boolean {
   return grant.amount > 1 && !grant.restrictTo
+}
+
+/**
+ * Ids already locked in by an earlier *fixed* grant (restrictTo of exactly one) in the same
+ * Attribute/Skill Points array - e.g. Upbringing's "+1 [X] (fixed), then +1 to a second
+ * Attribute of your choice": the free pick must exclude X, since "a second" means a different
+ * one. Grants before a pool/multi-option grant don't affect it (no data currently needs that),
+ * so this only ever changes what a genuinely free (no restrictTo) single-point select offers.
+ */
+function fixedIdsBefore<T extends string>(grants: { amount: number; restrictTo?: T[] }[], uptoIndex: number): T[] {
+  const ids: T[] = []
+  for (let j = 0; j < uptoIndex; j++) {
+    const g = grants[j]
+    if (g.restrictTo?.length === 1) ids.push(g.restrictTo[0])
+  }
+  return ids
+}
+
+function attributeItemsForGrant(i: number) {
+  const option = selectedOption.value
+  if (!option) return attributeItems
+  const grant = option.grants.attributePoints[i]
+  const excluded = fixedIdsBefore(option.grants.attributePoints, i)
+  const base = grant.restrictTo ? attributeItems.filter((a) => grant.restrictTo!.includes(a.value)) : attributeItems
+  return base.filter((a) => !excluded.includes(a.value))
+}
+function skillItemsForGrant(i: number) {
+  const option = selectedOption.value
+  if (!option) return skillItems
+  const grant = option.grants.skillPoints[i]
+  const excluded = fixedIdsBefore(option.grants.skillPoints, i)
+  const base = grant.restrictTo ? skillItems.filter((s) => grant.restrictTo!.includes(s.value)) : skillItems
+  return base.filter((s) => !excluded.includes(s.value))
 }
 
 function selectOption(option: ILifepathOption) {
@@ -183,7 +217,7 @@ function confirm() {
 <template>
   <div>
     <h3 class="text-h6 mb-2">{{ stage.name }}</h3>
-    <p v-if="stage.notes" class="text-body-2 text-medium-emphasis mb-2">{{ stage.notes }}</p>
+    <MarkdownText v-if="stage.notes" :source="stage.notes" class="text-body-2 text-medium-emphasis mb-3" />
 
     <v-row>
       <v-col v-for="option in availableOptions" :key="option.id" cols="12" sm="6">
@@ -215,7 +249,7 @@ function confirm() {
           <v-select
             v-else
             v-model="attributeChoices[i]"
-            :items="grant.restrictTo ? attributeItems.filter((a) => grant.restrictTo!.includes(a.value)) : attributeItems"
+            :items="attributeItemsForGrant(i)"
             :label="`Choose Attribute for +${grant.amount}`"
             density="compact"
             class="mb-3"
@@ -229,7 +263,7 @@ function confirm() {
           <v-select
             v-else
             v-model="skillChoices[i]"
-            :items="grant.restrictTo ? skillItems.filter((s) => grant.restrictTo!.includes(s.value)) : skillItems"
+            :items="skillItemsForGrant(i)"
             :label="`Choose Skill for +${grant.amount}`"
             density="compact"
           />
@@ -241,8 +275,10 @@ function confirm() {
           :key="`focus-${i}`"
           v-model="focusTexts[i]"
           :label="`Focus ${i + 1}`"
-          :placeholder="selectedOption.grants.focusExamples?.join(', ')"
+          :hint="selectedOption.grants.focusExamples?.length ? `Ideas: ${selectedOption.grants.focusExamples.join(', ')}` : undefined"
+          persistent-hint
           density="compact"
+          class="mb-2"
         />
 
         <v-text-field

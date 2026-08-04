@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import type { AttributeId, SkillId } from '@/classes/enums'
 import type { ILifepathGrants, ILifepathStageData } from '@/classes/Lifepath'
 import { CoreContent } from '@/io/ContentLoader'
+import MarkdownText from '@/ui/MarkdownText.vue'
 
 const stages: { stage: ILifepathStageData; label: string }[] = [
   { stage: CoreContent.lifepath.socialClass, label: 'Step One: Social Class' },
@@ -51,9 +52,11 @@ function describeGrants(grants: ILifepathGrants): string[] {
     </v-tabs>
 
     <div v-if="activeStageIndex < stages.length">
-      <p v-if="stages[activeStageIndex].stage.notes" class="text-body-2 text-medium-emphasis mb-3">
-        {{ stages[activeStageIndex].stage.notes }}
-      </p>
+      <MarkdownText
+        v-if="stages[activeStageIndex].stage.notes"
+        :source="stages[activeStageIndex].stage.notes ?? ''"
+        class="text-body-2 text-medium-emphasis mb-3"
+      />
       <v-row>
         <v-col v-for="option in stages[activeStageIndex].stage.options" :key="option.id" cols="12" sm="6" md="4">
           <v-card variant="outlined" class="h-100">
@@ -75,6 +78,7 @@ function describeGrants(grants: ILifepathGrants): string[] {
     <v-card v-else variant="outlined">
       <v-card-title>{{ finishingTouches.name }}</v-card-title>
       <v-card-text>
+        <MarkdownText v-if="finishingTouches.notes" :source="finishingTouches.notes" class="text-body-2 text-medium-emphasis mb-3" />
         <ul class="mb-3">
           <li>
             Attributes: correct any Attribute above {{ finishingTouches.attributeCap.max }} (only

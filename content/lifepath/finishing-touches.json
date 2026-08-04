@@ -1,6 +1,7 @@
 {
   "id": "finishing_touches",
   "name": "Step Six: Finishing Touches",
+  "notes": "At this step, your character should be nearly complete, and in need of only a few more adjustments and minor changes before they are ready for play.",
   "attributeCap": { "max": 11, "maxAtCap": 1 },
   "attributeBonusCount": 3,
   "skillCap": { "max": 4, "maxAtCap": 1 },

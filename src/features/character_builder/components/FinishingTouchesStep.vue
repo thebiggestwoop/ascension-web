@@ -6,6 +6,7 @@ import { Character, computeStatModifiers } from '@/classes/Character'
 import { isAllocationDisabledByCeiling } from '@/classes/AllocationCaps'
 import { SPELLCASTER_TALENT_IDS, resolveMagickDomainAccess } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
+import MarkdownText from '@/ui/MarkdownText.vue'
 import { useCharacterDraftStore } from '../store/CharacterDraftStore'
 import PointAllocator from './PointAllocator.vue'
 import EquipmentPicker from './EquipmentPicker.vue'
@@ -230,7 +231,9 @@ const missingRequirements = computed(() => {
     missing.push(`Assign all ${skillAllocatorCount} Skill points`)
   }
   if (combatSkillFocuses.value.length !== 2) missing.push('Choose 2 Combat Skill Focuses')
-  if (!valueText.value.trim()) missing.push('Fill in your 4th Value')
+  if (!store.draft.focuses.every((f) => f.trim())) missing.push('Fill in all Focuses')
+  if (!store.draft.values.every((v) => v.text.trim())) missing.push('Fill in all Values')
+  if (!valueText.value.trim()) missing.push('Fill in your new Value')
   if (!definingFeatureText.value.trim()) missing.push('Fill in Defining Feature')
   if (talentPicks.value.narrativeTalentIds.length !== REQUIRED_NARRATIVE_TALENTS) {
     missing.push(
@@ -303,6 +306,11 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
 <template>
   <div>
     <h3 class="text-h6 mb-2">Step Six: Finishing Touches</h3>
+    <MarkdownText
+      v-if="CoreContent.lifepath.finishingTouches.notes"
+      :source="CoreContent.lifepath.finishingTouches.notes"
+      class="text-body-2 text-medium-emphasis mb-3"
+    />
 
     <template v-if="!finished">
       <v-card class="mb-4" variant="outlined">
@@ -356,8 +364,37 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
       <v-card class="mb-4" variant="outlined">
         <v-card-text>
           <v-text-field v-model="nameText" label="Character Name" density="compact" class="mb-2" />
-          <v-text-field v-model="valueText" label="4th Value" density="compact" class="mb-2" />
           <v-text-field v-model="definingFeatureText" label="Defining Feature (Trait)" density="compact" />
+        </v-card-text>
+      </v-card>
+
+      <v-card class="mb-4" variant="outlined">
+        <v-card-title>Focuses &amp; Values</v-card-title>
+        <v-card-text>
+          <p class="text-caption text-medium-emphasis mb-2">
+            Pre-filled from your Lifepath choices - edit anything you like. Finishing Touches also grants one new Value.
+          </p>
+          <v-text-field
+            v-for="(_, i) in store.draft.focuses"
+            :key="`existing-focus-${i}`"
+            v-model="store.draft.focuses[i]"
+            :label="`Focus ${i + 1}`"
+            density="compact"
+            class="mb-1"
+          />
+          <v-text-field
+            v-for="(_, i) in store.draft.values"
+            :key="`existing-value-${i}`"
+            v-model="store.draft.values[i].text"
+            :label="`Value ${i + 1}`"
+            density="compact"
+            class="mb-1"
+          />
+          <v-text-field
+            v-model="valueText"
+            :label="`Value ${store.draft.values.length + 1} (New)`"
+            density="compact"
+          />
         </v-card-text>
       </v-card>
 

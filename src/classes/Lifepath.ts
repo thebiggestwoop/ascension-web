@@ -82,6 +82,8 @@ export const AUTO_TRAIT_STAGE_LABEL: Partial<Record<LifepathStageId, string>> = 
 export interface IFinishingTouchesData {
   id: 'finishing_touches'
   name: string
+  /** Freeform descriptive text for this step, matching the other five stages' own `notes`. */
+  notes?: string
   attributeCap: { max: number; maxAtCap: number }
   attributeBonusCount: number
   skillCap: { max: number; maxAtCap: number }
