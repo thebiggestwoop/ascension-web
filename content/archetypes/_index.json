@@ -51,6 +51,19 @@
     ]
   },
   {
+    "id": "arcane_magick",
+    "name": "Arcane Magick",
+    "description": "Arcane Magick practitioners have high Reason, bending reality itself to unleash devastating and versatile spells.",
+    "archetypes": [
+      {
+        "id": "fulgermancer",
+        "name": "Fulgermancer",
+        "description": "A quick, elusive spellblade who strikes with lightning and blinks past danger, vanishing before enemies can retaliate.",
+        "playstyle": "placeholder"
+      }
+    ]
+  },
+  {
     "id": "authority",
     "name": "Authority",
     "description": "Authority archetypes have high Presence, leading allies from the front and turning the tide of battle through command and inspiration rather than the blade alone.",
@@ -84,6 +97,18 @@
         "id": "death_knight",
         "name": "Death Knight",
         "description": "A dark, battle-scarred warrior who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "guardian",
+        "name": "Guardian",
+        "description": "An unshakeable protector who plants themselves between allies and danger, shielding the vulnerable from harm.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "warrior",
+        "name": "Warrior",
+        "description": "A relentless frontline bruiser who goads enemies into striking first, then answers with devastating axe blows.",
         "playstyle": "placeholder"
       }
     ]

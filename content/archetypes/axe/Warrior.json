@@ -1,0 +1,124 @@
+{
+  "id": "16393354-cb43-437e-86e5-8b6e54982121",
+  "name": "Warrior",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 9,
+    "awareness": 7,
+    "brawn": 11,
+    "coordination": 7,
+    "faith": 7,
+    "presence": 9,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 3,
+    "study": 2,
+    "medicine": 3,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "diplomacy"
+  ],
+  "currentHp": 45,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "warrior_go_for_a_walk",
+    "carouser_heavyweight",
+    "warrior_never_show_fear",
+    "axe_adept",
+    "heavy_lifting_1",
+    "antagonist",
+    "berserker_1"
+  ],
+  "equippedWeaponIds": [
+    "greataxe"
+  ],
+  "inventoryItemIds": [
+    "round_shield"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "imposing_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 9,
+        "awareness": 7,
+        "brawn": 11,
+        "coordination": 7,
+        "faith": 7,
+        "presence": 9,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 3,
+        "study": 2,
+        "medicine": 3,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "warrior_go_for_a_walk",
+        "carouser_heavyweight",
+        "warrior_never_show_fear"
+      ],
+      "combatTalentIds": [
+        "axe_adept",
+        "heavy_lifting_1",
+        "antagonist",
+        "berserker_1"
+      ],
+      "equippedWeaponIds": [
+        "greataxe"
+      ],
+      "equippedArmorId": "imposing_armor",
+      "inventoryItemIds": [
+        "round_shield"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "diplomacy"
+      ]
+    }
+  }
+}

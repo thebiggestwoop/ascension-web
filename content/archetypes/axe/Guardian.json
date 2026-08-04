@@ -1,0 +1,126 @@
+{
+  "id": "a5e56cc2-ca3e-49b5-a484-b260a143166c",
+  "name": "Guardian",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 10,
+    "awareness": 6,
+    "brawn": 11,
+    "coordination": 7,
+    "faith": 9,
+    "presence": 7,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 3,
+    "diplomacy": 2,
+    "study": 1,
+    "medicine": 3,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Merchant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "authority"
+  ],
+  "currentHp": 45,
+  "currentWillpower": 9,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "warrior_never_show_fear",
+    "captain_let_me_try",
+    "knight_chivalry",
+    "defensive_wall_1",
+    "shield_master",
+    "willing_shield_1",
+    "close_protection_1"
+  ],
+  "equippedWeaponIds": [
+    "mace"
+  ],
+  "inventoryItemIds": [
+    "round_shield",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "imposing_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 10,
+        "awareness": 6,
+        "brawn": 11,
+        "coordination": 7,
+        "faith": 9,
+        "presence": 7,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 3,
+        "diplomacy": 2,
+        "study": 1,
+        "medicine": 3,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Merchant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "warrior_never_show_fear",
+        "captain_let_me_try",
+        "knight_chivalry"
+      ],
+      "combatTalentIds": [
+        "defensive_wall_1",
+        "shield_master",
+        "willing_shield_1",
+        "close_protection_1"
+      ],
+      "equippedWeaponIds": [
+        "mace"
+      ],
+      "equippedArmorId": "imposing_armor",
+      "inventoryItemIds": [
+        "round_shield",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "authority"
+      ]
+    }
+  }
+}

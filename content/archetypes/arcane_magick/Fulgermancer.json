@@ -1,0 +1,145 @@
+{
+  "id": "eda7d008-fee2-4c12-b88a-421a23c75267",
+  "name": "Fulgermancer",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 10,
+    "awareness": 8,
+    "brawn": 8,
+    "coordination": 7,
+    "faith": 6,
+    "presence": 6,
+    "reason": 11
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 2,
+    "intrigue": 3
+  },
+  "focuses": [],
+  "values": [],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "intrigue"
+  ],
+  "currentHp": 36,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "scoundrel_wallflower",
+    "scholar_meticulous",
+    "magician_scrying",
+    "arcane_magick_1",
+    "fulgermancer_1",
+    "warp_1",
+    "shadow_cloak_1"
+  ],
+  "equippedWeaponIds": [
+    "dagger"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "tome",
+    "spell_implement",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "armis_arcane",
+    "invisibilis",
+    "skip",
+    "electric_arc",
+    "electric_arc",
+    "thunderous_strike"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 10,
+        "awareness": 8,
+        "brawn": 8,
+        "coordination": 7,
+        "faith": 6,
+        "presence": 6,
+        "reason": 11
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 2,
+        "intrigue": 3
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "scoundrel_wallflower",
+        "scholar_meticulous",
+        "magician_scrying"
+      ],
+      "combatTalentIds": [
+        "arcane_magick_1",
+        "fulgermancer_1",
+        "warp_1",
+        "shadow_cloak_1"
+      ],
+      "equippedWeaponIds": [
+        "dagger"
+      ],
+      "inventoryItemIds": [
+        "tome",
+        "tome",
+        "spell_implement",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "armis_arcane",
+        "invisibilis",
+        "skip",
+        "electric_arc",
+        "electric_arc",
+        "thunderous_strike"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "intrigue"
+      ]
+    }
+  }
+}
