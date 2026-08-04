@@ -7,6 +7,7 @@ import type { IQualityInstance, IWeaponData } from '@/classes/Equipment'
 import { EquipmentQuality, WeaponTag, MAX_INVENTORY_SLOTS, equipmentSlotCost } from '@/classes/Equipment'
 import { mountedSpeed } from '@/classes/Mount'
 import { exportCharacterToFile } from '@/io/CharacterTransfer'
+import MarkdownText from '@/ui/MarkdownText.vue'
 import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
 import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
@@ -862,7 +863,7 @@ const rattledText = computed(() => {
             <v-card v-for="t in filteredHeldTalents" :key="t.id" variant="tonal" class="mb-2">
               <v-card-title class="text-subtitle-1">{{ t.name }}</v-card-title>
               <v-card-subtitle>{{ t.group }}<span v-if="t.tier"> - Tier {{ t.tier }}</span></v-card-subtitle>
-              <v-card-text>{{ t.effectText }}</v-card-text>
+              <v-card-text><MarkdownText :source="t.effectText" /></v-card-text>
             </v-card>
             <span v-if="!filteredHeldTalents.length" class="text-medium-emphasis">None</span>
           </v-card-text>

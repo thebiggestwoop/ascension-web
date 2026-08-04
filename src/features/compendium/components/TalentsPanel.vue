@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { CoreContent } from '@/io/ContentLoader'
 import type { ITalentData, ITalentPrerequisite } from '@/classes/Talent'
 import { AttributeId, SkillId, TalentCategory } from '@/classes/enums'
+import MarkdownText from '@/ui/MarkdownText.vue'
 
 const activeCategory = ref<TalentCategory>(TalentCategory.Narrative)
 const searchText = ref('')
@@ -110,7 +111,7 @@ function selectCategory(category: TalentCategory) {
               <v-chip v-if="t.tier" size="small">Tier {{ t.tier }}</v-chip>
             </v-card-title>
             <v-card-subtitle>Requires: {{ describePrerequisite(t.prerequisites) }}</v-card-subtitle>
-            <v-card-text>{{ t.effectText }}</v-card-text>
+            <v-card-text><MarkdownText :source="t.effectText" /></v-card-text>
           </v-card>
         </template>
         <p v-else class="text-medium-emphasis">Select an Archetype or Talent Tree on the left.</p>
