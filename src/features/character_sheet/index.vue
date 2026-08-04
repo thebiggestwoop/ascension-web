@@ -914,35 +914,53 @@ const rattledText = computed(() => {
             </div>
             <v-divider class="mb-2" />
 
+            <div v-if="store.character.values.length" class="values-grid values-header text-caption text-medium-emphasis">
+              <span />
+              <span class="text-center">Called Upon</span>
+              <span class="text-center">Challenge</span>
+              <span />
+            </div>
+
             <template v-for="(v, i) in store.character.values" :key="i">
-              <div class="d-flex align-center justify-space-between flex-wrap ga-2 py-2">
-                <span
-                  class="text-body-1 value-text"
-                  :class="{ 'text-medium-emphasis': !v.active || v.challenged, 'text-decoration-line-through': v.challenged }"
-                >
-                  {{ v.text }}
-                </span>
-                <div class="d-flex align-center flex-wrap" style="gap: 8px">
+              <div class="values-grid py-1">
+                <v-text-field
+                  :model-value="v.text"
+                  variant="underlined"
+                  density="compact"
+                  placeholder="Value"
+                  hide-details
+                  class="value-text"
+                  :class="{ 'value-inactive': !v.active || v.challenged, 'value-challenged': v.challenged }"
+                  @update:model-value="(text) => store.updateValueText(i, text as string)"
+                />
+                <div class="d-flex justify-center">
                   <v-checkbox
                     :model-value="!v.active"
-                    label="Called Upon"
+                    :aria-label="`Called Upon: ${v.text}`"
                     density="compact"
                     hide-details
                     :disabled="v.challenged"
                     @update:model-value="store.toggleValueActive(i)"
                   />
+                </div>
+                <div class="d-flex justify-center">
                   <v-checkbox
                     :model-value="v.challenged"
-                    label="Challenge"
+                    :aria-label="`Challenge: ${v.text}`"
                     density="compact"
                     hide-details
                     @update:model-value="store.toggleValueChallenged(i)"
                   />
                 </div>
+                <div class="d-flex justify-center">
+                  <v-btn icon="mdi-close" size="x-small" variant="text" @click="store.removeValue(i)" />
+                </div>
               </div>
-              <v-divider v-if="i < store.character.values.length - 1" />
             </template>
             <span v-if="!store.character.values.length" class="text-medium-emphasis">None</span>
+            <v-btn size="small" variant="text" prepend-icon="mdi-plus" class="mt-1" @click="store.addValue()">
+              Add Value
+            </v-btn>
           </v-card-text>
         </v-card>
 
@@ -1018,7 +1036,27 @@ const rattledText = computed(() => {
   text-align: center;
 }
 
-.value-text {
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr 56px 56px 24px;
+  align-items: center;
+  column-gap: 4px;
+}
+.values-header {
+  padding-bottom: 2px;
+}
+.values-header span {
+  white-space: normal;
+  line-height: 1.1;
+}
+
+.value-text :deep(input) {
   font-size: 1.15rem;
+}
+.value-text.value-inactive :deep(input) {
+  opacity: var(--v-medium-emphasis-opacity, 0.6);
+}
+.value-text.value-challenged :deep(input) {
+  text-decoration: line-through;
 }
 </style>

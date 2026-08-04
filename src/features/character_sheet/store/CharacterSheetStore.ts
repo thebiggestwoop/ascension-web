@@ -90,6 +90,23 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       this.character.determination = Math.max(0, Math.min(3, this.character.determination + delta))
       await this.persist()
     },
+    async updateValueText(index: number, text: string) {
+      if (!this.character) return
+      const value = this.character.values[index]
+      if (!value) return
+      value.text = text
+      await this.persist()
+    },
+    async addValue() {
+      if (!this.character) return
+      this.character.values.push({ text: '', active: true, challenged: false })
+      await this.persist()
+    },
+    async removeValue(index: number) {
+      if (!this.character) return
+      this.character.values.splice(index, 1)
+      await this.persist()
+    },
     async adjustXp(delta: number) {
       if (!this.character) return
       this.character.xp = Math.max(0, this.character.xp + delta)
