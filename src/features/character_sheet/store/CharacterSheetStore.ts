@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { toRaw } from 'vue'
 import type { AttributeId, SkillId } from '@/classes/enums'
-import type { ICharacterData } from '@/classes/Character'
+import type { ICharacterData, ITrait } from '@/classes/Character'
 import { Character, computeStatModifiers, migrateLegacyCharacterData } from '@/classes/Character'
 import type { ILevelUpChoices, ILevelUpRecord } from '@/classes/CharacterHistory'
 import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
@@ -101,6 +101,19 @@ export const useCharacterSheetStore = defineStore('characterSheet', {
       if (!this.character) return
       if (this.character.focuses[index] === undefined) return
       this.character.focuses[index] = text
+      await this.persist()
+    },
+    /** "Edit Lifepath" (see EditLifepathDialog): replaces the whole Traits list and careerId
+     * verbatim with what the dialog computed - Attributes/Skills/Focuses/Values/Talents/
+     * Equipment are never part of this payload, so they're untouched by definition. */
+    async updateLifepathTraits(payload: { traits: ITrait[]; careerId?: string }) {
+      if (!this.character) return
+      // toPlainRecord(): the payload's Trait objects came from spreading `character.traits`
+      // (a reactive Proxy array) inside EditLifepathDialog - see toPlainRecord's own doc
+      // comment above for why that still leaves individual entries Proxy-wrapped, which
+      // structuredClone() (used by persist()) can't handle.
+      this.character.traits = toPlainRecord(payload.traits)
+      this.character.careerId = payload.careerId
       await this.persist()
     },
     /** The Common Cause is a fifth, party-wide Value (see IValue.commonCause's doc comment) -

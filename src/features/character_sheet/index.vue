@@ -12,6 +12,7 @@ import { useCharacterSheetStore } from './store/CharacterSheetStore'
 import LevelUpDialog from './components/LevelUpDialog.vue'
 import LoadoutEditorDialog from './components/LoadoutEditorDialog.vue'
 import SpellEditorDialog from './components/SpellEditorDialog.vue'
+import EditLifepathDialog from './components/EditLifepathDialog.vue'
 import SpellsSection from './components/SpellsSection.vue'
 import NotesEditor from './components/NotesEditor.vue'
 import TooltipChip from '@/ui/TooltipChip.vue'
@@ -74,6 +75,7 @@ const store = useCharacterSheetStore()
 const showLevelUp = ref(false)
 const showLoadoutEditor = ref(false)
 const showSpellEditor = ref(false)
+const showEditLifepath = ref(false)
 const showRevertConfirm = ref(false)
 const canLevelUp = computed(() => (store.character?.level ?? 0) < CoreContent.advancement.maxLevel)
 const canRevertLevelUp = computed(() => (store.character?.levelUpHistory?.length ?? 0) > 0)
@@ -542,6 +544,11 @@ const rattledText = computed(() => {
       :character="store.character"
       :spell-slots="character.spellSlots"
       @change="store.updatePreparedSpells"
+    />
+    <EditLifepathDialog
+      v-model="showEditLifepath"
+      :character="store.character"
+      @change="store.updateLifepathTraits"
     />
 
     <!-- Top of the visual hierarchy: Attributes/Skills as vertical columns on the left, Effect
@@ -1076,7 +1083,10 @@ const rattledText = computed(() => {
         </v-card>
 
         <v-card variant="outlined" class="mb-4">
-          <v-card-title>Traits</v-card-title>
+          <v-card-title class="d-flex align-center justify-space-between flex-wrap ga-2">
+            <span>Traits</span>
+            <v-btn size="small" variant="tonal" @click="showEditLifepath = true">Edit Lifepath</v-btn>
+          </v-card-title>
           <v-card-text>
             <v-chip v-for="(t, i) in store.character.traits" :key="i" class="mr-1 mb-1" size="small" color="secondary">
               {{ t.name }}
