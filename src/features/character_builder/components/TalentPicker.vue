@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import { AttributeId, SkillId } from '@/classes/enums'
-import type { ITalentPrereqContext } from '@/classes/Talent'
+import type { ITalentData, ITalentPrereqContext } from '@/classes/Talent'
 import { meetsTalentPrerequisites } from '@/classes/Talent'
 import { SPELLCASTER_TALENT_IDS } from '@/classes/Spell'
 import { CoreContent } from '@/io/ContentLoader'
@@ -142,6 +142,14 @@ function groupByArchetype<T extends { group: string }>(items: T[]) {
   }))
 }
 
+/** First hint line: the prerequisite, small - stays the default hint size. */
+function prereqLine(t: ITalentData): string {
+  return (
+    `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
+    (meetsTalentPrerequisites(t.prerequisites, prereqContext.value) ? '' : ' (not met)')
+  )
+}
+
 function matchesSearch(name: string): boolean {
   if (!searchText.value.trim()) return true
   return name.toLowerCase().includes(searchText.value.trim().toLowerCase())
@@ -224,12 +232,7 @@ watch(
             v-model="selectedCombatIds"
             :value="t.id"
             :label="t.tier ? `${t.name} (Tier ${t.tier})` : t.name"
-            :hint="
-              `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
-              (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
-              ` - ${t.effectText}`
-            "
-            persistent-hint
+            :messages="[prereqLine(t), t.effectText]"
             density="compact"
             hide-details="auto"
             :disabled="
@@ -257,12 +260,7 @@ watch(
                 v-model="selectedCombatIds"
                 :value="t.id"
                 :label="t.tier ? `${t.name} (Tier ${t.tier})` : t.name"
-                :hint="
-                  `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
-                  (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
-                  ` - ${t.effectText}`
-                "
-                persistent-hint
+                :messages="[prereqLine(t), t.effectText]"
                 density="compact"
                 hide-details="auto"
                 :disabled="
@@ -292,12 +290,7 @@ watch(
             v-model="selectedNarrativeIds"
             :value="t.id"
             :label="t.name"
-            :hint="
-              `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
-              (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
-              ` - ${t.effectText}`
-            "
-            persistent-hint
+            :messages="[prereqLine(t), t.effectText]"
             density="compact"
             hide-details="auto"
             :disabled="
@@ -325,12 +318,7 @@ watch(
                 v-model="selectedNarrativeIds"
                 :value="t.id"
                 :label="t.name"
-                :hint="
-                  `Requires: ${describeTalentPrerequisite(t.prerequisites)}` +
-                  (meetsTalentPrerequisites(t.prerequisites, prereqContext) ? '' : ' (not met)') +
-                  ` - ${t.effectText}`
-                "
-                persistent-hint
+                :messages="[prereqLine(t), t.effectText]"
                 density="compact"
                 hide-details="auto"
                 :disabled="
@@ -350,6 +338,12 @@ watch(
 /* Swapped with the group name above: the group heading now reads larger than the individual
    talent labels beneath it, matching normal heading/list-item hierarchy. */
 .talent-checkbox :deep(.v-label) {
+  font-size: 14px;
+}
+
+/* Each checkbox's :messages array renders as two stacked lines: the prerequisite (kept at
+   Vuetify's default hint size) then the rules description, bumped up to 14px for readability. */
+.talent-checkbox :deep(.v-messages__message:last-child) {
   font-size: 14px;
 }
 </style>
