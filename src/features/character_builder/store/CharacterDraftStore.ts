@@ -306,6 +306,7 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
         CoreContent.equipment.general,
         [...CoreContent.spells.arcane, ...CoreContent.spells.light, ...CoreContent.spells.dark],
         CoreContent.equipment.shields,
+        CoreContent.equipment.weapons,
       )
       const char = Character.Deserialize(toRaw(this.draft), modifiers)
       this.draft.currentHp = char.maxHp

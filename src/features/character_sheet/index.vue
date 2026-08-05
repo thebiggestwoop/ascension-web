@@ -292,6 +292,7 @@ const modifiers = computed(() => {
     CoreContent.equipment.general,
     allSpells,
     CoreContent.equipment.shields,
+    CoreContent.equipment.weapons,
   )
 })
 const character = computed(() => {
@@ -520,38 +521,52 @@ const speedBonusNote = computed(() => {
   const bonus = store.character?.speedBonus ?? 0
   return bonus ? `, ${bonus > 0 ? '+' : ''}${bonus} (Bonus/Penalty)` : ''
 })
+/** Shared by every Speed value's tooltip below - Exhausting equipment (see
+ * computeStatModifiers) applies the same -2-per-item penalty to all of them equally. */
+const exhaustingNote = computed(() => {
+  const penalty = modifiers.value.exhaustingSpeedPenalty ?? 0
+  return penalty ? `, - ${penalty} (Exhausting equipment)` : ''
+})
 const speedTooltip = computed(() => {
   if (!character.value) return ''
-  const base = `3 + floor(Agility ${character.value.attribute(AttributeId.Agility)} / 2)${speedBonusNote.value}`
+  const base = `3 + floor(Agility ${character.value.attribute(AttributeId.Agility)} / 2)${speedBonusNote.value}${exhaustingNote.value}`
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
 /** "While mounted, your Speed is effectively replaced by the mount's" - but a Wound reduces
  * "your Speed" generally, so the -2 penalty still applies to whichever Speed is currently in
- * effect, mounted or not; the Bonus/Penalty field applies to every Speed value the same way. */
+ * effect, mounted or not; the Bonus/Penalty field and Exhausting equipment both apply to
+ * every Speed value the same way (Exhausting explicitly also calls out a ridden mount's Speed
+ * in its own rules text). */
 const mountedSpeedValue = computed(() => {
   if (!character.value || !mount.value || !store.character) return 0
   const base = mountedSpeed(mount.value, character.value.attribute(mount.value.ridingAttribute))
-  return base + store.character.speedBonus - (speedWoundPenalty.value ? 2 : 0)
+  return (
+    base +
+    store.character.speedBonus -
+    (speedWoundPenalty.value ? 2 : 0) -
+    (modifiers.value.exhaustingSpeedPenalty ?? 0)
+  )
 })
 const mountedSpeedTooltip = computed(() => {
   if (!character.value || !mount.value) return ''
   const attrName = attributeName(mount.value.ridingAttribute)
   const attrValue = character.value.attribute(mount.value.ridingAttribute)
-  const base = `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2)${speedBonusNote.value} - replaces your own Speed while mounted`
+  const base = `${mount.value.baseSpeed} + floor(${attrName} ${attrValue} / 2)${speedBonusNote.value}${exhaustingNote.value} - replaces your own Speed while mounted`
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 
 /** Angel's Wings (light 3), while prepared - same Wound penalty as every other Speed value
  * (see mountedSpeedValue's own comment on why a Wound applies regardless of which Speed is
- * currently in effect); Character.flyingSpeed already folds in the Bonus/Penalty field. */
+ * currently in effect); Character.flyingSpeed already folds in the Bonus/Penalty field and
+ * the Exhausting equipment penalty. */
 const effectiveFlyingSpeed = computed(() => {
   if (character.value?.flyingSpeed === undefined) return 0
   return character.value.flyingSpeed - (speedWoundPenalty.value ? 2 : 0)
 })
 const flyingSpeedTooltip = computed(() => {
   if (!character.value) return ''
-  const base = `floor(Faith ${character.value.attribute(AttributeId.Faith)} / 2)${speedBonusNote.value} - Angel's Wings`
+  const base = `floor(Faith ${character.value.attribute(AttributeId.Faith)} / 2)${speedBonusNote.value}${exhaustingNote.value} - Angel's Wings`
   return speedWoundPenalty.value ? `${base}, - 2 (Wound)` : base
 })
 

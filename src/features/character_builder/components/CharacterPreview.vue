@@ -22,6 +22,7 @@ const character = computed(() => {
     CoreContent.equipment.general,
     allSpells,
     CoreContent.equipment.shields,
+    CoreContent.equipment.weapons,
   )
   return new Character(store.draft, modifiers)
 })

@@ -1,7 +1,8 @@
 import { AttributeId, SkillId, StatusId } from './enums'
 import type { ISerializable } from './ISerializable'
 import type { ITalentData } from './Talent'
-import type { IArmorData, IGeneralItemData } from './Equipment'
+import type { IArmorData, IGeneralItemData, IQualityInstance, IWeaponData } from './Equipment'
+import { EquipmentQuality } from './Equipment'
 import type { ICreationRecord, ILevelUpRecord } from './CharacterHistory'
 import type { ISpellData } from './Spell'
 import { MAGICK_ATTRIBUTE_BY_DOMAIN } from './Spell'
@@ -140,6 +141,11 @@ export interface ICharacterStatModifiers {
    * prepared. Undefined (not 0) when not prepared, so callers can hide the stat entirely
    * rather than showing a Flying Speed of 0. */
   flyingSpeed?: number
+  /** -2 Speed per Exhausting-quality item currently equipped/carried (weapons, armor,
+   * shields, general inventory items), stacking - see EquipmentQuality.Exhausting's rules
+   * text. Always recalculated from gear, deliberately kept separate from the player-editable
+   * Speed "Bonus/Penalty" field (ICharacterData.speedBonus) rather than folded into it. */
+  exhaustingSpeedPenalty?: number
 }
 
 /** Wound 1 at or below 2/3 Max HP, Wound 2 at or below 1/3 Max HP - shared by Character's own
@@ -167,12 +173,13 @@ export function computeWoundsFromHp(currentHp: number, healthBar: number): 0 | 1
  */
 export function computeStatModifiers(
   data: Pick<ICharacterData, 'talentIds' | 'equippedArmorId' | 'inventoryItemIds'> &
-    Partial<Pick<ICharacterData, 'preparedSpellIds' | 'attributes' | 'skills' | 'currentHp'>>,
+    Partial<Pick<ICharacterData, 'preparedSpellIds' | 'attributes' | 'skills' | 'currentHp' | 'equippedWeaponIds'>>,
   talents: ITalentData[],
   armor: IArmorData[],
   generalItems: IGeneralItemData[],
   spells: ISpellData[] = [],
   shields: IArmorData[] = [],
+  weapons: IWeaponData[] = [],
 ): ICharacterStatModifiers {
   const heldTalentIds = new Set(data.talentIds)
   let healthBarBonus = 0
@@ -222,7 +229,27 @@ export function computeStatModifiers(
   const spellSlotsPerTome = heldTalentIds.has('gremorie_1') ? 3 : 2
   const spellSlotBonus = tomeCount * spellSlotsPerTome
 
-  return { healthBarBonus, willpowerBonus, resistanceBonus, spellSlotBonus, flyingSpeed }
+  /** Exhausting: "-2 Speed... stacks if you have multiple Exhausting items equipped" - checked
+   * across everything currently equipped/carried (equipped weapons/armor, and shields/general
+   * items sitting in inventory - the app already treats a carried Shield as "wielded" for
+   * Armis Arcane's own condition above, so the same holds here). */
+  const hasExhausting = (item: { qualities: IQualityInstance[] }) =>
+    item.qualities.some((q) => q.quality === EquipmentQuality.Exhausting)
+  let exhaustingCount = 0
+  for (const id of data.equippedWeaponIds ?? []) {
+    const w = weapons.find((x) => x.id === id)
+    if (w && hasExhausting(w)) exhaustingCount++
+  }
+  const equippedArmorData = armor.find((a) => a.id === data.equippedArmorId)
+  if (equippedArmorData && hasExhausting(equippedArmorData)) exhaustingCount++
+  const carriedItems = [...shields, ...generalItems]
+  for (const id of data.inventoryItemIds) {
+    const item = carriedItems.find((x) => x.id === id)
+    if (item && hasExhausting(item)) exhaustingCount++
+  }
+  const exhaustingSpeedPenalty = exhaustingCount * 2
+
+  return { healthBarBonus, willpowerBonus, resistanceBonus, spellSlotBonus, flyingSpeed, exhaustingSpeedPenalty }
 }
 
 /**
@@ -270,9 +297,16 @@ export class Character implements ISerializable<ICharacterData>, ICharacterStatS
     return this.data.skills[id]
   }
 
-  /** Speed = 3 + floor(Agility / 2), plus the player-entered Bonus/Penalty field. */
+  /** Speed = 3 + floor(Agility / 2), plus the player-entered Bonus/Penalty field, minus any
+   * Exhausting-equipment penalty (see computeStatModifiers - always calculated, never folded
+   * into the Bonus/Penalty field itself). */
   get speed(): number {
-    return 3 + Math.floor(this.attribute(AttributeId.Agility) / 2) + this.data.speedBonus
+    return (
+      3 +
+      Math.floor(this.attribute(AttributeId.Agility) / 2) +
+      this.data.speedBonus -
+      (this.modifiers.exhaustingSpeedPenalty ?? 0)
+    )
   }
 
   /** Health Bar = Brawn + Skirmish (+ passive Talent bonuses, e.g. Resilient 1's +2); Max HP = Health Bar x 3. */
@@ -307,10 +341,13 @@ export class Character implements ISerializable<ICharacterData>, ICharacterStatS
   }
 
   /** Angel's Wings (light 3), while prepared: Flying Speed = Half Magick, plus the
-   * player-entered Bonus/Penalty field (see ICharacterData.speedBonus). Undefined (not 0)
-   * when not prepared - callers should hide the tile entirely rather than showing 0. */
+   * player-entered Bonus/Penalty field (see ICharacterData.speedBonus), minus any Exhausting-
+   * equipment penalty. Undefined (not 0) when not prepared - callers should hide the tile
+   * entirely rather than showing 0. */
   get flyingSpeed(): number | undefined {
-    return this.modifiers.flyingSpeed !== undefined ? this.modifiers.flyingSpeed + this.data.speedBonus : undefined
+    return this.modifiers.flyingSpeed !== undefined
+      ? this.modifiers.flyingSpeed + this.data.speedBonus - (this.modifiers.exhaustingSpeedPenalty ?? 0)
+      : undefined
   }
 
   get temporaryResistance(): number {

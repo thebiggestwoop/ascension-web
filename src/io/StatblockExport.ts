@@ -89,6 +89,7 @@ export function generateStatblockText(data: ICharacterData): string {
     CoreContent.equipment.general,
     allSpells,
     CoreContent.equipment.shields,
+    CoreContent.equipment.weapons,
   )
   const character = new Character(migrated, modifiers)
 
@@ -125,11 +126,16 @@ export function generateStatblockText(data: ICharacterData): string {
     ),
   )
   const woundPenalty = character.wounds >= 1 ? 2 : 0
-  out.push(line('Speed', `${character.speed - woundPenalty}`))
+  const exhaustingNote = modifiers.exhaustingSpeedPenalty ? ` (-${modifiers.exhaustingSpeedPenalty} Exhausting equipment)` : ''
+  out.push(line('Speed', `${character.speed - woundPenalty}${exhaustingNote}`))
   if (migrated.mountId) {
     const mount = CoreContent.equipment.mounts.find((m) => m.id === migrated.mountId)
     if (mount) {
-      const speed = mountedSpeed(mount, character.attribute(mount.ridingAttribute)) + migrated.speedBonus - woundPenalty
+      const speed =
+        mountedSpeed(mount, character.attribute(mount.ridingAttribute)) +
+        migrated.speedBonus -
+        woundPenalty -
+        (modifiers.exhaustingSpeedPenalty ?? 0)
       out.push(line('Mounted Speed', `${speed} (${mount.name})`))
     }
   }
