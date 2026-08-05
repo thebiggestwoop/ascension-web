@@ -14,13 +14,13 @@
         "id": "twinblade",
         "name": "Twinblade",
         "description": "Dual wield swords with dizzying speed and careful footwork.",
-        "playstyle": "While dual-wielding shortswords, after attacking once with one shortsword you can **always Swift Task to attack with the other**, at no Momentum cost (Sword Adept + Dual Wielding talents reduce the normal cost after attacking to 0). \n **Skirmisher** punishes enemies who fail to hit you with opportunity attacks - later levels of Skirmisher make this more reliable. \n **Swift Steps** allows you to immediately Swift Task after taking the Sprint Action (by granting the 2 Momentum needed to Swift Task), useful for Sprinting into position and striking once with a sword. Be weary about running into danger though, you can quickly get surrounded and defeated if separated from your allies."
+        "playstyle": "While dual-wielding shortswords, after attacking once with one shortsword you can **always Swift Task to attack with the other**, at no Momentum cost (Sword Adept + Dual Wielding talents reduce the normal cost after attacking to 0). \n\n **Skirmisher** punishes enemies who fail to hit you with opportunity attacks - later levels of Skirmisher make this more reliable. \n\n **Swift Steps** allows you to immediately Swift Task after taking the Sprint Action (by granting the 2 Momentum needed to Swift Task), useful for Sprinting into position and striking once with a sword. Be weary about running into danger though, you can quickly get surrounded and defeated if separated from your allies."
       },
       {
         "id": "spellsword",
         "name": "Spellsword",
         "description": "Weave Arcane Magick through every strike of your blade.",
-        "playstyle": "Thanks to **Spellblade**, you can cast spells at no detriment by wielding just your sword in hand. Weave in sword attacks with ranged spells such as **Frigid Grasp**. \n Augment your sword strikes by casting **Thunderous Strike** or **Volcanic Strike** before you attack. Get out of (and into) danger by casting **Skip** - remember that it has an increased range thanks to your **Warp** talent. \n When attacked by weapons you aren't the best at defending with you can use **Arcane Parry** to defend with your high Reason."
+        "playstyle": "Thanks to **Spellblade**, you can cast spells at no detriment by wielding just your sword in hand. Weave in sword attacks with ranged spells such as **Frigid Grasp**. \n\n Augment your sword strikes by casting **Thunderous Strike** or **Volcanic Strike** before you attack. Get out of (and into) danger by casting **Skip** - remember that it has an increased range thanks to your **Warp** talent. \n When attacked by weapons you aren't the best at defending with you can use **Arcane Parry** to defend with your high Reason."
       }
     ]
   },
@@ -33,7 +33,7 @@
         "id": "cavalier",
         "name": "Cavalier",
         "description": "Well armored atop a trusty steed, charge ahead and through your foes.",
-        "playstyle": "placeholder"
+        "playstyle": "Gallop ahead with your steed's high speed to get to where you need to be. Thanks to **Spear Adept** you can strike reliably with your Lance. That, combined with the bonus momentum **Cavalry Adept** gives, you can often Swift Task to strike again if the first attack landed well. Lock down the position of enemies by making sure your Opportunity Attacks land using **Opportunist.**\n\nFor the one enemy on the field you swear to defeat, you can initiate a Duel with **Duelist**, striking them multiple times and dealing extra damage using even more bonus momentum."
       }
     ]
   },
@@ -45,7 +45,7 @@
       {
         "id": "heavy_bowman",
         "name": "Heavy Bowman",
-        "description": "A versatile skirmisher who peppers foes with arrows before closing in with axe in hand, fighting dirty when the odds demand it.",
+        "description": "A versatile skirmisher who makles powerful shots from a longbow, fighting dirty when the odds demand it.",
         "playstyle": "placeholder"
       },
       {
@@ -103,7 +103,7 @@
         "id": "lord",
         "name": "Lord",
         "description": "A frontline leader whose presence alone can turn the tide, rallying allies with authority and a rapier's precision.",
-        "playstyle": "placeholder"
+        "playstyle": "Stand in the fray and allow your allies to act on your turn by taking the **direct** Major Action.\n\nOr, strike with your rapier with precision - wielding only a buckler in your other hand allows you reroll one d20 on each of your attacks. Thanks to **Rapier Adept** you gain a free Minor Action to use when you attack, such as to restore an ally's Willpower using **Console** or guide them on their next turn using **Rally**."
       },
       {
         "id": "strategist",
@@ -121,7 +121,7 @@
       {
         "id": "death_knight",
         "name": "Death Knight",
-        "description": "A dark, battle-scarred warrior who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
+        "description": "A dark, battle-scarred fighter who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
         "playstyle": "placeholder"
       },
       {
@@ -133,7 +133,7 @@
       {
         "id": "warrior",
         "name": "Warrior",
-        "description": "A relentless frontline bruiser who goads enemies into striking first, then answers with devastating axe blows.",
+        "description": "A relentless frontline bruiser that can enter a battle frenzy and strikes with devestaing blows of a greataxe.",
         "playstyle": "placeholder"
       }
     ]
