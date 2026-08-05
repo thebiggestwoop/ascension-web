@@ -57,6 +57,7 @@ import archetypeStrategistJson from '@content/archetypes/authority/Strategist.js
 import archetypeDeathKnightJson from '@content/archetypes/axe/Death-Knight.json'
 import archetypeGuardianJson from '@content/archetypes/axe/Guardian.json'
 import archetypeWarriorJson from '@content/archetypes/axe/Warrior.json'
+import archetypeReaverJson from '@content/archetypes/axe/Reaver.json'
 import archetypeFulgermancerJson from '@content/archetypes/arcane_magick/Fulgermancer.json'
 import archetypePyromancerJson from '@content/archetypes/arcane_magick/Pyromancer.json'
 import archetypeCryomancerJson from '@content/archetypes/arcane_magick/Cryomancer.json'
@@ -129,6 +130,7 @@ export const CoreContent = {
       death_knight: archetypeDeathKnightJson as IArchetypeCharacterData,
       guardian: archetypeGuardianJson as IArchetypeCharacterData,
       warrior: archetypeWarriorJson as IArchetypeCharacterData,
+      reaver: archetypeReaverJson as IArchetypeCharacterData,
       fulgermancer: archetypeFulgermancerJson as IArchetypeCharacterData,
       pyromancer: archetypePyromancerJson as IArchetypeCharacterData,
       cryomancer: archetypeCryomancerJson as IArchetypeCharacterData,

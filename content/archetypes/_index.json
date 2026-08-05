@@ -52,6 +52,12 @@
         "name": "Warrior",
         "description": "A relentless frontline bruiser that can enter a battle frenzy and strikes with devestaing blows of a greataxe.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "reaver",
+        "name": "Reaver",
+        "description": "A savage dual-wielding brute who tears through the battlefield with an axe in each hand.",
+        "playstyle": "placeholder"
       }
     ]
   },

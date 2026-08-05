@@ -1,0 +1,147 @@
+{
+  "id": "94b3a09e-9a9d-4d8a-a3c4-8ca5786777b8",
+  "name": "Reaver",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 10,
+    "brawn": 11,
+    "coordination": 7,
+    "awareness": 6,
+    "reason": 6,
+    "faith": 7,
+    "presence": 9
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 2,
+    "diplomacy": 3,
+    "study": 1,
+    "medicine": 1,
+    "intrigue": 3
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "diplomacy"
+  ],
+  "currentHp": 45,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "warrior_predator",
+    "warrior_never_show_fear",
+    "warrior_breaking_point",
+    "axe_adept",
+    "dual_wielding",
+    "juggernaut_1",
+    "heavy_lifting_1"
+  ],
+  "equippedWeaponIds": [
+    "greataxe",
+    "handaxe"
+  ],
+  "inventoryItemIds": [
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 10,
+        "brawn": 11,
+        "coordination": 7,
+        "awareness": 6,
+        "reason": 6,
+        "faith": 7,
+        "presence": 9
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 2,
+        "diplomacy": 3,
+        "study": 1,
+        "medicine": 1,
+        "intrigue": 3
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "warrior_predator",
+        "warrior_never_show_fear",
+        "warrior_breaking_point"
+      ],
+      "combatTalentIds": [
+        "axe_adept",
+        "dual_wielding",
+        "juggernaut_1",
+        "heavy_lifting_1"
+      ],
+      "equippedWeaponIds": [
+        "greataxe",
+        "handaxe"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "diplomacy"
+      ]
+    }
+  }
+}
