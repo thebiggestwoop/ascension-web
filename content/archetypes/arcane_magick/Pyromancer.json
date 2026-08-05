@@ -1,0 +1,158 @@
+{
+  "id": "b4f04ff1-70e0-42ff-a968-d060f915bd7f",
+  "name": "Pyromancer",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 7,
+    "brawn": 9,
+    "coordination": 9,
+    "awareness": 7,
+    "reason": 11,
+    "faith": 7,
+    "presence": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 3,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "medicine"
+  ],
+  "currentHp": 39,
+  "currentWillpower": 7,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "magician_artificer",
+    "magician_prestidigitation",
+    "magician_arcane_secrets",
+    "cavalry_adept",
+    "arcane_magick_1",
+    "pyromancer_1",
+    "augmentier_1"
+  ],
+  "equippedWeaponIds": [],
+  "inventoryItemIds": [
+    "spell_implement",
+    "tome",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "firebolt",
+    "firebolt",
+    "arcane_parry",
+    "skip",
+    "electric_arc"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "mountId": "horse",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 7,
+        "brawn": 9,
+        "coordination": 9,
+        "awareness": 7,
+        "reason": 11,
+        "faith": 7,
+        "presence": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 3,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "magician_artificer",
+        "magician_prestidigitation",
+        "magician_arcane_secrets"
+      ],
+      "combatTalentIds": [
+        "cavalry_adept",
+        "arcane_magick_1",
+        "pyromancer_1",
+        "augmentier_1"
+      ],
+      "equippedWeaponIds": [],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "spell_implement",
+        "tome",
+        "healing_potion"
+      ],
+      "mountId": "horse",
+      "preparedSpellIds": [
+        "firebolt",
+        "firebolt",
+        "arcane_parry",
+        "skip",
+        "electric_arc"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "medicine"
+      ]
+    }
+  }
+}

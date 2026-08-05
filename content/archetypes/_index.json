@@ -109,6 +109,12 @@
         "name": "Fulgermancer",
         "description": "A quick, elusive spellblade who strikes with lightning and blinks past danger, vanishing before enemies can retaliate.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "pyromancer",
+        "name": "Pyromancer",
+        "description": "A mounted battlemage who scorches the battlefield with searing fire and cunning arcane tricks.",
+        "playstyle": "placeholder"
       }
     ]
   },
