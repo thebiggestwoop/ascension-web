@@ -25,6 +25,31 @@
     ]
   },
   {
+    "id": "axe",
+    "name": "Axe",
+    "description": "Axe wielders have high Brawn, cleaving through enemies with raw, relentless power.",
+    "archetypes": [
+      {
+        "id": "death_knight",
+        "name": "Death Knight",
+        "description": "A dark, battle-scarred fighter who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "guardian",
+        "name": "Guardian",
+        "description": "An unshakeable protector who plants themselves between allies and danger, shielding the vulnerable from harm.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "warrior",
+        "name": "Warrior",
+        "description": "A relentless frontline bruiser that can enter a battle frenzy and strikes with devestaing blows of a greataxe.",
+        "playstyle": "placeholder"
+      }
+    ]
+  },
+  {
     "id": "spear",
     "name": "Spear",
     "description": "Spear wielders have high Coordination, striking with precision and reach to keep foes at bay or run them through from horseback.",
@@ -75,19 +100,6 @@
     ]
   },
   {
-    "id": "light_magick",
-    "name": "Light Magick",
-    "description": "Light Magick practitioners have high Faith, channeling divine power to heal allies and ward off harm.",
-    "archetypes": [
-      {
-        "id": "mendicant",
-        "name": "Mendicant",
-        "description": "A holy healer who channels Light Magick to mend the wounded and shield the faithful.",
-        "playstyle": "placeholder"
-      }
-    ]
-  },
-  {
     "id": "arcane_magick",
     "name": "Arcane Magick",
     "description": "Arcane Magick practitioners have high Reason, bending reality itself to unleash devastating and versatile spells.",
@@ -96,6 +108,19 @@
         "id": "fulgermancer",
         "name": "Fulgermancer",
         "description": "A quick, elusive spellblade who strikes with lightning and blinks past danger, vanishing before enemies can retaliate.",
+        "playstyle": "placeholder"
+      }
+    ]
+  },
+  {
+    "id": "light_magick",
+    "name": "Light Magick",
+    "description": "Light Magick practitioners have high Faith, channeling divine power to heal allies and ward off harm.",
+    "archetypes": [
+      {
+        "id": "mendicant",
+        "name": "Mendicant",
+        "description": "A holy healer who channels Light Magick to mend the wounded and shield the faithful.",
         "playstyle": "placeholder"
       }
     ]
@@ -121,31 +146,6 @@
         "id": "strategist",
         "name": "Strategist",
         "description": "A calculating tactician who sets traps, reads the battlefield, and directs allies to strike at the perfect moment.",
-        "playstyle": "placeholder"
-      }
-    ]
-  },
-  {
-    "id": "axe",
-    "name": "Axe",
-    "description": "Axe wielders have high Brawn, cleaving through enemies with raw, relentless power.",
-    "archetypes": [
-      {
-        "id": "death_knight",
-        "name": "Death Knight",
-        "description": "A dark, battle-scarred fighter who channels forbidden magick through a brutal axe, feeding on the pain they deal.",
-        "playstyle": "placeholder"
-      },
-      {
-        "id": "guardian",
-        "name": "Guardian",
-        "description": "An unshakeable protector who plants themselves between allies and danger, shielding the vulnerable from harm.",
-        "playstyle": "placeholder"
-      },
-      {
-        "id": "warrior",
-        "name": "Warrior",
-        "description": "A relentless frontline bruiser that can enter a battle frenzy and strikes with devestaing blows of a greataxe.",
         "playstyle": "placeholder"
       }
     ]
