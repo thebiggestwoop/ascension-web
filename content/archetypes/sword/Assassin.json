@@ -1,0 +1,149 @@
+{
+  "id": "3d941cf0-5481-49ea-b8ae-e9e5472ad676",
+  "name": "Assassin",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 11,
+    "brawn": 8,
+    "coordination": 8,
+    "awareness": 10,
+    "reason": 7,
+    "faith": 6,
+    "presence": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 3
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "intrigue"
+  ],
+  "currentHp": 36,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "scoundrel_lockpicker",
+    "scoundrel_wallflower",
+    "scoundrel_pickpocket",
+    "sword_adept",
+    "thrown_weapons_adept",
+    "stealthy_fighter_1",
+    "dual_wielding"
+  ],
+  "equippedWeaponIds": [
+    "shortsword",
+    "dagger",
+    "throwing_knife"
+  ],
+  "inventoryItemIds": [
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "light_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 11,
+        "brawn": 8,
+        "coordination": 8,
+        "awareness": 10,
+        "reason": 7,
+        "faith": 6,
+        "presence": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 3
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "scoundrel_lockpicker",
+        "scoundrel_wallflower",
+        "scoundrel_pickpocket"
+      ],
+      "combatTalentIds": [
+        "sword_adept",
+        "thrown_weapons_adept",
+        "stealthy_fighter_1",
+        "dual_wielding"
+      ],
+      "equippedWeaponIds": [
+        "shortsword",
+        "dagger",
+        "throwing_knife"
+      ],
+      "equippedArmorId": "light_armor",
+      "inventoryItemIds": [
+        "healing_potion"
+      ],
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "intrigue"
+      ]
+    }
+  }
+}

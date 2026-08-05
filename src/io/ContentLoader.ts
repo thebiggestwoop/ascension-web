@@ -43,6 +43,7 @@ import archetypeIndexJson from '@content/archetypes/_index.json'
 import archetypeHeroJson from '@content/archetypes/sword/hero.json'
 import archetypeTwinbladeJson from '@content/archetypes/sword/twinblade.json'
 import archetypeSpellswordJson from '@content/archetypes/sword/spellsword.json'
+import archetypeAssassinJson from '@content/archetypes/sword/Assassin.json'
 import archetypeCavalierJson from '@content/archetypes/spear/cavalier.json'
 import archetypeCataphractJson from '@content/archetypes/spear/cataphract.json'
 import archetypePaladinJson from '@content/archetypes/spear/paladin.json'
@@ -113,6 +114,7 @@ export const CoreContent = {
       hero: archetypeHeroJson as IArchetypeCharacterData,
       twinblade: archetypeTwinbladeJson as IArchetypeCharacterData,
       spellsword: archetypeSpellswordJson as IArchetypeCharacterData,
+      assassin: archetypeAssassinJson as IArchetypeCharacterData,
       cavalier: archetypeCavalierJson as IArchetypeCharacterData,
       cataphract: archetypeCataphractJson as IArchetypeCharacterData,
       paladin: archetypePaladinJson as IArchetypeCharacterData,
