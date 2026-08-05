@@ -54,6 +54,7 @@ import archetypeDeathKnightJson from '@content/archetypes/axe/Death-Knight.json'
 import archetypeGuardianJson from '@content/archetypes/axe/Guardian.json'
 import archetypeWarriorJson from '@content/archetypes/axe/Warrior.json'
 import archetypeFulgermancerJson from '@content/archetypes/arcane_magick/Fulgermancer.json'
+import archetypeShadowCallerJson from '@content/archetypes/dark_magick/Shadow-Caller.json'
 import archetypeHeavyBowmanJson from '@content/archetypes/bow/Heavy-Bowman.json'
 import archetypeOutriderJson from '@content/archetypes/bow/Outrider.json'
 import archetypeRangerJson from '@content/archetypes/bow/Ranger.json'
@@ -116,6 +117,7 @@ export const CoreContent = {
       guardian: archetypeGuardianJson as IArchetypeCharacterData,
       warrior: archetypeWarriorJson as IArchetypeCharacterData,
       fulgermancer: archetypeFulgermancerJson as IArchetypeCharacterData,
+      shadow_caller: archetypeShadowCallerJson as IArchetypeCharacterData,
       heavy_bowman: archetypeHeavyBowmanJson as IArchetypeCharacterData,
       outrider: archetypeOutriderJson as IArchetypeCharacterData,
       ranger: archetypeRangerJson as IArchetypeCharacterData,

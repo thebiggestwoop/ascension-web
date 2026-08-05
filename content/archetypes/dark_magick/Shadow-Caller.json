@@ -1,0 +1,162 @@
+{
+  "id": "a3b1c425-df7b-4fe9-8fdc-6e4ca9a70e7a",
+  "name": "Shadow Caller",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 10,
+    "brawn": 7,
+    "coordination": 6,
+    "awareness": 8,
+    "reason": 6,
+    "faith": 8,
+    "presence": 11
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 2,
+    "intrigue": 3
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "intrigue"
+  ],
+  "currentHp": 33,
+  "currentWillpower": 8,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "witch_bargain_with_darkness",
+    "witch_dark_power",
+    "witch_cloaked_in_shadow",
+    "dark_magick_1",
+    "noctocraft_1",
+    "shadow_cloak_1",
+    "stealthy_fighter_1"
+  ],
+  "equippedWeaponIds": [
+    "dagger"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "healing_potion",
+    "spell_implement"
+  ],
+  "preparedSpellIds": [
+    "penumbra",
+    "umbral_shroud",
+    "geist_strike",
+    "shadow_blade"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "light_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 10,
+        "brawn": 7,
+        "coordination": 6,
+        "awareness": 8,
+        "reason": 6,
+        "faith": 8,
+        "presence": 11
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 2,
+        "intrigue": 3
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "witch_bargain_with_darkness",
+        "witch_dark_power",
+        "witch_cloaked_in_shadow"
+      ],
+      "combatTalentIds": [
+        "dark_magick_1",
+        "noctocraft_1",
+        "shadow_cloak_1",
+        "stealthy_fighter_1"
+      ],
+      "equippedWeaponIds": [
+        "dagger"
+      ],
+      "equippedArmorId": "light_armor",
+      "inventoryItemIds": [
+        "tome",
+        "healing_potion",
+        "spell_implement"
+      ],
+      "preparedSpellIds": [
+        "penumbra",
+        "umbral_shroud",
+        "geist_strike",
+        "shadow_blade"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "intrigue"
+      ]
+    }
+  }
+}

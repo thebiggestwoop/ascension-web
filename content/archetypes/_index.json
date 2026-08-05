@@ -126,6 +126,19 @@
     ]
   },
   {
+    "id": "dark_magick",
+    "name": "Dark Magick",
+    "description": "Dark Magick practitioners have high Presence, wielding shadow and fear to weaken foes and slip through the battlefield unseen.",
+    "archetypes": [
+      {
+        "id": "shadow_caller",
+        "name": "Shadow Caller",
+        "description": "A shadowy trickster who cloaks themselves in darkness, striking from the unseen and unraveling the minds of their foes.",
+        "playstyle": "placeholder"
+      }
+    ]
+  },
+  {
     "id": "authority",
     "name": "Authority",
     "description": "Authority archetypes have high Presence, leading allies from the front and turning the tide of battle through command and inspiration rather than the blade alone.",
