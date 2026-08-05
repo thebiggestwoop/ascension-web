@@ -292,21 +292,28 @@ watch(
         <div class="text-subtitle-2 text-medium-emphasis mt-1 mb-1">Continue a Talent Tree You Already Have</div>
         <div v-for="g in narrativeContinuationGroups" :key="g.groupName" class="mb-3">
           <div class="text-body-1 font-weight-medium">{{ g.groupName }}</div>
-          <v-checkbox
-            v-for="t in g.talents"
-            :key="t.id"
-            class="talent-checkbox"
-            v-model="selectedNarrativeIds"
-            :value="t.id"
-            :label="t.name"
-            :messages="[prereqLine(t), t.effectText]"
-            density="compact"
-            hide-details="auto"
-            :disabled="
-              (!selectedNarrativeIds.includes(t.id) && selectedNarrativeIds.length >= narrativeCount) ||
-              !meetsTalentPrerequisites(t.prerequisites, prereqContext)
-            "
-          />
+          <div v-for="t in g.talents" :key="t.id">
+            <v-checkbox
+              class="talent-checkbox"
+              v-model="selectedNarrativeIds"
+              :value="t.id"
+              :label="t.name"
+              :messages="[prereqLine(t), t.effectText]"
+              density="compact"
+              hide-details="auto"
+              :disabled="!selectedNarrativeIds.includes(t.id) && selectedNarrativeIds.length >= narrativeCount"
+            />
+            <v-chip
+              v-if="selectedNarrativeIds.includes(t.id) && !meetsTalentPrerequisites(t.prerequisites, prereqContext)"
+              size="x-small"
+              color="warning"
+              variant="tonal"
+              prepend-icon="mdi-alert"
+              class="ml-8 mb-2"
+            >
+              Prerequisite not met - allowed at the GM's discretion
+            </v-chip>
+          </div>
         </div>
         <v-divider class="mb-3" />
         <div class="text-subtitle-2 text-medium-emphasis mb-1">All Talent Trees</div>
@@ -320,21 +327,28 @@ watch(
               <p v-if="flavorTextByGroupName.get(g.groupName)" class="text-medium-emphasis font-italic text-body-2 mb-1">
                 {{ flavorTextByGroupName.get(g.groupName) }}
               </p>
-              <v-checkbox
-                v-for="t in g.talents"
-                :key="t.id"
-                class="talent-checkbox"
-                v-model="selectedNarrativeIds"
-                :value="t.id"
-                :label="t.name"
-                :messages="[prereqLine(t), t.effectText]"
-                density="compact"
-                hide-details="auto"
-                :disabled="
-                  (!selectedNarrativeIds.includes(t.id) && selectedNarrativeIds.length >= narrativeCount) ||
-                  !meetsTalentPrerequisites(t.prerequisites, prereqContext)
-                "
-              />
+              <div v-for="t in g.talents" :key="t.id">
+                <v-checkbox
+                  class="talent-checkbox"
+                  v-model="selectedNarrativeIds"
+                  :value="t.id"
+                  :label="t.name"
+                  :messages="[prereqLine(t), t.effectText]"
+                  density="compact"
+                  hide-details="auto"
+                  :disabled="!selectedNarrativeIds.includes(t.id) && selectedNarrativeIds.length >= narrativeCount"
+                />
+                <v-chip
+                  v-if="selectedNarrativeIds.includes(t.id) && !meetsTalentPrerequisites(t.prerequisites, prereqContext)"
+                  size="x-small"
+                  color="warning"
+                  variant="tonal"
+                  prepend-icon="mdi-alert"
+                  class="ml-8 mb-2"
+                >
+                  Prerequisite not met - allowed at the GM's discretion
+                </v-chip>
+              </div>
             </div>
           </v-expansion-panel-text>
         </v-expansion-panel>

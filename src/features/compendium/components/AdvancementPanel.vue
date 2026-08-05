@@ -8,9 +8,10 @@ const adv = CoreContent.advancement
   <div>
     <p class="text-body-2 text-medium-emphasis mb-3">
       Starting Level {{ adv.startingLevel }}, max Level {{ adv.maxLevel }}. {{ adv.xpThresholdPerLevel }} XP per Level.
-      Tier 3 Combat Talents unlock at Level {{ adv.tier3TalentUnlockLevel }}; a second Attribute/Skill may sit at the
-      cap starting Level {{ adv.multipleAt11Or4UnlockLevel }}; a third Combat Skill Focus may be chosen at Level
-      {{ adv.thirdCombatFocusUnlockLevel }}.
+      Tier 3 Combat Talents unlock at Level {{ adv.tier3TalentUnlockLevel }}; past character creation, any number of
+      Attributes may sit at 11 (and Skills at 4), though only one Attribute/Skill may ever reach the higher 12/5
+      maximum, which unlocks at Level {{ adv.attributeSkillMaxUnlockLevel }}; a third Combat Skill Focus may be
+      chosen at Level {{ adv.thirdCombatFocusUnlockLevel }}.
     </p>
 
     <v-table density="compact" class="mb-4">

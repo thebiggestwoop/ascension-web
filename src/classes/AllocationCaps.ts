@@ -19,8 +19,11 @@ export function projectedAllocationValue<Id extends string>(
   return value
 }
 
-/** True if picking `itemValue` for slot `slotIndex` would meet/exceed the ceiling, or would
- * be a *second* item reaching a ceiling already held by another. */
+/** True if picking `itemValue` for slot `slotIndex` would meet/exceed the ceiling, or (when
+ * `enforceSingleAtCeiling` is true) would be a *second* item reaching a ceiling already held
+ * by another. Past Level 0, only the true maximum (12 Attribute / 5 Skill) keeps the
+ * single-owner restriction - multiple Attributes at 11 or Skills at 4 are unrestricted, so
+ * callers pass `enforceSingleAtCeiling: false` for that base ceiling from Level 1 on. */
 export function isAllocationDisabledByCeiling<Id extends string>(
   allIds: Id[],
   base: Record<Id, number>,
@@ -28,10 +31,11 @@ export function isAllocationDisabledByCeiling<Id extends string>(
   itemValue: Id,
   slotIndex: number,
   ceiling: number,
+  enforceSingleAtCeiling = true,
 ): boolean {
   const projected = projectedAllocationValue(base, allocations, itemValue, slotIndex)
   if (projected >= ceiling) return true
-  if (projected + 1 === ceiling) {
+  if (enforceSingleAtCeiling && projected + 1 === ceiling) {
     return allIds.some(
       (otherId) => otherId !== itemValue && projectedAllocationValue(base, allocations, otherId, slotIndex) >= ceiling,
     )

@@ -20,7 +20,10 @@ export interface IAdvancementData {
   maxLevel: number
   xpThresholdPerLevel: number
   tier3TalentUnlockLevel: number
-  multipleAt11Or4UnlockLevel: number
+  /** Level at which the higher Attribute 12 / Skill 5 maximum unlocks (only one Attribute/Skill
+   * may ever reach it). Below this level the maximum is 11/4, but - past character creation -
+   * any number of Attributes/Skills may sit at 11/4; only this higher cap is single-owner. */
+  attributeSkillMaxUnlockLevel: number
   /** "Focuses in Combat" optional rule: a third Combat Skill Focus may be chosen at this level. */
   thirdCombatFocusUnlockLevel: number
   levelAscensionChart: ILevelAscensionRow[]

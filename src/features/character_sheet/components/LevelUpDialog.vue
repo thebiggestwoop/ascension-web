@@ -33,10 +33,10 @@ const allAttributeIds = CoreContent.attributes.map((a) => a.id as AttributeId)
 const allSkillIds = CoreContent.skills.map((s) => s.id as SkillId)
 
 /**
- * Per the rules: "cannot have more than one Attribute above 11 or Skill above 4" until Level
- * 5, "but all characters may only ever have one Attribute at 12 and one Skill at 5" even
- * after. So the ceiling is 11/4 pre-Level-5 (only one may reach it) and 12/5 post-Level-5
- * (11/4 becomes unrestricted since it's no longer the ceiling; only one may reach 12/5).
+ * Per the rules: all characters may only ever have one Attribute at 12 and one Skill at 5.
+ * Below Level 5 the reachable maximum is 11/4 instead of 12/5, but - past character creation -
+ * any number of Attributes/Skills may sit at that maximum; only the true 12/5 ceiling keeps
+ * the single-owner restriction once it unlocks at Level 5.
  */
 const ATTRIBUTE_CEILING_BASE = 11
 const ATTRIBUTE_CEILING_HIGH = 12
@@ -47,11 +47,15 @@ const newLevel = computed(() => props.character.level + 1)
 const row = computed(() => CoreContent.advancement.levelAscensionChart.find((r) => r.level === newLevel.value))
 const maxTier = computed(() => (newLevel.value >= CoreContent.advancement.tier3TalentUnlockLevel ? 3 : 2))
 const attributeCeiling = computed(() =>
-  newLevel.value >= CoreContent.advancement.multipleAt11Or4UnlockLevel ? ATTRIBUTE_CEILING_HIGH : ATTRIBUTE_CEILING_BASE,
+  newLevel.value >= CoreContent.advancement.attributeSkillMaxUnlockLevel ? ATTRIBUTE_CEILING_HIGH : ATTRIBUTE_CEILING_BASE,
 )
 const skillCeiling = computed(() =>
-  newLevel.value >= CoreContent.advancement.multipleAt11Or4UnlockLevel ? SKILL_CEILING_HIGH : SKILL_CEILING_BASE,
+  newLevel.value >= CoreContent.advancement.attributeSkillMaxUnlockLevel ? SKILL_CEILING_HIGH : SKILL_CEILING_BASE,
 )
+/** Only the true 12/5 maximum keeps the single-owner restriction - the 11/4 ceiling below it is
+ * unrestricted from Level 1 on. */
+const attributeSingleAtCeiling = computed(() => attributeCeiling.value >= ATTRIBUTE_CEILING_HIGH)
+const skillSingleAtCeiling = computed(() => skillCeiling.value >= SKILL_CEILING_HIGH)
 
 const attributeAllocations = ref<(AttributeId | null)[]>([])
 const skillAllocations = ref<(SkillId | null)[]>([])
@@ -183,6 +187,7 @@ function isAttributeDisabled(itemValue: string, slotIndex: number): boolean {
     itemValue as AttributeId,
     slotIndex,
     attributeCeiling.value,
+    attributeSingleAtCeiling.value,
   )
 }
 function isSkillDisabled(itemValue: string, slotIndex: number): boolean {
@@ -193,6 +198,7 @@ function isSkillDisabled(itemValue: string, slotIndex: number): boolean {
     itemValue as SkillId,
     slotIndex,
     skillCeiling.value,
+    skillSingleAtCeiling.value,
   )
 }
 
@@ -206,7 +212,15 @@ const increaseAttributeItems = computed(() =>
     ...item,
     disabled:
       item.value === respecAttributeDecrease.value ||
-      isAllocationDisabledByCeiling(allAttributeIds, attributesAfterDecrease.value, [null], item.value, 0, attributeCeiling.value),
+      isAllocationDisabledByCeiling(
+        allAttributeIds,
+        attributesAfterDecrease.value,
+        [null],
+        item.value,
+        0,
+        attributeCeiling.value,
+        attributeSingleAtCeiling.value,
+      ),
   })),
 )
 const decreaseSkillItems = computed(() =>
@@ -217,7 +231,15 @@ const increaseSkillItems = computed(() =>
     ...item,
     disabled:
       item.value === respecSkillDecrease.value ||
-      isAllocationDisabledByCeiling(allSkillIds, skillsAfterDecrease.value, [null], item.value, 0, skillCeiling.value),
+      isAllocationDisabledByCeiling(
+        allSkillIds,
+        skillsAfterDecrease.value,
+        [null],
+        item.value,
+        0,
+        skillCeiling.value,
+        skillSingleAtCeiling.value,
+      ),
   })),
 )
 
@@ -338,7 +360,7 @@ function confirm() {
         <template v-if="row.attributePoints > 0">
           <div class="text-subtitle-2 mb-1">Attribute Points</div>
           <p class="text-caption text-medium-emphasis">
-            Max {{ attributeCeiling }}, only one Attribute may reach it.
+            Max {{ attributeCeiling }}{{ attributeSingleAtCeiling ? ', only one Attribute may reach it.' : '.' }}
           </p>
           <PointAllocator
             v-model="attributeAllocations"
@@ -351,7 +373,9 @@ function confirm() {
 
         <template v-if="row.skillPoints > 0">
           <div class="text-subtitle-2 mt-3 mb-1">Skill Points</div>
-          <p class="text-caption text-medium-emphasis">Max {{ skillCeiling }}, only one Skill may reach it.</p>
+          <p class="text-caption text-medium-emphasis">
+            Max {{ skillCeiling }}{{ skillSingleAtCeiling ? ', only one Skill may reach it.' : '.' }}
+          </p>
           <PointAllocator
             v-model="skillAllocations"
             :count="row.skillPoints"
