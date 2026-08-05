@@ -1,0 +1,147 @@
+{
+  "id": "ec802ec8-5655-4529-a128-aac98702995b",
+  "name": "Cataphract",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "awareness": 6,
+    "brawn": 10,
+    "coordination": 11,
+    "faith": 8,
+    "presence": 7,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 3,
+    "diplomacy": 3,
+    "study": 1,
+    "medicine": 2,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Merchant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "authority"
+  ],
+  "currentHp": 42,
+  "currentWillpower": 8,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "knight_tourney_knight",
+    "knight_rallying_cry",
+    "knight_bold_and_brave",
+    "spear_adept",
+    "impenetrable_1",
+    "opportunist_1",
+    "cavalry_adept"
+  ],
+  "equippedWeaponIds": [
+    "pike"
+  ],
+  "inventoryItemIds": [
+    "healing_potion"
+  ],
+  "preparedSpellIds": [],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "placeholder",
+  "equippedArmorId": "imposing_armor",
+  "mountId": "horse",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "awareness": 6,
+        "brawn": 10,
+        "coordination": 11,
+        "faith": 8,
+        "presence": 7,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 3,
+        "diplomacy": 3,
+        "study": 1,
+        "medicine": 2,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Merchant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "knight_tourney_knight",
+        "knight_rallying_cry",
+        "knight_bold_and_brave"
+      ],
+      "combatTalentIds": [
+        "spear_adept",
+        "impenetrable_1",
+        "opportunist_1",
+        "cavalry_adept"
+      ],
+      "equippedWeaponIds": [
+        "pike"
+      ],
+      "equippedArmorId": "imposing_armor",
+      "inventoryItemIds": [
+        "healing_potion"
+      ],
+      "mountId": "horse",
+      "preparedSpellIds": [],
+      "combatSkillFocuses": [
+        "skirmish",
+        "authority"
+      ]
+    }
+  }
+}

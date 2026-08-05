@@ -34,6 +34,12 @@
         "name": "Cavalier",
         "description": "Well armored atop a trusty steed, charge ahead and through your foes.",
         "playstyle": "Gallop ahead with your steed's high speed to get to where you need to be. Thanks to **Spear Adept** you can strike reliably with your Lance. That, combined with the bonus momentum **Cavalry Adept** gives, you can often Swift Task to strike again if the first attack landed well. Lock down the position of enemies by making sure your Opportunity Attacks land using **Opportunist.**\n\nFor the one enemy on the field you swear to defeat, you can initiate a Duel with **Duelist**, striking them multiple times and dealing extra damage using even more bonus momentum."
+      },
+      {
+        "id": "cataphract",
+        "name": "Cataphract",
+        "description": "A heavily armored rider wielding a massive polearm that controls the battlefield.",
+        "playstyle": "placeholder"
       }
     ]
   },

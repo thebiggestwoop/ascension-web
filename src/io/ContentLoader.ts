@@ -44,6 +44,7 @@ import archetypeHeroJson from '@content/archetypes/sword/hero.json'
 import archetypeTwinbladeJson from '@content/archetypes/sword/twinblade.json'
 import archetypeSpellswordJson from '@content/archetypes/sword/spellsword.json'
 import archetypeCavalierJson from '@content/archetypes/spear/cavalier.json'
+import archetypeCataphractJson from '@content/archetypes/spear/cataphract.json'
 import archetypeMendicantJson from '@content/archetypes/light_magick/mendicant.json'
 import archetypeBishopJson from '@content/archetypes/authority/Bishop.json'
 import archetypeLordJson from '@content/archetypes/authority/Lord.json'
@@ -104,6 +105,7 @@ export const CoreContent = {
       twinblade: archetypeTwinbladeJson as IArchetypeCharacterData,
       spellsword: archetypeSpellswordJson as IArchetypeCharacterData,
       cavalier: archetypeCavalierJson as IArchetypeCharacterData,
+      cataphract: archetypeCataphractJson as IArchetypeCharacterData,
       mendicant: archetypeMendicantJson as IArchetypeCharacterData,
       bishop: archetypeBishopJson as IArchetypeCharacterData,
       lord: archetypeLordJson as IArchetypeCharacterData,
