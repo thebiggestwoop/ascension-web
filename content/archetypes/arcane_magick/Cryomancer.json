@@ -1,0 +1,166 @@
+{
+  "id": "8fc3d349-5be6-4f70-ab3f-b2f8154a7660",
+  "name": "Cryomancer",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 9,
+    "brawn": 10,
+    "coordination": 7,
+    "awareness": 7,
+    "reason": 11,
+    "faith": 6,
+    "presence": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 2,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "study"
+  ],
+  "currentHp": 42,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "magician_prestidigitation",
+    "magician_artificer",
+    "warrior_never_show_fear",
+    "arcane_magick_1",
+    "cryomancer_1",
+    "counterspell_1",
+    "augmentier_1"
+  ],
+  "equippedWeaponIds": [
+    "handaxe"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "tome",
+    "spell_implement",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "frigid_grasp",
+    "frigid_grasp",
+    "armis_arcane",
+    "arcane_parry",
+    "skip",
+    "frozen_strike"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 9,
+        "brawn": 10,
+        "coordination": 7,
+        "awareness": 7,
+        "reason": 11,
+        "faith": 6,
+        "presence": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 2,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "magician_prestidigitation",
+        "magician_artificer",
+        "warrior_never_show_fear"
+      ],
+      "combatTalentIds": [
+        "arcane_magick_1",
+        "cryomancer_1",
+        "counterspell_1",
+        "augmentier_1"
+      ],
+      "equippedWeaponIds": [
+        "handaxe"
+      ],
+      "inventoryItemIds": [
+        "tome",
+        "tome",
+        "spell_implement",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "frigid_grasp",
+        "frigid_grasp",
+        "armis_arcane",
+        "arcane_parry",
+        "skip",
+        "frozen_strike"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "study"
+      ]
+    }
+  }
+}

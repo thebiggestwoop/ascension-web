@@ -55,6 +55,7 @@ import archetypeGuardianJson from '@content/archetypes/axe/Guardian.json'
 import archetypeWarriorJson from '@content/archetypes/axe/Warrior.json'
 import archetypeFulgermancerJson from '@content/archetypes/arcane_magick/Fulgermancer.json'
 import archetypePyromancerJson from '@content/archetypes/arcane_magick/Pyromancer.json'
+import archetypeCryomancerJson from '@content/archetypes/arcane_magick/Cryomancer.json'
 import archetypeShadowCallerJson from '@content/archetypes/dark_magick/Shadow-Caller.json'
 import archetypePlagueDoctorJson from '@content/archetypes/dark_magick/Plague-Doctor.json'
 import archetypeNosferatuJson from '@content/archetypes/dark_magick/Nosferatu.json'
@@ -121,6 +122,7 @@ export const CoreContent = {
       warrior: archetypeWarriorJson as IArchetypeCharacterData,
       fulgermancer: archetypeFulgermancerJson as IArchetypeCharacterData,
       pyromancer: archetypePyromancerJson as IArchetypeCharacterData,
+      cryomancer: archetypeCryomancerJson as IArchetypeCharacterData,
       shadow_caller: archetypeShadowCallerJson as IArchetypeCharacterData,
       plague_doctor: archetypePlagueDoctorJson as IArchetypeCharacterData,
       nosferatu: archetypeNosferatuJson as IArchetypeCharacterData,

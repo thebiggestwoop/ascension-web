@@ -115,6 +115,12 @@
         "name": "Pyromancer",
         "description": "A mounted battlemage who scorches the battlefield with searing fire and cunning arcane tricks.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "cryomancer",
+        "name": "Cryomancer",
+        "description": "A hardy battlemage who chills foes to the bone and shields themselves in a ward of ice.",
+        "playstyle": "placeholder"
       }
     ]
   },
