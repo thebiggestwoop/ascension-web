@@ -76,6 +76,45 @@ function handleConfirm(selection: ILifepathSelection) {
   }
 }
 
+/** Every pick still recorded for `stageId` in store.lifepathSelections, in order - used to
+ * restore `pickedOptionIdsForCurrentStage` after stepping back onto a stage that already had
+ * some (but not all) of its picks made, e.g. Life Events after undoing only its 2nd pick. */
+function pickedOptionIdsFor(stageId: string): string[] {
+  return store.lifepathSelections.filter((s) => s.stageId === stageId).map((s) => s.optionId)
+}
+
+/**
+ * Shared "Back" handling for both the top-level Lifepath flow and Start from an Archetype's
+ * Lifepath sub-flow: undoes the single most recently confirmed pick (whether that's a whole
+ * stage or just one pick of a multi-pick stage like Life Events) and steps the wizard back to
+ * wherever that pick needs to be redone. Only when nothing at all has been picked yet for the
+ * very first stage does it fall through to `onExitStageZero`, leaving the wizard entirely.
+ */
+function goBackWithinLifepath(onExitStageZero: () => void) {
+  if (pickedOptionIdsForCurrentStage.value.length > 0) {
+    store.revertLastStage()
+    pickedOptionIdsForCurrentStage.value.pop()
+  } else if (currentStageIndex.value > 0) {
+    store.revertLastStage()
+    currentStageIndex.value--
+    pickedOptionIdsForCurrentStage.value = pickedOptionIdsFor(stages[currentStageIndex.value].id)
+  } else {
+    onExitStageZero()
+  }
+}
+
+function goBackLifepath() {
+  goBackWithinLifepath(() => {
+    creationMethod.value = null
+  })
+}
+
+function goBackArchetypeLifepath() {
+  goBackWithinLifepath(() => {
+    archetypePhase.value = 'focus_value_trait_choice'
+  })
+}
+
 function startOver() {
   store.reset()
   currentStageIndex.value = 0
@@ -183,8 +222,9 @@ onMounted(() => store.reset())
             :stage="currentStage"
             :exclude-option-ids="pickedOptionIdsForCurrentStage"
             @confirm="handleConfirm"
+            @back="goBackLifepath"
           />
-          <FinishingTouchesStep v-else />
+          <FinishingTouchesStep v-else @back="goBackLifepath" />
         </template>
 
         <template v-else-if="creationMethod === 'archetype' && archetypePhase === 'lifepath'">
@@ -194,6 +234,7 @@ onMounted(() => store.reset())
             :exclude-option-ids="pickedOptionIdsForCurrentStage"
             skip-attribute-skill-grants
             @confirm="handleConfirm"
+            @back="goBackArchetypeLifepath"
           />
         </template>
 

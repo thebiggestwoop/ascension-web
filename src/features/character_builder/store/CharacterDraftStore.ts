@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 import { toRaw } from 'vue'
-import { AttributeId, SkillId } from '@/classes/enums'
+import { AttributeId, SkillId, LifepathStageId } from '@/classes/enums'
 import type { ICharacterData } from '@/classes/Character'
 import { Character, computeStatModifiers } from '@/classes/Character'
 import type { ILifepathSelection, ILifepathStageData } from '@/classes/Lifepath'
-import { applyLifepathSelection } from '@/classes/Lifepath'
+import { applyLifepathSelection, AUTO_TRAIT_STAGE_LABEL } from '@/classes/Lifepath'
 import type {
   IFinishingTouchesRecord,
   IQuickBuildRecord,
@@ -29,6 +29,16 @@ function grantSpellcasterTraitIfNeeded(draft: ICharacterData, newTalentIds: stri
     draft.traits.push({ name: 'Spellcaster' })
   }
 }
+
+/** The five option-driven Lifepath stages, in order - used by revertLastStage() to look back up
+ * the stage/option a stored ILifepathSelection refers to (it only stores ids). */
+const ALL_LIFEPATH_STAGES: ILifepathStageData[] = [
+  CoreContent.lifepath.socialClass,
+  CoreContent.lifepath.upbringing,
+  CoreContent.lifepath.education,
+  CoreContent.lifepath.career,
+  CoreContent.lifepath.lifeEvents,
+]
 
 /** Every character begins at Attributes=6, Skills=1 per Chapter Two. */
 function createBaseDraft(): ICharacterData {
@@ -167,6 +177,48 @@ export const useCharacterDraftStore = defineStore('characterDraft', {
       applyLifepathSelection(this.draft, selection, stage)
       this.completedStageIds.push(stage.id)
       this.lifepathSelections.push(selection)
+      this.clearPendingPreview()
+    },
+    /** Undoes the single most recently confirmed Lifepath stage selection (one pick, even for a
+     * multi-pick stage like Life Events) - the mirror image of applyLifepathSelection, precisely
+     * reversing exactly what it applied. Used by the wizard's "Back" button in both the top-level
+     * Lifepath flow and Start from an Archetype's Lifepath sub-flow. No-op once there's nothing
+     * left to revert. */
+    revertLastStage() {
+      const selection = this.lifepathSelections.pop()
+      this.completedStageIds.pop()
+      if (!selection) return
+
+      const stage = ALL_LIFEPATH_STAGES.find((s) => s.id === selection.stageId)
+      const option = stage?.options.find((o) => o.id === selection.optionId)
+
+      for (const [id, amount] of Object.entries(selection.resolvedAttributePoints)) {
+        this.draft.attributes[id as AttributeId] -= amount ?? 0
+      }
+      for (const [id, amount] of Object.entries(selection.resolvedSkillPoints)) {
+        this.draft.skills[id as SkillId] -= amount ?? 0
+      }
+      for (const text of selection.focusText) {
+        const index = this.draft.focuses.indexOf(text)
+        if (index !== -1) this.draft.focuses.splice(index, 1)
+      }
+      if (option?.grants.valuePrompt && selection.valueText) {
+        const index = this.draft.values.findIndex((v) => v.text === selection.valueText)
+        if (index !== -1) this.draft.values.splice(index, 1)
+      }
+
+      const traitNamesToRemove: string[] = []
+      if (option?.grants.trait) traitNamesToRemove.push(option.grants.trait)
+      if (option?.grants.additionalTrait) traitNamesToRemove.push(option.grants.additionalTrait)
+      const autoLabel = stage ? AUTO_TRAIT_STAGE_LABEL[stage.id] : undefined
+      if (autoLabel && option) traitNamesToRemove.push(`${autoLabel}: ${option.name}`)
+      if (selection.optionalTraitGranted && stage?.optionalTrait) traitNamesToRemove.push(stage.optionalTrait.trait)
+      for (const name of traitNamesToRemove) {
+        const index = this.draft.traits.findIndex((t) => t.name === name)
+        if (index !== -1) this.draft.traits.splice(index, 1)
+      }
+
+      if (stage?.id === LifepathStageId.Career) this.draft.careerId = undefined
       this.clearPendingPreview()
     },
     /** Start from an Archetype, Step One: seeds the draft's Attributes/Skills with the

@@ -25,7 +25,7 @@ const REQUIRED_NARRATIVE_TALENTS = 3
 const REQUIRED_COMBAT_TALENTS = 4
 
 const store = useCharacterDraftStore()
-const emit = defineEmits<{ finish: [] }>()
+const emit = defineEmits<{ finish: []; back: [] }>()
 
 const attributeItems = CoreContent.attributes.map((a) => ({ title: a.name, value: a.id }))
 const skillItems = CoreContent.skills.map((s) => ({ title: s.name, value: s.id }))
@@ -309,6 +309,16 @@ const skillSum = computed(() => Object.values(store.draft.skills).reduce((a, b) 
 
 <template>
   <div>
+    <v-btn
+      v-if="!finished"
+      variant="text"
+      size="small"
+      prepend-icon="mdi-arrow-left"
+      class="mb-2"
+      @click="emit('back')"
+    >
+      Back
+    </v-btn>
     <h3 class="text-h6 mb-2">Step Six: Finishing Touches</h3>
     <MarkdownText
       v-if="CoreContent.lifepath.finishingTouches.notes"

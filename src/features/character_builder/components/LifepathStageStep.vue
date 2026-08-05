@@ -16,7 +16,7 @@ const props = defineProps<{
    * only its Trait/Focus/Value grants (identical to the normal Lifepath flow otherwise). */
   skipAttributeSkillGrants?: boolean
 }>()
-const emit = defineEmits<{ confirm: [selection: ILifepathSelection] }>()
+const emit = defineEmits<{ confirm: [selection: ILifepathSelection]; back: [] }>()
 const store = useCharacterDraftStore()
 
 const attributeItems = CoreContent.attributes.map((a) => ({ title: a.name, value: a.id }))
@@ -216,6 +216,9 @@ function confirm() {
 
 <template>
   <div>
+    <v-btn variant="text" size="small" prepend-icon="mdi-arrow-left" class="mb-2" @click="emit('back')">
+      Back
+    </v-btn>
     <h3 class="text-h6 mb-2">{{ stage.name }}</h3>
     <MarkdownText v-if="stage.notes" :source="stage.notes" class="text-body-2 text-medium-emphasis mb-3" />
 
