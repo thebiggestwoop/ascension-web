@@ -135,6 +135,12 @@
         "name": "Shadow Caller",
         "description": "A shadowy trickster who cloaks themselves in darkness, striking from the unseen and unraveling the minds of their foes.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "plague_doctor",
+        "name": "Plague Doctor",
+        "description": "A grim physician who turns blood and sickness into a weapon, cursing enemies while keeping allies standing.",
+        "playstyle": "placeholder"
       }
     ]
   },

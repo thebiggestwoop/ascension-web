@@ -1,0 +1,162 @@
+{
+  "id": "a83185c2-5004-4af8-b4a9-2d9d31320416",
+  "name": "Plague Doctor",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "brawn": 8,
+    "coordination": 6,
+    "awareness": 7,
+    "reason": 10,
+    "faith": 6,
+    "presence": 11
+  },
+  "skills": {
+    "skirmish": 3,
+    "authority": 1,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 4,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Merchant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "medicine",
+    "study"
+  ],
+  "currentHp": 33,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "healer_not_a",
+    "healer_autopsy",
+    "healer_apothecary",
+    "dark_magick_1",
+    "hemocraft_1",
+    "combat_medic",
+    "augmentier_1"
+  ],
+  "equippedWeaponIds": [
+    "shortsword"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "spell_implement",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "blood_heal",
+    "blood_sickness",
+    "blood_sickness",
+    "soul_drain"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "brawn": 8,
+        "coordination": 6,
+        "awareness": 7,
+        "reason": 10,
+        "faith": 6,
+        "presence": 11
+      },
+      "skills": {
+        "skirmish": 3,
+        "authority": 1,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 4,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Merchant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "healer_not_a",
+        "healer_autopsy",
+        "healer_apothecary"
+      ],
+      "combatTalentIds": [
+        "dark_magick_1",
+        "hemocraft_1",
+        "combat_medic",
+        "augmentier_1"
+      ],
+      "equippedWeaponIds": [
+        "shortsword"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "tome",
+        "spell_implement",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "blood_heal",
+        "blood_sickness",
+        "blood_sickness",
+        "soul_drain"
+      ],
+      "combatSkillFocuses": [
+        "medicine",
+        "study"
+      ]
+    }
+  }
+}
