@@ -108,6 +108,12 @@
         "name": "Ranger",
         "description": "A resourceful hunter who tracks foes with a keen eye, striking from afar and patching up allies between skirmishes.",
         "playstyle": "Mark enemies for death by Pinpointing them with a Major Action - and immediately use the Bonus Momentum from **Tactician** to Swift Task and Attack with your Bow. Aim whenever you have a Minor Action to spare before shooting your Bow.\n\nMend the wounds of your allies or yourself with your high Medicine skills and extra Healing Potion you have on hand, and search for hidden targets with your heightened Search range from **Hunter Seeker**."
+      },
+      {
+        "id": "arcane_archer",
+        "name": "Arcane Archer",
+        "description": "A scholarly marksman who weaves Arcane Magick into every arrow, striking from range with elemental force.",
+        "playstyle": "placeholder"
       }
     ]
   },

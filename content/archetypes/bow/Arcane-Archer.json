@@ -1,0 +1,162 @@
+{
+  "id": "f4bb465f-f4c7-44cb-bb4b-884856421897",
+  "name": "Arcane Archer",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "brawn": 8,
+    "coordination": 7,
+    "awareness": 11,
+    "reason": 10,
+    "faith": 6,
+    "presence": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 3,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "study"
+  ],
+  "currentHp": 36,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "scholar_polymath",
+    "scholar_meticulous",
+    "healer_autopsy",
+    "bow_adept",
+    "arcane_magick_1",
+    "spellshot_1",
+    "warp_1"
+  ],
+  "equippedWeaponIds": [
+    "shortbow"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "volcanic_strike",
+    "frozen_strike",
+    "thunderous_strike",
+    "skip",
+    "arcane_parry"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "brawn": 8,
+        "coordination": 7,
+        "awareness": 11,
+        "reason": 10,
+        "faith": 6,
+        "presence": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 3,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Peasant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "scholar_polymath",
+        "scholar_meticulous",
+        "healer_autopsy"
+      ],
+      "combatTalentIds": [
+        "bow_adept",
+        "arcane_magick_1",
+        "spellshot_1",
+        "warp_1"
+      ],
+      "equippedWeaponIds": [
+        "shortbow"
+      ],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "tome",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "volcanic_strike",
+        "frozen_strike",
+        "thunderous_strike",
+        "skip",
+        "arcane_parry"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "study"
+      ]
+    }
+  }
+}

@@ -66,6 +66,7 @@ import archetypeNosferatuJson from '@content/archetypes/dark_magick/Nosferatu.js
 import archetypeHeavyBowmanJson from '@content/archetypes/bow/Heavy-Bowman.json'
 import archetypeOutriderJson from '@content/archetypes/bow/Outrider.json'
 import archetypeRangerJson from '@content/archetypes/bow/Ranger.json'
+import archetypeArcaneArcherJson from '@content/archetypes/bow/Arcane-Archer.json'
 
 /**
  * Central place the rest of the app pulls rules content from. Right now this reads the
@@ -137,6 +138,7 @@ export const CoreContent = {
       heavy_bowman: archetypeHeavyBowmanJson as IArchetypeCharacterData,
       outrider: archetypeOutriderJson as IArchetypeCharacterData,
       ranger: archetypeRangerJson as IArchetypeCharacterData,
+      arcane_archer: archetypeArcaneArcherJson as IArchetypeCharacterData,
     } as Record<string, IArchetypeCharacterData>,
   },
 }
