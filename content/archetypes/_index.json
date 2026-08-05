@@ -71,6 +71,12 @@
         "name": "Paladin",
         "description": "A holy knight in shining armor, smiting enemies and blessing allies through the will of heaven.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "bulwark",
+        "name": "Bulwark",
+        "description": "An unyielding shield-bearer who plants themselves at the front line, guarding allies from harm.",
+        "playstyle": "placeholder"
       }
     ]
   },

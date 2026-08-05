@@ -1,22 +1,22 @@
 {
-  "id": "c63bd88a-6295-4a25-b0b4-734941787271",
-  "name": "Paladin",
+  "id": "d2998bfa-5f67-495e-bcbd-9b9b33f8246a",
+  "name": "Bulwark",
   "level": 0,
   "xp": 0,
   "attributes": {
-    "agility": 9,
-    "brawn": 7,
+    "agility": 10,
+    "brawn": 9,
     "coordination": 11,
     "awareness": 6,
-    "reason": 6,
-    "faith": 10,
-    "presence": 7
+    "reason": 7,
+    "faith": 7,
+    "presence": 6
   },
   "skills": {
     "skirmish": 4,
-    "authority": 1,
-    "diplomacy": 2,
-    "study": 3,
+    "authority": 3,
+    "diplomacy": 1,
+    "study": 2,
     "medicine": 3,
     "intrigue": 1
   },
@@ -50,48 +50,43 @@
   },
   "traits": [
     {
-      "name": "Noble"
+      "name": "Commoner"
+    },
+    {
+      "name": "Peasant"
     },
     {
       "name": "Defining Feature: placeholder"
-    },
-    {
-      "name": "Spellcaster"
     }
   ],
   "combatSkillFocuses": [
     "skirmish",
     "medicine"
   ],
-  "currentHp": 33,
-  "currentWillpower": 10,
+  "currentHp": 39,
+  "currentWillpower": 7,
   "temporaryHp": 0,
   "temporaryResistance": 0,
   "statuses": [],
   "determination": 1,
   "speedBonus": 0,
   "talentIds": [
+    "warrior_never_show_fear",
     "knight_chivalry",
-    "priest_of_sacred_order",
-    "priest_penitent",
-    "light_magick_1",
-    "spellblade_1",
+    "knight_rallying_cry",
     "spear_adept",
-    "defensive_stance_1"
+    "shield_master",
+    "close_protection_1",
+    "defensive_wall_1"
   ],
   "equippedWeaponIds": [
-    "glaive"
+    "spear"
   ],
   "inventoryItemIds": [
-    "healing_potion",
-    "tome"
+    "tower_shield",
+    "healing_potion"
   ],
-  "preparedSpellIds": [
-    "holy_smite",
-    "lay_on_hands",
-    "divine_protection",
-    "guiding_ray"
-  ],
+  "preparedSpellIds": [],
   "usedGeneralItemIds": [],
   "levelUpHistory": [],
   "notes": "",
@@ -100,53 +95,49 @@
     "method": "quick_build",
     "quickBuild": {
       "attributes": {
-        "agility": 9,
-        "brawn": 7,
+        "agility": 10,
+        "brawn": 9,
         "coordination": 11,
         "awareness": 6,
-        "reason": 6,
-        "faith": 10,
-        "presence": 7
+        "reason": 7,
+        "faith": 7,
+        "presence": 6
       },
       "skills": {
         "skirmish": 4,
-        "authority": 1,
-        "diplomacy": 2,
-        "study": 3,
+        "authority": 3,
+        "diplomacy": 1,
+        "study": 2,
         "medicine": 3,
         "intrigue": 1
       },
       "focusTexts": [],
       "valueTexts": [],
       "traitNames": [
-        "Noble"
+        "Commoner",
+        "Peasant"
       ],
       "definingFeatureText": "placeholder",
       "narrativeTalentIds": [
+        "warrior_never_show_fear",
         "knight_chivalry",
-        "priest_of_sacred_order",
-        "priest_penitent"
+        "knight_rallying_cry"
       ],
       "combatTalentIds": [
-        "light_magick_1",
-        "spellblade_1",
         "spear_adept",
-        "defensive_stance_1"
+        "shield_master",
+        "close_protection_1",
+        "defensive_wall_1"
       ],
       "equippedWeaponIds": [
-        "glaive"
+        "spear"
       ],
       "equippedArmorId": "heavy_armor",
       "inventoryItemIds": [
-        "healing_potion",
-        "tome"
+        "tower_shield",
+        "healing_potion"
       ],
-      "preparedSpellIds": [
-        "holy_smite",
-        "lay_on_hands",
-        "divine_protection",
-        "guiding_ray"
-      ],
+      "preparedSpellIds": [],
       "combatSkillFocuses": [
         "skirmish",
         "medicine"
