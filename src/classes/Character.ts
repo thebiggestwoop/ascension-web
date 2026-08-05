@@ -113,6 +113,14 @@ export function migrateLegacyCharacterData(data: ICharacterData): ICharacterData
   for (const value of data.values) {
     if (value.challenged === undefined) value.challenged = false
   }
+  // A character finished via "I'll add these later" (Quick Build/Quick Entry's skip-Values
+  // checkbox) can reach the sheet with fewer than 4 - or zero - Values, which left the Values
+  // card with no text field to fill them in later at all. Padding up to 4 here (never
+  // truncating - a character should never lose an already-written Value) guarantees the sheet
+  // always has exactly 4 Value fields to edit, regardless of how many were filled in at creation.
+  while (data.values.length < 4) {
+    data.values.push({ text: '', active: true, challenged: false })
+  }
   if (!data.usedGeneralItemIds) data.usedGeneralItemIds = []
   if (data.speedBonus === undefined) data.speedBonus = 0
   return data
