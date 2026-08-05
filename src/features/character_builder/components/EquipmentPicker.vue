@@ -167,6 +167,15 @@ function qualityTooltip(q: IQualityInstance): string | undefined {
   return CoreContent.equipment.qualities.find((x) => x.id === q.quality)?.description
 }
 
+/** Triggered by rolling an Effect [!] face (e.g. the Halberd's Knockdown) - a separate list
+ * from `qualities`, so needs its own chips (same as the Character Sheet's own weapon display). */
+function damageEffectLabel(effect: string): string {
+  return CoreContent.equipment.damageEffects.find((e) => e.id === effect)?.name ?? effect
+}
+function damageEffectTooltip(effect: string): string | undefined {
+  return CoreContent.equipment.damageEffects.find((e) => e.id === effect)?.description
+}
+
 function countsToIds(counts: Record<string, number>): string[] {
   const ids: string[] = []
   for (const [id, count] of Object.entries(counts)) {
@@ -227,6 +236,12 @@ watch(
               <DerivedValueBadge :display="weaponDamageDisplay(w)" :tooltip="weaponDamageTooltip(w)" />
             </span>
             <span v-if="w.range" class="mx-2 text-body-2">Range: <strong>{{ w.range }}</strong></span>
+            <TooltipChip
+              v-for="effect in w.damageEffects"
+              :key="effect"
+              :label="damageEffectLabel(effect)"
+              :tooltip="damageEffectTooltip(effect)"
+            />
             <TooltipChip v-for="(q, i) in w.qualities" :key="i" :label="qualityLabel(q)" :tooltip="qualityTooltip(q)" />
           </div>
         </v-expansion-panel-text>
