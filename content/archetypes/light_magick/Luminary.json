@@ -1,0 +1,154 @@
+{
+  "id": "615bc97e-d197-4e79-ab61-fe5efdf05687",
+  "name": "Luminary",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "brawn": 10,
+    "coordination": 6,
+    "awareness": 7,
+    "reason": 6,
+    "faith": 11,
+    "presence": 8
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 3,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "medicine"
+  ],
+  "currentHp": 42,
+  "currentWillpower": 11,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "theurgist_intercession",
+    "theurgist_oracle",
+    "theurgist_will_of_heaven",
+    "light_magick_1",
+    "luminurge_1",
+    "augmentier_1",
+    "fortified_mind_1"
+  ],
+  "equippedWeaponIds": [],
+  "inventoryItemIds": [
+    "tome",
+    "spell_implement",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "lay_on_hands",
+    "guiding_ray",
+    "guiding_ray",
+    "touch_of_haste"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "brawn": 10,
+        "coordination": 6,
+        "awareness": 7,
+        "reason": 6,
+        "faith": 11,
+        "presence": 8
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 3,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "theurgist_intercession",
+        "theurgist_oracle",
+        "theurgist_will_of_heaven"
+      ],
+      "combatTalentIds": [
+        "light_magick_1",
+        "luminurge_1",
+        "augmentier_1",
+        "fortified_mind_1"
+      ],
+      "equippedWeaponIds": [],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "tome",
+        "spell_implement",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "lay_on_hands",
+        "guiding_ray",
+        "guiding_ray",
+        "touch_of_haste"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "medicine"
+      ]
+    }
+  }
+}

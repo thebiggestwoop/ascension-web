@@ -134,6 +134,18 @@
         "name": "Mendicant",
         "description": "A holy healer who channels Light Magick to mend the wounded and shield the faithful.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "luminary",
+        "name": "Luminary",
+        "description": "A radiant vessel of Heaven's will, mending allies and channeling divine visions on the battlefield.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "inquisitor",
+        "name": "Inquisitor",
+        "description": "A relentless hunter of heretics and mages, striking down the unfaithful with holy fire and cutting words.",
+        "playstyle": "placeholder"
       }
     ]
   },

@@ -1,0 +1,156 @@
+{
+  "id": "3ce5d1ea-6707-443f-a568-abc1227ca5ef",
+  "name": "Inquisitor",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 9,
+    "brawn": 7,
+    "coordination": 6,
+    "awareness": 9,
+    "reason": 6,
+    "faith": 11,
+    "presence": 8
+  },
+  "skills": {
+    "skirmish": 3,
+    "authority": 1,
+    "diplomacy": 4,
+    "study": 2,
+    "medicine": 1,
+    "intrigue": 3
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "diplomacy",
+    "skirmish"
+  ],
+  "currentHp": 30,
+  "currentWillpower": 11,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "priest_of_sacred_order",
+    "priest_heavenly_authority",
+    "priest_pillar_of_salt",
+    "light_magick_1",
+    "mages_bane_1",
+    "provocateur_1",
+    "antagonist"
+  ],
+  "equippedWeaponIds": [
+    "shortsword"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "spell_implement",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "inquisitors_eye",
+    "castigate",
+    "holy_smite"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 9,
+        "brawn": 7,
+        "coordination": 6,
+        "awareness": 9,
+        "reason": 6,
+        "faith": 11,
+        "presence": 8
+      },
+      "skills": {
+        "skirmish": 3,
+        "authority": 1,
+        "diplomacy": 4,
+        "study": 2,
+        "medicine": 1,
+        "intrigue": 3
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "priest_of_sacred_order",
+        "priest_heavenly_authority",
+        "priest_pillar_of_salt"
+      ],
+      "combatTalentIds": [
+        "light_magick_1",
+        "mages_bane_1",
+        "provocateur_1",
+        "antagonist"
+      ],
+      "equippedWeaponIds": [
+        "shortsword"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "tome",
+        "spell_implement",
+        "healing_potion"
+      ],
+      "preparedSpellIds": [
+        "inquisitors_eye",
+        "castigate",
+        "holy_smite"
+      ],
+      "combatSkillFocuses": [
+        "diplomacy",
+        "skirmish"
+      ]
+    }
+  }
+}
