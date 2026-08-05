@@ -1,0 +1,156 @@
+{
+  "id": "f35b7d31-fc28-4417-b0a4-be4bbe3cc6a7",
+  "name": "Paladin",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 7,
+    "awareness": 6,
+    "brawn": 9,
+    "coordination": 11,
+    "faith": 10,
+    "presence": 7,
+    "reason": 6
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 2,
+    "diplomacy": 1,
+    "study": 3,
+    "medicine": 3,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "medicine"
+  ],
+  "currentHp": 39,
+  "currentWillpower": 10,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "knight_chivalry",
+    "theurgist_warding",
+    "theurgist_divine_healer",
+    "spear_adept",
+    "cavalry_adept",
+    "light_magick_1",
+    "spellblade_1"
+  ],
+  "equippedWeaponIds": [
+    "glaive"
+  ],
+  "inventoryItemIds": [
+    "healing_potion",
+    "tome"
+  ],
+  "preparedSpellIds": [
+    "lay_on_hands",
+    "holy_smite",
+    "touch_of_haste"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "imposing_armor",
+  "mountId": "horse",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 7,
+        "awareness": 6,
+        "brawn": 9,
+        "coordination": 11,
+        "faith": 10,
+        "presence": 7,
+        "reason": 6
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 2,
+        "diplomacy": 1,
+        "study": 3,
+        "medicine": 3,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "knight_chivalry",
+        "theurgist_warding",
+        "theurgist_divine_healer"
+      ],
+      "combatTalentIds": [
+        "spear_adept",
+        "cavalry_adept",
+        "light_magick_1",
+        "spellblade_1"
+      ],
+      "equippedWeaponIds": [
+        "glaive"
+      ],
+      "equippedArmorId": "imposing_armor",
+      "inventoryItemIds": [
+        "healing_potion",
+        "tome"
+      ],
+      "mountId": "horse",
+      "preparedSpellIds": [
+        "lay_on_hands",
+        "holy_smite",
+        "touch_of_haste"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "medicine"
+      ]
+    }
+  }
+}

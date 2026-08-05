@@ -40,6 +40,12 @@
         "name": "Cataphract",
         "description": "A heavily armored rider wielding a massive polearm that controls the battlefield.",
         "playstyle": "Stand as a vanguard in front of your allies, punishing enemies that try to move past the immense range of your pike with enhanced Opportunity Attacks thanks to **Impenetrable** and **Opportunist**. Ride ahead and attack enemies with your great reach - though you should not separate too far from allies who could use your protection."
+      },
+      {
+        "id": "paladin",
+        "name": "Paladin",
+        "description": "A holy knight in shining armor, smiting enemies and blessing allies through the will of heaven.",
+        "playstyle": "placeholder"
       }
     ]
   },
