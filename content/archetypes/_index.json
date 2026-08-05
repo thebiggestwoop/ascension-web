@@ -141,6 +141,12 @@
         "name": "Plague Doctor",
         "description": "A grim physician who turns blood and sickness into a weapon, cursing enemies while keeping allies standing.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "nosferatu",
+        "name": "Nosferatu",
+        "description": "A predatory creature of the night who beguiles their prey before draining their very soul.",
+        "playstyle": "placeholder"
       }
     ]
   },

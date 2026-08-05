@@ -1,0 +1,158 @@
+{
+  "id": "1b222317-af67-47d2-8796-c475ce316bdb",
+  "name": "Nosferatu",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "brawn": 10,
+    "coordination": 8,
+    "awareness": 7,
+    "reason": 6,
+    "faith": 6,
+    "presence": 11
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 3,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Merchant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "diplomacy"
+  ],
+  "currentHp": 42,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "vizier_the_hand",
+    "vizier_silver_tongued",
+    "vizier_lull_into_security",
+    "dark_magick_1",
+    "thymocraft_1",
+    "augmentier_1",
+    "gremorie_1"
+  ],
+  "equippedWeaponIds": [
+    "handaxe"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "spell_implement"
+  ],
+  "preparedSpellIds": [
+    "soul_drain",
+    "soul_drain",
+    "siphoning_strike"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "heavy_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "brawn": 10,
+        "coordination": 8,
+        "awareness": 7,
+        "reason": 6,
+        "faith": 6,
+        "presence": 11
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 3,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Merchant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "vizier_the_hand",
+        "vizier_silver_tongued",
+        "vizier_lull_into_security"
+      ],
+      "combatTalentIds": [
+        "dark_magick_1",
+        "thymocraft_1",
+        "augmentier_1",
+        "gremorie_1"
+      ],
+      "equippedWeaponIds": [
+        "handaxe"
+      ],
+      "equippedArmorId": "heavy_armor",
+      "inventoryItemIds": [
+        "tome",
+        "spell_implement"
+      ],
+      "preparedSpellIds": [
+        "soul_drain",
+        "soul_drain",
+        "siphoning_strike"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "diplomacy"
+      ]
+    }
+  }
+}
