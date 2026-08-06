@@ -1,0 +1,160 @@
+{
+  "id": "86f1f20f-5b62-4d1f-878f-3dc7355e05ec",
+  "name": "Spellstalker",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 11,
+    "brawn": 7,
+    "coordination": 7,
+    "awareness": 9,
+    "reason": 10,
+    "faith": 6,
+    "presence": 6
+  },
+  "skills": {
+    "skirmish": 3,
+    "authority": 1,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 4
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "intrigue"
+  ],
+  "currentHp": 30,
+  "currentWillpower": 6,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "scoundrel_lockpicker",
+    "scoundrel_wallflower",
+    "scholar_meticulous",
+    "arcane_magick_1",
+    "shadow_cloak_1",
+    "warp_1",
+    "stealthy_fighter_1"
+  ],
+  "equippedWeaponIds": [
+    "dagger"
+  ],
+  "inventoryItemIds": [
+    "spell_implement",
+    "tome",
+    "healing_potion",
+    "buckler"
+  ],
+  "preparedSpellIds": [
+    "invisibilis",
+    "invisibilis",
+    "skip",
+    "electric_arc",
+    "frozen_strike"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 11,
+        "brawn": 7,
+        "coordination": 7,
+        "awareness": 9,
+        "reason": 10,
+        "faith": 6,
+        "presence": 6
+      },
+      "skills": {
+        "skirmish": 3,
+        "authority": 1,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 4
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "scoundrel_lockpicker",
+        "scoundrel_wallflower",
+        "scholar_meticulous"
+      ],
+      "combatTalentIds": [
+        "arcane_magick_1",
+        "shadow_cloak_1",
+        "warp_1",
+        "stealthy_fighter_1"
+      ],
+      "equippedWeaponIds": [
+        "dagger"
+      ],
+      "inventoryItemIds": [
+        "spell_implement",
+        "tome",
+        "healing_potion",
+        "buckler"
+      ],
+      "preparedSpellIds": [
+        "invisibilis",
+        "invisibilis",
+        "skip",
+        "electric_arc",
+        "frozen_strike"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "intrigue"
+      ]
+    }
+  }
+}

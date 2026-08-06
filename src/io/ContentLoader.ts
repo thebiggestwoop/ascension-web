@@ -51,6 +51,7 @@ import archetypeBulwarkJson from '@content/archetypes/spear/Bulwark.json'
 import archetypeMendicantJson from '@content/archetypes/light_magick/mendicant.json'
 import archetypeLuminaryJson from '@content/archetypes/light_magick/Luminary.json'
 import archetypeInquisitorJson from '@content/archetypes/light_magick/Inquisitor.json'
+import archetypeWarPriestJson from '@content/archetypes/light_magick/War-Priest.json'
 import archetypeBishopJson from '@content/archetypes/authority/Bishop.json'
 import archetypeLordJson from '@content/archetypes/authority/Lord.json'
 import archetypeStrategistJson from '@content/archetypes/authority/Strategist.json'
@@ -61,9 +62,11 @@ import archetypeReaverJson from '@content/archetypes/axe/Reaver.json'
 import archetypeFulgermancerJson from '@content/archetypes/arcane_magick/Fulgermancer.json'
 import archetypePyromancerJson from '@content/archetypes/arcane_magick/Pyromancer.json'
 import archetypeCryomancerJson from '@content/archetypes/arcane_magick/Cryomancer.json'
+import archetypeSpellstalkerJson from '@content/archetypes/arcane_magick/Spellstalker.json'
 import archetypeShadowCallerJson from '@content/archetypes/dark_magick/Shadow-Caller.json'
 import archetypePlagueDoctorJson from '@content/archetypes/dark_magick/Plague-Doctor.json'
 import archetypeNosferatuJson from '@content/archetypes/dark_magick/Nosferatu.json'
+import archetypeNightRiderJson from '@content/archetypes/dark_magick/Night-Rider.json'
 import archetypeHeavyBowmanJson from '@content/archetypes/bow/Heavy-Bowman.json'
 import archetypeOutriderJson from '@content/archetypes/bow/Outrider.json'
 import archetypeRangerJson from '@content/archetypes/bow/Ranger.json'
@@ -124,6 +127,7 @@ export const CoreContent = {
       mendicant: archetypeMendicantJson as IArchetypeCharacterData,
       luminary: archetypeLuminaryJson as IArchetypeCharacterData,
       inquisitor: archetypeInquisitorJson as IArchetypeCharacterData,
+      war_priest: archetypeWarPriestJson as IArchetypeCharacterData,
       bishop: archetypeBishopJson as IArchetypeCharacterData,
       lord: archetypeLordJson as IArchetypeCharacterData,
       strategist: archetypeStrategistJson as IArchetypeCharacterData,
@@ -134,9 +138,11 @@ export const CoreContent = {
       fulgermancer: archetypeFulgermancerJson as IArchetypeCharacterData,
       pyromancer: archetypePyromancerJson as IArchetypeCharacterData,
       cryomancer: archetypeCryomancerJson as IArchetypeCharacterData,
+      spellstalker: archetypeSpellstalkerJson as IArchetypeCharacterData,
       shadow_caller: archetypeShadowCallerJson as IArchetypeCharacterData,
       plague_doctor: archetypePlagueDoctorJson as IArchetypeCharacterData,
       nosferatu: archetypeNosferatuJson as IArchetypeCharacterData,
+      night_rider: archetypeNightRiderJson as IArchetypeCharacterData,
       heavy_bowman: archetypeHeavyBowmanJson as IArchetypeCharacterData,
       outrider: archetypeOutriderJson as IArchetypeCharacterData,
       ranger: archetypeRangerJson as IArchetypeCharacterData,

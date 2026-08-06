@@ -1,0 +1,164 @@
+{
+  "id": "cb00160d-9186-41aa-95c1-1490e8723a40",
+  "name": "Night Rider",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 6,
+    "brawn": 8,
+    "coordination": 10,
+    "awareness": 7,
+    "reason": 6,
+    "faith": 8,
+    "presence": 11
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 3,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 2
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Commoner"
+    },
+    {
+      "name": "Merchant"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "diplomacy"
+  ],
+  "currentHp": 36,
+  "currentWillpower": 8,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "witch_soul_read",
+    "witch_dark_power",
+    "witch_bargain_with_darkness",
+    "spear_adept",
+    "dark_magick_1",
+    "noctocraft_1",
+    "spellblade_1"
+  ],
+  "equippedWeaponIds": [
+    "lance"
+  ],
+  "inventoryItemIds": [
+    "round_shield",
+    "tome",
+    "healing_potion"
+  ],
+  "preparedSpellIds": [
+    "penumbra",
+    "shadow_blade",
+    "blood_bargain",
+    "siphoning_strike"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "mountId": "horse",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 6,
+        "brawn": 8,
+        "coordination": 10,
+        "awareness": 7,
+        "reason": 6,
+        "faith": 8,
+        "presence": 11
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 3,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 2
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Commoner",
+        "Merchant"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "witch_soul_read",
+        "witch_dark_power",
+        "witch_bargain_with_darkness"
+      ],
+      "combatTalentIds": [
+        "spear_adept",
+        "dark_magick_1",
+        "noctocraft_1",
+        "spellblade_1"
+      ],
+      "equippedWeaponIds": [
+        "lance"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "round_shield",
+        "tome",
+        "healing_potion"
+      ],
+      "mountId": "horse",
+      "preparedSpellIds": [
+        "penumbra",
+        "shadow_blade",
+        "blood_bargain",
+        "siphoning_strike"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "diplomacy"
+      ]
+    }
+  }
+}

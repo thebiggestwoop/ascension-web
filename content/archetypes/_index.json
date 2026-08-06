@@ -145,6 +145,12 @@
         "name": "Cryomancer",
         "description": "A hardy battlemage who chills foes to the bone and shields themselves in a ward of ice.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "spellstalker",
+        "name": "Spellstalker",
+        "description": "A cunning infiltrator who slips past enemies unseen, striking from the shadows with blade and Arcane Magick.",
+        "playstyle": "placeholder"
       }
     ]
   },
@@ -170,6 +176,12 @@
         "name": "Inquisitor",
         "description": "A relentless hunter of heretics and mages, striking down the unfaithful with holy fire and cutting words.",
         "playstyle": "placeholder"
+      },
+      {
+        "id": "war_priest",
+        "name": "War Priest",
+        "description": "A devout warrior who smashes foes with a blessed warhammer while channeling Light Magick to heal and protect.",
+        "playstyle": "placeholder"
       }
     ]
   },
@@ -194,6 +206,12 @@
         "id": "nosferatu",
         "name": "Nosferatu",
         "description": "A predatory creature of the night who beguiles their prey before draining their very soul.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "night_rider",
+        "name": "Night Rider",
+        "description": "A mounted lancer who rides down foes and curses their blood with the power of Dark Magick.",
         "playstyle": "placeholder"
       }
     ]

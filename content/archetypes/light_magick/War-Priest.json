@@ -1,0 +1,158 @@
+{
+  "id": "fd7fadd6-7163-4e2b-b720-4e33302a1278",
+  "name": "War Priest",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "brawn": 11,
+    "coordination": 8,
+    "awareness": 6,
+    "reason": 6,
+    "faith": 10,
+    "presence": 7
+  },
+  "skills": {
+    "skirmish": 4,
+    "authority": 1,
+    "diplomacy": 3,
+    "study": 3,
+    "medicine": 2,
+    "intrigue": 1
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "skirmish",
+    "diplomacy"
+  ],
+  "currentHp": 45,
+  "currentWillpower": 10,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "priest_heavenly_authority",
+    "priest_of_sacred_order",
+    "priest_pillar_of_salt",
+    "light_magick_1",
+    "luminurge_1",
+    "spellblade_1",
+    "mages_bane_1"
+  ],
+  "equippedWeaponIds": [
+    "warhammer"
+  ],
+  "inventoryItemIds": [
+    "tome",
+    "healing_potion",
+    "round_shield"
+  ],
+  "preparedSpellIds": [
+    "lay_on_hands",
+    "holy_smite",
+    "guiding_ray",
+    "castigate"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "medium_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "brawn": 11,
+        "coordination": 8,
+        "awareness": 6,
+        "reason": 6,
+        "faith": 10,
+        "presence": 7
+      },
+      "skills": {
+        "skirmish": 4,
+        "authority": 1,
+        "diplomacy": 3,
+        "study": 3,
+        "medicine": 2,
+        "intrigue": 1
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "priest_heavenly_authority",
+        "priest_of_sacred_order",
+        "priest_pillar_of_salt"
+      ],
+      "combatTalentIds": [
+        "light_magick_1",
+        "luminurge_1",
+        "spellblade_1",
+        "mages_bane_1"
+      ],
+      "equippedWeaponIds": [
+        "warhammer"
+      ],
+      "equippedArmorId": "medium_armor",
+      "inventoryItemIds": [
+        "tome",
+        "healing_potion",
+        "round_shield"
+      ],
+      "preparedSpellIds": [
+        "lay_on_hands",
+        "holy_smite",
+        "guiding_ray",
+        "castigate"
+      ],
+      "combatSkillFocuses": [
+        "skirmish",
+        "diplomacy"
+      ]
+    }
+  }
+}
