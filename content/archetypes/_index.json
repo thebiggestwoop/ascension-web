@@ -131,7 +131,7 @@
       {
         "id": "fulgermancer",
         "name": "Fulgermancer",
-        "description": "A quick, elusive spellblade who strikes with lightning and blinks past danger, vanishing before enemies can retaliate.",
+        "description": "A quick, elusive mage who strikes with lightning and blinks past danger, vanishing before enemies can retaliate.",
         "playstyle": "placeholder"
       },
       {
@@ -168,7 +168,7 @@
       {
         "id": "luminary",
         "name": "Luminary",
-        "description": "A radiant vessel of Heaven's will, mending allies and channeling divine visions on the battlefield.",
+        "description": "A radiant vessel of Heaven's will, mending allies and channeling searing divine on the battlefield.",
         "playstyle": "placeholder"
       },
       {
@@ -211,7 +211,7 @@
       {
         "id": "night_rider",
         "name": "Night Rider",
-        "description": "A mounted lancer who rides down foes and curses their blood with the power of Dark Magick.",
+        "description": "A mounted lancer who rides down foes and strikes at their soul with the power of Dark Magick.",
         "playstyle": "placeholder"
       }
     ]
@@ -237,6 +237,12 @@
         "id": "strategist",
         "name": "Strategist",
         "description": "A calculating tactician who sets traps, reads the battlefield, and directs allies to strike at the perfect moment.",
+        "playstyle": "placeholder"
+      },
+      {
+        "id": "dark_vizier",
+        "name": "Dark Vizier",
+        "description": "A scheming manipulator who bends others to their will through silver words and forbidden magick.",
         "playstyle": "placeholder"
       }
     ]

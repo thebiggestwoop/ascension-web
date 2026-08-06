@@ -1,0 +1,154 @@
+{
+  "id": "eece764b-a774-4115-8c8b-29b423fe0255",
+  "name": "Dark Vizier",
+  "level": 0,
+  "xp": 0,
+  "attributes": {
+    "agility": 8,
+    "brawn": 7,
+    "coordination": 6,
+    "awareness": 9,
+    "reason": 7,
+    "faith": 8,
+    "presence": 11
+  },
+  "skills": {
+    "skirmish": 1,
+    "authority": 3,
+    "diplomacy": 2,
+    "study": 3,
+    "medicine": 1,
+    "intrigue": 4
+  },
+  "focuses": [],
+  "values": [
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    },
+    {
+      "text": "",
+      "active": true,
+      "challenged": false
+    }
+  ],
+  "commonCause": {
+    "text": "",
+    "active": true,
+    "challenged": false
+  },
+  "traits": [
+    {
+      "name": "Noble"
+    },
+    {
+      "name": "Defining Feature: placeholder"
+    },
+    {
+      "name": "Spellcaster"
+    }
+  ],
+  "combatSkillFocuses": [
+    "authority",
+    "intrigue"
+  ],
+  "currentHp": 24,
+  "currentWillpower": 8,
+  "temporaryHp": 0,
+  "temporaryResistance": 0,
+  "statuses": [],
+  "determination": 1,
+  "speedBonus": 0,
+  "talentIds": [
+    "vizier_silver_tongued",
+    "vizier_devils_bargain",
+    "vizier_the_hand",
+    "tactician",
+    "feint_1",
+    "helping_hand_1",
+    "dark_magick_1"
+  ],
+  "equippedWeaponIds": [
+    "throwing_knife",
+    "shortsword"
+  ],
+  "inventoryItemIds": [
+    "healing_potion",
+    "buckler"
+  ],
+  "preparedSpellIds": [
+    "umbral_shroud",
+    "geist_strike"
+  ],
+  "usedGeneralItemIds": [],
+  "levelUpHistory": [],
+  "notes": "",
+  "equippedArmorId": "light_armor",
+  "creationRecord": {
+    "method": "quick_build",
+    "quickBuild": {
+      "attributes": {
+        "agility": 8,
+        "brawn": 7,
+        "coordination": 6,
+        "awareness": 9,
+        "reason": 7,
+        "faith": 8,
+        "presence": 11
+      },
+      "skills": {
+        "skirmish": 1,
+        "authority": 3,
+        "diplomacy": 2,
+        "study": 3,
+        "medicine": 1,
+        "intrigue": 4
+      },
+      "focusTexts": [],
+      "valueTexts": [],
+      "traitNames": [
+        "Noble"
+      ],
+      "definingFeatureText": "placeholder",
+      "narrativeTalentIds": [
+        "vizier_silver_tongued",
+        "vizier_devils_bargain",
+        "vizier_the_hand"
+      ],
+      "combatTalentIds": [
+        "tactician",
+        "feint_1",
+        "helping_hand_1",
+        "dark_magick_1"
+      ],
+      "equippedWeaponIds": [
+        "throwing_knife",
+        "shortsword"
+      ],
+      "equippedArmorId": "light_armor",
+      "inventoryItemIds": [
+        "healing_potion",
+        "buckler"
+      ],
+      "preparedSpellIds": [
+        "umbral_shroud",
+        "geist_strike"
+      ],
+      "combatSkillFocuses": [
+        "authority",
+        "intrigue"
+      ]
+    }
+  }
+}
