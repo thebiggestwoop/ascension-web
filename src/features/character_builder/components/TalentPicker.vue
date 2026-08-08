@@ -194,6 +194,24 @@ const combatContinuationGroups = computed(() =>
     .filter((g) => g.talents.length > 0),
 )
 
+/**
+ * If a change elsewhere (deselecting a prerequisite Talent, reallocating Attribute/Skill
+ * points, losing a Magick Domain) causes an already-selected Combat Talent to no longer meet
+ * its prerequisites, automatically deselect it - a disabled checkbox can't be unchecked, so
+ * leaving it selected would strand the player unable to remove it. Narrative Talents are exempt:
+ * their prerequisites are advisory (GM's discretion), never blocking, so they're never
+ * force-removed this way.
+ */
+watch(prereqContext, () => {
+  const stillValid = selectedCombatIds.value.filter((id) => {
+    const talent = CoreContent.talents.combat.find((t) => t.id === id)
+    return !talent || meetsTalentPrerequisites(talent.prerequisites, prereqContext.value)
+  })
+  if (stillValid.length !== selectedCombatIds.value.length) {
+    selectedCombatIds.value = stillValid
+  }
+})
+
 watch(
   [selectedNarrativeIds, selectedCombatIds],
   () => {

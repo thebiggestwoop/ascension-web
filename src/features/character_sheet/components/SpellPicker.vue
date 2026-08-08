@@ -82,7 +82,20 @@ function countOccurrences(ids: string[]): Record<string, number> {
   return counts
 }
 
-const preparedCounts = ref<Record<string, number>>(countOccurrences(props.initialPreparedSpellIds))
+/** True if `spellId` is still preparable under the current domainAccess - false for a spell
+ * whose domain/tier was lost since it was prepared (e.g. its Magick Domain Talent got
+ * deselected). Filtered out below so a now-inaccessible spell can't sit invisibly "prepared,"
+ * silently eating Spell Slots the player has no way to see or free up. */
+function isSpellAccessible(spellId: string): boolean {
+  const spell = allSpells.find((s) => s.id === spellId)
+  if (!spell) return false
+  const access = domainAccess.find((d) => d.domain === spell.domain)
+  return !!access && spell.tier <= access.maxTier
+}
+
+const preparedCounts = ref<Record<string, number>>(
+  countOccurrences(props.initialPreparedSpellIds.filter(isSpellAccessible)),
+)
 
 function slotsUsedExcept(excludeId?: string): number {
   let used = 0
