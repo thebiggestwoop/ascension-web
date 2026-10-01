@@ -1,0 +1,887 @@
+{
+  "source": "Ascension_BETA0.8Rules.html",
+  "chapters": [
+    "Chapter Three: Basic Rules",
+    "Chapter Four: Advanced Rules"
+  ],
+  "sections": [
+    {
+      "title": "Chapter Three: Basic Rules",
+      "chapter": "Chapter Three: Basic Rules",
+      "intro": true,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "This chapter covers the core rules of Ascension, which will be used throughout the rest of the game. These rules are the foundation of this game, and will be referenced regularly in other chapters. Every player should have a basic understanding of these concepts during play."
+        }
+      ],
+      "id": "chapter-three-basic-rules-chapter-three-basic-rules"
+    },
+    {
+      "title": "Attempting Tasks",
+      "chapter": "Chapter Three: Basic Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In both Combat and Narrative play, characters determine the outcome of their actions by attempting Tasks. Player characters are assumed to be skilled at what they do, and so do not need to attempt a Task for simple, everyday actions like opening a door or making a cup of tea. Tasks are needed when the odds are uncertain, or when success or failure would move the story forward in interesting ways, like poisoning a cup of tea, escaping from a prison cell, or convincing a king to lend you his aid."
+        },
+        {
+          "type": "paragraph",
+          "text": "Once the GM determines that an action a player would like to take requires a Task,  the following process for attempting a Task is used to determine the results:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "The GM determines which Attribute and Skill are appropriate for the Task being attempted, as well as if any of the character’s Focuses apply. If attempting a specific action listed by the rulebook, the Attribute and Skill required for the Task will be listed (this primarily affects combat). Players may also suggest an Attribute/Skill combination, but the GM has the final say. Once the Attribute and Skill have been chosen, add together the two numbers to create your **Target Number.**",
+              "level": 0,
+              "marker": "1."
+            },
+            {
+              "text": "The GM sets the Task’s base Difficulty on a scale of 0 to 6 (in an extreme circumstance, this Difficulty may go higher). This Difficulty is the number of successes required in order to successfully accomplish the Task. Once the base Difficulty has been declared, the Players and/or the GM may adjust it by creating Advantages and Complications respectively.",
+              "level": 0,
+              "marker": "2."
+            },
+            {
+              "text": "The player creates their dice pool. Each dice pool is made up of 2d20s by default, though additional dice may be added via abilities or special effects, as well as purchasing dice by spending Momentum and/or adding to Threat. Once the dice pool is created, the player rolls all their dice at once.",
+              "level": 0,
+              "marker": "3."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "**The maximum number of dice in a dice pool is 5d20: 2d20 from the default dice pool + up to 3d20 purchased or gained from abilities.**",
+          "indent": true
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "Each die that rolls a number equal to or less than the Task’s Target Number counts as a single success. If a die rolls a 1, it is considered a critical success and generates two successes instead of one. If a die rolls a 20, it automatically generates a Complication. If a player had applied a Focus to this Task, then each die that rolls a number equal to or less than the Skill being used counts as a critical success (there is no benefit to having more than one applicable Focus).",
+              "level": 0,
+              "marker": "4."
+            },
+            {
+              "text": "If the number of successes rolled is equal to or greater than the Task’s Difficulty, the player has succeeded, and the Task is completed. If the number of successes is less than the Task’s Difficulty, the player has failed to complete the Task. Every success generated above the Task’s Difficulty rating generates a point of Momentum.",
+              "level": 0,
+              "marker": "5."
+            },
+            {
+              "text": "The GM describes the outcome of the Task, applying the effects of any Complications created.",
+              "level": 0,
+              "marker": "6."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Task Difficulty"
+        },
+        {
+          "type": "paragraph",
+          "text": "Before a Task is attempted, the GM must set the Difficulty. When setting the Difficulty, a GM should take into account the circumstances under which the player is attempting to take the action. High stress environments or situations where the character is lacking tools or information may indicate that a Task should be harder to accomplish, while Tasks may be easier in situations where the character is very familiar with the task at hand or they have plenty of time/tools at their disposal. Most Tasks listed as part of specific combat actions will have the Difficulty listed, so the GM does not set the Difficulty for those Tasks, though they may spend Threat to increase the Difficulty."
+        },
+        {
+          "type": "paragraph",
+          "text": "Players should always know the Difficulty of a Task before they attempt them; their characters are competent professionals who can easily evaluate the difficulty of their actions. This also allows Players to strategize in order to determine the best way to succeed."
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "Difficulty",
+              "Descriptor",
+              "Examples"
+            ],
+            [
+              "1",
+              "Routine",
+              "• Sneaking into a small residential house that you know is empty\n• Convincing a king to pay for a completed contract\n• Locating a common book in a familiar library"
+            ],
+            [
+              "2",
+              "Intermediate",
+              "• Sneaking into a noble’s house with a light guard patrol\n• Convincing a king to hire you for mercenary work\n• Locating a common book in an unfamiliar library"
+            ],
+            [
+              "3",
+              "Challenging",
+              "• Sneaking into a palace with a heavy guard patrol\n• Convincing a king to buy a very pricey piece of artwork\n• Locating a book on a niche subject in an unfamiliar library"
+            ],
+            [
+              "4",
+              "Formidible",
+              "• Sneaking into a palace with a heavy guard patrol while wearing Overt armor\n• Convincing a king who doesn’t like you to buy a very expensive piece of art\n• Locating a wildly obscure book in an unfamiliar library"
+            ],
+            [
+              "5",
+              "Daunting",
+              "• Sneaking into the palace while the guards are on high alert\n• Convincing a king to give you unlimited access to his treasury to fund a very expensive construction project\n• Locating a wildly obscure book in an unfamiliar library that has not been maintained in over a decade"
+            ],
+            [
+              "6",
+              "Nearly Impossible",
+              "• Sneaking into the palace while the guards are on high alert and know to watch for you specifically\n• Convincing a king to let you go free after you were caught trying to transport all the gold of his treasury elsewhere\n• Locating a wildly obscure book in an unfamiliar library that has been purposefully hidden"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Difficulty Zero Tasks"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes circumstances or special abilities might reduce a Task’s Difficulty to 0, or a Task might be so easy as to be effortless, with no possibility of failure. If a Task is Difficulty 0, it is automatically successful and characters who attempt the Task cannot outright fail. Players may choose whether or not to roll the dice to attempt a Difficulty 0 Task: at Difficulty 0, every success rolled generates Momentum, but there may be the chance to gain Complications."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Opposed Tasks"
+        },
+        {
+          "type": "paragraph",
+          "text": "In situations where a character is attempting to overcome a direct opponent, you may attempt an **Opposed Task**. In every Opposed Task, there will be an **active character** attempting to do something (shove someone, stab them with a knife, etc.), and a **reactive character** who is attempting to resist."
+        },
+        {
+          "type": "paragraph",
+          "text": "When attempting an Opposed Task, the reactive character sets the Difficulty by rolling their dice pool. The reactive character isn’t rolling against a set Difficulty, but is just trying to generate as many successes as possible. The number of successes that the reactive character generates becomes the Difficulty rating for the active character’s roll. After the reactive character rolls, the active character attempts their side of the Task, attempting to beat the number of successes generated by the reactive character."
+        },
+        {
+          "type": "paragraph",
+          "text": "If the active character succeeds, they succeed in their goal and may generate/spend Momentum as usual. If the active character fails, the reactive character generates **Bonus Momentum** for every success fewer than the set Difficulty. _For example: if the reactive character’s successes put the Difficulty at 3 but the active character only rolled 2 successes, the reactive character generates 1 Bonus Momentum which they may not save._"
+        },
+        {
+          "type": "paragraph",
+          "text": "If the reactive character chooses not to resist in an Opposed Task, the task instead reverts to being a static Difficulty task, which has a Difficulty of 1 unless otherwise stated."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Complications"
+        },
+        {
+          "type": "paragraph",
+          "text": "Things don’t always work out how players envision, and even when a Task is successful, it can still end up going slightly awry if the player generated a Complication on their dice roll, or because the GM has spent Threat to create a Complication. Complications don’t change the general outcome of a roll—if the roll is a success, the character succeeds in their aim regardless of the Complications—but they may create other difficult circumstances that inhibit a character from taking further action, or may create new problems that the character must now address."
+        },
+        {
+          "type": "paragraph",
+          "text": "Complications come in two forms: an immediate narrative consequence, or Threat. Complications that create narrative consequences will normally increase the Difficulty of the next Task the character wishes to attempt by one, or make certain actions impossible."
+        },
+        {
+          "type": "paragraph",
+          "text": "If the GM doesn’t want to inflict a consequence on the player, they may instead turn that Complication into 2 Threat, which they can bank or spend immediately. Similarly, for NPCs that generate Complications, they must either suffer the narrative consequence or the GM can remove 2 Threat from the Threat pool to ignore it."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Complication Range"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes the circumstances of a situation may not make a Task more difficult, but make its consequences more uncertain. In these situations, the Complication Range of a Task might increase, making it more likely for a player to generate Complications on their roll. In the same way that Focuses might increase the range of critical success, increasing the Complication Range makes it so that numbers higher than 20 can also generate Complications if rolled on the die. Every Task has a default Complication Range of 1."
+        },
+        {
+          "type": "paragraph",
+          "text": "Certain circumstances or abilities may increase the Complication Range of a Task, and GMs may also increase the Complication Range by spending Threat equal to the amount increased above one. When the Complication range of a Task is increased, it applies to all dice rolls on that Task, including assistants. A Task’s Complication Range can never be increased by more than 5."
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "Complication Range",
+              "Threat Cost",
+              "Complications Occur On…"
+            ],
+            [
+              "1",
+              "-",
+              "20"
+            ],
+            [
+              "2",
+              "1",
+              "19, 20"
+            ],
+            [
+              "3",
+              "2",
+              "18, 19, 20"
+            ],
+            [
+              "4",
+              "3",
+              "17, 18, 19, 20"
+            ],
+            [
+              "5",
+              "4",
+              "16, 17, 18, 19, 20"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Success at Cost"
+        },
+        {
+          "type": "paragraph",
+          "text": "Sometimes players may find it critically important or even necessary to succeed on a Task no matter what. In these circumstances, they may ask the GM (or the GM may offer) to succeed at cost. This option may be offered either before the roll is attempted or after a failed roll, but before the consequences of the roll have been described, and may not be offered for combat tasks unless explicitly listed in those rules. When a player chooses to succeed at cost, the Task is considered to have been successful, but it generates one automatic Complication in addition to any that have been generated from the Task’s roll (if applicable)."
+        },
+        {
+          "type": "paragraph",
+          "text": "The GM may find it appropriate to increase the amount of automatic Complications generated from succeeding at cost if the circumstances call for it, though this should be made known to players before they decide to succeed at cost."
+        },
+        {
+          "type": "paragraph",
+          "text": "Momentum cannot be generated from or spent on a Task that has succeeded at cost."
+        }
+      ],
+      "id": "chapter-three-basic-rules-attempting-tasks"
+    },
+    {
+      "title": "Assisting with Tasks",
+      "chapter": "Chapter Three: Basic Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "While all characters are assumed to be competent and capable in their own right, circumstances, consequences, and abilities may still make the likelihood of success unlikely or even impossible without help. Ascension provides several ways for players to improve the odds of success on their Tasks, and one of these is assistance from allies, whose dice rolls may apply to the same Task."
+        },
+        {
+          "type": "paragraph",
+          "text": "A character attempting a Task may be assisted by one ally at no cost, though additional characters may assist at the cost of one Momentum per character. In order to assist, a player must describe how their character is helping with the Task, and with the GM’s approval, will then roll 1d20 using their own Target Number and any applicable Focus. As long as the Task’s leader generates at least one success, all successes generated by assistants count towards the result of the Task. If the leader generates no successes, then the assistants’ successes do not count, though Complications rolled by assistants always count towards the result of the Task regardless of the leader’s roll."
+        },
+        {
+          "type": "paragraph",
+          "text": "Assisting characters do not have to use the same Attribute and Skill as the leading character, and cannot purchase additional dice using Momentum."
+        }
+      ],
+      "id": "chapter-three-basic-rules-assisting-with-tasks"
+    },
+    {
+      "title": "Momentum and Threat",
+      "chapter": "Chapter Three: Basic Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Whenever a character generates more successes on a Task than the set Difficulty, they generate **Momentum.** Momentum is one of the most important resources that players have in Ascension, as it can be spent to improve their chances of success on Tasks, gain additional benefits from a successful Task, activate abilities, and so on."
+        },
+        {
+          "type": "paragraph",
+          "text": "Whenever a player in the party attempts a Task and succeeds, every additional success generated above a Task’s Difficulty generates a single point of Momentum, which may be spent by the player immediately or can be saved to the Momentum **group pool** for later use. Any member of the party may save or spend Momentum in the group pool. The group pool may have a maximum of 6 Momentum in it at once, and cannot be saved between sessions, with the Momentum in the group pool going back to zero at the start of each new session."
+        },
+        {
+          "type": "paragraph",
+          "text": "NPCs don’t generate or spend Momentum in this way, instead they interact with the GM’s version of Momentum, called **Threat**, which is explained further in the rules on Threat."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Spending Momentum"
+        },
+        {
+          "type": "paragraph",
+          "text": "The most common use for spending Momentum is improving the odds of a Task by purchasing extra dice or reducing its Difficulty via creating Advantages. Momentum can also be spent to improve the outcome of a Task, such as by gaining additional information, or adding additional damage."
+        },
+        {
+          "type": "paragraph",
+          "text": "After the roll to attempt a Task has been completed, the GM will describe the outcome of that roll. If successful, the players may spend Momentum they’ve generated on that Task to improve its outcome, and any additional Momentum that goes unspent is saved into the group pool. Some Momentum spends do not depend on the outcome of a Task and may be used at any time, typically before a Task is attempted."
+        },
+        {
+          "type": "paragraph",
+          "text": "Momentum can be spent in the following ways:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Extra Dice:** One of the most common and straightforward ways to spend Momentum is to add extra d20s to your roll to attempt a Task. The decision to purchase additional dice must be made before any dice are rolled. The Momentum cost for each d20 increases for each die purchased: the first die costs 1 Momentum, the second die costs 2 Momentum, and a third die costs 3 Momentum (purchasing two bonus dice would cost 3 Momentum, purchasing three would cost 6). No more than 3 dice can be bought for a single Task. If an ability or effect would grant you an additional die on a Task for free, the cost of additional dice remains the same—i.e. if you gain one extra die for free, purchasing a second die still costs 2 Momentum.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Create an Advantage:** Players may spend 2 Momentum to create an advantageous circumstance for a character in a scene, though the Advantage must make logical sense for something that could occur in that scene (e.g. yelling at an ally to “duck!” to give them an Advantage on their Task to defend against a falling hazard). When a character uses an Advantage, they lower the Difficulty on their next Task by one. Only one character can benefit from an Advantage at a time, and once an Advantage has been used, it goes away. Players may also use a created Advantage to remove a Complication currently in play, instead of lowering the Difficulty on a Task.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Create a Problem:** Players may spend 2 Momentum to make an obstacle or create a difficult circumstance for an opponent, increasing the Difficulty of an opponent’s next Task by 1 for every 2 Momentum spent. The decision to increase a Task’s Difficulty must be made before any dice are rolled for that Task.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Obtain Information:** Players may spend Momentum generated after a successful Task to gain information about the situation at hand. Per 1 Momentum spent, players may ask the GM a question, though the questions must be relevant to the scene and must have answers that their characters could reasonably know or find out from that situation. The GM must answer honestly, though does not need to give complete information.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Special Abilities:** Some special abilities from Talents may require a player to spend Momentum in order to activate their effects.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Bonus Momentum"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some abilities or situations may grant **Bonus Momentum** under certain circumstances. Bonus Momentum may be spent like normal Momentum, but it cannot be saved into the group pool. If it is not spent immediately, it goes away."
+        },
+        {
+          "type": "paragraph",
+          "text": "Bonus Momentum cannot be gained on a failed Task."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Threat"
+        },
+        {
+          "type": "paragraph",
+          "text": "In the same way that players generate and save Momentum, the GM has a similar resource called **Threat,** which they can use to improve the odds for NPCs and inflict challenges on the players. Threat is also a way that the game builds and maintains tension: the more Threat the GM has, the more likely that something is about to go wrong, as the GM gains more resources to create Complications."
+        },
+        {
+          "type": "paragraph",
+          "text": "The GM begins each session with a number of Threat equal to the number of players, and may gain more in the following ways:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Instead of Momentum:** When using a Momentum Spend, players may choose to, rather than spend Momentum, add to Threat. Every point of Threat given to the GM counts as one point of Momentum towards the player’s Momentum Spend.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Complications:** Whenever a player rolls a Complication on a Task, the GM may choose to “buy off” the Complication instead of applying it, adding 2 to Threat.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**NPC Momentum:** When NPCs generate more successes than the Difficulty of their Task, they add the excess successes to the Threat pool, just like players do with Momentum.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The GM may also spend Threat in the following ways:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Extra Dice:** NPCs may spend Threat to get extra dice in the same way that players spend Momentum to get extra dice.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**NPC Complications:** When an NPC rolls a Complication on a Task, the GM may spend 2 Threat to “buy off” the Complication and get rid of it.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Create Complication:** The GM may spend 2 Threat in order to create a new Complication.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Increase Complication Range:** The GM may spend an amount of Threat equal to the range increase to increase the Complication range for a player’s Task.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        }
+      ],
+      "id": "chapter-three-basic-rules-momentum-and-threat"
+    },
+    {
+      "title": "Determination",
+      "chapter": "Chapter Three: Basic Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In addition to Momentum, players have access to one more resource that they can use to improve their odds or unlock special features, called **Determination.** Determination is a special resource that reflects the special position of your characters as the protagonists in their story, allowing them to push themselves beyond their average abilities to achieve spectacular results."
+        },
+        {
+          "type": "paragraph",
+          "text": "Every character begins each session with one point of Determination, and may gain more Determination by interacting with their Values. Only Determination gained during a session may be saved for use in later sessions; if you do not spend the point of Determination that you gain automatically at the start of each session, it does not roll over. **Characters may not have more than 3 points of Determination at a time and must discard any excess.**"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Spending Determination"
+        },
+        {
+          "type": "paragraph",
+          "text": "When faced with a difficult situation, characters may spend Determination by acting in accordance with their Values in order to improve their odds. If a character’s Value would help them in a situation by driving them forward or motivating them, they may also spend Determination."
+        },
+        {
+          "type": "paragraph",
+          "text": "You may spend Determination in the following ways:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Perfect Opportunity:** You spend your Determination to turn one of the dice in your pool into a 1 instead of rolling it (generating two automatic successes). You must declare this before the roll is attempted.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Second Chance:** You spend your Determination to reroll any number of dice in your dice pool. You may do this after seeing the result of the roll, but before the GM describes the outcome.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Some Talents may grant special or unique uses for spending Determination, but you must still call upon a Value in the normal way in order to use them."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Gaining Determination"
+        },
+        {
+          "type": "paragraph",
+          "text": "Characters gain Determination when their Values are tested and would pose challenges to them or hold them back from following through on their current course of action. When a character is about to attempt a Task or perform an action that would be in direct opposition to one of their Values, the GM may prompt them to either **Comply** with or **Challenge** their Value, gaining a point of Determination in the process."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Comply:** Your Value conflicts with your current course of action, and you choose to comply with it. You suffer an immediate Complication, which either makes your current action more difficult, or prevents you from doing it altogether, forcing you to change course. Discuss with your GM and decide together on an appropriate Complication and how it would affect your character. Once the Complication has been played out, you gain a point of Determination.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Challenge:** Your Value conflicts with your current course of action, and so you challenge that Value, crossing it out on your character sheet and moving forward with your current action as though you no longer have it. You gain a point of Determination, but cannot use your crossed out Value again (see **Recovering Values** below).",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Players may also suggest to GMs moments that may be applicable for their character’s Values to be tested. If the GM agrees, the character may Comply with or Challenge the Value as they see fit."
+        },
+        {
+          "type": "paragraph",
+          "text": "During combat, characters may also gain Determination through completing bonus objectives, goals set by the GM to complete that are not part of the main victory condition."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Recovering Values"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you have crossed out Values, your character’s beliefs have grown unsteady or uncertain; they’ve challenged something fundamental that they hold dear and now must search themselves and the world in order to find some stability again."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you recover a crossed out Value, you will rewrite or fully replace your old Value with a new one. Whether it is a small shift to your character’s beliefs, or a large change that has changed their worldview entirely, your new Value should reflect the new realization and reordering of your character’s belief system."
+        },
+        {
+          "type": "paragraph",
+          "text": "You may recover a crossed out Value during a session, but only after a scene in which your character does not spend or gain any Determination and contemplates their beliefs and place in the world, or discusses them with another character. Otherwise, you may recover crossed out Values in between sessions. Once recovered, new Values may be used as normal."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Common Cause"
+        },
+        {
+          "type": "paragraph",
+          "text": "In addition to using/challenging Values in order to use Determination, characters may also appeal to their Common Cause. Each party should have a Common Cause, an agreed upon directive which defines the characters’ general goal or goals during their adventures, whether short or long term. The Common Cause can be a specific goal that changes as the goal is met, like, _“Depose Duke Wainwright,”_ or it can be a broader or more general edict about the party’s convictions, like, _“Defend and protect the kingdom of Thalore.”_"
+        },
+        {
+          "type": "paragraph",
+          "text": "The Common Cause can also be challenged to gain Determination in the same way as Values in order for the entire party to gain Determination. If the party agrees that the Common Cause conflicts with their current course of action, they may choose to challenge it, each crossing it out on their sheet and gaining a point of Determination. However, once the Common Cause has been challenged, it cannot be used by any character to spend Determination for the rest of the session. The players may then replace the Common Cause in order to use it again."
+        }
+      ],
+      "id": "chapter-three-basic-rules-determination"
+    },
+    {
+      "title": "Chapter Four: Advanced Rules",
+      "chapter": "Chapter Four: Advanced Rules",
+      "intro": true,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "This chapter contains several additional rules that GMs may use when players are attempting particularly difficult actions or actions that occur over long periods of time."
+        }
+      ],
+      "id": "chapter-four-advanced-rules-chapter-four-advanced-rules"
+    },
+    {
+      "title": "Group Tasks",
+      "chapter": "Chapter Four: Advanced Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Sometimes a circumstance may arise that would cause every character in the party to attempt the same Task as part of a communal action, like sneaking out of a prison together. When this occurs, the GM may ask the party to perform a **Group Task.** When attempting a Group Task, the GM sets the Difficulty and requisite Attribute/Skill combination for the Task which each party member must attempt, generating Momentum and Complications as usual. However, the success of the Group Task as a whole is determined by how many members of the party succeed on their Task. If at least half of the party succeeds, then the Group Task is successful, but with an automatic Complication generated for each party member that fails. If at least half of the party fails, then the Group Task fails, and no additional Complications are generated."
+        },
+        {
+          "type": "paragraph",
+          "text": "Characters may not assist each other when attempting a Group Task."
+        }
+      ],
+      "id": "chapter-four-advanced-rules-group-tasks"
+    },
+    {
+      "title": "Challenges",
+      "chapter": "Chapter Four: Advanced Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Whenever a circumstance or scenario would require significant effort from the entire party over a longer period of time in order to accomplish, it is called a **Challenge**. A Challenge consists of two or more Tasks, called **Key Tasks**, whose Attribute/Skill combination and Difficulty are determined by the GM. In a typical Challenge, the Key Tasks may be attempted in any order, but they must all be completed successfully in order to complete the Challenge. If a single character attempts more than one Key Task, the Difficulty increases by 1 cumulatively for every Key Task after the first. Characters may assist each other when attempting Key Tasks, however each character may only assist on a Key Task once during a Challenge."
+        },
+        {
+          "type": "paragraph",
+          "text": "Characters may also attempt Tasks other than the Key Tasks during a Challenge if they wish. These additional Tasks will not contribute directly to completing the Challenge, but may be used to contribute indirectly by generating Momentum, discovering new information, creating Advantages, or anything otherwise helpful."
+        },
+        {
+          "type": "paragraph",
+          "text": "The GM may introduce Complications as usual during a Challenge, and they may also make Challenges more complex by requiring the Key Tasks to be performed in a specific Order, or by making Key Tasks into Opposed Tasks when the players are facing direct opposition."
+        },
+        {
+          "type": "paragraph",
+          "text": "_Lorenz and his companions have signed up to compete in a grand tournament. There are three major events that the party will need to accomplish successfully in order to win, which the GM designates as the Challenge’s Key Tasks: jousting, a Difficulty 2 Coordination + Skirmish Task; archery, a Difficulty 2 Awareness + Skirmish Task; and the melee, an Opposed Brawn or Agility + Skirmish Task._",
+          "indent": true
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Timed Challenges"
+        },
+        {
+          "type": "paragraph",
+          "text": "Another way a GM can add complexity and increase the tension of a Challenge is by adding time pressure in the form of **intervals**. The length of each interval is determined by the GM before the Challenge begins, and should be an amount of time that makes sense for the kind of actions taking place—a timed Challenge to break into a vault might have five minute intervals, while a timed Challenge to sail a ship from port to port might have intervals that are several days."
+        },
+        {
+          "type": "paragraph",
+          "text": "When the Challenge begins, the GM will inform the players the number of intervals that the Challenge must be completed within, and should give the players some idea of the consequences if the Challenge is not completed on time. Every Key Task attempted during a Challenge, whether it succeeds or fails, takes two intervals of time."
+        },
+        {
+          "type": "paragraph",
+          "text": "After successfully completing a Key Task, players may spend 2 Momentum to reduce the time taken by 1 interval. If the Task was failed, players may still reduce the time taken by 1 interval, but must give 2 Threat to the GM instead of spending Momentum."
+        },
+        {
+          "type": "paragraph",
+          "text": "Players may attempt additional Tasks as usual during a Timed Challenge, which may or may not take intervals according to the GM’s discretion. Any successful Tasks or Advantages made to extend the time limit increase the limit by 1 interval, and Complications may reduce the time limit by 1 interval."
+        },
+        {
+          "type": "paragraph",
+          "text": "_Rylan and their companions are trying to rescue a prisoner from the king’s dungeons while the prison warden is distracted by the ball upstairs. There are three Key Tasks involved in this rescue—finding the secret passage into the prison, picking the lock on the prisoner’s cell, and convincing the prisoner to escape with them. The GM decides this is a timed Challenge, as the warden will be returning to check on the prison in an hour, and sets the intervals at 10 minutes each, so that each Key Task takes 20 minutes._",
+          "indent": true
+        }
+      ],
+      "id": "chapter-four-advanced-rules-challenges"
+    },
+    {
+      "title": "Extended Tasks",
+      "chapter": "Chapter Four: Advanced Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "While Challenges can be used to represent when many smaller actions are needed to achieve a single overarching goal, **Extended Tasks** can be used to represent when the players are facing a high pressure situation in which accomplishing a single action is too complex to be achieved in a single Task, and instead must be worked on over a period of time."
+        },
+        {
+          "type": "paragraph",
+          "text": "Every Extended Task has a **Progress Bar**, which is the measure of how much **Progress** is required in order to successfully accomplish your goal. During an Extended Task, characters will attempt multiple tasks called Progression Tasks, with each successful Task allowing them to roll [CD] to generate an amount of Progress, similar to how damage is rolled after a successful attack in combat. An Extended Task is completed when players generate enough Progress to fill the Progress Bar."
+        },
+        {
+          "type": "paragraph",
+          "text": "Extended Tasks will always have a set Difficulty that determines the Difficulty of every Progression Task attempted as part of it. This Difficulty may be further modified by Advantages, Complications, and special abilities or effects. Not all Progression Tasks in the same Extended Task need to be the same activity, nor do they need to use the same attribute + skill combination. The GM should evaluate what attribute and skill they feel is most applicable to each individual Progression Task."
+        },
+        {
+          "type": "paragraph",
+          "text": "Though not all Extended Tasks will have a time limit that denotes failure if it is not completed within the timeframe, Extended Tasks always use intervals (see **Timed Challenges** above) as a means of representing the passage of time during the Extended Task. Before beginning an Extended Task, the GM should determine how much time each interval represents. All Tasks attempted as part of an Extended Task take 2 intervals of time."
+        },
+        {
+          "type": "paragraph",
+          "text": "If an Extended Task will be particularly challenging to overcome, the GM may also add **Resistance**, which reduces the Progress generated after each successful Task by the amount of Resistance."
+        },
+        {
+          "type": "paragraph",
+          "text": "For GM guidance on using and creating Extended Tasks, see **Chapter Twelve: Running the Game.**"
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Attempting an Extended Task"
+        },
+        {
+          "type": "paragraph",
+          "text": "Whenever a character attempts a Progression Task as part of overcoming an Extended Task, they follow the following steps:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Attempt the Task.** The player attempts a Progression Task as normal, rolling against the Extended Task’s set Difficulty.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Roll Progress.** If successful on the Progression Task, the player rolls 2 [CD] plus additional [CD] equal to the Skill they used. The amount rolled is the amount of Progress generated.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "If the Extended Task has any Resistance, reduce the Progress by 1 for each point of Resistance.",
+              "level": 1,
+              "marker": "a."
+            },
+            {
+              "text": "The player gains +1 [CD] for every assistant on their Task.",
+              "level": 1,
+              "marker": "b."
+            },
+            {
+              "text": "**Apply Progress.** Add the Progress generated from your roll to the Progress Bar. If this fills the Progress Bar, then the Extended Task is successfully completed.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Extended Tasks and Momentum"
+        },
+        {
+          "type": "paragraph",
+          "text": "Momentum generated during an Extended Task can be saved or spent as normal. There are also two additional ways to spend Momentum as part of an Extended Task:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Additional Progress:** A character can increase the Progress generated from their Progression Task. Each point of Momentum spent adds +1 Progress.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Reduce Time Cost:** A character may spend 2 Momentum to reduce the time a successful Task takes by 1 interval, to a minimum of 1. To reduce the time taken for a failed Task, they must instead give the GM 2 Threat.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Reroll Progress:** A character may spend 1 Momentum to reroll any number of [CD] from their current Progression Task.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Extended Tasks and Complications"
+        },
+        {
+          "type": "paragraph",
+          "text": "In addition to the standard ways to use Complications, there are two other ways a GM may employ Complications during an Extended Task:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Dead End:** Remove 4 Progress from the Progress Bar. This is resolved after applying all Progress generated from a Progression Task.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Extended Time Cost:** A character’s task takes an additional interval.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Unforeseen Problem:** The Extended Task gains an additional +2 Resistance (to a maximum of 4) that applies to the next Progression Task attempted against it. This extra Resistance goes away after that Progression Task is resolved.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If the characters decide to abandon an Extended Task, or if they fail to accomplish it within the set amount of time, then they suffer the consequences of failure as well as one additional, immediate Complication."
+        }
+      ],
+      "id": "chapter-four-advanced-rules-extended-tasks"
+    },
+    {
+      "title": "Negotiation",
+      "chapter": "Chapter Four: Advanced Rules",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "While most narrative scenes in Ascension will have little structure to define what players can or cannot attempt, allowing for players to attempt Tasks only when they or the GM feel it is necessary, Ascension also has an additional set of rules for when a social conflict scene feels significant enough to warrant more structure, called **Negotiation.**"
+        },
+        {
+          "type": "paragraph",
+          "text": "Negotiation is one of the most important Challenges that players might engage in. While a battle might tip the balance of a war, a successful Negotiation might avoid the need for a battle altogether. If the players need to get an important NPC—oftentimes a lord or other sort of leader—on their side, a Negotiation Scene might be necessary. Negotiation scenes are not real time conversations, but representative of scenarios where characters are spending a long amount of time negotiating with an NPC or NPCs, from bargaining over dinner to several days of peace talks. Each turn that players take and the actions they attempt during those turns are glimpses into these extended periods of time, more like a montage of smaller scenes than one continuous conversation."
+        },
+        {
+          "type": "paragraph",
+          "text": "Negotiation scenes function similarly to a round of combat: each player has a turn, during which they may perform a single Action from the list available to them with the goal of swaying the target NPC(s) to their side. The GM also has a number of turns equal to half the number of players rounded down, which they may take in between player turns. Each round always concludes when the players attempt the Persuade Task."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Starting Negotiation"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Favor** represents how much an NPC agrees with the players’ position. Favor starts at 0, and it is the players’ goal to increase the favor as much as possible before the scene ends. After successfully completing a Persuade Task, players roll a number of Challenge Dice equal to their Diplomacy Skill to determine how much Favor they’ve earned this round. Players can gain additional Favor dice to their roll by attempting to Appease Companions or any abilities or effects they have from their Talents."
+        },
+        {
+          "type": "paragraph",
+          "text": "**NPC Companions.** In some Negotiations, the target of your Persuasion Tasks may have allies or companions who may help or hinder your attempts to sway your target. Each allied companion present during a Negotiation gives +1 [CD] Favor (to a maximum of +3 [CD]). Neutral companions do not provide any automatic bonuses or penalties but can be influenced via the Appease Companion action in order to bring them over to your side, though whether they are permanently swayed or temporarily appeased is up to the GM. Companions that are opposed to you and/or your cause can create obstacles or work directly against you, as detailed in the NPC Negotiation Tasks."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Values.** NPCs that are a part of a Negotiation scene, particularly the target of your Negotiation and their notable companions, will always have Values. While you may know enough about a character to be able to guess at their Values, the explicit wording of an NPC’s Values are always hidden from players at the start of a Negotiation. If a player makes a promise or an offer as part of the Persuade Task that appeals to one of the target’s Values, they may add +2 [CD] Favor to all subsequent Persuade Tasks (including those attempted by a different player), and this effect stacks. If a player makes a promise or an offer that violates one of their Values, they lose -2 [CD] Favor from all subsequent Persuade Tasks (including those attempted by a different player), and this effect also stacks."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Difficulty.** The Difficulty of a Persuasion Task starts at 2 and increases by 1 at the end of each round. The Difficulty of all other tasks made in the Negotiation also starts at 2, and increases by 1 each time the same character attempts the same Task an additional time. For example, the first time a character attempts to Read in a Negotiation scene, it will be at Difficulty 2, but if they try it again, regardless of whether the previous attempt succeeded or failed, it will be at Difficulty 3. If a different character tried the Read Task for the first time, it would be Difficulty 2 for them, and only increase if they attempted it a second time."
+        },
+        {
+          "type": "paragraph",
+          "text": "At the beginning of a Negotiation, if the GM has 0 threat, they gain Threat equal to the number of players."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Negotiation Actions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Once a Negotiation begins, all players have a chance to perform a single Action from the list below, though some actions cannot be performed more than once in the same round. Some Actions will call on a specific Attribute and/or Skill in order to be performed, though others may not. Tasks that do not have specific Attributes or Skills listed may be performed using any Attribute + Skill combination as is relevant to the Task and how the PC is attempting to do it, and is ultimately subject to the GM’s ruling."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Persuade.** The most straightforward task, although this can only be used by the Player’s entire side once per round. This is a Diplomacy task; the Attribute used in this task is determined by the GM depending on how the player takes this action—most commonly Presence, though other Attributes may apply. For example, an appeal using the PC’s deeply held convictions might be a Faith + Diplomacy task, or an appeal using logic and/or historical precedent might be a Reason + Diplomacy task. On a success, roll [CD] Favor equal to your Diplomacy. As a Momentum Spend, you can create additional Favor for each Momentum spent. Additionally, you may spend 1 Momentum to re-roll any number of [CD] for this task."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Read.** You attempt a Task using a relevant Attribute + Skill in order to glean or recall information about the NPC or one of their companions. On a success, you learn 1 of your target’s Values that has not yet been invoked in the scene."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Excuse.** You attempt a Task using a relevant Attribute + Skill in order to correct a blunder made by one of your allies. On a success, you can negate the effects of a single Complication created by an ally of yours (but not yourself)."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Chit-Chat.** You attempt a Task using a relevant Attribute + Skill in order to capture your target’s attention by discussing things unrelated to the topic of the Negotiation. On a success, the Difficulty of the Persuade Task will not go up at the end of this round. On a failure, the Difficulty of the Persuade Task increases by 2 instead of 1 at the end of the round. This Task may only be attempted once per scene."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Assist.** You can always assist during a Negotiation."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Sway a Companion.** You attempt a Task using a relevant Attribute + Skill in order to sway one of your target’s neutral companions. On a success, you gain +1 [CD] Favor to be added to your next roll on a Persuade task. If you managed to appeal to one of their Values as a part of this Task, you gain an additional +1 [CD]. This action may only be attempted once per round."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "NPC Negotiation Tasks"
+        },
+        {
+          "type": "paragraph",
+          "text": "The following actions may be taken by NPCs on GM turns. Some actions require spending Threat in order to attempt, and their cost is listed next to each action’s title. Each action can only be attempted once per round."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Make Demands (0-5 Threat).** The NPC demands a concession, with severity roughly equivalent to the amount of threat spent. If the players agree, they gain 3 + X favor, where X is the amount of threat spent. If they refuse, the GM instead gains double the amount of threat spent."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Counter-offer (3 Threat).** The NPC makes a counter-offer. Lower the Favor cost of Small and Large Requests, Changing Attitudes, and Forging a Permanent alliance by 5, and raise the Favor cost of Above and Beyond by 10."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Hedge Bets (1-3 Threat).** The NPC seems reluctant to commit to a deal. Create an amount of Resistance on the players’ next Persuade Task equal to the amount of Threat spent."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Search for True Motives (No Cost).** One of the NPCs, either the target or one of their companions, attempts to uncover whether the players have lied to them, or if they are concealing their true motivations. Choose one PC and attempt an Opposed Task against them using Presence/Awareness + Diplomacy/Intrigue, opposed by their Presence/Faith + Diplomacy/Intrigue. On a success, the NPC may ask that PC one question which they must answer honestly. If their answer offends, or negatively conflicts with one of the NPCs’ Values (including NPCs not making the active roll), the players subtract -2 [CD] from their Favor dice pool on their next Persuade Task."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Whisper Poison (No Cost).** One of the companions opposed to the players attempts to sway the target NPC back to their side. Make a Difficulty 2 Presence + Diplomacy Task. On a success, roll [CD] equal to that companion’s Diplomacy and reduce Favor by that amount."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Negotiation and Complications"
+        },
+        {
+          "type": "paragraph",
+          "text": "In addition to the GM’s normal use of Complications, there are additional ways a GM may employ Complications during a Negotiation, representing setbacks that occur during a scene as a result of player action or circumstances created by the GM."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Annoyed a Companion:** Turn an allied companion into a neutral companion. If the companion is already neutral, they may no longer be swayed, and players cannot attempt the Sway a Companion Task on this NPC.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Conversational Blunder:** Remove 3 Favor from the current total.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Ending a Negotiation"
+        },
+        {
+          "type": "paragraph",
+          "text": "A Negotiation ends when the Difficulty of a Persuade Task would exceed Difficulty 6, when every Player Character decides to end it, or when the party’s goal has been reached and the GM decides that no further progress can be made. The amount of Favor is finalized, and the players may spend it on Goals, the available Goals and their Favor cost determined by the GM roughly aligning to the following template:"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Small Request (costs 15 Favor).** The NPC grants a small request of the Players that they were unwilling to grant before the Negotiation. A small favor request usually can give a small benefit in an upcoming battle, but is never enough to completely change the terms of a battle."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Large Request (costs 20 Favor).** The NPC grants a request that involves some amount of risk on the NPC’s part to the Players that they were unwilling to grant before the Negotiation. A risky request might be allowing the Players’ army to march through the NPC’s territory, or to pull some political strings on the Players’ behalf."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Change Attitude (costs 25 Favor).** The NPC changes an attitude that they have had up until this point, as long as it does not conflict with any of their Values. This can be something such as giving the party a division to join their army, to not oppose them in an upcoming battle with a tenuous ally of theirs, or to perform a single action that poses a large risk for the NPC."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Forge Permanent Alliance (costs 35 Favor).** The NPC completely changes their loyalty to be fully allied with the Players, as long as they do not have to oppose any of their own Values to do so."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Above and Beyond (costs 50 Favor).** The NPC becomes not only loyal to the party, but changes their mind on something significant, or agrees to provide a massive boon to the party on goodwill alone, without needing the party’s fulfillment of their agreement upfront first."
+        },
+        {
+          "type": "paragraph",
+          "text": "When a Negotiation ends, that NPC usually cannot be negotiated with again unless there has been a major change in circumstances since the last Negotiation (such as the party gaining a more powerful army or some crucially important leader has died since the last Negotiation)."
+        }
+      ],
+      "id": "chapter-four-advanced-rules-negotiation"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "scale": [
+    {
+      "scale": 1,
+      "armySize": "A band of thieves"
+    },
+    {
+      "scale": 2,
+      "armySize": "A town militia"
+    },
+    {
+      "scale": 3,
+      "armySize": "A mercenary army"
+    },
+    {
+      "scale": 4,
+      "armySize": "The army of a county or minor noble"
+    },
+    {
+      "scale": 5,
+      "armySize": "A raised army of an independent city"
+    },
+    {
+      "scale": 6,
+      "armySize": "The army of a wealthy independent duchy"
+    },
+    {
+      "scale": 7,
+      "armySize": "The army of a mid-sized kingdom"
+    },
+    {
+      "scale": 8,
+      "armySize": "The army of a large and wealthy kingdom"
+    },
+    {
+      "scale": 9,
+      "armySize": "A rising empire’s army"
+    },
+    {
+      "scale": 10,
+      "armySize": "A massive empire’s army"
+    }
+  ],
+  "baseMorale": 8,
+  "talentsByLevel": [
+    {
+      "minLevel": 0,
+      "maxLevel": 3,
+      "talents": 1
+    },
+    {
+      "minLevel": 4,
+      "maxLevel": 7,
+      "talents": 2
+    },
+    {
+      "minLevel": 8,
+      "maxLevel": 11,
+      "talents": 3
+    },
+    {
+      "minLevel": 12,
+      "maxLevel": 12,
+      "talents": 4
+    }
+  ],
+  "divisionTypes": [
+    {
+      "name": "Infantry",
+      "description": "Infantry divisions are the foot soldiers of your army, and often will make up the bulk of an army’s fighting force. They provide buffs to an army’s melee attackers, making them quite strong when unchallenged in a zone."
+    },
+    {
+      "name": "Cavalry",
+      "description": "Cavalry divisions are made up of mounted soldiers, ideal for extra mobility or extra damage."
+    },
+    {
+      "name": "Projectile",
+      "description": "Projectile divisions can attack enemy divisions at a distance, preventing Counterstrikes from an enemy division so long as they are not also the Projectile type."
+    },
+    {
+      "name": "Flying",
+      "description": "Flying divisions are swift and agile in the air, but vulnerable to arrows and projectile weapons. Projectile Type divisions gain -1 Difficulty on attacks against Flying Type divisions."
+    },
+    {
+      "name": "Magick",
+      "description": "Magick divisions deal punishing blows to enemy divisions at range, while being more vulnerable to physical attacks."
+    },
+    {
+      "name": "Support",
+      "description": "Support divisions grant bonuses not only to the army’s officers, but also to the army itself."
+    },
+    {
+      "name": "Siege",
+      "description": "Siege divisions excel at bringing down Structures. You may only attack Structures with Siege Type divisions."
+    }
+  ],
+  "buffStacking": "Officers may only benefit from two of the same buff at any given time. (E.g. an officer may not benefit from two light footmen’s buff or from one light footmen and one heavy footmen, as they provide To Arms)."
+}

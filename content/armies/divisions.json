@@ -1,0 +1,309 @@
+[
+  {
+    "id": "light_footmen",
+    "name": "Light Footmen",
+    "description": "Easy to train, quick to field.",
+    "types": [
+      "Infantry"
+    ],
+    "resistance": 1,
+    "attack": {
+      "damageCD": 2,
+      "ranged": false
+    },
+    "buff": {
+      "name": "To Arms",
+      "text": "When an allied officer in the same zone makes or is targeted by a melee attack, they gain an Advantage on their roll to attack/defend."
+    },
+    "features": [
+      "This division may be issued an order as a Minor Action while unbroken.",
+      "If there is at least one allied officer in this division’s zone, whenever an enemy division moves out of this zone, the border is considered Hazardous unless the division is flying."
+    ]
+  },
+  {
+    "id": "heavy_footmen",
+    "name": "Heavy Footmen",
+    "description": "Tougher soldiers for intense skirmishes.",
+    "types": [
+      "Infantry"
+    ],
+    "resistance": 3,
+    "attack": {
+      "damageCD": 2,
+      "ranged": false
+    },
+    "buff": {
+      "name": "To Arms",
+      "text": "When an allied officer in the same zone makes or is targeted by a melee attack, they gain an Advantage on their roll to attack/defend."
+    },
+    "features": [
+      "If there is at least one allied officer in this division’s zone, whenever an enemy division moves out of this zone, the border is considered Hazardous unless the division is flying."
+    ]
+  },
+  {
+    "id": "bowmen",
+    "name": "Bowmen",
+    "description": "Archers ready for battle.",
+    "types": [
+      "Projectile"
+    ],
+    "resistance": 1,
+    "attack": {
+      "damageCD": 2,
+      "ranged": true
+    },
+    "buff": {
+      "name": "Projectile Cloud",
+      "text": "Whenever an allied officer in the same zone makes an attack with a ranged weapon, they gain the Startling damage effect."
+    },
+    "features": [
+      "When this division attacks divisions with the Flying type, the Difficulty is reduced by 1."
+    ]
+  },
+  {
+    "id": "ballista",
+    "name": "Ballista",
+    "description": "Massive crossbow-like projectile weapons.",
+    "types": [
+      "Projectile"
+    ],
+    "resistance": 0,
+    "attack": {
+      "damageCD": 4,
+      "ranged": true
+    },
+    "buff": null,
+    "features": [
+      "When this division makes an attack, the ordering officer uses their Study instead of Authority for the task.",
+      "This division may attack any division in an adjacent zone, increasing the Difficulty of 1.",
+      "All zone borders are considered Hazardous for this division.",
+      "When this division attacks divisions with the Flying type, the Difficulty is reduced by 1."
+    ]
+  },
+  {
+    "id": "light_horse_cavalry",
+    "name": "Light Horse Cavalry",
+    "description": "Horseback riders, good for scouting ahead.",
+    "types": [
+      "Cavalry"
+    ],
+    "resistance": 1,
+    "attack": {
+      "damageCD": 3,
+      "ranged": false
+    },
+    "buff": {
+      "name": "Gallop",
+      "text": "A mounted allied officer that starts their turn in the same zone may take the movement minor action for free."
+    },
+    "features": [
+      "This division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn."
+    ]
+  },
+  {
+    "id": "heavy_horse_cavalry",
+    "name": "Heavy Horse Cavalry",
+    "description": "Horseback riders, good for breaking enemy ranks.",
+    "types": [
+      "Cavalry"
+    ],
+    "resistance": 2,
+    "attack": {
+      "damageCD": 3,
+      "ranged": false
+    },
+    "buff": {
+      "name": "Chargers",
+      "text": "If a mounted allied officer starts their turn in the same zone, they gain an additional 2[CD] on the first melee attack they make."
+    },
+    "features": [
+      "When this division makes an attack the same turn it enters a zone, it deals an extra 2[CD] damage and gains the Startling damage effect."
+    ]
+  },
+  {
+    "id": "horse_archers",
+    "name": "Horse Archers",
+    "description": "Talented riders able to fire bows from atop a steed.",
+    "types": [
+      "Projectile",
+      "Cavalry"
+    ],
+    "resistance": 1,
+    "attack": {
+      "damageCD": 2,
+      "ranged": true
+    },
+    "buff": {
+      "name": "Gallop",
+      "text": "A mounted allied officer that starts their turn in the same zone may take the movement minor action for free."
+    },
+    "features": [
+      "This division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn.",
+      "When this division attacks divisions with the Flying type, the Difficulty is reduced by 1."
+    ]
+  },
+  {
+    "id": "mages",
+    "name": "Mages",
+    "description": "Spellcasters with powerful magick.",
+    "types": [
+      "Magick"
+    ],
+    "resistance": 0,
+    "attack": {
+      "damageCD": 2,
+      "ranged": true,
+      "effects": [
+        "Piercing"
+      ]
+    },
+    "buff": {
+      "name": "Arcane Expertise",
+      "text": "Once per round, when an allied officer in the same zone casts a spell with arcane magick, they may treat their relevant skill as one higher, to a maximum of 6, for the task."
+    },
+    "features": [
+      "Officers may use Reason instead of Presence when issuing Orders to this division."
+    ]
+  },
+  {
+    "id": "pegasi_cavalry",
+    "name": "Pegasi Cavalry",
+    "description": "Flying riders, great for scouting.",
+    "types": [
+      "Cavalry",
+      "Flying"
+    ],
+    "resistance": 1,
+    "attack": {
+      "damageCD": 2,
+      "ranged": false
+    },
+    "buff": {
+      "name": "Free Flying",
+      "text": "When an allied officer with a flying mount takes the Move or Sprint actions while in the same zone as this division, their speed is increased by 1 and they do not provoke Opportunity Attacks until the end of their turn."
+    },
+    "features": [
+      "This division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn.",
+      "This division is not affected by difficult terrain."
+    ]
+  },
+  {
+    "id": "griffin_cavalry",
+    "name": "Griffin Cavalry",
+    "description": "Aerial riders, great for swooping.",
+    "types": [
+      "Cavalry",
+      "Flying"
+    ],
+    "resistance": 1,
+    "attack": {
+      "damageCD": 3,
+      "ranged": false
+    },
+    "buff": {
+      "name": "Swoopers",
+      "text": "Whenever an allied officer with a flying mount in the same zone makes a melee attack, they may roll an additional die."
+    },
+    "features": [
+      "This division is not affected by difficult terrain."
+    ]
+  },
+  {
+    "id": "medical_unit",
+    "name": "Medical Unit",
+    "description": "Trained Medics capable of revitalizing injured soldiers.",
+    "types": [
+      "Support"
+    ],
+    "resistance": 0,
+    "attack": {
+      "damageCD": 0,
+      "ranged": false
+    },
+    "buff": {
+      "name": "Triage",
+      "text": "When an allied officer in the same zone takes the First Aid major action, they may target any officer in the same zone regardless of distance."
+    },
+    "features": [
+      "Officers in the same zone as this division may issue the Regroup order as a Minor Action."
+    ]
+  },
+  {
+    "id": "military_band",
+    "name": "Military Band",
+    "description": "Musicians playing to inspire soldiers in battle.",
+    "types": [
+      "Support"
+    ],
+    "resistance": 0,
+    "attack": {
+      "damageCD": 0,
+      "ranged": false
+    },
+    "buff": {
+      "name": "War Drums",
+      "text": "Allied officers in the same zone roll an extra die on Console and Demoralize tasks."
+    },
+    "features": [
+      "At the end of each round, all unbroken allied divisions in the same zone as this division regain 1 morale."
+    ]
+  },
+  {
+    "id": "tactical_corps",
+    "name": "Tactical Corps",
+    "description": "Strategic thinkers who help analyze the battlefield.",
+    "types": [
+      "Support"
+    ],
+    "resistance": 0,
+    "attack": {
+      "damageCD": 0,
+      "ranged": false
+    },
+    "buff": {
+      "name": "Order Runners",
+      "text": "Officers within the same zone as this division may issue orders to divisions in adjacent zones as if they were in that zone."
+    },
+    "features": [
+      "When this division enters a zone with an enemy division, the ordering officer may ask one question about the opposing army as if using the Obtain Information momentum spend."
+    ]
+  },
+  {
+    "id": "mangonel",
+    "name": "Mangonel",
+    "description": "Shorter ranged but more flexible catapults.",
+    "types": [
+      "Siege"
+    ],
+    "resistance": 0,
+    "attack": {
+      "damageCD": 4,
+      "ranged": true
+    },
+    "buff": null,
+    "features": [
+      "When this division makes an attack, the ordering officer uses their Study instead of Authority for the task.",
+      "This division may attack structures within or along the border of its current zone.",
+      "This division may attack any division in an adjacent zone, increasing the Difficulty by 1."
+    ]
+  },
+  {
+    "id": "trebuchet",
+    "name": "Trebuchet",
+    "description": "Siege weapons capable of striking from afar.",
+    "types": [
+      "Siege"
+    ],
+    "resistance": 0,
+    "attack": {
+      "damageCD": 5,
+      "ranged": true
+    },
+    "buff": null,
+    "features": [
+      "When this division makes an attack, the ordering officer uses their Study instead of Authority for the task.",
+      "When making an attack, this division can target any division in an adjacent zone, or a structure in or along the border of any adjacent zone. This division cannot attack targets in the same zone.",
+      "All zone borders are considered Hazardous for this division."
+    ]
+  }
+]

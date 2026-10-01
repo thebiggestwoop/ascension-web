@@ -165,8 +165,7 @@ onMounted(() => store.reset())
           <v-card variant="outlined" @click="creationMethod = 'archetype'">
             <v-card-title>Start from an Archetype</v-card-title>
             <v-card-text>
-              Pick a pregen character built around a weapon and playstyle, then tweak anything you like -
-              a quick way to jump straight into playing.
+              Choose a combat archetype and shape your life path - recommended for first time players.
             </v-card-text>
           </v-card>
         </v-col>

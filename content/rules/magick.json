@@ -1,0 +1,189 @@
+{
+  "source": "Ascension_BETA0.8Rules.html",
+  "chapters": [
+    "Chapter Eight: Magick"
+  ],
+  "sections": [
+    {
+      "title": "Chapter Eight: Magick",
+      "chapter": "Chapter Eight: Magick",
+      "intro": true,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In Ascension, characters can wield mighty spells in battle. There are three main domains of Magick: Arcane, Light, and Dark."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Arcane**—also known as Wizardry, Sorcery, Alchemy, or sometimes simply Magick—is the Magick of manipulating the physical world. Arcane Magick can create, destroy, and transmute matter. The Arcane spellcaster can manipulate natural energy in the form of lightning, fire, and bitter cold. On the battlefield, a Wizard can devastate opponents with large areas of energy, teleport, and become invisible."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Light**—also known as Miracle, Prayer, Channeling, or Incantation—is the Magick of the supernatural, granted to its wielder by forces greater than the physical world, most often attributed to the Divine. Light is the very essence of Life, and by channeling it a Light-wielder can instantaneously mend wounds. Light can be wielded in its raw form as a blinding energy, used to smite evildoers. Light can also be used to perform miracles that are impossible for a Wizard to accomplish by manipulating matter within the world, sensing souls and the like."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Dark**—Also Known as Witchcraft, Blasphemy, and Shadow Magick-is the dark magick that exists at the fringes of what is known, and grants its user the tools to manipulate and strike at human souls directly. Dark Magick is seen as evil, or at least taboo, in nearly every culture, with its practitioners often staying at the fringes of society. On the battlefield, A Dark Mage can rend the very souls of their enemies, consume life force to empower themselves, and place blood curses."
+        }
+      ],
+      "id": "chapter-eight-magick-chapter-eight-magick"
+    },
+    {
+      "title": "Spellcasters",
+      "chapter": "Chapter Eight: Magick",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "You are a Spellcaster if you have a Talent that grants spellcasting - these talents are Arcane Magick 1, Light Magick 1, and Dark Magick 1."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Magick Attribute"
+        },
+        {
+          "type": "paragraph",
+          "text": "If you are a Spellcaster, you have a **Magick** Attribute that is determined by the Talent by which you have been granted spellcasting: Arcane Magick uses **Reason**; Light Magick uses **Faith**; and Dark Magick uses **Presence.** For example, if you have Light Magick and an ability of yours uses **Magick + Medicine**, you would **Faith + Medicine**, since **Faith** the **Magick** attribute for Light Magick."
+        },
+        {
+          "type": "paragraph",
+          "text": "If you have more than one Magick Domain (such as by having both Light Magick 1 and Arcane Magick 1), you have more than one **Magick** attribute. Any abilities granted solely by one of those domains must use the **Magick** Attribute associated with that domain - for example, a Spell prepared from the Arcane spell list using your Arcane spellcasting requires you to use **Reason**. However, abilities that do not have a prerequisite of a particular domain - such as some Narrative talents - allow you to choose which **Magick** Attribute to apply."
+        }
+      ],
+      "id": "chapter-eight-magick-spellcasters"
+    },
+    {
+      "title": "Casting a Spell",
+      "chapter": "Chapter Eight: Magick",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Casting a Spell can take many forms. Taking an Action granted to you by a Spell, whether it be a Major Action, Minor Action, or Reaction, is considered Casting a Spell."
+        },
+        {
+          "type": "paragraph",
+          "text": "Each spell will have a **Tier** and a number of **Uses** listed in its description. Taking the first tier of any spellcasting Talent (e.g. Arcane Magick 1 or Light Magick 1) grants you the ability to prepare Tier 1 spells from your respective domain. Higher tier spells can be unlocked by taking higher level Talents. In addition to its tier, each spell’s uses determine how many times you can use a spell during a scene. Higher level Magick Domain talents unlock more uses for your spells."
+        },
+        {
+          "type": "paragraph",
+          "text": "A Passive spell is not Cast—rather, its effects are continuous as long as the spell is prepared."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Spell Slots"
+        },
+        {
+          "type": "paragraph",
+          "text": "A Spellcaster has Spell Slots equal to their **Study**. If you have Spell Slots, you may prepare Spells that take up a total of Spell Slots that you have (some spells take up more than 1 Spell Slot). If you have access to a Magick Domain, you can prepare any of the spells from that Magick Domain's Spell list that you meet the prerequisites for. You may prepare multiple copies of the same spell to be able to use it more often in a scene."
+        },
+        {
+          "type": "paragraph",
+          "text": "You can increase your number of Spell Slots by equipping a Tome (see Equipment)."
+        },
+        {
+          "type": "paragraph",
+          "text": "Between Scenes, you may replace any spells you have prepared for any other that you meet the prerequisites for."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Spell Implement"
+        },
+        {
+          "type": "paragraph",
+          "text": "To cast spells effectively, the spellcaster must hold a Spell Implement in one of their hands. Without a Spell Implement, the Difficulty of all Tasks involved in the casting of spells increases by 1. This affects Tasks such as Attack with attack spells, but not Tasks that a spell enhances or alters — for example, not having a Spell Implement does not increase the Difficulty of making an Attack that was enhanced using a Spellblade spell."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a Character is only holding a Spell Implement and nothing else in their other hand, or both hands on one Spell Implement, they generate 1 Bonus Momentum for Spellcasting Tasks."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Spell Tags"
+        },
+        {
+          "type": "paragraph",
+          "text": "Spells have a variety of tags that label what sort of Magick it is. These tags do not have any inherent rules associated with them, but many Talents and other abilities refer to them."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Casting a Spell"
+        },
+        {
+          "type": "paragraph",
+          "text": "If a Spell can be Cast, the Action required to cast it is described in its description. Most spells require a Major Action to cast, but many use Minor Actions, Reactions, and Free Actions."
+        },
+        {
+          "type": "paragraph",
+          "text": "A Passive spell is not Cast - rather, its effects are continuous as long as the spell is prepared."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Spell Attacks"
+        },
+        {
+          "type": "paragraph",
+          "text": "Many spells involve making a Spell Attack when they are used. A Spell Attack counts as an Attack, similar to an Attack with a weapon. Unless stated otherwise, making an Attack with an Attack spell follows the same rules as making any other attack, and is a task of Magick + Skirmish—the attribute it is Defended is stated in the Spell’s description. A Spell Attack can also be a Ranged Attack or a Melee Attack, determined by the Spell’s description - though some Spell Attacks might be considered neither."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a Spell Attack deals damage, add your Skirmish to the number of [CD] listed in the spell’s description (as you would when determining a Weapon’s damage)."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Range and Reach"
+        },
+        {
+          "type": "paragraph",
+          "text": "Ranged Spells have a listed Range. If a Spell has a listed Reach instead, then it is considered a Melee Spell."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Areas of Effect"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some spells have special Qualities that give them unique Areas of Effect. When multiple characters would be affected by an Area of Effect spell attack, each character in the area attempts a defense roll, but only one attack roll is made."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Blast X** is a circular area that originates from a Space and affects spaces within a radius of X spaces. For example, a spell with a range of 10 and Blast 3 can originate from a space up to 10 Spaces from the caster, then affects all Spaces that extend up to 3 Spaces away.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Line X** affects units in all Spaces in a line that is X spaces long. A Line can have a width for multiple Spaces, but if no width is specified then it has a width of a Single space.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Cone X** affects units within a cone shaped area that is X spaces long and X spaces wide at its widest point. All cones are 1 space wide at their narrowest point.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        }
+      ],
+      "id": "chapter-eight-magick-casting-a-spell"
+    },
+    {
+      "title": "Willpower Cost",
+      "chapter": "Chapter Eight: Magick",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Many Dark Domain spells have a unique cost not found in other magick domains: Willpower. If a spell has a Willpower cost, you must reduce your Willpower by the amount stated by the cost to cast the spell. If you do not have enough Willpower to pay for the cost, you are unable to cast the spell."
+        }
+      ],
+      "id": "chapter-eight-magick-willpower-cost"
+    }
+  ]
+}

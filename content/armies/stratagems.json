@@ -1,0 +1,537 @@
+[
+  {
+    "id": "surrounding_tactics",
+    "name": "Surrounding Tactics",
+    "kind": "order",
+    "applicableText": "Infantry",
+    "applicableTypes": [
+      "Infantry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose an enemy officer within Range 8. The officer is Slowed and Off-Guard until the end of their next turn."
+  },
+  {
+    "id": "fortify",
+    "name": "Fortify",
+    "kind": "order",
+    "applicableText": "Infantry",
+    "applicableTypes": [
+      "Infantry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order. Until the start of your next turn, all borders of this division’s current zone are considered Hazardous to enemy divisions, if they were not already. The first Opportunity Attack you make before your next turn deals 3[CD] additional damage."
+  },
+  {
+    "id": "stand_your_ground",
+    "name": "Stand Your Ground",
+    "kind": "order",
+    "applicableText": "Infantry",
+    "applicableTypes": [
+      "Infantry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 3,
+    "text": "3/scene, you may issue this order. Until the end of your next turn, enemy divisions in the same zone may only target this division. This ends if this division is broken. If you have taken the Guard major action this turn, the Bonus Momentum cost to take a Swift Action to issue this order is reduced by 1."
+  },
+  {
+    "id": "battering_ram",
+    "name": "Battering Ram",
+    "kind": "order",
+    "applicableText": "Infantry",
+    "applicableTypes": [
+      "Infantry"
+    ],
+    "applicableDivisionIds": [],
+    "text": "You may issue this order. Choose a gate or door space on the battlefield. Make a Presence + Authority task of Difficulty 1. On a success, deal damage to the target equal to the division’s normal attack + 2[CD]."
+  },
+  {
+    "id": "push_in",
+    "name": "Push In",
+    "kind": "order",
+    "applicableText": "Light Footmen",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "light_footmen"
+    ],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order. While you are in the same zone as this division, any melee attacks you make this round cannot be defended against. Immediately take the Attack Major Action and roll an additional die on the attack."
+  },
+  {
+    "id": "mounted_infantry",
+    "name": "Mounted Infantry",
+    "kind": "passive",
+    "applicableText": "Infantry, Bowmen",
+    "applicableTypes": [
+      "Infantry"
+    ],
+    "applicableDivisionIds": [
+      "bowmen"
+    ],
+    "text": "This division starts the battle mounted. While mounted, this division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn.\n\nThis division may not be issued any non-movement orders while mounted, but may be ordered to dismount as a free action. Once this division has dismounted, it may not become mounted again for the rest of the scene."
+  },
+  {
+    "id": "at_guard",
+    "name": "At Guard",
+    "kind": "order",
+    "applicableText": "Heavy Footmen",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "heavy_footmen"
+    ],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order. Choose up to three allied characters in this zone. They gain 2 temporary HP until the end of your next turn."
+  },
+  {
+    "id": "siege_tower",
+    "name": "Siege Tower",
+    "kind": "order",
+    "applicableText": "Infantry",
+    "applicableTypes": [
+      "Infantry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this as an order. Choose a free space in the same zone. A ladder is placed there. If the ladder is adjacent to walls along the border between two zones, allied divisions are able to cross the border as Hazardous Terrain. The ladder is destroyed if this division is Broken.\n\nAs a Minor Action, you may order the division to pick up the ladder. The ladder is removed from the field and this division regains its use of this stratagem."
+  },
+  {
+    "id": "missiles_into_ranks",
+    "name": "Missiles into Ranks",
+    "kind": "order",
+    "applicableText": "Projectile",
+    "applicableTypes": [
+      "Projectile"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. This division may make an attack against a targetable division. On a success, all other enemy divisions in the same zone take 3[CD] damage."
+  },
+  {
+    "id": "cover_fire",
+    "name": "Cover Fire",
+    "kind": "order",
+    "applicableText": "Bowmen, Horse Bowmen",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "bowmen",
+      "horse_archers"
+    ],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this as an order. Choose an allied officer in the same zone. Until your next turn, all attacks against the target officer have +1 Difficulty and they cannot be targeted by Opportunity Attacks."
+  },
+  {
+    "id": "pin_down",
+    "name": "Pin Down",
+    "kind": "order",
+    "applicableText": "Projectile",
+    "applicableTypes": [
+      "Projectile"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose an enemy officer within Range 7 of you and perform a Difficulty 1 Presence + Authority task. On a success, they are Immobilized and Exposed until the end of their next turn."
+  },
+  {
+    "id": "longbows",
+    "name": "Longbows",
+    "kind": "passive",
+    "applicableText": "Bowmen",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "bowmen"
+    ],
+    "text": "Your bowmen are equipped with longbows. If this division has not moved this round, they may attack a division in an adjacent zone. They may not move for the rest of this round."
+  },
+  {
+    "id": "anti_cavalry_barrage",
+    "name": "Anti-Cavalry Barrage",
+    "kind": "order",
+    "applicableText": "Projectile",
+    "applicableTypes": [
+      "Projectile"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order as a Reaction when an enemy cavalry division enters the same zone as this one. Immediately make an attack with an Advantage."
+  },
+  {
+    "id": "hail_of_arrows",
+    "name": "Hail of Arrows",
+    "kind": "order",
+    "applicableText": "Bowmen",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "bowmen"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. For the rest of the round, every army attack made by an ally in the same zone gains an extra 1d20."
+  },
+  {
+    "id": "mounted_withdraw",
+    "name": "Mounted Withdraw",
+    "kind": "passive",
+    "applicableText": "Cavalry",
+    "applicableTypes": [
+      "Cavalry"
+    ],
+    "applicableDivisionIds": [],
+    "text": "When this division crosses a Hazardous border, it does not provoke Mass Opportunity Attacks from divisions in the zone it is leaving."
+  },
+  {
+    "id": "cavalry_charge",
+    "name": "Cavalry Charge",
+    "kind": "order",
+    "applicableText": "Cavalry",
+    "applicableTypes": [
+      "Cavalry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order. This division charges into an adjacent zone. All enemy divisions in the target zone take 2 Piercing damage, then this division makes an Army Attack."
+  },
+  {
+    "id": "ride_along",
+    "name": "Ride Along",
+    "kind": "passive",
+    "applicableText": "Cavalry",
+    "applicableTypes": [
+      "Cavalry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 2,
+    "text": "2/scene, you may move half your speed when you order this division to make a Free Move. You may only do so once per round."
+  },
+  {
+    "id": "shock_into_submission",
+    "name": "Shock into Submission",
+    "kind": "order",
+    "applicableText": "Cavalry",
+    "applicableTypes": [
+      "Cavalry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order. Choose any number of enemy divisions in the same zone. Perform a Presence + Authority task with a Difficulty equal to the number of divisions you chose. On a success, each of those divisions cannot provide its buff or use its stratagem until the start of your next turn."
+  },
+  {
+    "id": "trampling_rush",
+    "name": "Trampling Rush",
+    "kind": "order",
+    "applicableText": "Cavalry",
+    "applicableTypes": [
+      "Cavalry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. This division charges at enemy officers. All enemies in a four space line from the ordering officer take this division’s regular attack damage."
+  },
+  {
+    "id": "strike_with_the_pack",
+    "name": "Strike with the Pack",
+    "kind": "order",
+    "applicableText": "Heavy Cavalry, Griffin Cavalry",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "heavy_horse_cavalry",
+      "griffin_cavalry"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Order this division to make an Army Attack, then make an attack. Your attack gains the Startling effect."
+  },
+  {
+    "id": "barrel_in",
+    "name": "Barrel In",
+    "kind": "passive",
+    "applicableText": "Cavalry",
+    "applicableTypes": [
+      "Cavalry"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 1,
+    "text": "1/scene, this division can make an army attack after making a Free Move."
+  },
+  {
+    "id": "arcanum_unbound",
+    "name": "Arcanum Unbound",
+    "kind": "passive",
+    "applicableText": "Mages",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mages"
+    ],
+    "text": "When this division makes a successful attack, you may increase its damage by 2[CD]. After you do, this division is Off-Guard until the end of your next turn."
+  },
+  {
+    "id": "bursts_of_magick",
+    "name": "Bursts of Magick",
+    "kind": "order",
+    "applicableText": "Mages",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mages"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose a space on the battlefield within Range 6 of you. This division makes an attack on that space with the Burst 2 damage effect."
+  },
+  {
+    "id": "defensive_warding",
+    "name": "Defensive Warding",
+    "kind": "order",
+    "applicableText": "Mages",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mages"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose up to three allies in the same zone, officers or divisions. They gain 4[CD] temporary HP."
+  },
+  {
+    "id": "arcane_reserve",
+    "name": "Arcane Reserve",
+    "kind": "order",
+    "applicableText": "Mages",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mages"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose an Arcane spell you have prepared. You may cast it without expending a use, even if you have no uses left."
+  },
+  {
+    "id": "siege_magic",
+    "name": "Siege Magic",
+    "kind": "passive",
+    "applicableText": "Mages",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mages"
+    ],
+    "text": "This division may attack structures on the battlefield. When they do, roll an additional 2[CD]."
+  },
+  {
+    "id": "arcane_artillery",
+    "name": "Arcane Artillery",
+    "kind": "order",
+    "applicableText": "Mages",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mages"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose an adjacent zone to this division. All divisions in that zone take 2[CD] Piercing damage."
+  },
+  {
+    "id": "strafing_run",
+    "name": "Strafing Run",
+    "kind": "order",
+    "applicableText": "Flying",
+    "applicableTypes": [
+      "Flying"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose a space within Range 8 of you. All officers within Blast 2 of that space take 4[CD] Piercing 2 damage."
+  },
+  {
+    "id": "airlift",
+    "name": "Airlift",
+    "kind": "order",
+    "applicableText": "Flying",
+    "applicableTypes": [
+      "Flying"
+    ],
+    "applicableDivisionIds": [],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order. Choose a space you can see within Range 10 of your current location. You are moved to that location, ignoring height and terrain effects, but provoking Opportunity Attacks as normal. If you make a Swift Task in the same turn that you issue this order, the Momentum cost is reduced by 1, to a minimum of 0."
+  },
+  {
+    "id": "life_support",
+    "name": "Life Support",
+    "kind": "passive",
+    "applicableText": "Medical Unit",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "medical_unit"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, when an officer in the same zone is dealt damage that would reduce their HP to zero, they may Avoid Injury without spending their Determination. Additionally, when this occurs, they regain 8[CD] HP."
+  },
+  {
+    "id": "attentive_aid",
+    "name": "Attentive Aid",
+    "kind": "order",
+    "applicableText": "Medical Unit",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "medical_unit"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. All allied officers adjacent to the ordering officer, including the ordering officer, regain 7 [CD] health."
+  },
+  {
+    "id": "extra_care",
+    "name": "Extra Care",
+    "kind": "passive",
+    "applicableText": "Medical Unit",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "medical_unit"
+    ],
+    "text": "1/round, when an allied officer in the same zone is healed, the healer may reroll any blanks."
+  },
+  {
+    "id": "healing_support",
+    "name": "Healing Support",
+    "kind": "order",
+    "applicableText": "Medical Unit",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "medical_unit"
+    ],
+    "usesPerScene": 3,
+    "text": "3/scene, you may issue this order. Take the First Aid major action, and roll an extra 4[CD] for the amount healed."
+  },
+  {
+    "id": "play_on_play_on",
+    "name": "Play On, Play On",
+    "kind": "passive",
+    "applicableText": "Military Band",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "military_band"
+    ],
+    "text": "At the end of each round, all unbroken allied divisions in the same zone regain 2 morale instead of 1, and all allied officers in the same zone regain 1 Willpower."
+  },
+  {
+    "id": "inspiring_tune",
+    "name": "Inspiring Tune",
+    "kind": "order",
+    "applicableText": "Military Band",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "military_band"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. All unbroken allied divisions in the same zone restore 5[CD] Morale."
+  },
+  {
+    "id": "ballad_of_death",
+    "name": "Ballad of Death",
+    "kind": "order",
+    "applicableText": "Military Band",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "military_band"
+    ],
+    "usesPerScene": 2,
+    "text": "2/scene, you may issue this order. All attacks you take until the end of their turn gain the Daunting 2 effect. Immediately take the attack Major Action."
+  },
+  {
+    "id": "fierce_drums",
+    "name": "Fierce Drums",
+    "kind": "passive",
+    "applicableText": "Military Band",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "military_band"
+    ],
+    "text": "When an officer in the same zone takes the Demoralize action, they deal +2[CD] damage."
+  },
+  {
+    "id": "excellent_authority",
+    "name": "Excellent Authority",
+    "kind": "passive",
+    "applicableText": "Tactical Corps",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "tactical_corps"
+    ],
+    "text": "When an allied officer in the same zone takes the Direct or Issue Orders major actions, they gain 1 Bonus Momentum."
+  },
+  {
+    "id": "calculated_strike",
+    "name": "Calculated Strike",
+    "kind": "passive",
+    "applicableText": "Tactical Corps",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "tactical_corps"
+    ],
+    "usesPerScene": 2,
+    "text": "2/scene, when an allied officer in the same or an adjacent zone makes an attack against a Pinpointed enemy, they may forgo the Advantage to add +2d20 to their roll instead."
+  },
+  {
+    "id": "false_orders",
+    "name": "False Orders",
+    "kind": "order",
+    "applicableText": "Tactical Corps",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "tactical_corps"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. Choose an enemy division in the same zone and perform a Difficulty 1 Reason + Intrigue task. On a success, it moves to an adjacent accessible zone of your choice and cannot be issued orders for the rest of the round, other than Brace. You may spend Bonus Momentum to move additional divisions this way. For every Bonus Momentum you spend, move an additional division. It cannot be issued orders for the rest of the round, other than Brace."
+  },
+  {
+    "id": "strategic_insights",
+    "name": "Strategic Insights",
+    "kind": "passive",
+    "applicableText": "Tactical Corps",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "tactical_corps"
+    ],
+    "usesPerScene": 2,
+    "text": "2/scene, when an allied officer in the same zone takes the Pinpoint major action, they may create an additional Advantage."
+  },
+  {
+    "id": "scouted_for_ambush",
+    "name": "Scouted for Ambush",
+    "kind": "passive",
+    "applicableText": "Tactical Corps",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "tactical_corps"
+    ],
+    "usesPerScene": 3,
+    "text": "3/scene, when an allied officer takes the Hide major action anywhere on the battlefield, the Difficulty is reduced by 1."
+  },
+  {
+    "id": "catapult_barrage",
+    "name": "Catapult Barrage",
+    "kind": "order",
+    "applicableText": "Mangonel, Trebuchet",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mangonel",
+      "trebuchet"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order if you are in a zone this division can target. Choose a space within Range 8 of you. The division makes an attack with Blast 2 targeting all officers present, allied and enemy, contested by Agility + Skirmish."
+  },
+  {
+    "id": "targeted_strike",
+    "name": "Targeted Strike",
+    "kind": "passive",
+    "applicableText": "Mangonel, Trebuchet",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "mangonel",
+      "trebuchet"
+    ],
+    "text": "This first time this division damages a structure, roll double its [CD]."
+  },
+  {
+    "id": "long_fire",
+    "name": "Long Fire",
+    "kind": "order",
+    "applicableText": "Trebuchet",
+    "applicableTypes": [],
+    "applicableDivisionIds": [
+      "trebuchet"
+    ],
+    "usesPerScene": 1,
+    "text": "1/scene, you may issue this order. The trebuchet may make an attack against any division or structure on the battlefield, regardless of zone distance."
+  }
+]

@@ -14,8 +14,21 @@ import type { IMountData } from '@/classes/Mount'
 import type { ITalentData, ITalentGroupIndexEntry } from '@/classes/Talent'
 import type { ISpellData } from '@/classes/Spell'
 import type { IArchetypeCategoryData, IArchetypeCharacterData } from '@/classes/Archetype'
+import type { INpcData, INpcTypeData, INpcTemplatesFile } from '@/classes/Npc'
+import type { IQuickReferenceData } from '@/classes/QuickReference'
+import type { IRulesDocument } from '@/classes/RulesText'
+import type { IArmyRulesData, IArmyTalentData, IDivisionData, IStratagemData } from '@/classes/Army'
 
 import attributesJson from '@content/attributes.json'
+import quickReferenceJson from '@content/quick-reference.json'
+import playingTheGameJson from '@content/rules/playing-the-game.json'
+import combatRulesJson from '@content/rules/combat.json'
+import magickRulesJson from '@content/rules/magick.json'
+import massCombatRulesJson from '@content/rules/mass-combat.json'
+import divisionsJson from '@content/armies/divisions.json'
+import stratagemsJson from '@content/armies/stratagems.json'
+import armyTalentsJson from '@content/armies/talents.json'
+import armyRulesJson from '@content/armies/rules.json'
 import skillsJson from '@content/skills.json'
 import socialClassesJson from '@content/lifepath/social-classes.json'
 import upbringingsJson from '@content/lifepath/upbringings.json'
@@ -72,6 +85,9 @@ import archetypeHeavyBowmanJson from '@content/archetypes/bow/Heavy-Bowman.json'
 import archetypeOutriderJson from '@content/archetypes/bow/Outrider.json'
 import archetypeRangerJson from '@content/archetypes/bow/Ranger.json'
 import archetypeArcaneArcherJson from '@content/archetypes/bow/Arcane-Archer.json'
+import npcIndexJson from '@content/npcs/_index.json'
+import npcTypesJson from '@content/npcs/types.json'
+import npcTemplatesJson from '@content/npcs/templates.json'
 
 /**
  * Central place the rest of the app pulls rules content from. Right now this reads the
@@ -79,6 +95,17 @@ import archetypeArcaneArcherJson from '@content/archetypes/bow/Arcane-Archer.jso
  * the project roadmap), this is the module that would merge core + active packs instead.
  */
 export const CoreContent = {
+  /** The rulebook's Quick Reference sheet, verbatim. */
+  quickReference: quickReferenceJson as IQuickReferenceData,
+  /** Rulebook chapters, verbatim minus the worked examples (and Chapter 8's spell lists,
+   * which live in `spells`). */
+  rules: {
+    playingTheGame: playingTheGameJson as IRulesDocument,
+    combat: combatRulesJson as IRulesDocument,
+    magick: magickRulesJson as IRulesDocument,
+    /** Part Five (Chapters Nine-Eleven), minus Building an Army - the Army Sheet's builder covers it. */
+    massCombat: massCombatRulesJson as IRulesDocument,
+  },
   attributes: attributesJson as IAttributeData[],
   skills: skillsJson as ISkillData[],
   lifepath: {
@@ -150,5 +177,19 @@ export const CoreContent = {
       ranger: archetypeRangerJson as IArchetypeCharacterData,
       arcane_archer: archetypeArcaneArcherJson as IArchetypeCharacterData,
     } as Record<string, IArchetypeCharacterData>,
+  },
+  /** Chapters Nine and Eleven: everything needed to build an army. */
+  armies: {
+    divisions: divisionsJson as IDivisionData[],
+    stratagems: stratagemsJson as IStratagemData[],
+    talents: armyTalentsJson as IArmyTalentData[],
+    rules: armyRulesJson as IArmyRulesData,
+  },
+  npcs: {
+    /** Every NPC stat block (standard classes, Chaff, Monumental Foes), in rulebook order. */
+    classes: npcIndexJson as INpcData[],
+    /** The colour-coded NPC Types legend, plus bespoke types (e.g. Monstrosity). */
+    types: npcTypesJson as INpcTypeData[],
+    templates: npcTemplatesJson as INpcTemplatesFile,
   },
 }

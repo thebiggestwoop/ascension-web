@@ -3,8 +3,9 @@ function escapeHtml(text: string): string {
 }
 
 /** Bold/italic/inline-code only - text is HTML-escaped first, so these regexes only ever wrap
- * already-safe text in tags. */
-function renderInline(text: string): string {
+ * already-safe text in tags. Exported for callers that lay out their own blocks (e.g. the
+ * Quick Reference, whose "1." steps are literal text, not Markdown lists). */
+export function renderInline(text: string): string {
   let html = escapeHtml(text)
   html = html.replace(/`([^`]+)`/g, '<code>$1</code>')
   html = html.replace(/\*\*([^*]+)\*\*|__([^_]+)__/g, (_m, a, b) => `<strong>${a ?? b}</strong>`)

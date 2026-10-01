@@ -1,0 +1,831 @@
+{
+  "source": "0.8 QUICK REFERENCE.docx",
+  "sections": [
+    {
+      "title": "Performing Tasks Reference",
+      "blocks": [
+        {
+          "type": "subheading",
+          "text": "Tasks"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "The GM chooses the appropriate **Attribute** and **Skill** for the task.",
+              "level": 0,
+              "marker": "1."
+            },
+            {
+              "text": "The GM sets a **Difficulty.**",
+              "level": 0,
+              "marker": "2."
+            },
+            {
+              "text": "The PC adds their appropriate **Attribute** and **Skill** together; this is the target number.",
+              "level": 0,
+              "marker": "3."
+            },
+            {
+              "text": "Check if an applicable **Focus** applies.",
+              "level": 0,
+              "marker": "4."
+            },
+            {
+              "text": "The PC begins their pool with 2 dice:",
+              "level": 0,
+              "marker": "5."
+            },
+            {
+              "text": "The PC may gain bonus dice based on a talent.",
+              "level": 1
+            },
+            {
+              "text": "The PC may purchase extra dice by spending **Momentum** or by adding to threat: 1 die costs +1, a second die costs +2, a third die costs +3.",
+              "level": 1
+            },
+            {
+              "text": "**Note:** Only 3 extra dice may be rolled (for 5 total), no matter the source(s).",
+              "level": 1
+            },
+            {
+              "text": "Roll the dice:",
+              "level": 0,
+              "marker": "6."
+            },
+            {
+              "text": "Before any dice are rolled, the PC may spend their **Determination** to set one die in the pool to 1.",
+              "level": 1
+            },
+            {
+              "text": "Each die that rolls a 1 creates two Successes.",
+              "level": 1
+            },
+            {
+              "text": "Each die that rolls less than the **Skill** for an applicable **Focus** creates two Successes.",
+              "level": 1
+            },
+            {
+              "text": "Each die that rolls equal or less to the target number creates one Success.",
+              "level": 1
+            },
+            {
+              "text": "Each die that rolls equal to or higher than the **Complication** Range creates a **Complication.**",
+              "level": 1
+            },
+            {
+              "text": "Each die that rolls a 20 creates a Complication.",
+              "level": 1
+            },
+            {
+              "text": "If the number of Successes is greater than or equal to the **Difficulty**, the Task is successful.",
+              "level": 0,
+              "marker": "7."
+            },
+            {
+              "text": "Gain +1 **Momentum** for each Success above the **Difficulty.**",
+              "level": 1
+            },
+            {
+              "text": "If the number of Successes is less than the **Difficulty,** the task is unsuccessful.",
+              "level": 0,
+              "marker": "8."
+            },
+            {
+              "text": "At the GM's discretion, the PC may Succeed at Cost. The Task succeeds, but the PC suffers a **Complication.**",
+              "level": 1
+            },
+            {
+              "text": "The GM can negate a **Complication** to gain two Threat instead.",
+              "level": 1
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Teamwork"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "The GM determines how many assistants may aid in the Task. The first assistant may Assist at no cost, every subsequent assistant costs +1 **Momentum** or Threat.",
+              "level": 0,
+              "marker": "1."
+            },
+            {
+              "text": "The assistant & GM choose the appropriate **Attribute**, **Skill**, and **Focus** for this teamwork roll.",
+              "level": 0,
+              "marker": "2."
+            },
+            {
+              "text": "The assistant rolls one die, using their own target number.",
+              "level": 0,
+              "marker": "3."
+            },
+            {
+              "text": "If the acting PC rolls at least one Success, the assistant’s Successes are also added to the total.",
+              "level": 0,
+              "marker": "4."
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Opposed Tasks"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "The active character attempts a task, with a base **Difficulty** determined by the number of Successes rolled by the reactive character (who rolls first). This **Difficulty** can be adjusted by circumstances.",
+              "level": 0,
+              "marker": "1."
+            },
+            {
+              "text": "The results of the each rolled task are compared:",
+              "level": 0,
+              "marker": "2."
+            },
+            {
+              "text": "**If the active character succeeds**, they succeed in their goal and may generate/spend **Momentum** as usual.",
+              "level": 1
+            },
+            {
+              "text": "**If the active character fails**, the reactive character generates bonus momentum for every success fewer than the set **Difficulty.**",
+              "level": 1
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Common Momentum Spends"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Extra Dice:** Spend 1 **Momentum** to gain an extra die before rolling for a Task. Spend 2 additional **Momentum** for a second die, and 3 additional **Momentum** for a third die.",
+              "level": 0
+            },
+            {
+              "text": "**Create Advantage:** Spend 2 **Momentum** to create an **Advantage** for yourself or an ally. You may use the **Advantage** to decrease the difficulty of your next Task by 1, or remove a **Complication** affecting you.",
+              "level": 0
+            },
+            {
+              "text": "**Create Problem:** During an opponent's turn before they roll for a Task, spend 2 **Momentum** to increase the difficulty of an opponent's Task by 1. Must be done before dice are rolled.",
+              "level": 0
+            },
+            {
+              "text": "**Obtain Information:** After a Successful Task, spend 1 **Momentum** to learn more about a situation by asking the GM one single question about the current situation, or an item, object, structure, creature, or character present in or relevant to the scene. The information must be relevant to the Task and **Skill** used.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Determination"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character’s **Value** or the **Common Cause** would be advantageous in a situation, the PC may spend **Determination** to:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Perfect Opportunity:** Replace one of the dice in your pool with a die that has already rolled a 1 (generating two automatic successes). You must declare this before the roll is attempted.",
+              "level": 0
+            },
+            {
+              "text": "**Second Chance:** Reroll any number of dice in your dice pool. You may do this after seeing the result of the roll, but before the GM describes the outcome.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character’s **Value** or the **Common Cause** would be disadvantageous in a situation, the GM may offer or the PC may suggest and choose to gain **Determination** to:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "Comply with their **Value** and suffer a **Complication:**",
+              "level": 0
+            },
+            {
+              "text": "either as a specific course of action (or lack thereof)",
+              "level": 1
+            },
+            {
+              "text": "or another material/situational/etc **Complication**",
+              "level": 1
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character’s **Value** or the mission’s **Common Cause** would be disadvantageous in a situation, the PC may also challenge a **Value** that would affect a situation negatively to gain **Determination.** They may then spend this **Determination** right away if another **Value** also applies. Cross out the **Value**. At the end of the session, re-write or replace the **Value** to show character growth."
+        },
+        {
+          "type": "paragraph",
+          "text": "If the **Common Cause** is challenged, it is crossed out and can’t be used until a new **Common Cause** is chosen, or until the challenge is resolved."
+        }
+      ],
+      "id": "performing-tasks-reference"
+    },
+    {
+      "title": "Combat Reference",
+      "blocks": [
+        {
+          "type": "subheading",
+          "text": "Minor Actions"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Aim:** You may re-roll a single d20 made on your next attack, keeping the second result.",
+              "level": 0
+            },
+            {
+              "text": "**Block:** You or an adjacent ally gains +2[CD] temporary HP.",
+              "level": 0
+            },
+            {
+              "text": "**Brandish:** You roll an +1[CD] on your next weapon attack.",
+              "level": 0
+            },
+            {
+              "text": "**Climb:** You climb up or down a Height 1 obstacle.",
+              "level": 0
+            },
+            {
+              "text": "**Dismiss Mount:** You send your mount to safety.",
+              "level": 0
+            },
+            {
+              "text": "**Draw Item:** You may draw an item carried on your person or pick up an item adjacent to you.",
+              "level": 0
+            },
+            {
+              "text": "**Interact:** You interact with an object in the environment. Particularly complex actions may require a Major Action instead.",
+              "level": 0
+            },
+            {
+              "text": "**Mount/Dismount:** You climb onto or off a mount.",
+              "level": 0
+            },
+            {
+              "text": "**Movement:** You move up to your speed.",
+              "level": 0
+            },
+            {
+              "text": "**Stand:** You stand from being Prone.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Major Actions"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Assist:** You nominate an ally you can communicate with and declare how you’ll assist. During their Turn, you use your reaction to assist.",
+              "level": 0
+            },
+            {
+              "text": "**Attack:** You make an attack.",
+              "level": 0
+            },
+            {
+              "text": "**Cast a Spell:** You cast a magickal spell.",
+              "level": 0
+            },
+            {
+              "text": "**Console:** Choose an ally within 10 spaces and make a Difficulty 1 Presence + Authority check. On a success, your target regains all Willpower.",
+              "level": 0
+            },
+            {
+              "text": "**Demoralize:** You make a will attack against an enemy within 10 spaces. Make a Presence + Diplomacy check contested by Faith + Skirmish. On a success, you deal 2 + Diplomacy [CD] Willpower damage.",
+              "level": 0
+            },
+            {
+              "text": "**Disengage:** You do not trigger opportunity attacks for the rest of your turn.",
+              "level": 0
+            },
+            {
+              "text": "**Direct:** [Requires the Commander or Tactician Talents] You nominate an ally to immediately attempt a single Task, assisted by your Presence + Authority. Can attempt this Task a number of times = Authority.",
+              "level": 0
+            },
+            {
+              "text": "**First Aid:** You heal yourself or an ally you can touch. Difficulty of 1 Reason + Medicine Task. On a success, the target regains Medicine [CD] HP.",
+              "level": 0
+            },
+            {
+              "text": "**Grapple:** Opposed Brawn + Skirmish vs. Brawn + Skirmish Task. On a success, the target is Immobilized, and only moves when the attacker moves. You cannot take reactions while engaged in a grapple, and cannot deal damage when counterattacking. You can end the grapple as a free action on your turn; it also ends if the you and the target are moved out of reach of the other, or if the defender succeeds on a Task to escape as a Minor Action on their Turn, using Agility, Brawn, or Coordination + Skirmish and opposed by the same Attribute + Skirmish. Only one unit may be grappled at a time.",
+              "level": 0
+            },
+            {
+              "text": "**Guard:** You protect an ally within Reach. Difficulty 1 Faith + Skirmish Task. On a success, the Difficulty of any attacks made against the character increases by +1 until the start of their next Turn.",
+              "level": 0
+            },
+            {
+              "text": "**Hide:** You hide while in cover. Difficulty 2 Agility + Intrigue Task (cannot be attempted while engaged with an enemy). On a success, you are hidden from sight and cannot be targeted by attacks unless the enemy uses the Search action.",
+              "level": 0
+            },
+            {
+              "text": "**Pinpoint:** Choose an enemy on the battlefield within Range equal to your Reason, and create an Advantage for you or an ally to use, lowering the Difficulty of any Task made against the target. This Advantage remains on the target until it is used.",
+              "level": 0
+            },
+            {
+              "text": "**Ready:** You declare that you are waiting for a specific situation or event to occur before attempting a Task. PCs can still perform Minor Actions during their Turn as normal.",
+              "level": 0
+            },
+            {
+              "text": "**Recall Mount:** You summon your mount to the battlefield.",
+              "level": 0
+            },
+            {
+              "text": "**Refocus:** You pause to catch your breath. You regain full Willpower.",
+              "level": 0
+            },
+            {
+              "text": "**Search:** Difficulty 2 Awareness + Intrigue Task to find a hidden enemy within a range equal to your Awareness.",
+              "level": 0
+            },
+            {
+              "text": "**Shove:** You shove a character 1 space away. Opposed Brawn + Skirmish vs. Agility Skirmish. Does not provoke opportunity attacks.",
+              "level": 0
+            },
+            {
+              "text": "**Sprint:** You move up to 3 times your speed. You cannot use Sprint and the Movement Minor Action together.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Reactions"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Opportunity Attack:** When an enemy moves out of Reach without disengaging, PC can make a single melee weapon attack. This attack is a Difficulty 1 Opposed Task, but only the attacker deals damage on a success.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You may take one reaction each turn, but you cannot take the same reaction more than once per Round unless otherwise specified. You cannot use reactions during your own Turn."
+        },
+        {
+          "type": "subheading",
+          "text": "Making an Attack"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "Name your weapon and Target.",
+              "level": 0,
+              "marker": "1."
+            },
+            {
+              "text": "If a melee weapon is chosen, the attack is a melee attack.",
+              "level": 1
+            },
+            {
+              "text": "If a ranged weapon is chosen, the attack is a ranged attack.",
+              "level": 1
+            },
+            {
+              "text": "Make an Opposed Task",
+              "level": 0,
+              "marker": "2."
+            },
+            {
+              "text": "**Swords:** AGI + SKIRM, vs. COORD + SKIRM defense.",
+              "level": 1
+            },
+            {
+              "text": "**Axes:** BRAWN + SKIRM vs. AGI + SKIRM defense",
+              "level": 1
+            },
+            {
+              "text": "**Spears:** COORD + SKIRM vs. BRAWN + SKIRM defense",
+              "level": 1
+            },
+            {
+              "text": "**Gauntlets:** COORD/AGI/BRAWN + SKIRM vs. COORD/AGI/BRAWN + SKIRM defense",
+              "level": 1
+            },
+            {
+              "text": "**Bows:** AWARE + SKIRM vs. AWARE + SKIRM, with -1 difficulty if the enemy is flying and +1 difficulty if within reach of an enemy.",
+              "level": 1
+            },
+            {
+              "text": "If the attack was successful, roll damage and subtract resistance.",
+              "level": 0,
+              "marker": "3."
+            },
+            {
+              "text": "If the damage would be reduced for any reason, round down before subtracting resistance.",
+              "level": 1
+            },
+            {
+              "text": "Damage can only be dealt on a melee counterattack if the defender is also holding a melee weapon",
+              "level": 1
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Damage/Injuries"
+        },
+        {
+          "type": "paragraph",
+          "text": "When your HP is reduced to 2/3 and 1/3 of your maximum total, you suffer a Wound. You can get rid of wounds by restoring your HP above the 2/3 and 1/3 thresholds."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Wound 1:** When a character’s HP is at or below 2/3 of their maximum HP, their speed is reduced by 2.",
+              "level": 0
+            },
+            {
+              "text": "**Wound 2:** When a character’s HP is at or below 1/3 of their maximum HP, they cannot take Swift Tasks.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "When your HP is reduced to 0, you are Incapacitated and fall prone. If your HP is restored above 0, you are no longer Incapacitated and may act as normal, though your Injuries and Wounds remain."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Avoiding Injury:** Once per scene, a character may spend their Determination to Avoid Injury. If a character is dealt damage that would reduce their HP to 0, causing them to suffer an Injury, they may instead return to 1HP, ignoring the damage.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Willpower"
+        },
+        {
+          "type": "paragraph",
+          "text": "When you take damage from a mental attack, you subtract the damage from your Willpower, which is not affected by Resistance. If your Willpower reaches 0, you are Rattled, and all tasks increase in Difficulty by 1. You clear Rattled as soon as any amount of Willpower is restored."
+        },
+        {
+          "type": "subheading",
+          "text": "Momentum in Combat"
+        },
+        {
+          "type": "paragraph",
+          "text": "During combat, there is no momentum generated or spent. When players roll more successes than their opponents, they gain bonus momentum that must be spent immediately and cannot be saved or used to buy extra dice. Bonus momentum may be spent on the following effects:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Bonus Damage:** A character can increase the damage inflicted by a successful Attack, regardless of the type of Attack. Each Momentum spent adds +1 damage.",
+              "level": 0
+            },
+            {
+              "text": "**Extra Minor Action (1 BM):** Take an additional Minor Action.",
+              "level": 0
+            },
+            {
+              "text": "**Reroll Damage (1 BM):** The player may re-roll any number of [CD] from the current Attack. (Can be used on other cases of rolled [CD]).",
+              "level": 0
+            },
+            {
+              "text": "**Swift Task (2 BM):** The character may attempt one additional Task (This may only be done once per turn).",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Determination in Combat"
+        },
+        {
+          "type": "paragraph",
+          "text": "During combat, you gain access to two additional Determination spends:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Burst Of Effort:** You spend your **Determination** to immediately take an additional Major and Minor action on your turn. If you have already taken a Minor action on your turn, you may take that same Minor action again.",
+              "level": 0
+            },
+            {
+              "text": "**Avoid Injury:** If you are dealt damage that would reduce your HP to 0, you may instead return to 1 HP, ignoring the damage.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Chaff"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each group of Chaff shares a pool of HP equal to the Chaff’s individual amount of HP times the number of Chaff. For example, each sword Chaff has 4 HP, so a group of 5 sword Chaff would have a pool of 20 HP. Whenever an individual Chaff NPC would take damage, the entire group pool is reduced by the damage taken. Chaff do not suffer Wounds, and they cannot regain HP."
+        },
+        {
+          "type": "paragraph",
+          "text": "Whenever the Chaff HP pool is reduced by an amount equal to an individual Chaff’s HP, one Chaff is defeated. If enough damage is dealt equivalent to multiple Chaff, the equivalent amount of Chaff are removed. For example, if 12 damage is dealt to a group of 5 sword Chaff, two of the Chaff are immediately defeated."
+        }
+      ],
+      "id": "combat-reference"
+    },
+    {
+      "title": "Damage Effects and Qualities",
+      "blocks": [
+        {
+          "type": "subheading",
+          "text": "Damage Effects"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Daunting X:** Add +X Willpower damage for each [!] rolled.",
+              "level": 0
+            },
+            {
+              "text": "**Destructive:** This attack deals double damage when targeting objects. When targeting an enemy unit, if the target is benefiting from Half-Cover and you roll 3 or more [!], you may reduce your damage by 2 in order to destroy that instance of Half Cover.",
+              "level": 0
+            },
+            {
+              "text": "**Draining:** If a number of [!] are rolled that equals or exceeds the target’s Faith Effect Save, the target gains the Weakened condition until the end of their next turn.",
+              "level": 0
+            },
+            {
+              "text": "**Knockdown:** If a number of [!] are rolled that equals or exceeds the target’s Brawn Effect Save, the target is knocked prone.",
+              "level": 0
+            },
+            {
+              "text": "**Persistent [X]:** The target must succeed on a Difficulty 2 Brawn + Medicine Task at the end of their Turn or they suffer X [CD] damage (of the same type as the initial attack or hazard), and this continues for multiple rounds until they either succeed the check or until they benefit from a First Aid action. If a target accrues multiple instances of Persistent damage, the number of [CD] stacks. Persistent damage ignores resistance.",
+              "level": 0
+            },
+            {
+              "text": "**Pinning:** If a number of [!] are rolled that equals or exceeds the target's Coordination Effect Save, they become immobilized and must spend a minor action to break free.",
+              "level": 0
+            },
+            {
+              "text": "**Provoking:** If a number of [!] are rolled that equals or exceeds the target’s current Willpower, the target becomes Enraged until the end of their next turn, with the attacker as their source of rage.",
+              "level": 0
+            },
+            {
+              "text": "**Startling:** If a number of [!] are rolled that equals or exceeds the target’s Awareness Effect Save, the target is Off-Guard until the end of their next turn.",
+              "level": 0
+            },
+            {
+              "text": "**Stunning:** If a number of [!] are rolled that equals or exceeds the target’s Awareness Effect Save, the target is Dazed until the end of their next turn.",
+              "level": 0
+            },
+            {
+              "text": "**Terrifying:** If a number of [!] are rolled that equals or exceeds the target’s Willpower, the target is Frightened. Frightened may be ended by a console task on the frightened individual.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Weapon Qualities"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Bulky:** This weapon takes up two inventory slots instead of one.",
+              "level": 0
+            },
+            {
+              "text": "**Burst X:** Attacks with this weapon affect characters within a radius of X, centered on and including the space occupied by the target. Characters affected by this attack but are not the initial target are dealt half the attack’s initial damage and do not suffer any of the attack’s damage effects.",
+              "level": 0
+            },
+            {
+              "text": "**Close Quarters:** This weapon suffers no penalty when used to make a ranged attack while the enemy is within Reach.",
+              "level": 0
+            },
+            {
+              "text": "**Effortless:** When this item is used in conjunction with another 1H weapon, you may reroll 1d20 when attacking with that weapon as if the hand holding this weapon was free.",
+              "level": 0
+            },
+            {
+              "text": "**Extended X:** This weapon has Reach X. You may attack an adjacent target even if they are 1 Height above or below you.",
+              "level": 0
+            },
+            {
+              "text": "**Heavy:** Attacks with this weapon have +1 Difficulty unless the weapon is braced or you have a Brawn of 10 or higher. A 1H weapon is braced when it is wielded in two hands. A 2H weapon is braced if a minor action is taken to ready a stance before striking with it.",
+              "level": 0
+            },
+            {
+              "text": "**Knockback X:** Successful attacks with this weapon push the target X spaces away in a direction of the attacker’s choice.",
+              "level": 0
+            },
+            {
+              "text": "**Loading:** You must spend a minor action to load this weapon before you may attack with it.",
+              "level": 0
+            },
+            {
+              "text": "**Parrying:** When this weapon’s wielder makes an opposed test to defend against a melee attack, they may re-roll a single d20 on their test. This does not stack if the character has multiple Parrying weapons and cannot apply while wielding a weapon with the Spear tag.",
+              "level": 0
+            },
+            {
+              "text": "**Piercing:** When resolving damage, ignore all Resistance.",
+              "level": 0
+            },
+            {
+              "text": "**Reliable X:** When you miss on an attack with this weapon, it still deals X damage. This damage is applied after the counterstrike damage.",
+              "level": 0
+            },
+            {
+              "text": "**Saddleback:** When a character attacks with this weapon while mounted, they do not suffer the normal Increase in Difficulty from mounted attacks.",
+              "level": 0
+            },
+            {
+              "text": "**Subtle:** Attacks made while Hidden using a subtle weapon gain [CD] damage equal to the wielder’s Intrigue.",
+              "level": 0
+            },
+            {
+              "text": "**Thrown X:** You can make up to X ranged attacks with this weapon before it is depleted. You may additionally use this weapon to make a melee attack that deals -2 [CD], so long as it is not depleted.",
+              "level": 0
+            }
+          ]
+        }
+      ],
+      "id": "damage-effects-and-qualities"
+    },
+    {
+      "title": "Statuses",
+      "blocks": [
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Blinded:** While Blinded, you cannot see (reminder, you have +1 Difficulty on Tasks that target or are contested by characters you cannot see, such as Attacking or Defending.)",
+              "level": 0
+            },
+            {
+              "text": "**Dazed:** When Dazed, you can only take one Major Action or one Minor Action on your turn. You may still use the Burst of Effort Determination spend to gain extra actions.",
+              "level": 0
+            },
+            {
+              "text": "**Enraged:** When Enraged, the Difficulty of Attacks made against all creatures except the source of your Rage increases by 1.",
+              "level": 0
+            },
+            {
+              "text": "**Exposed:** While Exposed, you gain no benefit from non-conditional Resistance.",
+              "level": 0
+            },
+            {
+              "text": "**Frightened:** When Frightened, all tasks increase in Difficulty by 1 and you cannot willingly move towards the source of your Fear.",
+              "level": 0
+            },
+            {
+              "text": "**Immobilized:** When Immobilized, your Speed is 0 and you cannot take any Voluntary Movement or Stand.",
+              "level": 0
+            },
+            {
+              "text": "**Incapacitated:** When incapacitated, you cannot take any Actions or Reactions, and you cannot move. All attacks made against you gain a bonus d20.",
+              "level": 0
+            },
+            {
+              "text": "**Invisible:** When invisible, creatures cannot see you, although your approximate location (which Space you are in) is still obvious unless you hide as normal.",
+              "level": 0
+            },
+            {
+              "text": "**Off-Guard:** When Off-Guard, all Defend tasks increase in Difficulty by 1.",
+              "level": 0
+            },
+            {
+              "text": "**Prone:** While prone, the Difficulty of all ranged attacks against you increases by +1, melee attacks gain +1d20 against you, and you cannot attempt any movement-related Major Actions. While prone, when you take the Move Minor Action you crawl instead of walking, with each tile of movement costing 3 spaces of speed instead of 1.",
+              "level": 0
+            },
+            {
+              "text": "**Rattled:** When Rattled, all tasks increase in Difficulty by 1. This status can be cleared as soon as a character regains any Willpower.",
+              "level": 0
+            },
+            {
+              "text": "**Slowed:** When Slowed, your Speed is halved.",
+              "level": 0
+            },
+            {
+              "text": "**Weakened:** While Weakened, all of your melee, ranged, and spell attacks deal -2[CD] damage.",
+              "level": 0
+            }
+          ]
+        }
+      ],
+      "id": "statuses"
+    },
+    {
+      "title": "Mass Combat Reference",
+      "blocks": [
+        {
+          "type": "subheading",
+          "text": "Orders"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Army Attack:** The officer orders a division to make an attack against another division in the same or adjacent zone: Difficulty 1 Presence + Authority.",
+              "level": 0
+            },
+            {
+              "text": "**Reposition:** The officer performs a Difficulty 1 Presence + Authority task. On a success, they may order any number of divisions in the same zone to move to any adjacent zone, or any number of divisions in an adjacent zone to move into the current zone. On a failure, they may only order one division to move.",
+              "level": 0
+            },
+            {
+              "text": "This order may be used to allow a division to move even if it has already taken a Free Move, or to move across a Hazardous zone border, provoking a Mass Opportunity Attack if applicable (see below).",
+              "level": 1
+            },
+            {
+              "text": "**Stratagem:** The Officer orders a division to perform its stratagem.",
+              "level": 0
+            },
+            {
+              "text": "**Regroup:** The Officer orders a division to tend its wounded and return to battle. The officer performs a Difficulty 1 Faith + Authority task, or Difficulty 2 if the division is broken. On a success, the division regains 2 + the officer’s authority [CD]. If the division was broken, it no longer is.",
+              "level": 0
+            },
+            {
+              "text": "Broken divisions may be ordered to Regroup, even if they have already been issued an order this round.",
+              "level": 1
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Bracing"
+        },
+        {
+          "type": "paragraph",
+          "text": "When an army is attacked, an officer can Brace as a reaction, turning the army attack into an Opposed task. The defending bracing officer contests the task by making a Presence + Authority task."
+        },
+        {
+          "type": "subheading",
+          "text": "Mass Opportunity Attack"
+        },
+        {
+          "type": "paragraph",
+          "text": "When enemy divisions enter or leave the same zone as an officer across a Hazardous border, the officer may order all allied divisions in the zone to make a Mass Opportunity Attack. The officer performs an attack skill test, allowing an enemy officer on either side of the crossed border to Brace. On a success, each of the officer’s allied divisions may deal damage to a single enemy division that crossed the border. On a failure, the enemy divisions are unharmed, but may not counterstrike."
+        },
+        {
+          "type": "paragraph",
+          "text": "A division may only participate in one Mass Opportunity Attack each round."
+        },
+        {
+          "type": "subheading",
+          "text": "Zone Borders"
+        },
+        {
+          "type": "paragraph",
+          "text": "A zone border is considered:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Accessible** if there is no impediment to moving across it, such as over an open field.",
+              "level": 0
+            },
+            {
+              "text": "**Hazardous** if crossing it requires moving through or into difficult terrain, such as over a trench, uphill, or into a forest.",
+              "level": 0
+            },
+            {
+              "text": "**Impassable** if it is composed entirely of impassable terrain.",
+              "level": 0
+            }
+          ]
+        },
+        {
+          "type": "subheading",
+          "text": "Free Move"
+        },
+        {
+          "type": "paragraph",
+          "text": "Every round, each division is allowed one **Free Move** to an adjacent zone so long as the border is Accessible. Once per turn, an officer may, as a free action, order a division in the same zone to Free Move out of the current zone, or a division in an adjacent zone to Free Move into the current zone. If a division’s Free Move has not been used by the end of a round, it may move across an Accessible border into any adjacent zone to its current position, regardless of whether an allied officer is present."
+        }
+      ],
+      "id": "mass-combat-reference"
+    }
+  ]
+}

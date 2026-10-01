@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sword",
+    "name": "Sword",
+    "color": "#9fc5e8",
+    "description": "Sword NPCs have high Agility and usually have 6 Brawn unless modified by a template, making them weak to attacks that are defended with Brawn (e.g. Spears). Sword NPCs tend to have high movement speed, attack multiple times while dealing less damage on single attacks, and compensate for their low HP by being harder to land hits on."
+  },
+  {
+    "id": "spear",
+    "name": "Spear",
+    "color": "#f9cb9c",
+    "description": "Spear NPCs have high Coordination and usually have 6 Agility unless modified by a template, making them weak to attacks that are defended with Agility (e.g. Axes). Spear NPCs have long reach allowing them to threaten large areas on the battlefield, can pierce through armor, and are often mounted allowing them to have high mobility as long as they don’t enter difficult terrain."
+  },
+  {
+    "id": "axe",
+    "name": "Axe",
+    "color": "#ff0000",
+    "description": "Axe NPCs have high Brawn and usually have 6 Coordination unless modified by a template, making them weak to attacks that are defended with Coordination (e.g. Swords). Axe NPCs tend to deal very high raw damage, and their high Brawn gives them large HP pools, but they generally have simpler abilities compared to Swords and Spears."
+  },
+  {
+    "id": "bow",
+    "name": "Bow",
+    "color": "#00ff00",
+    "description": "Bow NPCs have high Awareness. They tend to suffer in melee, making them weak to any sort of melee engagement once their enemy closes the distance. Bow NPCs tend to deal respectable damage at long range, and often are able to use other means to make navigating the battlefield difficult as long as they are standing."
+  },
+  {
+    "id": "arcane",
+    "name": "Arcane",
+    "color": "#b4a7d6",
+    "description": "Arcane NPCs have high Reason. They tend to have low Resistance, HP, and poor Counterstrike ability, making them the easiest NPC type to take down with targeted attacks, however they compensate for this for wielding long range spells that shred through armor. Arcane NPCs often are able to cast spells that target whole areas on the battlefield, and being hit by their spells usually cause a short term negative status."
+  },
+  {
+    "id": "light",
+    "name": "Light",
+    "color": "#ffff00",
+    "description": "Light NPCs have high Faith. They tend to have respectable Resistance and some means of melee combat, but their strength is their ability to support their NPCs by healing and buffing them with their spells. They sometimes can wield powerful offensive spells like Arcane NPCs, but usually are less versatile if they do."
+  },
+  {
+    "id": "dark",
+    "name": "Dark",
+    "color": "#000000",
+    "description": "Dark NPCs have high Presence. Like Arcane NPCs they tend to be easily killed with targeted attacks, but also are extraordinarily dangerous at targeted attacks with their shorter range spells that shred through armor and often inflict nasty status ailments. Dark NPCs also sometimes are able to inflict multiple characters with debilitating statuses at once."
+  },
+  {
+    "id": "gauntlet",
+    "name": "Gauntlet",
+    "color": "#efefef",
+    "description": "Gauntlet NPCs have respectable Agility, Brawn, and Coordination. They often are able to switch up their attacks, being able to target any of Agility, Brawn, or Coordination with their melee strikes. They don’t tend to deal massive damage, but excel at grappling and inflicting short term negative statuses on their enemies."
+  },
+  {
+    "id": "control",
+    "name": "Control",
+    "color": "#c27ba0",
+    "description": "Control NPCs have high Presence and low Skirmish. They don’t deal much physical damage, and instead focus on weakening/hampering their enemies, or supporting/creating opportunities for their allies. Control NPCs have mostly ranged abilities, and are weaker in direct melee."
+  },
+  {
+    "id": "monstrosity",
+    "name": "Monstrosity",
+    "color": "#8b5a2b",
+    "description": "Monstrosity NPCs are dangerous creatures, often inhuman in nature."
+  }
+]

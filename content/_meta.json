@@ -24,6 +24,18 @@
     "talents.combat": "69 of 69 Talent Trees fully transcribed (8 Weapon Adept + 42 General + 19 Magick, 256 abilities total)",
     "spells.arcane": "20 of 20 fully transcribed",
     "spells.light": "25 of 25 fully transcribed",
-    "spells.dark": "18 of 18 fully transcribed (with Willpower costs)"
+    "spells.dark": "18 of 18 fully transcribed (with Willpower costs)",
+    "quickReference": "complete (verbatim from 0.8 QUICK REFERENCE.docx: 5 sections; headings restyled to title case without colons to match the Compendium) - see quick-reference.json",
+    "rules.playingTheGame": "Chapters Three and Four, verbatim minus worked examples - see rules/playing-the-game.json",
+    "rules.combat": "Chapter Five, verbatim minus worked examples - see rules/combat.json",
+    "rules.massCombat": "Part Five (Chapters Nine-Eleven), verbatim minus Building an Army and worked examples - see rules/mass-combat.json",
+    "rules.magick": "Chapter Eight, verbatim minus the spell lists (see spells/) - see rules/magick.json",
+    "armies.divisions": "15 of 15 (Chapter Eleven) - see armies/divisions.json",
+    "armies.stratagems": "45 of 45 (Chapter Eleven; \"Horse Bowmen\"/\"Heavy Cavalry\" mapped to Horse Archers/Heavy Horse Cavalry) - see armies/stratagems.json",
+    "armies.talents": "22 of 22 Army Talents (Chapter Eleven) - see armies/talents.json",
+    "armies.rules": "Scale table, base Morale, Talents by level (Chapters Nine/Ten) - see armies/rules.json",
+    "npcs.classes": "33 of 33 fully transcribed (24 standard classes + 4 Chaff + 5 Monumental Foes) - see npcs/_index.json",
+    "npcs.types": "10 (9 from the colour-coded NPC Types legend + bespoke Monstrosity type) - see npcs/types.json",
+    "npcs.templates": "3 of 3 (Veteran, Elite, Commander) plus Chaff and Monumental Foe group rules - see npcs/templates.json"
   }
 }

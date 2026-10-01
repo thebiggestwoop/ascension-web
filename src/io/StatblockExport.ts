@@ -95,7 +95,7 @@ export function generateStatblockText(data: ICharacterData): string {
 
   const out: string[] = []
   out.push(TITLE_RULE)
-  out.push((migrated.name || 'Unnamed Character').toUpperCase())
+  out.push(migrated.name || 'Unnamed Character')
   out.push(`Level ${migrated.level} | XP ${migrated.xp}/${CoreContent.advancement.xpThresholdPerLevel}`)
   out.push(TITLE_RULE)
   out.push('')

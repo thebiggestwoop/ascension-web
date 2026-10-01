@@ -1,0 +1,112 @@
+[
+  {
+    "id": "alert_watchmen",
+    "name": "Alert Watchmen",
+    "text": "Your army has a robust watch protocol preventing the risk of ambush. While your army is camped, it cannot be surprise attacked and can always report who came and left the encampment.\n\nAdditionally, when your army is prepared for an ambush, you may automatically succeed on any Task to find a place to conceal your army."
+  },
+  {
+    "id": "camp_healers",
+    "name": "Camp Healers",
+    "text": "Your army has a number of well-trained healers in its midst. When traveling with your army, if you roll on the Injury Effect Table, you may roll twice and choose either result. In addition, when attempting Tasks that use Medicine, you may always act as though you have a relevant Focus if you are being assisted by healers from your army."
+  },
+  {
+    "id": "chain_of_command",
+    "name": "Chain of Command",
+    "text": "Your army has a robust and strict hierarchy, and can function for periods of time without its highest commanders. If your army is unattended for up to a week, it will maintain discipline and obey its most recent orders. Additionally, you gain +1d20 on Tasks to mitigate Complications caused by your army."
+  },
+  {
+    "id": "diplomats_corps",
+    "name": "Diplomats Corps",
+    "text": "Your army always has someone who speaks the language of and knows the general culture of anyone you encounter, so long as there is a major political power of that culture. You may always Succeed at Cost when convincing someone to parley before battle."
+  },
+  {
+    "id": "enhanced_interrogation",
+    "name": "Enhanced Interrogation",
+    "text": "Your army specializes in extracting information from captives. When you succeed on an Intrigue task to interrogate a prisoner held by your army, you gain two Bonus Momentum that can only be spent on the Obtain Information momentum spend."
+  },
+  {
+    "id": "fearsome_reputation",
+    "name": "Fearsome Reputation",
+    "text": "Your army is known to be ruthless and terrifying. 1/session, when you perform a Task to intimidate someone, you may roll an extra die by invoking the reputation of your army.\n\nIf an enemy town has an army smaller than yours, they will automatically surrender unless their liege is present."
+  },
+  {
+    "id": "gossip_mill",
+    "name": "Gossip Mill",
+    "text": "3/session, when you use the Obtain Information momentum spend, you may ask an additional question to learn information from people in your army."
+  },
+  {
+    "id": "impeccable_logistics",
+    "name": "Impeccable Logistics",
+    "text": "Your army is a master of its supply chain. If your army’s supply line is cut off, your army can go two months without running out of resources. Additionally, the Momentum cost to Create an Advantage to acquire an item is reduced by 1, to a minimum of 0.\n\nYou may always Succeed at Cost on any task to make your army undergo a forced march. When undergoing a forced march, your army can move at double speed."
+  },
+  {
+    "id": "in_it_for_the_coin",
+    "name": "In it for the Coin",
+    "text": "Your army fights, above all else, for the pay. You suffer no Complications or penalty to your reputation if you turn against someone who cannot or refuses to pay your army.\n\nAdditionally, if your army is hesitant to follow an order, you always know what price it would take to convince them otherwise and how to get it."
+  },
+  {
+    "id": "liege_s_legion",
+    "name": "Liege’s Legion",
+    "text": "Your army fights in the name of a liege. Before you attempt a Task involving your army, you may invoke its liege’s name to ask a nearby lord or populace for assistance. If they have a positive opinion of the army’s liege, roll an extra die. If they have a negative opinion, you immediately generate a Complication instead."
+  },
+  {
+    "id": "mess_tents",
+    "name": "Mess Tents",
+    "text": "Your army’s cooks are some of the best in the land and can make delicious food with the simplest of supplies. When your army is well supplied, you gain +1d20 on Diplomacy Tasks to interact with members of your army."
+  },
+  {
+    "id": "pampered_and_provided",
+    "name": "Pampered and Provided",
+    "text": "Your army is well equipped to host a person of status. When a noble or royal is traveling with you, they are always given treatment above expectations, unless you order otherwise.\n\nWhile they are in your care, when you perform a Diplomacy Task to interact with them, you may reroll one die on the Task."
+  },
+  {
+    "id": "plague_resilient",
+    "name": "Plague Resilient",
+    "text": "When you perform a Task to contain, treat, or study a disease affecting your army, gain an extra die. If you have a medical unit in your army, you may also gain a die when performing a Task to contain, treat, or study a disease in a city or town."
+  },
+  {
+    "id": "raiders",
+    "name": "Raiders",
+    "text": "Your army is especially good at looting and pillaging. When you allow your army to loot a settlement, you gain an Advantage on all Tasks relating to your army for the remainder of the session.\n\nAdditionally, when you do, each member of the party may specify an object or possession captured that they wish to have as theirs, which they will obtain undamaged."
+  },
+  {
+    "id": "ransom_cages",
+    "name": "Ransom Cages",
+    "text": "Your army is equipped with secure means of transporting prisoners and hostages. Captured characters cannot escape your custody unless you allow them. In addition, 1/session you gain a free Advantage on any Task to intimidate someone if your army currently has prisoners."
+  },
+  {
+    "id": "siege_masters",
+    "name": "Siege Masters",
+    "text": "When your army is engaged in an Extended Task or Challenge for a siege, the Momentum cost to reduce the time a Task takes is 1.\n\nWhen you use a Siege type division in your army to reduce the cost to Create an Advantage, you may reroll any number of dice once on the task. You must keep the new result."
+  },
+  {
+    "id": "skilled_scouts",
+    "name": "Skilled Scouts",
+    "text": "Your army has trained for scouting ahead and learning about the enemy. You may reroll a die on a task to have your army perform a scouting mission, and may choose to keep either result. The first Momentum you spend to Gather Information from a task related to scouting,"
+  },
+  {
+    "id": "strict_discipline",
+    "name": "Strict Discipline",
+    "text": "Your army is held to the utmost standard and follows orders without question. 1/session, you may automatically succeed on a Task to issue commands to your army. You do not suffer Complications when rebuking or inflicting discipline on your army."
+  },
+  {
+    "id": "swords_for_hire",
+    "name": "Swords for Hire",
+    "text": "Your army is always on the lookout for new work. When attempting a Task to convince a prospective patron to hire you, you may reroll any number of dice in your pool. In addition, when negotiating your pay, you may choose to increase the Complication range by 2 (Complications on 18-20) in order to gain an extra die."
+  },
+  {
+    "id": "strangers_in_a_strange_land",
+    "name": "Strangers in a Strange Land",
+    "text": "The primary force of your army is foreign to these lands, making it more insular and self-reliant. Your army is immune to attempts to sneak outside spies into your ranks. Whenever you perform an Authority Task to interact with members of your army, roll an extra die."
+  },
+  {
+    "id": "undying_commitment",
+    "name": "Undying Commitment",
+    "text": "Your army is unilaterally devoted to your cause. 1/session, after you appeal to the Common Cause to spend your Determination on a Task related to your army, you regain it.\n\nYour army may call upon the party to comply with the Common Cause. If the party chooses to Challenge it instead, the army will abandon you until you regain their trust, up to the GM’s discretion."
+  },
+  {
+    "id": "warriors_of_the_faith",
+    "name": "Warriors of the Faith",
+    "text": "Your army fights in the name of a religious institution. Characters of the same faith will not fight your army unless they believe you are going to attack them or if given permission by a religious authority of your faith.\n\nWhen you perform a Task with Faith related to your army, you may roll an additional die.\n\n"
+  }
+]

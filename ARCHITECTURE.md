@@ -13,7 +13,7 @@ This mirrors the layering conventions used by [CompCon](https://github.com/massi
 - **`src/io/`** — Persistence (`Storage.ts`, IndexedDB via localforage) and content loading
   (`ContentLoader.ts`, which reads `content/*.json` into typed collections).
 - **`src/features/`** — Vertical-slice UI modules: `character_builder`, `character_sheet`,
-  `compendium`, `main_menu`. Each owns its own routes and components. Feature modules may read
+  `army_sheet`, `compendium`, `gm_toolkit`, `main_menu`. Each owns its own routes and components. Feature modules may read
   from `src/classes/` and `src/io/`, but should not reach into each other's internals directly.
 - **`src/ui/`** — Shared, generic components with no knowledge of game-specific state or
   feature stores.

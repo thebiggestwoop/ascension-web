@@ -15,7 +15,9 @@ export const useNavStore = defineStore('nav', {
       { label: 'Home', to: '/' },
       { label: 'Character Builder', to: '/builder' },
       { label: 'Character Sheet', to: '/sheet' },
+      { label: 'Army Sheet', to: '/armies' },
       { label: 'Compendium', to: '/compendium' },
+      { label: 'GM Toolkit', to: '/gm' },
     ] as NavLink[],
   }),
 })

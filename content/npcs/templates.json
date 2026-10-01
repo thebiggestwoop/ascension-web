@@ -1,0 +1,154 @@
+{
+  "tiers": {
+    "notation": "There are three tiers of NPCs, Tier 1, 2, and 3. When building an NPC, select its tier—some of the values of the NPC are determined by its tier, with the notation A/B/C, with A being its Tier 1 value, B being Tier 2, and C being Tier 3. For example, if an NPC has an Agility of 10/11/12, its Tier 1 form has 10 Agility, and its Tier 3 form has 12 Agility.",
+    "tiers": [
+      {
+        "tier": 1,
+        "levels": "0-4"
+      },
+      {
+        "tier": 2,
+        "levels": "5-8"
+      },
+      {
+        "tier": 3,
+        "levels": "9-12"
+      }
+    ]
+  },
+  "templates": [
+    {
+      "id": "veteran",
+      "name": "Veteran",
+      "description": "Veterans are experienced warriors, leading their fellow soldiers by command or through example.",
+      "features": [
+        {
+          "name": "Veteran",
+          "text": "The Veteran has 2 Health Bars.",
+          "statModifiers": {
+            "healthBars": 2
+          }
+        }
+      ],
+      "optionalFeatures": [
+        {
+          "name": "Uninhibited",
+          "text": "The Veteran may take a second Major Action on their turn."
+        },
+        {
+          "name": "Critical Blows",
+          "text": "When the Veteran rolls Successes that exceed the Difficulty of their attack, they add +2[CD] for each excessive success."
+        },
+        {
+          "name": "Warrior’s Spirit",
+          "recharge": true,
+          "text": "The Veteran activates this ability as a Minor Action. Until the start of their next turn, all Tasks they attempt gain +1d20."
+        },
+        {
+          "name": "Follow-up Blow",
+          "text": "The Veteran adds +2[CD] to an attack against a target that has already been attacked this round."
+        },
+        {
+          "name": "Inspiring Leader",
+          "text": "The Veteran can use a Reaction to allow an ally to reroll an attack."
+        }
+      ]
+    },
+    {
+      "id": "elite",
+      "name": "Elite",
+      "description": "An Elite is a powerful enemy, capable of taking on several opponents at once. If an Elite is in play, the Players’ objective is usually to defeat the Elite.",
+      "features": [
+        {
+          "name": "Elite",
+          "text": "The Elite has three Health Bars.",
+          "statModifiers": {
+            "healthBars": 3
+          }
+        },
+        {
+          "name": "Vantage",
+          "text": "The Elite takes two turns in a single round. They regain all uses of their Reactions at the start of each of their turns."
+        }
+      ],
+      "optionalFeatures": [
+        {
+          "name": "Tough",
+          "text": "The Elite gains +5 HP to each Health Bar.",
+          "statModifiers": {
+            "hpPerHealthBar": 5
+          }
+        },
+        {
+          "name": "Get into Position",
+          "text": "At the beginning of their turn, the Elite can use a free action to order one ally within line of sight to move up to their Speed."
+        },
+        {
+          "name": "Inspiring Leader",
+          "text": "The Elite can use a Reaction to allow an ally to reroll an attack."
+        },
+        {
+          "name": "Triumphant Shout",
+          "recharge": true,
+          "text": "The Elite uses a Minor Action to give every other NPC on the field +2[CD] on the first Attack attempted on their turn."
+        },
+        {
+          "name": "Critical Blows",
+          "text": "When the Elite rolls Successes that exceed the Difficulty of their attack, they add +2[CD] for each excessive success."
+        },
+        {
+          "name": "No Mercy",
+          "text": "All of the Elite’s attacks gain +2[CD]."
+        }
+      ]
+    },
+    {
+      "id": "commander",
+      "name": "Commander",
+      "description": "Commanders are units specialized with giving orders to an army.",
+      "features": [
+        {
+          "name": "Commander",
+          "text": "The commander has 2 Health Bars and gains 4/5/5 Authority if they did not already.",
+          "statModifiers": {
+            "healthBars": 2
+          }
+        },
+        {
+          "name": "Tactician",
+          "text": "When the Commander issues an order, they may also take an additional Major Action."
+        }
+      ],
+      "optionalFeatures": [
+        {
+          "name": "General",
+          "text": "The Commander has 3 Health Bars instead of 2.",
+          "statModifiers": {
+            "healthBars": 3
+          }
+        },
+        {
+          "name": "Braced",
+          "text": "The Commander has +1d20 on Tasks to Brace."
+        }
+      ],
+      "massCombatOnly": true,
+      "encounterWeight": 2
+    }
+  ],
+  "rules": {
+    "chaff": {
+      "name": "Chaff",
+      "text": "Chaff are enemy units that are individually very weak, but become much stronger when operating in groups. All Chaff have the “Chaff” tag. Adding chaff to a battle allows for there to be many enemy units on the battlefield to simulate a large enemy force without making the odds of victory impossible, and the Chaff health rules make it possible for PCs to defeat more than one chaff at a time, making it possible to have an overwhelming enemy force without making combat take an egregious amount of time.",
+      "groupHealth": "Each group of Chaff shares a pool of HP equal to the Chaff’s individual amount of HP times the number of Chaff. For example, each sword Chaff has 4 HP, so a group of 5 sword Chaff would have a pool of 20 HP. Whenever an individual Chaff NPC would take damage, the entire group pool is reduced by the damage taken. Chaff do not suffer Wounds, and they cannot regain HP. Whenever the Chaff HP pool is reduced by an amount equal to an individual Chaff’s HP, one Chaff is defeated. If enough damage is dealt equivalent to multiple Chaff, the equivalent amount of Chaff are removed. For example, if 12 damage is dealt to a group of 5 sword Chaff, two of the Chaff are immediately defeated. Chaff are extremely vulnerable to area of effect attacks, because these attacks deal damage to each individual Chaff in the group, reducing the group’s HP pool multiple times.",
+      "groupActions": "With the exception of the Move Minor Action, Chaff can only take the Major and Minor Actions listed in their specific stat block. Up to 5 Chaff can act simultaneously on a single Initiative count, taking their Minor and Major Actions together. Chaff may also make Opportunity Attacks. Chaff can make Group Attacks, detailed in each chaff’s specific stat block. The effectiveness of the Group Attack usually increases based on the number of participating Chaff. A Chaff must be able to reach the target to participate. Opportunity Attacks made by Chaff can also be Group Attacks."
+    },
+    "monumentalFoe": {
+      "name": "Monumental Foe",
+      "encounterWeight": 4,
+      "text": "A Monumental Foe is a special type of force unique to NPCs. While in most mass combat, the abilities of the army are divided neatly between officers and divisions, a monumental foe is an enemy powerful enough to take on full divisions, but still retains the fine control that allows it to act as an officer on the battlefield. These can be dragons, powerful archmages, demonic monsters, or anything of the sort. Monumental Foes function as both general and division. On their turns, Monumental Foes may choose whether to take a standard action or perform a division attack instead. Monumental Foes always Brace against division attacks made against them, though they suffer the same restrictions when using the Brace reaction on attacks against other divisions. All Monumental Foes also begin with the Vantage feature, which allows them to take two turns in a round. When adding a Monumental Foe to a mass combat encounter, it counts as a division for the purposes of determining the number of divisions in your NPCs army, and counts for four units for the purposes of determining NPC deployment.",
+      "attributesAndSkills": "Monumental Foes are larger than life, and possess a unique ability to have attributes above the regular limit of 12. Some may have one, or even the occasional two, attributes at 13 or even 14. Rare and extremely deadly Monumental Foes may possess a single attribute of 15. However, rarely should a monumental foe ever have more than two attributes above 12. Monumental Foes are still limited to a maximum of 5 in every skill.",
+      "health": "Monumental Enemies are unique in that they have both a standard 3 bars of HP as well as a morale equal to its own faith. The monumental enemy is only defeated when its HP is reduced to 0. Monumental foes begin with the Monumental feature. Monumental: All damage against the monumental enemy’s HP is divided by half (rounded down). If its morale is reduced to 0, they lose this feature and take damage as normally. Any further morale damage is taken as Willpower damage instead."
+    }
+  }
+}

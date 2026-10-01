@@ -1,0 +1,7969 @@
+[
+  {
+    "id": "glaiveman",
+    "name": "Glaiveman",
+    "category": "standard",
+    "type": "Spear",
+    "colorType": "Spear",
+    "tags": [
+      "Spear",
+      "Standard"
+    ],
+    "description": "Reliable infantry who wield long glaives with great reach. Strong against swords, weak to axes.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        10,
+        11,
+        12
+      ],
+      "faith": [
+        8,
+        9,
+        10
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        3,
+        4
+      ],
+      "brawn": [
+        2,
+        3,
+        3
+      ],
+      "coordination": [
+        4,
+        4,
+        5
+      ],
+      "faith": [
+        3,
+        3,
+        4
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        1,
+        1,
+        1
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        2,
+        2,
+        2
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      8,
+      10,
+      12
+    ],
+    "resistance": 2,
+    "hp": [
+      7,
+      10,
+      13
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Glaive",
+        "tags": [
+          "spear"
+        ],
+        "text": "Target 14/16/17: 7/8/8[CD] Extended 2",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "coordination",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8[CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Sharp Point",
+        "text": "The Glaiveman may take a Minor Action in order to give their Glaive attacks Piercing until the start of their next turn."
+      },
+      {
+        "name": "Defensive Position",
+        "text": "The Glaiveman gains +1d20 when making an Opportunity Attack."
+      },
+      {
+        "name": "Hold the Line",
+        "text": "If the Glaiveman hits a Character with an Opportunity Attack, that Character is Immobilized until the start of their next turn."
+      },
+      {
+        "name": "Javelin Throw",
+        "text": "The Glaiveman can make ranged attacks using Javelins.",
+        "attack": {
+          "name": "Javelin",
+          "tags": [
+            "Spear"
+          ],
+          "text": "Target 14/16/17, Range 8: 6/7/7[CD]",
+          "computed": [
+            {
+              "matchText": "Target 14/16/17",
+              "stat": "target",
+              "base": 0,
+              "attribute": "coordination",
+              "skill": "skirmish"
+            }
+          ]
+        }
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Legionnaire",
+        "text": "The Glaiveman can Opportunity Attack as a Reaction unlimited times per round."
+      },
+      {
+        "name": "Longpike",
+        "text": "The Glaiveman’s Glaive has Extended 3."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "warrior",
+    "name": "Warrior",
+    "category": "standard",
+    "type": "Axe",
+    "colorType": "Axe",
+    "tags": [
+      "Axe",
+      "Standard"
+    ],
+    "description": "Sturdy infantry who are well armored and wield large axes that deal vicious blows. They are strong against spears while weak to swords.",
+    "attributes": {
+      "agility": [
+        7,
+        8,
+        9
+      ],
+      "awareness": [
+        7,
+        8,
+        9
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        6,
+        6,
+        6
+      ],
+      "faith": [
+        6,
+        7,
+        8
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        3,
+        3
+      ],
+      "awareness": [
+        2,
+        3,
+        3
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        2,
+        2,
+        3
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      6,
+      8,
+      10
+    ],
+    "resistance": 2,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      6,
+      7,
+      7
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Battleaxe",
+        "tags": [
+          "axe"
+        ],
+        "text": "Target 14/16/17: 8/9/9[CD]",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "8/9/9[CD]",
+            "stat": "damage",
+            "base": 4,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Juggernaut",
+        "text": "If the Warrior moves at least 5 spaces in a straight line before making an axe attack, that attack is made with -1 Difficulty."
+      },
+      {
+        "name": "Great Axe",
+        "text": "The Warrior’s attacks gain +1[CD]."
+      },
+      {
+        "name": "Big Swing",
+        "text": "As a Minor Action, the warrior gives their next attack Burst 2."
+      },
+      {
+        "name": "Axe Throw",
+        "text": "The Warrior can make ranged attacks using Throwing Axes.",
+        "attack": {
+          "name": "Throwing Axe",
+          "tags": [
+            "axe"
+          ],
+          "text": "Range 6, Target 14/16/17: 6/7/7 [CD]",
+          "computed": [
+            {
+              "matchText": "Target 14/16/17",
+              "stat": "target",
+              "base": 0,
+              "attribute": "brawn",
+              "skill": "skirmish"
+            },
+            {
+              "matchText": "6/7/7 [CD]",
+              "stat": "damage",
+              "base": 2,
+              "skill": "skirmish"
+            }
+          ]
+        }
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Berserk",
+        "text": "As a free action, the warrior can go berserk. All of their attacks gain +1d20 and deal +2[CD] damage, but all attacks against them also gain +1d20 and they cannot restore HP or WP. This effect may end as a free action at the start of the warrior’s turn."
+      },
+      {
+        "name": "Half-plate",
+        "text": "The Warrior has +1 Resistance.",
+        "statModifiers": {
+          "resistanceBonus": 1
+        }
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "bladesman",
+    "name": "Bladesman",
+    "category": "standard",
+    "type": "Sword",
+    "colorType": "Sword",
+    "tags": [
+      "Sword",
+      "Standard"
+    ],
+    "description": "Swift infantry who wield a sword and shield in hand. They are strong against axes while weak to spears.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        7,
+        8,
+        9
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        7,
+        8,
+        9
+      ],
+      "faith": [
+        7,
+        8,
+        9
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        7,
+        7,
+        7
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        5
+      ],
+      "awareness": [
+        2,
+        3,
+        3
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        2,
+        3,
+        3
+      ],
+      "faith": [
+        2,
+        3,
+        3
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        2,
+        2,
+        2
+      ]
+    },
+    "willpower": [
+      7,
+      9,
+      11
+    ],
+    "resistance": 2,
+    "hp": [
+      6,
+      8,
+      10
+    ],
+    "speed": [
+      8,
+      8,
+      9
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Round Shield",
+        "text": "The bladesman has a bonus d20 when defending."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Shortsword",
+        "tags": [
+          "sword"
+        ],
+        "text": "Target 14/16/17: 6/7/7[CD], Parrying",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/7[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Swift of Foot",
+        "text": "The Bladesman has +2 Speed.",
+        "statModifiers": {
+          "speedBonus": 2
+        }
+      },
+      {
+        "name": "Agile Defender",
+        "text": "Once per round, the Bladesman can reroll any number of d20s when Defending."
+      },
+      {
+        "name": "Swift Strikes",
+        "text": "Whenever the Bladesman attacks with a sword, they may immediately make a second attack against a target within Reach."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Darting Blow",
+        "text": "The Bladesman uses their Major Action to make an attack on an opponent, then may immediately spend up to their full movement to move away without provoking Opportunity Attacks.",
+        "recharge": true
+      },
+      {
+        "name": "Deadly Riposte",
+        "text": "The Bladesman uses their Reaction to increase the damage of their Counterstrike by 5[CD].",
+        "recharge": true
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "archer",
+    "name": "Archer",
+    "category": "standard",
+    "type": "Bow",
+    "colorType": "Bow",
+    "tags": [
+      "Bow",
+      "Standard",
+      "Ranged"
+    ],
+    "description": "Precise infantry who wield longbows to strike enemies from afar. They do not fare well if an enemy closes in melee range with them.",
+    "attributes": {
+      "agility": [
+        8,
+        8,
+        8
+      ],
+      "awareness": [
+        10,
+        11,
+        12
+      ],
+      "brawn": [
+        7,
+        9,
+        10
+      ],
+      "coordination": [
+        7,
+        7,
+        7
+      ],
+      "faith": [
+        6,
+        7,
+        8
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        7,
+        7,
+        7
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        3,
+        3,
+        3
+      ],
+      "awareness": [
+        4,
+        4,
+        5
+      ],
+      "brawn": [
+        2,
+        3,
+        4
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        2,
+        2,
+        3
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        2,
+        3,
+        4
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        2,
+        3,
+        4
+      ]
+    },
+    "willpower": [
+      6,
+      8,
+      10
+    ],
+    "resistance": 1,
+    "hp": [
+      7,
+      11,
+      14
+    ],
+    "speed": [
+      7,
+      7,
+      7
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Longbow",
+        "tags": [
+          "bow"
+        ],
+        "text": "Range 10, Target 14/16/17: 7/8/8 [CD].",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "awareness",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Sniper",
+        "text": "The range of the Archer’s Longbow increases to 16."
+      },
+      {
+        "name": "Steady Aim",
+        "text": "When the archer uses the Aim minor action, they also gain +1d20 on the next attack they make on their turn."
+      },
+      {
+        "name": "Skulker",
+        "text": "The archer can Hide as a Minor Action."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Suppress",
+        "text": "The archer gains the following Reaction: As a Reaction, when a Character within Range of the Archer’s bow takes a Minor or Major Action, the Archer can force the Character to choose: lose the triggering Action, or continue but let the Archer immediately attack them with a Bow."
+      },
+      {
+        "name": "Hail of Arrows",
+        "text": "As a Minor Action, the archer gives their next attack Burst 2."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "cavalier",
+    "name": "Cavalier",
+    "category": "standard",
+    "type": "Spear",
+    "colorType": "Spear",
+    "tags": [
+      "Spear",
+      "Standard",
+      "Mounted"
+    ],
+    "description": "Mounted soldiers who wield lances and ride on horseback. Their great speed and reach with their weapons make them dangerous shock troops that specialize in piercing through the backlines, though their mounts do not navigate through difficult terrain well.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        10,
+        11,
+        12
+      ],
+      "faith": [
+        9,
+        10,
+        11
+      ],
+      "presence": [
+        8,
+        8,
+        8
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        3,
+        4
+      ],
+      "brawn": [
+        2,
+        3,
+        3
+      ],
+      "coordination": [
+        4,
+        4,
+        5
+      ],
+      "faith": [
+        3,
+        4,
+        4
+      ],
+      "presence": [
+        3,
+        3,
+        3
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        1,
+        1,
+        1
+      ],
+      "diplomacy": [
+        3,
+        3,
+        3
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      9,
+      11,
+      13
+    ],
+    "resistance": 2,
+    "hp": [
+      7,
+      10,
+      13
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "mountedSpeed": [
+      11,
+      11,
+      12
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Lance",
+        "tags": [
+          "spear"
+        ],
+        "text": "Target 14/16/17: 6/7/7[CD]",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "coordination",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/7[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Passe",
+        "text": "The Cavalier can move through Enemy Character spaces."
+      },
+      {
+        "name": "Charge",
+        "text": "If the Cavalier moves at least 6 spaces while mounted before making a Spear attack on their turn, the attack gains the Knockdown quality and deals an additional 1[CD]."
+      },
+      {
+        "name": "Canto",
+        "text": "After making an attack, the Cavalier can move a number of spaces equal to their Speed, provoking Opportunity Attacks when relevant."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Trampling Charge",
+        "text": "The Cavalier uses their Major Action to move in a straight line, making an attack on every enemy in their path and ending in an occupied space. Each attack is unopposed, and is a Difficulty 2 Task.",
+        "recharge": true
+      },
+      {
+        "name": "Blur",
+        "text": "The Cavalier can Disengage as a Minor Action."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "mountedSpeed": {
+        "base": 6,
+        "attribute": "coordination",
+        "halfAttribute": true,
+        "mount": "horse"
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "banneret",
+    "name": "Banneret",
+    "category": "standard",
+    "type": "Control",
+    "colorType": "Control",
+    "tags": [
+      "Control",
+      "Standard",
+      "Mounted",
+      "Ranged"
+    ],
+    "description": "Mounted soldiers who carry flags into battle to inspire their comrades and strike fear in their foes.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        9,
+        10,
+        11
+      ],
+      "faith": [
+        9,
+        9,
+        9
+      ],
+      "presence": [
+        10,
+        11,
+        12
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        3,
+        4
+      ],
+      "brawn": [
+        2,
+        3,
+        3
+      ],
+      "coordination": [
+        3,
+        4,
+        4
+      ],
+      "faith": [
+        3,
+        3,
+        3
+      ],
+      "presence": [
+        4,
+        4,
+        5
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        3,
+        3,
+        3
+      ],
+      "authority": [
+        4,
+        5,
+        5
+      ],
+      "study": [
+        1,
+        1,
+        1
+      ],
+      "diplomacy": [
+        4,
+        5,
+        5
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      9,
+      10,
+      11
+    ],
+    "resistance": 2,
+    "hp": [
+      7,
+      10,
+      13
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "mountedSpeed": [
+      10,
+      11,
+      11
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Lance",
+        "tags": [
+          "spear"
+        ],
+        "text": "Target 12/13/14: 5[CD]",
+        "computed": [
+          {
+            "matchText": "Target 12/13/14",
+            "stat": "target",
+            "base": 0,
+            "attribute": "coordination",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Demoralize",
+        "tags": [
+          "Will"
+        ],
+        "text": "Range 10, Target 14/16/17: 6/7/7[CD] Willpower damage, and target is Frightened of the Banneret until the end of their next turn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "diplomacy"
+          },
+          {
+            "matchText": "6/7/7[CD]",
+            "stat": "willpowerDamage",
+            "base": 2,
+            "skill": "diplomacy"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Inspiring Wave",
+        "tags": [
+          "Major Action"
+        ],
+        "text": "Range 10: The Banneret waves their flag and chooses one ally within Range, who immediately moves up to their speed and attempts an Attack."
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Formidable Strike",
+        "text": "The Banneret’s Lance attacks gain the Daunting 1 damage effect."
+      },
+      {
+        "name": "Shivers and Shakes",
+        "text": "When the Banneret reduces a targets Willpower to 0, any additional Willpower damage is dealt to their HP instead."
+      },
+      {
+        "name": "Rallying Cry",
+        "text": "When the Banneret uses Inspiring Wave, the target also gains +1d20 on their attack."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Fear Monger",
+        "text": "When a character is Frightened of the Banneret, they are also Off-Guard."
+      },
+      {
+        "name": "Heroic Charge",
+        "text": "When the Banneret uses Inspiring Wave, they may choose two allies to target instead of only 1."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "mountedSpeed": {
+        "base": 6,
+        "attribute": "coordination",
+        "halfAttribute": true,
+        "mount": "horse"
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "hammer_driver",
+    "name": "Hammer Driver",
+    "category": "standard",
+    "type": "Axe",
+    "colorType": "Axe",
+    "tags": [
+      "Axe",
+      "Standard",
+      "Mounted"
+    ],
+    "description": "Mounted soldiers who ride in and hit hard, knocking their opponents to the ground with a heavy warhammer. Their sole aim is to leave wreckage in their wake for their allies to descend upon.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        9,
+        10,
+        11
+      ],
+      "faith": [
+        8,
+        8,
+        8
+      ],
+      "presence": [
+        9,
+        10,
+        11
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        3,
+        4
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        3,
+        4,
+        4
+      ],
+      "faith": [
+        3,
+        3,
+        3
+      ],
+      "presence": [
+        3,
+        4,
+        4
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        3,
+        3,
+        3
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      8,
+      9,
+      10
+    ],
+    "resistance": 2,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "mountedSpeed": [
+      10,
+      11,
+      11
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Buckler",
+        "text": "The Hammer Driver may reroll one die when defending."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Warhammer",
+        "tags": [
+          "axe"
+        ],
+        "text": "Target 14/16/17: 6/7/7[CD] Knockdown",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/7[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Beat Down",
+        "text": "The Hammer Driver needs -1 less [!] to knock a target Prone with their warhammer."
+      },
+      {
+        "name": "Clear the Path",
+        "text": "As a minor action, the Hammer Driver can give the next attack with their warhammer the Knockback 2 quality."
+      },
+      {
+        "name": "Storm Rider",
+        "text": "When the Hammer Driver moves at least 6 spaces while mounted before making an Axe attack, it deals an additional 2[CD] damage."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Thunderstruck",
+        "text": "After the Hammer Driver knocks a target Prone, they may immediately make another attack against a different adjacent target."
+      },
+      {
+        "name": "Griffin Rider",
+        "text": "The Hammer Driver counts as a Flying unit and replaces its Mounted Speed with a Flying Speed of 9/10/10.",
+        "computed": [
+          {
+            "matchText": "9/10/10",
+            "stat": "speed",
+            "base": 5,
+            "attribute": "presence",
+            "halfAttribute": true,
+            "mount": "griffin"
+          }
+        ],
+        "statModifiers": {
+          "flying": true,
+          "replacesMountedSpeed": true
+        }
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "mountedSpeed": {
+        "base": 6,
+        "attribute": "coordination",
+        "halfAttribute": true,
+        "mount": "horse"
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "elementalist",
+    "name": "Elementalist",
+    "category": "standard",
+    "type": "Arcane",
+    "colorType": "Arcane",
+    "tags": [
+      "Arcane",
+      "Standard",
+      "Spellcaster",
+      "Ranged"
+    ],
+    "description": "Spellcasters that wield devastating elemental magick, but fall quickly to all weapon attacks.",
+    "attributes": {
+      "agility": [
+        8,
+        9,
+        10
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        7,
+        7,
+        7
+      ],
+      "faith": [
+        6,
+        7,
+        8
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        10,
+        11,
+        12
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        3,
+        3,
+        4
+      ],
+      "awareness": [
+        3,
+        3,
+        4
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        2,
+        2,
+        3
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        4,
+        4,
+        5
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        1,
+        1,
+        1
+      ],
+      "study": [
+        4,
+        5,
+        5
+      ],
+      "diplomacy": [
+        2,
+        2,
+        2
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        2,
+        3,
+        4
+      ]
+    },
+    "willpower": [
+      6,
+      8,
+      10
+    ],
+    "resistance": 0,
+    "hp": [
+      6,
+      8,
+      10
+    ],
+    "speed": [
+      7,
+      7,
+      8
+    ],
+    "attacksNote": "The Elementalist knows 1-3 of these spells:",
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Firebolt",
+        "tags": [
+          "Fire",
+          "spell"
+        ],
+        "text": "Range 10, Target 14/16/17, Defended by Agility: 7/9/10[CD], Piercing.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Frigid Grasp",
+        "tags": [
+          "Ice",
+          "spell"
+        ],
+        "text": "Range 6, Target 14/16/17, Defended by Brawn: 7/9/10[CD], Piercing, target is Slowed until the end of their next turn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Electric Arc",
+        "tags": [
+          "Lightning",
+          "spell"
+        ],
+        "text": "Range 6, Target 14/16/17, Defended by Coordination: 7/9/10[CD], Piercing, target is Off-Guard until the end of their next turn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Skip",
+        "text": "The Elementalist can Teleport up to 5/5/6 Spaces as Minor Action",
+        "computed": [
+          {
+            "matchText": "5/5/6",
+            "stat": "range",
+            "base": 0,
+            "attribute": "reason",
+            "halfAttribute": true
+          }
+        ]
+      },
+      {
+        "name": "Armis Arcane",
+        "text": "The Elementalist has 2 Resistance.",
+        "statModifiers": {
+          "resistanceMinimum": 2
+        }
+      },
+      {
+        "name": "Devastating Spells",
+        "text": "When Attacking with an Attack Spell, the Elementalist can take a Minor Action to give their attack +2[CD]."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Fireball",
+        "tags": [
+          "Fire",
+          "spell"
+        ],
+        "text": "Range 10, Blast 2, Target 14/16/17, Defended by Agility: 7/9/10[CD], Piercing.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Blizzard",
+        "tags": [
+          "Ice",
+          "spell"
+        ],
+        "text": "Range Self (Cone 3), Target 14/16/17, Defended by Brawn: 7/9/10[CD], Piercing, target is Slowed until the end of their next turn.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Voltaic Javelin",
+        "tags": [
+          "Lightning",
+          "spell"
+        ],
+        "text": "Range Self (Line 5), Target 14/16/17, Defended by Coordination: 7/9/10[CD], Piercing, target is Off-Guard until the end of their next turn.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "priest",
+    "name": "Priest",
+    "category": "standard",
+    "type": "Light",
+    "colorType": "Light",
+    "tags": [
+      "Light",
+      "Standard",
+      "Spellcaster",
+      "Ranged"
+    ],
+    "description": "Blessed Light-Wielders that specialize in mending wounds. They can wield light magick to strike enemies, though they do not specialize in offense.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        7,
+        7,
+        7
+      ],
+      "faith": [
+        10,
+        11,
+        12
+      ],
+      "presence": [
+        8,
+        9,
+        10
+      ],
+      "reason": [
+        7,
+        7,
+        7
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        3,
+        4
+      ],
+      "brawn": [
+        2,
+        3,
+        3
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        4,
+        4,
+        5
+      ],
+      "presence": [
+        3,
+        3,
+        4
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        2,
+        3,
+        4
+      ],
+      "authority": [
+        2,
+        3,
+        4
+      ],
+      "study": [
+        2,
+        2,
+        2
+      ],
+      "diplomacy": [
+        2,
+        2,
+        2
+      ],
+      "medicine": [
+        4,
+        5,
+        5
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      10,
+      12,
+      14
+    ],
+    "resistance": 0,
+    "hp": [
+      7,
+      10,
+      13
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Guiding Ray",
+        "tags": [
+          "Radiant",
+          "spell"
+        ],
+        "text": "Range 6, Target 12/14/16: 4/5/6[CD] Piercing. The next Attack made against the target is made with Difficulty reduced by 1, and the Hide tasks made until the end of the Target’s next turn have Difficulty increased by 2. Defended by Awareness.",
+        "computed": [
+          {
+            "matchText": "Target 12/14/16",
+            "stat": "target",
+            "base": 0,
+            "attribute": "faith",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "4/5/6[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Prayer of Healing",
+        "tags": [
+          "Healing",
+          "Spell"
+        ],
+        "text": "Range 8: As a Major Action, the priest heals one Target within range for 6/7/7 [CD].",
+        "computed": [
+          {
+            "matchText": "6/7/7 [CD]",
+            "stat": "healing",
+            "base": 2,
+            "skill": "medicine"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Armor of Faith",
+        "text": "The priest has 2 Resistance.",
+        "statModifiers": {
+          "resistanceMinimum": 2
+        }
+      },
+      {
+        "name": "Fanatical",
+        "text": "The priest may reroll 1d20 on any Faith Task they attempt on their turn."
+      },
+      {
+        "name": "Heaven’s Restoration",
+        "text": "The priest gains 3[CD] temporary HP at the beginning of each of their turns."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Ward",
+        "tags": [
+          "Authority Spell"
+        ],
+        "text": "Range 5: Automatically grants one target within range 3[CD] temporary HP (+1 for each [!] rolled)",
+        "recharge": true
+      },
+      {
+        "name": "Rescue",
+        "tags": [
+          "Teleportation",
+          "Authority Spell"
+        ],
+        "text": "As a Major Action, the Priest causes an ally they can see within 10/11/12 Spaces from them to teleport to a free space adjacent to the priest.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "10/11/12",
+            "stat": "range",
+            "base": 0,
+            "attribute": "faith"
+          }
+        ]
+      },
+      {
+        "name": "Glorious Burst",
+        "tags": [
+          "Radiant",
+          "Spell"
+        ],
+        "text": "Range 6, Blast 2, Target 12/14/16: 4/5/6[CD] Piercing 2 damage. The next Attack made against the target is made with Difficulty reduced by 1, and the Hide tasks made until the end of the Target’s next turn have Difficulty increased by 2. Defended by Awareness.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "Target 12/14/16",
+            "stat": "target",
+            "base": 0,
+            "attribute": "faith",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "4/5/6[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "herald",
+    "name": "Herald",
+    "category": "standard",
+    "type": "Light",
+    "colorType": "Light",
+    "tags": [
+      "Light",
+      "Standard",
+      "Spellcaster"
+    ],
+    "description": "Blessed Light-Wielders who specialize in smiting the enemies of the faith. They can use light magick for some healing, but they are primarily offensive.",
+    "attributes": {
+      "agility": [
+        8,
+        8,
+        8
+      ],
+      "awareness": [
+        7,
+        7,
+        7
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        6,
+        6,
+        6
+      ],
+      "faith": [
+        8,
+        9,
+        10
+      ],
+      "presence": [
+        8,
+        9,
+        10
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        3,
+        3,
+        3
+      ],
+      "awareness": [
+        2,
+        2,
+        2
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        3,
+        3,
+        4
+      ],
+      "presence": [
+        3,
+        3,
+        4
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        3,
+        3,
+        3
+      ],
+      "study": [
+        1,
+        1,
+        1
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        3,
+        4,
+        4
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      8,
+      10,
+      12
+    ],
+    "resistance": 3,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      7,
+      7,
+      7
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Round Shield",
+        "text": "The Herald has a bonus d20 when defending."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Mace",
+        "tags": [
+          "axe"
+        ],
+        "text": "Target 14/16/17: 6/7/7[CD] Destructive",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/7[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Lay on Hands",
+        "tags": [
+          "Healing",
+          "Spell"
+        ],
+        "text": "As a Major Action, the herald heals themself or an allied character they can touch for a 5/6/6 [CD].",
+        "computed": [
+          {
+            "matchText": "5/6/6 [CD]",
+            "stat": "healing",
+            "base": 2,
+            "skill": "medicine"
+          }
+        ]
+      },
+      {
+        "name": "Holy Smite",
+        "tags": [
+          "Spellblade",
+          "Spell"
+        ],
+        "text": "As a Minor Action, the Herald imbues their weapon with light. The damage of their next Attack with a Melee weapon increases by 2[CD]."
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Aura of Life",
+        "tags": [
+          "Passive",
+          "Aura",
+          "Healing",
+          "Spell"
+        ],
+        "text": "Range 2: The Herald and allies within Range heal 3 HP at the start of each of their turns."
+      },
+      {
+        "name": "Aura of Victory",
+        "tags": [
+          "Passive",
+          "Aura",
+          "Enhancement",
+          "Spell"
+        ],
+        "text": "Range 2: The Herald and allies within Range deal 1[CD] extra damage whenever they deal damage."
+      },
+      {
+        "name": "Aura of Protection",
+        "tags": [
+          "Passive",
+          "Aura",
+          "Enhancement",
+          "Spell"
+        ],
+        "text": "Range 2: The Herald and allies within Range gain 1 temporary Resistance."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Rapid Smite",
+        "text": "The Herald’s Holy Smite can be used as a Free Action rather than a Minor Action."
+      },
+      {
+        "name": "Auraturge",
+        "text": "The range of any of the Herald’s auras increases by 2."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "warlock",
+    "name": "Warlock",
+    "category": "standard",
+    "type": "Dark",
+    "colorType": "Dark",
+    "tags": [
+      "Dark",
+      "Standard",
+      "Spellcaster",
+      "Ranged"
+    ],
+    "description": "Blasphemous wielders of Dark Magic that specialize in cursing their foes. Their unholy magick pierces through enemy defenses, however they will fall quickly if cornered by weapons.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        8,
+        8
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        7,
+        7,
+        7
+      ],
+      "faith": [
+        6,
+        6,
+        6
+      ],
+      "presence": [
+        10,
+        11,
+        12
+      ],
+      "reason": [
+        8,
+        9,
+        10
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        3,
+        3
+      ],
+      "brawn": [
+        2,
+        3,
+        3
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        2,
+        2,
+        2
+      ],
+      "presence": [
+        4,
+        4,
+        5
+      ],
+      "reason": [
+        3,
+        3,
+        4
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        3,
+        4,
+        5
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        3,
+        3,
+        3
+      ],
+      "diplomacy": [
+        4,
+        5,
+        5
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        3,
+        3,
+        3
+      ]
+    },
+    "willpower": [
+      6,
+      7,
+      8
+    ],
+    "resistance": 0,
+    "hp": [
+      7,
+      10,
+      13
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "attacksNote": "The warlock knows 1-3 of these spells.",
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Chaos Blast",
+        "tags": [
+          "Soul",
+          "spell"
+        ],
+        "text": "Range 8, Target 13/15/17: 6/7/8[CD] Piercing, Reliable 2. Defended by Faith.",
+        "computed": [
+          {
+            "matchText": "Target 13/15/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/8[CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Pollute",
+        "tags": [
+          "Blood",
+          "spell"
+        ],
+        "text": "Range 5, Target 13/15/17: 6/7/8[CD] Persistent 3. Defended by Faith.",
+        "computed": [
+          {
+            "matchText": "Target 13/15/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/8[CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Fell Grasp",
+        "tags": [
+          "Shadow",
+          "spell"
+        ],
+        "text": "Range 5, Target 13/15/17: 6/7/8[CD] Piercing damage, +2/2/3[CD] if the warlock has taken any damage. Defended by Faith.",
+        "computed": [
+          {
+            "matchText": "Target 13/15/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/8[CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Hex",
+        "tags": [
+          "Diplomacy Spell"
+        ],
+        "text": "Range 5: Make an Opposed Task using Presence + Diplomacy (Target 14/16/17), resisted by target’s Faith + Authority. On a success, the target’s Speed is reduced by 2 and they are Off-Guard until the end of their next turn",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "diplomacy"
+          }
+        ]
+      },
+      {
+        "name": "Mind Control",
+        "tags": [
+          "Diplomacy Spell"
+        ],
+        "text": "Range 8: Make an Opposed Task using Presence + Diplomacy (Target 14/16/17), resisted by target’s Faith + Authority. On a success, the target must use a Reaction to make an attack against a unit of the warlock’s choice (within range).",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "diplomacy"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Grip of Dread",
+        "text": "The warlock does +3/4/4 [CD] damage against targets with 0 Willpower."
+      },
+      {
+        "name": "Life Siphon",
+        "text": "When the warlock makes a successful attack with a spell, they gain temporary HP equal to damage dealt."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Chaos Bomb",
+        "tags": [
+          "Soul",
+          "spell"
+        ],
+        "text": "Range 12, Blast 1, Target 13/15/17: 8/9/10[CD] Piercing, Reliable 4. Defended by Faith.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "Target 13/15/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "8/9/10[CD]",
+            "stat": "damage",
+            "base": 5,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Blood Rain",
+        "tags": [
+          "Blood",
+          "spell"
+        ],
+        "text": "Range 6, Blast 2, Target 13/15/17: 8/9/10[CD] Piercing, Persistent 4. Defended by Faith.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "Target 13/15/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "8/9/10[CD]",
+            "stat": "damage",
+            "base": 5,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Eclipsing Strike",
+        "tags": [
+          "Shadow",
+          "spell"
+        ],
+        "text": "Range 10, Target 13/15/17: 8/9/10[CD] Piercing, +3/3/4[CD] if warlock has taken any damage. Defended by Faith.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "Target 13/15/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "8/9/10[CD]",
+            "stat": "damage",
+            "base": 5,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "scout",
+    "name": "Scout",
+    "category": "standard",
+    "type": "Bow",
+    "colorType": "Bow",
+    "tags": [
+      "Bow",
+      "Standard",
+      "Ranged"
+    ],
+    "description": "Eagle-eyed units who specialize in spotting enemies from the backlines.",
+    "attributes": {
+      "agility": [
+        8,
+        8,
+        8
+      ],
+      "awareness": [
+        10,
+        11,
+        12
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        7,
+        7,
+        7
+      ],
+      "faith": [
+        6,
+        6,
+        6
+      ],
+      "presence": [
+        10,
+        10,
+        10
+      ],
+      "reason": [
+        9,
+        9,
+        9
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        3,
+        3,
+        3
+      ],
+      "awareness": [
+        4,
+        4,
+        5
+      ],
+      "brawn": [
+        2,
+        3,
+        3
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        2,
+        2,
+        2
+      ],
+      "presence": [
+        4,
+        4,
+        4
+      ],
+      "reason": [
+        3,
+        3,
+        3
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        3,
+        4,
+        5
+      ],
+      "authority": [
+        4,
+        4,
+        4
+      ],
+      "study": [
+        4,
+        5,
+        5
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        4,
+        5,
+        5
+      ]
+    },
+    "willpower": [
+      6,
+      7,
+      8
+    ],
+    "resistance": 0,
+    "hp": [
+      7,
+      10,
+      13
+    ],
+    "speed": [
+      7,
+      7,
+      7
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Flare Bow",
+        "tags": [
+          "bow"
+        ],
+        "text": "Range 10, Target 13/15/17: 4/5/6[CD] and the target immediately loses the Invisible status, cannot be Hidden, and the next attack made against them has -1 Difficulty and deals +3[CD] extra damage.",
+        "computed": [
+          {
+            "matchText": "Target 13/15/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "awareness",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "4/5/6[CD]",
+            "stat": "damage",
+            "base": 1,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Burning Arrows",
+        "text": "The scout’s Flare Bow gains Persistent 3."
+      },
+      {
+        "name": "Multishot",
+        "text": "The scout’s Flare Bow only deals 2[CD] damage, but they can attack twice with it in a single Major Action."
+      },
+      {
+        "name": "Cunning Defender",
+        "text": "The scout can defend with Awareness in place of Agility, Brawn, or Coordination."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Mark For Death",
+        "text": "The scout may take a Minor Action to increase the extra damage on their next attack with their Flare Bow from 3[CD] to 6[CD]."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "assassin",
+    "name": "Assassin",
+    "category": "standard",
+    "type": "Sword",
+    "colorType": "Sword",
+    "tags": [
+      "Sword",
+      "Standard",
+      "Ranged"
+    ],
+    "description": "Cunning infantry who specialize in sneaking past enemy lines to strike the enemy where they are weak. They are strong against axes while weak to spears.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        10,
+        11,
+        12
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        7,
+        8,
+        9
+      ],
+      "faith": [
+        6,
+        7,
+        8
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        10,
+        10,
+        10
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        5
+      ],
+      "awareness": [
+        4,
+        4,
+        5
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        2,
+        3,
+        3
+      ],
+      "faith": [
+        2,
+        2,
+        3
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        4,
+        4,
+        4
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        3,
+        3,
+        3
+      ],
+      "diplomacy": [
+        2,
+        2,
+        2
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        4,
+        5,
+        5
+      ]
+    },
+    "willpower": [
+      6,
+      8,
+      10
+    ],
+    "resistance": 1,
+    "hp": [
+      6,
+      8,
+      10
+    ],
+    "speed": [
+      8,
+      8,
+      9
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Dagger",
+        "tags": [
+          "sword"
+        ],
+        "text": "Target 14/16/17:  5/6/6[CD]",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5/6/6[CD]",
+            "stat": "damage",
+            "base": 1,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Throwing Knife",
+        "tags": [
+          "sword"
+        ],
+        "text": "Range 7, Target 14/16/17: 5/6/6[CD] Pinning",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5/6/6[CD]",
+            "stat": "damage",
+            "base": 1,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "minorActions": [
+      {
+        "name": "Stalk",
+        "text": "As a Minor Action, the Assassin can Hide then move up to half their Speed, or vice versa."
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Vicious Strike",
+        "text": "If the Assassin is hidden from the target of their Dagger attack, the attack deals +4/5/5[CD].",
+        "computed": [
+          {
+            "matchText": "4/5/5[CD]",
+            "stat": "damage",
+            "base": 0,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Panther’s Stride",
+        "text": "When the Assassin Stalks, they can move up to their full Speed instead of half their Speed."
+      },
+      {
+        "name": "Dangerous Aim",
+        "text": "If the Assassin takes the Aim minor action before making an attack with their Throwing Knife, each [!] rolled counts as 2 [!] instead of 1."
+      },
+      {
+        "name": "Poisoned Knife",
+        "text": "The Assassin’s Dagger and Throwing Knives have the Persistent 3 damage effect."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Death Strike",
+        "text": "All Sword attacks made by the Assassin also afflict the target with Weakened."
+      },
+      {
+        "name": "Invisibility",
+        "text": "As a Minor Action, the Assassin Casts a Spell to become Invisible until the start of their next turn."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "crusher",
+    "name": "Crusher",
+    "category": "standard",
+    "type": "Axe",
+    "colorType": "Axe",
+    "tags": [
+      "Axe",
+      "Standard"
+    ],
+    "description": "Well-armored units who carry characteristically large great hammers, maces, and other bludgeoning weapons. These units specialize in breaking through defenses, using their raw strength to demolish armor and walls alike.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        6,
+        6,
+        6
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        6,
+        6,
+        6
+      ],
+      "faith": [
+        10,
+        11,
+        11
+      ],
+      "presence": [
+        10,
+        10,
+        10
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        2,
+        2,
+        2
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        4,
+        4,
+        4
+      ],
+      "presence": [
+        4,
+        4,
+        4
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      10,
+      12,
+      13
+    ],
+    "resistance": 2,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Heavy Mace",
+        "tags": [
+          "axe"
+        ],
+        "text": "Target 14/16/17: 8/9/9[CD], Destructive, Knockback 1.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "8/9/9[CD]",
+            "stat": "damage",
+            "base": 4,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Juggernaut",
+        "text": "If the Crusher moves at least 5 spaces in a straight line before making an axe attack, that attack is made with -1 Difficulty."
+      },
+      {
+        "name": "Heavily Armored",
+        "text": "The Crusher has 3 Resistance.",
+        "statModifiers": {
+          "resistanceMinimum": 3
+        }
+      },
+      {
+        "name": "Big Swing",
+        "text": "As a Minor Action, the Crusher gives their next attack Burst 2."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Earthshatter",
+        "text": "The area of the Crusher’s attacks becomes difficult terrain as the ground craters."
+      },
+      {
+        "name": "Armor-Breaking",
+        "text": "As a Minor Action, the Crusher gives all of their attacks Piercing until the start of their next turn."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "trickster",
+    "name": "Trickster",
+    "category": "standard",
+    "type": "Sword",
+    "colorType": "Sword",
+    "tags": [
+      "Sword",
+      "Standard"
+    ],
+    "description": "Cunning infantry who specialize in causing chaos and confusion.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        10,
+        11,
+        12
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        8,
+        9,
+        10
+      ],
+      "faith": [
+        6,
+        6,
+        6
+      ],
+      "presence": [
+        10,
+        10,
+        10
+      ],
+      "reason": [
+        8,
+        8,
+        8
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        5
+      ],
+      "awareness": [
+        4,
+        4,
+        5
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        3,
+        3,
+        4
+      ],
+      "faith": [
+        2,
+        2,
+        2
+      ],
+      "presence": [
+        4,
+        4,
+        4
+      ],
+      "reason": [
+        3,
+        3,
+        3
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        4,
+        4
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        2,
+        2,
+        2
+      ],
+      "diplomacy": [
+        2,
+        2,
+        2
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        4,
+        4,
+        4
+      ]
+    },
+    "willpower": [
+      6,
+      7,
+      8
+    ],
+    "resistance": 1,
+    "hp": [
+      6,
+      8,
+      10
+    ],
+    "speed": [
+      10,
+      10,
+      11
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Fleet of Foot",
+        "text": "The Trickster has +2 Speed (included in its stats)"
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Hooked Sword",
+        "tags": [
+          "sword"
+        ],
+        "text": "Target 14/15/16: 6[CD]. This attack gains Piercing against Prone targets.",
+        "computed": [
+          {
+            "matchText": "Target 14/15/16",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6[CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "minorActions": [
+      {
+        "name": "Tumble",
+        "text": "As a Minor Action, the Trickster can move their Speed through a Character’s space without provoking an Opportunity Attack. The character must succeed on a Difficulty 2 Coordination + Skirmish task or be knocked Prone."
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Pocket Sand",
+        "text": "As a Minor Action, the Trickster tosses sand into the eyes of a Character within Range 2 of them. The target must succeed on a Difficulty 2 Awareness + Intrigue task or be Blinded until the end of their next turn."
+      },
+      {
+        "name": "Swift Strikes",
+        "text": "Whenever the Trickster attacks with a sword, they may immediately make a second attack against a target within Reach."
+      },
+      {
+        "name": "Feinting Dance",
+        "text": "As a Minor Action, the Trickster performs a series of movements to misdirect an opponent within Range 2 of them. The target must succeed on a Difficulty 2 Reason + Intrigue task or become Off-Guard until the end of their next turn."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Invisibility",
+        "text": "As a Minor Action, the Trickster Casts a Spell to become Invisible until the start of their next turn."
+      },
+      {
+        "name": "Wind Steps",
+        "text": "The Trickster can Move once per turn as a free action."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 5,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "adept",
+    "name": "Adept",
+    "category": "standard",
+    "type": "Gauntlets",
+    "colorType": "Gauntlet",
+    "tags": [
+      "Gauntlet",
+      "Standard"
+    ],
+    "description": "Versatile warriors trained in martial arts.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        8,
+        8,
+        8
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        10,
+        11,
+        12
+      ],
+      "faith": [
+        8,
+        8,
+        8
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        8,
+        8,
+        8
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        5
+      ],
+      "awareness": [
+        3,
+        3,
+        3
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        4,
+        4,
+        5
+      ],
+      "faith": [
+        3,
+        3,
+        3
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        3,
+        3,
+        3
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        2,
+        2,
+        2
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        3,
+        4,
+        5
+      ],
+      "intrigue": [
+        3,
+        3,
+        3
+      ]
+    },
+    "willpower": [
+      8,
+      9,
+      10
+    ],
+    "resistance": 0,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      10,
+      10,
+      11
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Fleet of Foot",
+        "text": "The Adept has +2 Speed (included in its stats)"
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Stunning Punch",
+        "tags": [
+          "gauntlet",
+          "Brawn"
+        ],
+        "text": "Target 14/16/17, Defended by Brawn: 5/6/6[CD] Stunning.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5/6/6[CD]",
+            "stat": "damage",
+            "base": 1,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Tripping Kick",
+        "tags": [
+          "gauntlet",
+          "Coordination"
+        ],
+        "text": "Target 14/16/17, Defended by Coordination: 5/6/6[CD], and the target is knocked Prone.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "coordination",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5/6/6[CD]",
+            "stat": "damage",
+            "base": 1,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Armor Breaker",
+        "tags": [
+          "gauntlet",
+          "Agility"
+        ],
+        "text": "Target 14/16/17, Defended by Agility: 5/6/6[CD] Piercing.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5/6/6[CD]",
+            "stat": "damage",
+            "base": 1,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Swift Strikes",
+        "text": "Whenever the Adept attacks with a gauntlet, they may immediately make a second attack against a target within Reach."
+      },
+      {
+        "name": "Arrow Catching",
+        "text": "The Adept gains +1d20 when defending against ranged attacks, and can use Agility in place of Awareness to defend against Bows."
+      },
+      {
+        "name": "Medicinal Hands",
+        "text": "As a Minor Action, the adept can heal an adjacent ally [CD] equal to its Medicine."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Shadow Step",
+        "text": "As a Minor Action, the Adept Casts a Spell to teleport up to 8 spaces."
+      },
+      {
+        "name": "Wind Steps",
+        "text": "The adept can Move once per turn as a free action."
+      },
+      {
+        "name": "Flurry of Blows",
+        "text": "As a Minor Action, the Adept can attack twice with any Gauntlet attack."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 5,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "shieldbearer",
+    "name": "Shieldbearer",
+    "category": "standard",
+    "type": "Gauntlets",
+    "colorType": "Gauntlet",
+    "tags": [
+      "Gauntlet",
+      "Standard"
+    ],
+    "description": "Stalwart warriors, who specialize in keeping enemies away.",
+    "attributes": {
+      "agility": [
+        7,
+        8,
+        9
+      ],
+      "awareness": [
+        7,
+        8,
+        9
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        6,
+        6,
+        6
+      ],
+      "faith": [
+        8,
+        9,
+        10
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        3,
+        3
+      ],
+      "awareness": [
+        2,
+        3,
+        3
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        3,
+        3,
+        4
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      8,
+      10,
+      12
+    ],
+    "resistance": 3,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      6,
+      7,
+      7
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Round Shield",
+        "text": "The Shieldbearer has a bonus d20 when defending."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Shield Bash",
+        "tags": [
+          "gauntlet",
+          "Brawn"
+        ],
+        "text": "Target 14/16/17, Defended by Brawn: 5/6/6 [CD].",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5/6/6 [CD]",
+            "stat": "damage",
+            "base": 1,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Shove",
+        "text": "Make an Opposed Brawn + Skirmish Task (Target 14/16/17), defended by the target’s Agility + Skirmish. On a success, the Shieldbearer shoves the target 1 space away. This is involuntary movement and does not trigger Opportunity Attacks.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Ram Foe",
+        "text": "The Shieldbearer gains Knockback 2 on their Shield Bash attacks."
+      },
+      {
+        "name": "Begone!",
+        "text": "The Shieldbearer’s Shove action pushes enemies 5 spaces away instead of 1. If an enemy is shoved into an obstacle that stops their movement before 5 spaces, they are knocked Prone."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Brute Force",
+        "text": "When the Shieldbearer makes a successful Shove action, they also inflict 4/5/5 [CD] damage to the target.",
+        "computed": [
+          {
+            "matchText": "4/5/5 [CD]",
+            "stat": "damage",
+            "base": 0,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Steady",
+        "text": "As a Minor Action, the Shieldbearer becomes immune to being knocked back or Prone until the start of their next turn."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "fortress_knight",
+    "name": "Fortress Knight",
+    "category": "standard",
+    "type": "Spear",
+    "colorType": "Spear",
+    "tags": [
+      "Spear",
+      "Standard"
+    ],
+    "description": "Guardians of the battlefield, specialized in drawing fire and protecting their allies.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        7,
+        8,
+        9
+      ],
+      "brawn": [
+        8,
+        9,
+        10
+      ],
+      "coordination": [
+        10,
+        11,
+        12
+      ],
+      "faith": [
+        10,
+        11,
+        12
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        2,
+        3,
+        3
+      ],
+      "brawn": [
+        3,
+        3,
+        4
+      ],
+      "coordination": [
+        4,
+        4,
+        5
+      ],
+      "faith": [
+        4,
+        4,
+        5
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      10,
+      12,
+      14
+    ],
+    "resistance": 4,
+    "hp": [
+      8,
+      11,
+      14
+    ],
+    "speed": [
+      4,
+      4,
+      4
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Round Shield",
+        "text": "The Fortress Knight has a bonus d20 when defending."
+      },
+      {
+        "name": "Heavy Armor",
+        "text": "The Fortress Knight has -2 Speed (included in its stats)"
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Spear",
+        "tags": [
+          "spear"
+        ],
+        "text": "Target 14/16/17: 6/7/7 [CD]",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "coordination",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/7 [CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Guard",
+        "text": "Make a Difficulty 1 Faith + Skirmish Task to protect an adjacent ally. On a success, attacks against that ally gain +1 Difficulty until the start of the Fortress Knight’s next turn."
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Taunt",
+        "text": "Range 5: As a Major Action, the Fortress Knight causes one enemy within range to make a Difficulty 2 Faith + Skirmish Task or become Enraged until the end of their next turn, with the Fortress Knight as the source of their rage."
+      },
+      {
+        "name": "Tower Shield",
+        "text": "Ranged attacks against allies adjacent to the Fortress Knight gain +1 Difficulty."
+      },
+      {
+        "name": "Guardian",
+        "text": "Allies gain +1 temporary Resistance while adjacent to the Fortress Knight."
+      },
+      {
+        "name": "Bulky Armor",
+        "text": "The Fortress Knight is size 2.",
+        "statModifiers": {
+          "size": 2
+        }
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Steady",
+        "text": "As a Minor Action, the Fortress Knight becomes immune to being knocked back or Prone until the start of their next turn."
+      },
+      {
+        "name": "Challenge",
+        "text": "As a Major Action, the Fortress Knight causes all enemies within Range 5 of them to become Enraged until the end of their next turn, with the Fortress Knight as the source of their rage.",
+        "recharge": true
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 1,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "brawler",
+    "name": "Brawler",
+    "category": "standard",
+    "type": "Gauntlets",
+    "colorType": "Gauntlet",
+    "tags": [
+      "Gauntlet",
+      "Standard"
+    ],
+    "description": "Agile warriors that fight with their fists.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        9,
+        9,
+        9
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        10,
+        11,
+        12
+      ],
+      "faith": [
+        7,
+        7,
+        7
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        5
+      ],
+      "awareness": [
+        3,
+        3,
+        3
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        4,
+        4,
+        5
+      ],
+      "faith": [
+        2,
+        2,
+        2
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        1,
+        1,
+        1
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        2,
+        2,
+        2
+      ],
+      "intrigue": [
+        2,
+        2,
+        2
+      ]
+    },
+    "willpower": [
+      7,
+      8,
+      9
+    ],
+    "resistance": 0,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      8,
+      8,
+      9
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Unarmed Strike",
+        "tags": [
+          "gauntlet",
+          "Agility/Brawn/Coord."
+        ],
+        "text": "Target 14/16/17: 4/5/5 [CD] defended by the same Attribute used to attack.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish",
+            "attributeOptions": [
+              "agility",
+              "brawn",
+              "coordination"
+            ]
+          },
+          {
+            "matchText": "4/5/5 [CD]",
+            "stat": "damage",
+            "base": 0,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "name": "Grapple",
+        "text": "Make an Opposed Brawn + Skirmish Task (Target 14/16/17), opposed by the target’s Brawn + Skirmish. On a success, the target is Grappled (see Grapple Action).",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Headlock",
+        "text": "When the Brawler successfully grapples a target, they may immediately move 2 spaces."
+      },
+      {
+        "name": "Takedown",
+        "text": "The Brawler spends a Minor Action to make their next Unarmed Strike also knock their target Prone on a success."
+      },
+      {
+        "name": "Hard Punch",
+        "text": "The Brawler gains +1d20 on attacks against targets they are grappling."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "One Two Punch",
+        "text": "The Brawler makes two unarmed strikes as part of the same Attack action."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "pegasus_knight",
+    "name": "Pegasus Knight",
+    "category": "standard",
+    "type": "Sword",
+    "colorType": "Sword",
+    "tags": [
+      "Sword",
+      "Standard",
+      "Mounted",
+      "Flying"
+    ],
+    "description": "Knights that ride on flying steeds, making them swift on the battlefield but vulnerable to arrows.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        7,
+        7,
+        7
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        8,
+        8,
+        8
+      ],
+      "faith": [
+        10,
+        11,
+        12
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        5
+      ],
+      "awareness": [
+        2,
+        2,
+        2
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        3,
+        3,
+        3
+      ],
+      "faith": [
+        4,
+        4,
+        5
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        2,
+        2,
+        2
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        3,
+        4
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        2,
+        2,
+        2
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      10,
+      12,
+      14
+    ],
+    "resistance": 1,
+    "hp": [
+      6,
+      8,
+      10
+    ],
+    "speed": [
+      8,
+      8,
+      9
+    ],
+    "mountedSpeed": [
+      10,
+      10,
+      11
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Saber",
+        "tags": [
+          "sword"
+        ],
+        "text": "Target 14/16/17: 6/7/7 [CD]",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "6/7/7 [CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Passe",
+        "text": "The Pegasus Knight can move through Enemy Character spaces."
+      },
+      {
+        "name": "Darting Blow",
+        "text": "After making an attack, the Pegasus Knight may move up to 5 spaces without provoking Opportunity Attacks."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Feather Dodge",
+        "text": "When the Pegasus Knight is hit by an attack, they use a Reaction to cause the attack to miss and move 2 spaces without provoking Opportunity Attacks.",
+        "recharge": true
+      },
+      {
+        "name": "Aerial Assault",
+        "text": "The Pegasus Knight uses their Major Action to fly up to their speed to a tile on the battlefield and dive bomb a target in an adjacent space. Make a Saber attack, and on a successful hit, deal +5[CD] Startling damage.",
+        "recharge": true
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "mountedSpeed": {
+        "base": 5,
+        "attribute": "faith",
+        "halfAttribute": true,
+        "mount": "pegasus"
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "skycaster",
+    "name": "Skycaster",
+    "category": "standard",
+    "type": "Arcane",
+    "colorType": "Arcane",
+    "tags": [
+      "Arcane",
+      "Standard",
+      "Mounted",
+      "Flying",
+      "Spellcaster",
+      "Ranged"
+    ],
+    "description": "Spellcasters riding brooms into battle, flinging magick from above.",
+    "attributes": {
+      "agility": [
+        7,
+        7,
+        7
+      ],
+      "awareness": [
+        9,
+        10,
+        11
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        9,
+        9,
+        9
+      ],
+      "faith": [
+        6,
+        7,
+        8
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        10,
+        11,
+        12
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        4,
+        4
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        3,
+        3,
+        3
+      ],
+      "faith": [
+        2,
+        2,
+        3
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        4,
+        4,
+        5
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        1,
+        1,
+        1
+      ],
+      "study": [
+        4,
+        5,
+        5
+      ],
+      "diplomacy": [
+        2,
+        2,
+        2
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        2,
+        3,
+        4
+      ]
+    },
+    "willpower": [
+      6,
+      8,
+      10
+    ],
+    "resistance": 0,
+    "hp": [
+      6,
+      8,
+      10
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "mountedSpeed": [
+      10,
+      10,
+      11
+    ],
+    "attacksNote": "The Skycaster knows 1-3 of these spells:",
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Firebolt",
+        "tags": [
+          "Fire",
+          "spell"
+        ],
+        "text": "Range 10, Target 14/16/17, Defended by Agility: 7/9/10[CD], Piercing.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Frigid Grasp",
+        "tags": [
+          "Ice",
+          "spell"
+        ],
+        "text": "Range 6, Target 14/16/17, Defended by Brawn: 7/9/10[CD], Piercing, target is Slowed until the end of their next turn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Electric Arc",
+        "tags": [
+          "Lightning",
+          "spell"
+        ],
+        "text": "Range 6, Target 14/16/17, Defended by Coordination: 7/9/10[CD], Piercing, target is Off-Guard until the end of their next turn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/9/10[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              4,
+              5
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Counterspell",
+        "text": "The Skycaster gains a bonus die when defending against spell attacks, and once per round may use a Reaction to grant an ally defending against a spell attack a bonus die."
+      },
+      {
+        "name": "Zip",
+        "text": "The first Opportunity Attack made against the Skycaster on their turn has its Difficulty increased by 1."
+      },
+      {
+        "name": "Devastating Spells",
+        "text": "When Attacking with an Attack Spell, the Skycaster can take a Minor Action to give their attack +2[CD]."
+      },
+      {
+        "name": "Fury Above",
+        "text": "The Skycaster may roll an additional die on the first spell they cast on their turn."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Strafing Run",
+        "text": "The Skycaster takes the Dash Major Action, then makes a spell attack after they have finished taking their movement.",
+        "recharge": true
+      },
+      {
+        "name": "Projectile Warding",
+        "text": "Once per round, when the Skycaster would be hit by a ranged attack, they may use a Reaction to make it miss instead.",
+        "recharge": true
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "mountedSpeed": {
+        "base": 5,
+        "attribute": "reason",
+        "halfAttribute": true,
+        "mount": "flying_broom"
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "advisor",
+    "name": "Advisor",
+    "category": "standard",
+    "type": "Control",
+    "colorType": "Control",
+    "tags": [
+      "Control",
+      "Standard"
+    ],
+    "description": "Quick-witted tacticians that strengthen their allies and weaken their enemies.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        7,
+        8,
+        9
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        7,
+        7,
+        7
+      ],
+      "faith": [
+        8,
+        8,
+        8
+      ],
+      "presence": [
+        10,
+        11,
+        12
+      ],
+      "reason": [
+        10,
+        11,
+        12
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        2,
+        3,
+        3
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        3,
+        3,
+        3
+      ],
+      "presence": [
+        4,
+        4,
+        5
+      ],
+      "reason": [
+        4,
+        4,
+        5
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        2,
+        2,
+        2
+      ],
+      "authority": [
+        4,
+        5,
+        5
+      ],
+      "study": [
+        4,
+        5,
+        5
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        1,
+        1,
+        1
+      ]
+    },
+    "willpower": [
+      8,
+      9,
+      10
+    ],
+    "resistance": 0,
+    "hp": [
+      6,
+      8,
+      10
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "healthBars": 1,
+    "actions": [
+      {
+        "name": "Console",
+        "tags": [
+          "Major Action"
+        ],
+        "text": "Range 10: All allies within Range of the Advisor regain 4/5/5 Willpower.",
+        "computed": [
+          {
+            "matchText": "4/5/5",
+            "stat": "willpowerRestored",
+            "base": 0,
+            "skill": "authority"
+          }
+        ]
+      },
+      {
+        "name": "Bolster",
+        "tags": [
+          "Major Action"
+        ],
+        "text": "Range 10: The Advisor chooses one ally and attempts a Difficulty 2 Reason + Study Task (Target 14/16/17). On a success, the target takes half damage from all attacks until the start of the Advisor’s next turn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "study"
+          }
+        ]
+      },
+      {
+        "name": "Mark",
+        "tags": [
+          "Major Action"
+        ],
+        "text": "Range 10: The Advisor makes an Opposed Reason + Study Task (Target 14/16/17) against their target’s Faith + Skirmish. On a success, the target is Exposed until the start of the Advisor’s next turn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "study"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Bulwark",
+        "text": "When an allied character starts their turn next to the Advisor, they may remove one of the statuses afflicting them, except Rattled."
+      },
+      {
+        "name": "Not On My Watch",
+        "text": "Range 10: 1/round, when an ally within Range is attacked, the Advisor may use their Reaction to cause the attack to miss."
+      },
+      {
+        "name": "Leadership",
+        "text": "When the Advisor uses Console, they also give the target a +3 boost to their speed, which lasts until the start of the Advisor’s next turn."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Studied Defenses",
+        "text": "The advisor uses Study instead of Skirmish when defending."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "wordsmith",
+    "name": "Wordsmith",
+    "category": "standard",
+    "type": "Control",
+    "colorType": "Control",
+    "tags": [
+      "Control",
+      "Standard",
+      "Ranged"
+    ],
+    "description": "Dastardly weavers of demoralizing words, attacking their enemies where their will is weakest.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        7,
+        7,
+        7
+      ],
+      "coordination": [
+        6,
+        6,
+        6
+      ],
+      "faith": [
+        9,
+        9,
+        9
+      ],
+      "presence": [
+        10,
+        11,
+        12
+      ],
+      "reason": [
+        8,
+        8,
+        8
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        2,
+        2,
+        2
+      ],
+      "awareness": [
+        3,
+        3,
+        4
+      ],
+      "brawn": [
+        2,
+        2,
+        2
+      ],
+      "coordination": [
+        2,
+        2,
+        2
+      ],
+      "faith": [
+        3,
+        3,
+        3
+      ],
+      "presence": [
+        4,
+        4,
+        5
+      ],
+      "reason": [
+        3,
+        3,
+        3
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        2,
+        2,
+        2
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        1,
+        1,
+        1
+      ],
+      "diplomacy": [
+        4,
+        5,
+        5
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        1,
+        1,
+        1
+      ]
+    },
+    "willpower": [
+      9,
+      10,
+      11
+    ],
+    "resistance": 0,
+    "hp": [
+      7,
+      9,
+      11
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Demoralize",
+        "tags": [
+          "Will"
+        ],
+        "text": "Range 10, Target 14/16/17: 6/7/7 [CD] Willpower damage.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "presence",
+            "skill": "diplomacy"
+          },
+          {
+            "matchText": "6/7/7 [CD]",
+            "stat": "willpowerDamage",
+            "base": 2,
+            "skill": "diplomacy"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Murderous Gaze",
+        "text": "The Wordsmith may take a Minor Action to give their Demoralize Tasks the Stunning damage effect."
+      },
+      {
+        "name": "Strength of Will",
+        "text": "The Wordsmith gains +5 Willpower.",
+        "statModifiers": {
+          "willpowerBonus": 5
+        }
+      },
+      {
+        "name": "Cutting Words",
+        "text": "When the Wordsmith reduces an enemy to 0 Willpower, they gain +1d20 on their next Demoralize Task."
+      }
+    ],
+    "optionalMajorFeatures": [
+      {
+        "name": "Energy Tap",
+        "text": "When the Wordsmith’s Demoralize would deal more damage than the target’s remaining Willpower, any remaining Willpower damage is dealt to the target’s HP, ignoring Resistance."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "monstrosity",
+    "name": "Monstrosity",
+    "category": "standard",
+    "type": "Monstrosity",
+    "colorType": "Monstrosity",
+    "tags": [
+      "Monstrosity",
+      "Standard"
+    ],
+    "description": "Dangerous creatures, often inhuman in nature.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        9,
+        9,
+        9
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        9,
+        9,
+        9
+      ],
+      "faith": [
+        7,
+        7,
+        7
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        4,
+        4,
+        4
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        5
+      ],
+      "awareness": [
+        3,
+        3,
+        3
+      ],
+      "brawn": [
+        4,
+        4,
+        5
+      ],
+      "coordination": [
+        3,
+        3,
+        3
+      ],
+      "faith": [
+        2,
+        2,
+        2
+      ],
+      "presence": [
+        2,
+        2,
+        2
+      ],
+      "reason": [
+        1,
+        1,
+        1
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        1,
+        1,
+        1
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      7,
+      8,
+      9
+    ],
+    "resistance": 0,
+    "hp": [
+      10,
+      13,
+      16
+    ],
+    "speed": [
+      8,
+      8,
+      9
+    ],
+    "healthBars": 1,
+    "attacks": [
+      {
+        "name": "Claws",
+        "tags": [
+          "Brawn"
+        ],
+        "text": "Target 14/16/17: 7/8/8 [CD]. Defended by Brawn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Bite",
+        "tags": [
+          "Brawn"
+        ],
+        "text": "Target 14/16/17: 7/8/8 [CD]. Defended by Brawn.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Multiattack",
+        "text": "When the monstrosity takes the attack action, it makes an attack with its claws and its bite."
+      },
+      {
+        "name": "Venom",
+        "text": "The monstrosity’s Bite attacks gain Persistent 3."
+      },
+      {
+        "name": "Flight",
+        "text": "The monstrosity gains a flying speed equal to its walking speed +3.",
+        "statModifiers": {
+          "flyingSpeedOffset": 3
+        }
+      },
+      {
+        "name": "Impervious Hide",
+        "text": "The monstrosity gains 2 Resistance.",
+        "statModifiers": {
+          "resistanceBonus": 2
+        }
+      },
+      {
+        "name": "Massive",
+        "text": "The monstrosity is size 2.",
+        "statModifiers": {
+          "size": 2
+        }
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "spear_chaff",
+    "name": "Spear Chaff",
+    "category": "chaff",
+    "type": "Spear",
+    "colorType": "Spear",
+    "tags": [
+      "Spear",
+      "Chaff"
+    ],
+    "description": "Chaff who excel at holding defensive positions with a barrier of pikes.",
+    "attributes": {
+      "agility": [
+        6,
+        6,
+        6
+      ],
+      "awareness": [
+        8,
+        9,
+        10
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        10,
+        11,
+        12
+      ],
+      "faith": [
+        8,
+        9,
+        10
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        1,
+        1,
+        1
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        2,
+        2,
+        2
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      8,
+      9,
+      10
+    ],
+    "resistance": 0,
+    "hp": [
+      5,
+      6,
+      7
+    ],
+    "speed": [
+      6,
+      6,
+      6
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Pike Wall",
+        "text": "The Spear Chaff can attack with their pike as a Reaction when a Character enters their reach."
+      }
+    ],
+    "groupAttacks": [
+      {
+        "name": "Pike",
+        "text": "Target 14/16/17: 2[CD] per Chaff, Extended 2. This attack gains a bonus d20 for every 2 Chaff (rounded down) participating in the attack.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "coordination",
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": -2,
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": 0,
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "sword_chaff",
+    "name": "Sword Chaff",
+    "category": "chaff",
+    "type": "Sword",
+    "colorType": "Sword",
+    "tags": [
+      "Sword",
+      "Chaff"
+    ],
+    "description": "Swift Chaff who specialize in charging first as shock infantry.",
+    "attributes": {
+      "agility": [
+        10,
+        11,
+        12
+      ],
+      "awareness": [
+        7,
+        8,
+        9
+      ],
+      "brawn": [
+        6,
+        6,
+        6
+      ],
+      "coordination": [
+        7,
+        8,
+        9
+      ],
+      "faith": [
+        7,
+        8,
+        9
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        7,
+        7,
+        7
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        1,
+        1,
+        1
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        2,
+        2,
+        2
+      ]
+    },
+    "willpower": [
+      7,
+      8,
+      9
+    ],
+    "resistance": 0,
+    "hp": [
+      4,
+      4,
+      4
+    ],
+    "speed": [
+      10,
+      10,
+      11
+    ],
+    "healthBars": 1,
+    "features": [
+      {
+        "name": "Swift of Foot",
+        "text": "The Bladesman has +2 Speed (Included in the speed already)"
+      }
+    ],
+    "groupAttacks": [
+      {
+        "name": "Longsword",
+        "tags": [
+          "sword"
+        ],
+        "text": "Target 14/16/17: 2[CD] per Chaff. This attack gains a bonus d20 for every 2 Chaff (rounded down) participating in the attack.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "agility",
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": -2,
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": 0,
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 5,
+        "attribute": "agility",
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "axe_chaff",
+    "name": "Axe Chaff",
+    "category": "chaff",
+    "type": "Axe",
+    "colorType": "Axe",
+    "tags": [
+      "Axe",
+      "Chaff"
+    ],
+    "description": "Tough Chaff capable of dealing and taking respectable damage.",
+    "attributes": {
+      "agility": [
+        7,
+        8,
+        9
+      ],
+      "awareness": [
+        7,
+        8,
+        9
+      ],
+      "brawn": [
+        10,
+        11,
+        12
+      ],
+      "coordination": [
+        6,
+        6,
+        6
+      ],
+      "faith": [
+        6,
+        7,
+        8
+      ],
+      "presence": [
+        7,
+        7,
+        7
+      ],
+      "reason": [
+        6,
+        6,
+        6
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        2,
+        2,
+        2
+      ],
+      "study": [
+        0,
+        0,
+        0
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        0,
+        0,
+        0
+      ]
+    },
+    "willpower": [
+      6,
+      7,
+      8
+    ],
+    "resistance": 0,
+    "hp": [
+      8,
+      9,
+      10
+    ],
+    "speed": [
+      6,
+      7,
+      7
+    ],
+    "healthBars": 1,
+    "groupAttacks": [
+      {
+        "name": "Battle Axe",
+        "tags": [
+          "axe"
+        ],
+        "text": "Target 14/16/17: 2[CD] per Chaff. This attack gains a bonus d20 for every 2 Chaff (rounded down) participating in the attack.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": -2,
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": 0,
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "archer_chaff",
+    "name": "Archer Chaff",
+    "category": "chaff",
+    "type": "Bow",
+    "colorType": "Bow",
+    "tags": [
+      "Bow",
+      "Chaff",
+      "Ranged"
+    ],
+    "description": "Chaff who rain arrows on the enemy from a distance.",
+    "attributes": {
+      "agility": [
+        8,
+        8,
+        8
+      ],
+      "awareness": [
+        10,
+        11,
+        12
+      ],
+      "brawn": [
+        7,
+        8,
+        9
+      ],
+      "coordination": [
+        7,
+        7,
+        7
+      ],
+      "faith": [
+        6,
+        7,
+        8
+      ],
+      "presence": [
+        6,
+        6,
+        6
+      ],
+      "reason": [
+        7,
+        7,
+        7
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        0,
+        0,
+        0
+      ],
+      "study": [
+        2,
+        3,
+        4
+      ],
+      "diplomacy": [
+        0,
+        0,
+        0
+      ],
+      "medicine": [
+        1,
+        1,
+        1
+      ],
+      "intrigue": [
+        2,
+        3,
+        4
+      ]
+    },
+    "willpower": [
+      6,
+      7,
+      8
+    ],
+    "resistance": 0,
+    "hp": [
+      5,
+      6,
+      7
+    ],
+    "speed": [
+      7,
+      7,
+      7
+    ],
+    "healthBars": 1,
+    "groupAttacks": [
+      {
+        "name": "Group Volley",
+        "tags": [
+          "bow"
+        ],
+        "text": "Range 8, Target 14/16/17: 1[CD] Piercing per Chaff. This attack is an Area of Effect, a Circle of Size 1, increasing in Size by 1 for every 2 Chaff (rounded down) participating in the attack.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "awareness",
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": -2,
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": 0,
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "dragon",
+    "name": "Dragon",
+    "category": "monumental",
+    "colorType": null,
+    "tags": [
+      "Monumental Foe",
+      "Flying"
+    ],
+    "description": "Fire and death incarnate.",
+    "attributes": {
+      "agility": [
+        11,
+        11,
+        11
+      ],
+      "awareness": [
+        8,
+        8,
+        9
+      ],
+      "brawn": [
+        12,
+        13,
+        14
+      ],
+      "coordination": [
+        10,
+        10,
+        10
+      ],
+      "faith": [
+        10,
+        10,
+        10
+      ],
+      "presence": [
+        10,
+        11,
+        12
+      ],
+      "reason": [
+        9,
+        9,
+        9
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        4,
+        4,
+        4
+      ],
+      "awareness": [
+        3,
+        3,
+        3
+      ],
+      "brawn": [
+        5,
+        5,
+        6
+      ],
+      "coordination": [
+        4,
+        4,
+        4
+      ],
+      "faith": [
+        4,
+        4,
+        4
+      ],
+      "presence": [
+        4,
+        4,
+        5
+      ],
+      "reason": [
+        3,
+        3,
+        3
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        3,
+        4,
+        5
+      ],
+      "study": [
+        1,
+        1,
+        1
+      ],
+      "diplomacy": [
+        3,
+        3,
+        3
+      ],
+      "medicine": [
+        2,
+        2,
+        2
+      ],
+      "intrigue": [
+        1,
+        1,
+        1
+      ]
+    },
+    "morale": 10,
+    "willpower": [
+      10,
+      11,
+      12
+    ],
+    "resistance": 3,
+    "hp": [
+      12,
+      15,
+      18
+    ],
+    "healthBars": 3,
+    "speed": [
+      8,
+      8,
+      8
+    ],
+    "flyingSpeed": [
+      11,
+      11,
+      11
+    ],
+    "features": [
+      {
+        "name": "Monumental",
+        "text": "All damage against the monumental enemy’s HP is divided by half (rounded down). If its morale is reduced to 0, they lose this feature and take damage as normally. Any further morale damage is taken as Willpower damage instead."
+      },
+      {
+        "name": "Vantage",
+        "text": "The monumental enemy takes two turns in a single round. It regains all uses of its Reactions at the start of each of its turns."
+      },
+      {
+        "name": "Multi-attack",
+        "text": "When the Dragon takes the attack action, it may make two claw attacks or a claw attack and a bite attack."
+      },
+      {
+        "name": "Fire Resistant",
+        "text": "The Dragon has an extra 3 Resistance against any damage with the Fire tag."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Claw",
+        "tags": [
+          "Brawn"
+        ],
+        "text": "Target 16/18/19: 9/10/10[CD]. Defended by Agility.",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "9/10/10[CD]",
+            "stat": "damage",
+            "base": 5,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Bite",
+        "tags": [
+          "Brawn"
+        ],
+        "text": "Target 16/18/19: 7/8/8[CD] Piercing. Defended by Agility.",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8[CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Howling Roar",
+        "tags": [
+          "will"
+        ],
+        "text": "range 4, Target 15: 6[CD]. Defended by Faith.",
+        "computed": [
+          {
+            "matchText": "Target 15",
+            "stat": "target",
+            "base": [
+              2,
+              1,
+              0
+            ],
+            "attribute": "presence",
+            "skill": "diplomacy"
+          },
+          {
+            "matchText": "6[CD]",
+            "stat": "willpowerDamage",
+            "base": 3,
+            "skill": "diplomacy"
+          }
+        ]
+      }
+    ],
+    "divisionAttacks": [
+      {
+        "name": "Burning Fire",
+        "text": "Target 13/15/17, Projectile: 6/7/8[CD] Piercing."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Fireblast",
+        "text": "Range Line 8, Defended by Agility, Target 13/15/17: 7/8/9[CD] Piercing damage. All spaces in the line are lit on fire, dealing 2[CD] damage to anyone who starts their turn on or enters the space until the end of the scene.",
+        "tags": [
+          "Fire"
+        ],
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "7/8/9[CD]",
+            "stat": "damage",
+            "base": [
+              3,
+              3,
+              4
+            ],
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Grab",
+        "tags": [
+          "Major Action"
+        ],
+        "text": "The Dragon makes a claw attack against a target and then attempts to grapple them. Once grappled, it may as a Major Action drop the target for 8/9/10[CD] damage."
+      },
+      {
+        "name": "Scorched Earth",
+        "tags": [
+          "Major Action"
+        ],
+        "text": "The dragon sets fire to all divisions in a zone, dealing 4[CD] piercing damage to all other divisions in the zone (ally and enemy)."
+      },
+      {
+        "name": "The Legend of the Dragon",
+        "text": "Every attack the Dragon makes deals +2[CD] Willpower damage."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "archmage",
+    "name": "Archmage",
+    "category": "monumental",
+    "colorType": null,
+    "tags": [
+      "Monumental Foe",
+      "Spellcaster",
+      "Ranged"
+    ],
+    "description": "An ultimate master of all things arcane.",
+    "attributes": {
+      "agility": [
+        8,
+        8,
+        9
+      ],
+      "awareness": [
+        10,
+        10,
+        10
+      ],
+      "brawn": [
+        8,
+        8,
+        8
+      ],
+      "coordination": [
+        9,
+        9,
+        9
+      ],
+      "faith": [
+        11,
+        11,
+        11
+      ],
+      "presence": [
+        10,
+        11,
+        12
+      ],
+      "reason": [
+        12,
+        13,
+        14
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        3,
+        3,
+        3
+      ],
+      "awareness": [
+        4,
+        4,
+        4
+      ],
+      "brawn": [
+        3,
+        3,
+        3
+      ],
+      "coordination": [
+        3,
+        3,
+        3
+      ],
+      "faith": [
+        4,
+        4,
+        4
+      ],
+      "presence": [
+        4,
+        4,
+        5
+      ],
+      "reason": [
+        5,
+        5,
+        6
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        3,
+        4,
+        5
+      ],
+      "study": [
+        4,
+        4,
+        4
+      ],
+      "diplomacy": [
+        3,
+        3,
+        3
+      ],
+      "medicine": [
+        2,
+        2,
+        2
+      ],
+      "intrigue": [
+        1,
+        1,
+        1
+      ]
+    },
+    "morale": 11,
+    "willpower": [
+      11,
+      12,
+      13
+    ],
+    "resistance": 3,
+    "hp": [
+      8,
+      10,
+      12
+    ],
+    "healthBars": 3,
+    "speed": [
+      7,
+      7,
+      7
+    ],
+    "features": [
+      {
+        "name": "Monumental",
+        "text": "All damage against the monumental enemy’s HP is divided by half (rounded down). If its morale is reduced to 0, they lose this feature and take damage as normally. Any further morale damage is taken as Willpower damage instead."
+      },
+      {
+        "name": "Vantage",
+        "text": "The monumental enemy takes two turns in a single round. It regains all uses of its Reactions at the start of each of its turns."
+      },
+      {
+        "name": "Magical Resistance",
+        "text": "The archmage halves all damage from spells and attacks from Magick divisions."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Chain Lightning",
+        "tags": [
+          "Lightning",
+          "spell"
+        ],
+        "text": "Range Self (Line 10), Target 16/18/19: 7/8/8 [CD] Piercing. All targets are Off-Guard until the end of their next turn. Defended by Coordination.",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Meteor",
+        "tags": [
+          "Fire",
+          "spell"
+        ],
+        "text": "Range 15, Blast 2, Target 16/18/19: 7/8/8 [CD] Piercing. Defended by Agility.",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Cone of Cold",
+        "tags": [
+          "Ice",
+          "spell"
+        ],
+        "text": "Range Self (Cone 7), Target 16/18/19: 7/8/8 [CD] Piercing. All targets are Slowed until the end of their next turn. Defended by Brawn.",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "reason",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "divisionAttacks": [
+      {
+        "name": "Disintegrate",
+        "tags": [
+          "Magick"
+        ],
+        "text": "Target 15/17/19: 6/7/7 [CD] Piercing."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Arcane Gate",
+        "tags": [
+          "Minor Action",
+          "spell"
+        ],
+        "text": "The Archmage Teleports up to 6/7/8 spaces on the battlefield. All characters in a Burst 2 radius from the Archmage’s original position take 4/5/5 [CD] Piercing damage.",
+        "computed": [
+          {
+            "matchText": "4/5/5 [CD]",
+            "stat": "damage",
+            "base": 0,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Wall of Force",
+        "tags": [
+          "Major Action",
+          "spell"
+        ],
+        "text": "Range 5: The archmage creates a magical obstruction on the battlefield that is 5 spaces long, 1 space wide, and infinitely high. No units can pass through or over this obstruction, and if this obstruction is along the border of a zone, no divisions can pass through either. The Wall of Force lasts for two rounds, dispelling at the end of the archmage’s turn, or it may be dispelled by a Major Action Difficulty 4 Magick + Study Task. Only one Wall of Force may be on the field at once, so if this is cast again, the former Wall of Force disappears.",
+        "recharge": true
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Far Reaching Magick",
+        "text": "The archmage’s spells gain +1 to their area of effect (e.g. Line 9 becomes Line 10)."
+      },
+      {
+        "name": "Potent Spells",
+        "text": "The archmage’s spells deal +2[CD] damage."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "dark_lord",
+    "name": "Dark Lord",
+    "category": "monumental",
+    "colorType": null,
+    "tags": [
+      "Monumental Foe"
+    ],
+    "description": "Bolstered by their grasp of Blood and Shadow, the Dark Lord practices dark magick in order to wreak mass havoc.",
+    "attributes": {
+      "agility": [
+        12,
+        12,
+        12
+      ],
+      "awareness": [
+        10,
+        10,
+        10
+      ],
+      "brawn": [
+        12,
+        13,
+        14
+      ],
+      "coordination": [
+        10,
+        10,
+        10
+      ],
+      "faith": [
+        10,
+        10,
+        10
+      ],
+      "presence": [
+        10,
+        11,
+        12
+      ],
+      "reason": [
+        9,
+        9,
+        9
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        5,
+        5,
+        5
+      ],
+      "awareness": [
+        4,
+        4,
+        4
+      ],
+      "brawn": [
+        5,
+        5,
+        6
+      ],
+      "coordination": [
+        4,
+        4,
+        4
+      ],
+      "faith": [
+        4,
+        4,
+        4
+      ],
+      "presence": [
+        4,
+        4,
+        5
+      ],
+      "reason": [
+        3,
+        3,
+        3
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        3,
+        4,
+        5
+      ],
+      "study": [
+        2,
+        2,
+        2
+      ],
+      "diplomacy": [
+        3,
+        3,
+        3
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        3,
+        3,
+        3
+      ]
+    },
+    "morale": 10,
+    "willpower": [
+      10,
+      11,
+      12
+    ],
+    "resistance": 4,
+    "hp": [
+      12,
+      15,
+      18
+    ],
+    "healthBars": 3,
+    "speed": [
+      9,
+      9,
+      9
+    ],
+    "features": [
+      {
+        "name": "Monumental",
+        "text": "All damage against the monumental enemy’s HP is divided by half (rounded down). If its morale is reduced to 0, they lose this feature and take damage as normally. Any further morale damage is taken as Willpower damage instead."
+      },
+      {
+        "name": "Vantage",
+        "text": "The monumental enemy takes two turns in a single round. It regains all uses of its Reactions at the start of each of its turns."
+      },
+      {
+        "name": "Blood Poison",
+        "text": "As a Minor Action, the Dark Lord gives their next warhammer attack the Persistent 3/4/5 damage effect."
+      },
+      {
+        "name": "Dark Fortitude",
+        "text": "The Dark Lord halves all damage from spells with the Shadow or Blood tags."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Warhammer",
+        "tags": [
+          "axe"
+        ],
+        "text": "Target 16/18/19: 8/9/9[CD] Knockdown",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "8/9/9[CD]",
+            "stat": "damage",
+            "base": 4,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "divisionAttacks": [
+      {
+        "name": "Hammer of Blood",
+        "text": "Target 15/17/19: 7/8/8[CD]"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Wail of the Damned",
+        "text": "The Dark Lord lets out a blood-curdling scream. All enemy characters within 3 tiles of the Dark Lord take 5 [CD] Willpower damage.",
+        "recharge": true
+      },
+      {
+        "name": "The Grips of Hell",
+        "text": "The Dark Lord chooses a division in the same zone and makes two attacks with the Hammer of Blood. If the division is defeated by either of these attacks, the Dark Lord recovers its full Morale."
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Foes All Around",
+        "text": "After taking the Attack action, the Dark Lord may immediately make a Division Attack."
+      },
+      {
+        "name": "Burning Speed",
+        "text": "As an action, the Dark Lord may move up to twice its speed and then make an attack with its Hammer of Blood."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "archpriest",
+    "name": "Archpriest",
+    "category": "monumental",
+    "colorType": null,
+    "tags": [
+      "Monumental Foe",
+      "Spellcaster",
+      "Ranged"
+    ],
+    "description": "A powerful wielder of Light Magick.",
+    "attributes": {
+      "agility": [
+        8,
+        8,
+        8
+      ],
+      "awareness": [
+        9,
+        10,
+        11
+      ],
+      "brawn": [
+        10,
+        10,
+        10
+      ],
+      "coordination": [
+        8,
+        8,
+        8
+      ],
+      "faith": [
+        12,
+        13,
+        14
+      ],
+      "presence": [
+        11,
+        11,
+        11
+      ],
+      "reason": [
+        10,
+        11,
+        12
+      ]
+    },
+    "effectSaves": {
+      "agility": [
+        3,
+        3,
+        3
+      ],
+      "awareness": [
+        3,
+        4,
+        4
+      ],
+      "brawn": [
+        4,
+        4,
+        4
+      ],
+      "coordination": [
+        3,
+        3,
+        3
+      ],
+      "faith": [
+        5,
+        5,
+        6
+      ],
+      "presence": [
+        4,
+        4,
+        4
+      ],
+      "reason": [
+        4,
+        4,
+        5
+      ]
+    },
+    "skills": {
+      "skirmish": [
+        3,
+        4,
+        5
+      ],
+      "authority": [
+        4,
+        5,
+        5
+      ],
+      "study": [
+        3,
+        3,
+        3
+      ],
+      "diplomacy": [
+        2,
+        2,
+        2
+      ],
+      "medicine": [
+        4,
+        4,
+        4
+      ],
+      "intrigue": [
+        1,
+        1,
+        1
+      ]
+    },
+    "morale": 11,
+    "willpower": [
+      12,
+      14,
+      16
+    ],
+    "resistance": 3,
+    "hp": [
+      10,
+      12,
+      14
+    ],
+    "healthBars": 3,
+    "speed": [
+      7,
+      7,
+      7
+    ],
+    "features": [
+      {
+        "name": "Monumental",
+        "text": "All damage against the monumental enemy’s HP is divided by half (rounded down). If its morale is reduced to 0, they lose this feature and take damage as normally. Any further morale damage is taken as Willpower damage instead."
+      },
+      {
+        "name": "Vantage",
+        "text": "The monumental enemy takes two turns in a single round. It regains all uses of its Reactions at the start of each of its turns."
+      },
+      {
+        "name": "Heavenly Ward",
+        "text": "At the start of each of their turns, the archpriest regains 3 Morale."
+      },
+      {
+        "name": "Purifying Smite",
+        "text": "The archpriest deals +2[CD] against targets with 0 WP."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Bolt of Judgement",
+        "tags": [
+          "Radiant",
+          "spell"
+        ],
+        "text": "Range 10, Target 15/17/19: 5/6/7 [CD] Piercing. The next Attack made against the target is made with Difficulty reduced by 1, and the Hide tasks made until the end of the Target’s next turn have Difficulty increased by 2. Defended by Awareness.",
+        "computed": [
+          {
+            "matchText": "Target 15/17/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "faith",
+            "skill": "skirmish"
+          },
+          {
+            "matchText": "5/6/7 [CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "divisionAttacks": [
+      {
+        "name": "Pillar of Light",
+        "tags": [
+          "Magick"
+        ],
+        "text": "Target 16/18/19: 5/6/7 [CD] Piercing."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Divine Punishment",
+        "tags": [
+          "Will",
+          "spell"
+        ],
+        "text": "Range 15, Blast 2: On a success, targets take 6/7/8 [CD] Willpower damage and become Frightened until the end of their next turn.",
+        "recharge": true,
+        "computed": [
+          {
+            "matchText": "6/7/8 [CD]",
+            "stat": "willpowerDamage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Healing Light",
+        "tags": [
+          "Healing",
+          "spell"
+        ],
+        "text": "As a Major Action, the archpriest heals any number of divisions in the same zone as them for 3 [CD] Morale."
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Terrifying Aura",
+        "text": "Characters that enter or begin their turn within Range 3 of the archpriest first take 3[CD] WP damage."
+      }
+    ],
+    "transcribed": true,
+    "derived": {
+      "hp": {
+        "base": [
+          0,
+          2,
+          4
+        ],
+        "attribute": "brawn"
+      },
+      "willpower": {
+        "base": [
+          0,
+          1,
+          2
+        ],
+        "attribute": "faith"
+      },
+      "speed": {
+        "base": 3,
+        "attribute": "agility",
+        "halfAttribute": true
+      },
+      "effectSaves": {
+        "base": -1,
+        "halfAttribute": true
+      }
+    }
+  },
+  {
+    "id": "colossus",
+    "name": "Colossus",
+    "category": "monumental",
+    "colorType": null,
+    "tags": [
+      "Monumental Foe"
+    ],
+    "description": "An immense construct - a statue of a god-king animated through ancient magick, an immense arcane-driven automaton, or a mountain come to life from spirits of the earth.",
+    "parts": {
+      "head": {
+        "attributes": {
+          "agility": [
+            6,
+            7,
+            8
+          ],
+          "awareness": [
+            12,
+            13,
+            14
+          ],
+          "brawn": [
+            8,
+            9,
+            10
+          ],
+          "coordination": [
+            6,
+            7,
+            8
+          ],
+          "faith": [
+            10,
+            10,
+            10
+          ],
+          "presence": [
+            10,
+            10,
+            10
+          ],
+          "reason": [
+            10,
+            10,
+            10
+          ]
+        },
+        "effectSaves": {
+          "agility": [
+            2,
+            2,
+            3
+          ],
+          "awareness": [
+            5,
+            5,
+            6
+          ],
+          "brawn": [
+            3,
+            3,
+            4
+          ],
+          "coordination": [
+            2,
+            2,
+            3
+          ],
+          "faith": [
+            4,
+            4,
+            4
+          ],
+          "presence": [
+            4,
+            4,
+            4
+          ],
+          "reason": [
+            4,
+            4,
+            4
+          ]
+        },
+        "resistance": 0
+      },
+      "torso": {
+        "attributes": {
+          "agility": [
+            8,
+            9,
+            10
+          ],
+          "awareness": [
+            9,
+            9,
+            9
+          ],
+          "brawn": [
+            10,
+            11,
+            12
+          ],
+          "coordination": [
+            8,
+            9,
+            10
+          ],
+          "faith": [
+            10,
+            10,
+            10
+          ],
+          "presence": [
+            10,
+            10,
+            10
+          ],
+          "reason": [
+            10,
+            10,
+            10
+          ]
+        },
+        "effectSaves": {
+          "agility": [
+            3,
+            3,
+            4
+          ],
+          "awareness": [
+            3,
+            3,
+            3
+          ],
+          "brawn": [
+            4,
+            4,
+            5
+          ],
+          "coordination": [
+            3,
+            3,
+            4
+          ],
+          "faith": [
+            4,
+            4,
+            4
+          ],
+          "presence": [
+            4,
+            4,
+            4
+          ],
+          "reason": [
+            4,
+            4,
+            4
+          ]
+        },
+        "resistance": 5
+      },
+      "legs": {
+        "attributes": {
+          "agility": [
+            10,
+            11,
+            12
+          ],
+          "awareness": [
+            9,
+            9,
+            9
+          ],
+          "brawn": [
+            12,
+            13,
+            14
+          ],
+          "coordination": [
+            10,
+            11,
+            12
+          ],
+          "faith": [
+            10,
+            10,
+            10
+          ],
+          "presence": [
+            10,
+            10,
+            10
+          ],
+          "reason": [
+            10,
+            10,
+            10
+          ]
+        },
+        "effectSaves": {
+          "agility": [
+            4,
+            4,
+            5
+          ],
+          "awareness": [
+            3,
+            3,
+            3
+          ],
+          "brawn": [
+            5,
+            5,
+            6
+          ],
+          "coordination": [
+            4,
+            4,
+            5
+          ],
+          "faith": [
+            4,
+            4,
+            4
+          ],
+          "presence": [
+            4,
+            4,
+            4
+          ],
+          "reason": [
+            4,
+            4,
+            4
+          ]
+        },
+        "resistance": 3
+      }
+    },
+    "skills": {
+      "skirmish": [
+        4,
+        5,
+        5
+      ],
+      "authority": [
+        4,
+        5,
+        5
+      ],
+      "study": [
+        2,
+        2,
+        2
+      ],
+      "diplomacy": [
+        3,
+        3,
+        3
+      ],
+      "medicine": [
+        0,
+        0,
+        0
+      ],
+      "intrigue": [
+        3,
+        3,
+        3
+      ]
+    },
+    "morale": 17,
+    "willpower": null,
+    "hp": [
+      13,
+      16,
+      19
+    ],
+    "healthBars": 3,
+    "speed": [
+      3,
+      3,
+      3
+    ],
+    "special": "The Colossus has different Attributes for its Head, Torso, and Legs. When targeting the Colossus with an attack, units must specify the part of the Colossus being targeted before the roll is made. Successful attacks are reduced by the Resistance of the part targeted, and then damage is dealt to the Colossus generally. Statuses or effects dealt during an attack on one of the Colossus’s parts are applied to the Colossus as a whole.",
+    "features": [
+      {
+        "name": "Monumental",
+        "text": "All damage against the monumental enemy’s HP is divided by half (rounded down). If its morale is reduced to 0, they lose this feature and take damage as normally."
+      },
+      {
+        "name": "Vantage",
+        "text": "The monumental enemy takes two turns in a single round. It regains all uses of its Reactions at the start of each of its turns."
+      },
+      {
+        "name": "Colossal Size",
+        "text": "The Colossus is size 3. As long as the Colossus is not Prone, its legs are the only part of its body normally targetable by Melee Attacks from creatures that are not Flying; in order to target its Torso or its Head while the Colossus is not Prone, a Character must either be Flying or use Ranged Attacks. The Colossus is always Off-Guard as long as it is Prone, and it must spend an entire turn in order to stand up from Prone."
+      },
+      {
+        "name": "Towering Height",
+        "text": "The Colossus ignores Difficult Terrain and all terrain effects."
+      },
+      {
+        "name": "Inhuman",
+        "text": "The Colossus has no Willpower and is immune to the Dazed, Enraged, and Frightened Statuses."
+      },
+      {
+        "name": "Immoveable Object",
+        "text": "The Colossus cannot be Grappled, is immune to the Knockback effect, and it gains +2 to its Brawn Effect Save against the Knockdown damage effect. All attempts to shove the Colossus have +2 Difficulty."
+      }
+    ],
+    "attacks": [
+      {
+        "name": "Fist",
+        "tags": [
+          "Brawn"
+        ],
+        "text": "Target 14/16/17: 7/8/8 [CD] Knockdown, Extended 2. Defended by Agility.",
+        "computed": [
+          {
+            "matchText": "Target 14/16/17",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish",
+            "part": "torso"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      },
+      {
+        "name": "Kick",
+        "tags": [
+          "Brawn"
+        ],
+        "text": "Target 16/18/19: 7/8/8 [CD] Knockback 2, Extended 3. Defended by Coordination.",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish",
+            "part": "legs"
+          },
+          {
+            "matchText": "7/8/8 [CD]",
+            "stat": "damage",
+            "base": 3,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "divisionAttacks": [
+      {
+        "name": "Sweeping Fist",
+        "text": "Target 16/18/19: 7/8/8 [CD]."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Stomp",
+        "tags": [
+          "Major Action"
+        ],
+        "text": "The Colossus stomps in a Burst 2 area. All characters in the area fall Prone, and the ground in the area becomes Difficult Terrain.",
+        "recharge": true
+      }
+    ],
+    "optionalFeatures": [
+      {
+        "name": "Throw Stone",
+        "tags": [
+          "Brawn"
+        ],
+        "text": "Range 8, Target 16/18/19: 6/7/7 [CD] Knockdown.",
+        "computed": [
+          {
+            "matchText": "Target 16/18/19",
+            "stat": "target",
+            "base": 0,
+            "attribute": "brawn",
+            "skill": "skirmish",
+            "part": "legs"
+          },
+          {
+            "matchText": "6/7/7 [CD]",
+            "stat": "damage",
+            "base": 2,
+            "skill": "skirmish"
+          }
+        ]
+      }
+    ],
+    "transcribed": true
+  }
+]

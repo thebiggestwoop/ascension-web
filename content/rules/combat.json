@@ -1,0 +1,1062 @@
+{
+  "source": "Ascension_BETA0.8Rules.html",
+  "chapters": [
+    "Chapter Five: Combat"
+  ],
+  "sections": [
+    {
+      "title": "Chapter Five: Combat",
+      "chapter": "Chapter Five: Combat",
+      "intro": true,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Sometimes circumstances will arise in which characters must take violent action in order to accomplish their goals. When these scenarios arise, characters enter combat."
+        },
+        {
+          "type": "paragraph",
+          "text": "Combat often involves many moving pieces, including unique rules and abilities that sometimes change the way specific rules are written, or allow characters to subvert the rules when they take certain actions. In addition to the normal Golden Rules of play, there are some combat-specific Golden Rules that **always** apply:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "Any effect granted by an ability, talent, or action does not stack with itself unless explicitly stated. If an effect is granted again by the same ability, it replaces the first instance of the bonus. This includes effects from the same ability provided by different characters.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "If a character succeeds in defending against an attack, the Counterstrike damage they deal as a result is not a standard attack, and so cannot be affected by any abilities or Reactions that may trigger on a successful attack. Bonus Momentum may still be spent to Reroll Damage or add Bonus Damage on a Counterstrike.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "When halving damage, always round down to a minimum of 1.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "Any modifications to damage (e.g. halving damage from an effect) are applied to the damage before subtracting for resistance.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        }
+      ],
+      "id": "chapter-five-combat-chapter-five-combat"
+    },
+    {
+      "title": "Turn Sequence",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "During a conflict scene, characters (also referred to as “units”) perform actions in a specific order. Each character takes a turn, during which they may take a Major Action and two Minor Actions. Once each character in the conflict has taken a turn, a single round is completed, and a new round begins. This repeats until the conflict ends."
+        },
+        {
+          "type": "paragraph",
+          "text": "Players always have the initiative at the start of each round of conflict, letting them act first. At the start of the round, the players nominate one Player Character to take their turn. Once that turn is completed, the GM nominates an NPC to take their turn, and this is followed by another PC turn, and then an NPC turn, and so on until every character on both sides has acted. If all the characters on one side have acted, the remaining characters can take their turns in any order."
+        },
+        {
+          "type": "paragraph",
+          "text": "Once the round is complete, a new round begins. No character may take more than one turn per round."
+        }
+      ],
+      "id": "chapter-five-combat-turn-sequence"
+    },
+    {
+      "title": "Momentum in Combat",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Unlike in narrative play, players no longer bank Momentum in or spend Momentum from their collective pool while in combat, nor may the GM gain, spend, or be given Threat. When a combat encounter begins, the players and GM note down the present totals of both the Momentum and Threat pools and set them aside until the encounter is complete."
+        },
+        {
+          "type": "paragraph",
+          "text": "Instead of generating Momentum after rolling surplus Successes, players gain Bonus Momentum, which cannot be saved and must be spent immediately. Players may also generate Bonus Momentum as a result of talents and abilities."
+        },
+        {
+          "type": "paragraph",
+          "text": "The standard Momentum Spends (such as _Extra Dice, Create an Advantage, Create a Problem,_ and _Gather Information_) are unavailable during combat. Bonus Momentum may be spent on a player’s turn to gain the following combat-specific effects:"
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Name**",
+              "**Cost**",
+              "**Effect**"
+            ],
+            [
+              "**Bonus Damage**",
+              "1",
+              "A character can increase the damage inflicted by a successful Attack, regardless of the type of Attack. Each Momentum spent adds +1 damage."
+            ],
+            [
+              "**Extra Minor Action**",
+              "1",
+              "Take an additional Minor Action."
+            ],
+            [
+              "**Reroll Damage**",
+              "1",
+              "The player may re-roll any number of [CD] from the current Attack"
+            ],
+            [
+              "**Swift Task**",
+              "2",
+              "The character may attempt one additional Task (This may only be done once per turn)."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "If you are rolling [CD] for a reason other than damage during combat, such as for healing during the First Aid task, you may spend Momentum to increase the total or reroll blanks using the Bonus Damage or Reroll Damage momentum spends."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Bonus Dice"
+        },
+        {
+          "type": "paragraph",
+          "text": "During combat, bonus dice on Tasks may not be purchased with Bonus Momentum during combat. However, there are several different ways to add additional dice to your dice pool when attempting a Task in combat. Most bonus dice will come from abilities granted by Talents, though you may also receive bonus dice from actions taken by your allies."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a character would receive bonus dice from multiple abilities, these instances will stack together, allowing you to add several dice to your pool to a maximum of 5."
+        }
+      ],
+      "id": "chapter-five-combat-momentum-in-combat"
+    },
+    {
+      "title": "Complications",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "When players or enemy units would generate a Complication during combat, the effect is always the same: the unit suffers +1 Difficulty on their next Task. The Complication goes away after it has affected a Task in this way."
+        }
+      ],
+      "id": "chapter-five-combat-complications"
+    },
+    {
+      "title": "Determination in Combat",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "During a combat encounter, players may utilize Determination in the same ways as during narrative play, and they also gain two additional ways to spend their Determination: **Burst of Effort,** and **Avoid Injury.**"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Burst of Effort:** Immediately take an additional Major and Minor Action on your turn. If you have already taken a Minor Action on your turn, you may take that same Minor Action again as part of your Burst of Effort.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Avoid Injury:** If you are dealt damage that would reduce your HP to 0, you may instead reduce it to 1 HP without suffering an Injury.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "In order to spend Determination during combat, players must still trigger their relevant Values or call upon the Common Cause. Players may also still Challenge or Comply with their Values in order to gain Determination during combat, however they are still limited to 3 Determination held at once."
+        }
+      ],
+      "id": "chapter-five-combat-determination-in-combat"
+    },
+    {
+      "title": "Actions in Combat",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "On any given turn in combat, a character can attempt a single Major Action, two Minor Actions, and any number of free actions."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Minor Actions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Minor Actions are actions that characters can take in combat that are small enough to not require a Task. Minor Actions are often used to set up Major Actions, such as Aiming before making an attack. Characters may perform two Minor Actions for free during their turn, and may take unlimited additional Minor Actions at the immediate cost of one Bonus Momentum each."
+        },
+        {
+          "type": "paragraph",
+          "text": "Each Minor Action can only be performed once per turn. Unless otherwise stated, any bonus from using a Minor Action (such as the re-roll from Aim or the temporary HP from Block) lasts until the end of your next turn or until you retake the same Minor Action, whichever comes first. Characters may use the following Minor Actions, as well as any they gain from their talents, when in combat:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Aim:** You may re-roll a single d20 made on your next attack, keeping the second result.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Block:** You protect yourself or an ally within Reach from attack. You or the ally you are blocking gain +2[CD] temporary HP.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Brandish:** You may roll an +1[CD] on the damage roll of your next weapon attack.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Climb:** You scale an object or area of terrain that is 1 level of height above or below you. You may not take this action if you are mounted. This counts as voluntary movement.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Dismiss Mount:** You send your mount to safety, away from the battlefield. You cannot be riding your mount when you take this action.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Draw Item:** You may draw an item carried on your person or pick up an item within the same or an adjacent space as yourself. If an item does not require a Major Action to use, it can be used immediately, allowing you to draw and use the item with a single Minor Action.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Interact:** You interact with an object in the environment. Particularly complex actions may require a Major Action instead.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Move:** You move a number of spaces up to your Speed. You may not take this action if you used the Sprint major action this turn. This counts as voluntary movement.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Mount/Dismount:** You immediately dismount from the creature you are riding, or climb onto it. This counts as voluntary movement.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Stand:** You stand from being Prone, removing all effects from the status. You may not Drop Prone and Stand in the same turn.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Major Actions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Major Actions are significant, effort intensive actions that often require attempting a Task. Characters may attempt a single Major Action for free during their turn, and may spend Momentum or their Determination in order to attempt a second Major Action (see below)."
+        },
+        {
+          "type": "paragraph",
+          "text": "The following Major Actions are available during Combat:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Assist:** You perform some activity that will help an ally. You nominate a single ally you can communicate with, and declare how you are giving aid, including which Attribute, Skill, and Focus (if any) you are assisting with. During the nominated ally’s Task, you use a Reaction to assist using the chosen Attribute, Skill, and Focus, as normal for assisting on a Task.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Attack:** You attack an enemy or other viable target, and attempt to inflict harm. See **Making an Attack** for a full explanation.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Cast a Spell:** You cast a magickal spell. See **Chapter Eight: Magick** for a full explanation.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Console:** Your words inspire a demoralized Ally within Range 10 of you. Make a Difficulty 1 Presence + Authority check. On a success, your target regains all Willpower.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Demoralize:** You attempt to demoralize an enemy within Range 10 of you and deal damage to their Willpower. Make a Presence + Diplomacy check contested by Faith + Skirmish. On a success, you deal 2 + Diplomacy [CD] Willpower damage.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Disengage:** You get yourself out of harm’s way. Until the end of your turn, your movement does not provoke Opportunity Attacks.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Direct:** [Requires the **Commander** or **Tactician** Talents] You nominate a single other character within range equal to your Presence, and the nominated character may immediately use their Reaction to attempt a single Task ordered by you, assisted by your Presence + Authority. If they succeed, you may grant them any Bonus Momentum you currently have to spend on the result. You may use this action a number of times per scene equal to your Authority.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**First Aid:** You attempt to give yourself or a friendly target some quick healing. In order to attempt this Task, you must be able to touch your Target. This is a Reason + Medicine Task with a Difficulty of 1. On a success, roll [CD] equal to Medicine. The target regains HP equal to the result.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Grapple:** You attempt to grab an adjacent opponent and overpower them. This is an Opposed Task using Brawn + Skirmish, opposed by the defender’s Brawn + Skirmish.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "On a success, the target is Immobilized, and only moves when the attacker moves. Neither character can take Reactions while engaged in a grapple, and cannot deal damage from counterstriking. A grapple ends when the attacker ends the grapple as a free action on their turn; the attacker or defender is moved to be no longer adjacent to the other, such as if they are knocked back by an effect; or if the defender succeeds on a Task to escape as a Minor Action on their turn, using either Agility, Brawn, or Coordination + Skirmish and opposed by the same Attribute + Skirmish from the defender. Only one character may be grappled by you at a time. When grappling creatures that are larger than Size 1 (Size 1 + X), the Difficulty of the Task increases by X.",
+          "indent": true
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Guard:** You put yourself between an ally and a source of danger. Choose one ally within your Reach and attempt a Faith + Skirmish Task with a Difficulty of 1. On a success, the Difficulty of any attacks made against your chosen ally increases by +1 until the start of your next turn. Your ally can only benefit from the effects of Guard so long as they remain within your Reach and you are not Incapacitated or Unconscious.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Hide:** You attempt to find a position where you are hidden or obscured from an enemy’s view. This is a Difficulty 2 Agility + Intrigue Task (this Task cannot be attempted while engaged with an enemy).",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "On a success, you are hidden from sight and cannot be targeted by attacks unless the enemy uses a Search major action to discover you or until you take any hostile action against another character. You can only attempt to Hide if you have Cover from an enemy (Cover granted by items like shields does not count).",
+          "indent": true
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Pinpoint:** You target an enemy on the battlefield, highlighting their weaknesses. You choose an enemy on the battlefield you can see within Range equal to your Reason, and create an Advantage for you or an ally to use, lowering the Difficulty of any Task made against the target. This Advantage remains on the target until it is used.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Ready:** You declare that you are waiting for a specific situation or event to occur before attempting a Task. This situation or event must be chosen when Ready is declared, as well as the specific Task being attempted when that situation occurs. When this triggering situation occurs, you may use a Reaction to temporarily interrupt the acting character’s turn to resolve your readied Task. If the triggering situation is another character’s Major Action, the readied Task is resolved before any dice are rolled for the inciting action. Once the readied Task has resolved, events continue as normal. You cannot use any other Reactions until your readied Task has been resolved, and if the triggering situation does not occur before your next turn, the readied Task is lost. Characters who use the Ready major action can still perform Minor Actions during their turn as normal, but cannot take a second Major Action.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Recall Mount:** If you have a mount that has been dismissed from the battlefield, you may recall it to your side.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Refocus:** You pause to catch your breath. You regain full Willpower.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Search:** You attempt to find a Hidden character on the field. This is a Difficulty 2 Awareness + Intrigue Task with a range equal to your Awareness. On a success, you detect your target and they no longer gain the benefits of being hidden from you, but only if they are within range.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Shove:** You attempt to shove an adjacent character. This is a Brawn + Skirmish Task of Difficulty 1, opposed by the defender’s Agility + Skirmish if they choose to resist. On a success, you move your target 1 space away from you, in a direction of your choice. This counts as involuntary movement and does not provoke Opportunity Attacks.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Sprint:** You move a number of spaces up to three times your Speed. You may not take this action if you have already used the Move Minor Action on this turn. This counts as voluntary movement.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "A character can perform a single Major Action each turn. However, you may also use the following ways to attempt an additional Task, each once per turn:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Burst of Effort:** You can spend a point of Determination in order to take another Major and Minor Action on your turn. If you have already taken a Minor Action on your turn, you may take that same Minor Action again as part of your Burst of Effort.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Swift Task (Momentum Spend):** You can spend 2 points of bonus Momentum in order to take an additional Major Action on your turn.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Free Actions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Free actions are special actions that a character can take on their turn that are neither Major nor Minor Actions and do not count against the number of those actions that a character can take. A character may take an unlimited number of free actions on their turn. Most free actions come from special abilities granted by a character’s Talents or equipment, though Dropping Prone and Stowing or Dropping a Held Item is always a free action."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Drop Prone:** You drop to the ground and become Prone.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Stow/Drop Item:** You stash an item on your person, or drop it on the ground.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Reactions"
+        },
+        {
+          "type": "paragraph",
+          "text": "In addition to their own actions taken on their turns, characters can use **Reactions**, special actions that characters can take outside of the turn order in response to actions taken by other characters."
+        },
+        {
+          "type": "paragraph",
+          "text": "**You may take one Reaction each turn, but you cannot take the same Reaction more than once per round unless otherwise specified. You cannot use Reactions during your own turn.**"
+        },
+        {
+          "type": "paragraph",
+          "text": "Reactions have a specific condition or circumstance that allow them to be used, and they must be declared immediately as soon as that condition applies. If responding to an action taken by another character, Reactions resolve after the action resolves, unless otherwise specified. By default, each Reaction may be used 1/round, and uses reset at the start of your turn."
+        },
+        {
+          "type": "paragraph",
+          "text": "There is one default Reaction that all characters may use, though they may gain other Reactions from Talents or other special abilities:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Opportunity Attack:** As a reaction, when an enemy takes any voluntary movement while inside of your Reach without taking the Disengage major action, you may make a single melee weapon attack on the enemy target. This attack is an Opposed Task, but only the attacker deals damage on a success.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        }
+      ],
+      "id": "chapter-five-combat-actions-in-combat"
+    },
+    {
+      "title": "Making an Attack",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "There are two types of attacks in Ascension: melee attacks and ranged attacks. Characters make attacks by using weapons or spells to attempt Opposed Tasks against their target, using Attributes determined by the weapon or spell being used."
+        },
+        {
+          "type": "paragraph",
+          "text": "The process of making an attack is outlined in the steps below."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Attacker declares attack:** The attacker decides they wish to make an attack and chooses how.",
+              "level": 0,
+              "marker": "1."
+            },
+            {
+              "text": "If a melee weapon or spell is chosen, the attack is a melee attack.",
+              "level": 1,
+              "marker": "A."
+            },
+            {
+              "text": "If a ranged weapon or spell is chosen, the attack is a ranged attack.",
+              "level": 1,
+              "marker": "B."
+            },
+            {
+              "text": "**Attacker chooses target:** The attacker chooses a target for the attack. This can be any creature or object which can be damaged by the attack.",
+              "level": 0,
+              "marker": "2."
+            },
+            {
+              "text": "A melee attack can be used against a target within Reach of the attacker.",
+              "level": 1,
+              "marker": "A."
+            },
+            {
+              "text": "A ranged attack can be used against any target within range and in line of sight of the attacker.",
+              "level": 1,
+              "marker": "B."
+            },
+            {
+              "text": "Ranged attacks have +1 Difficulty if the attacker is adjacent to any enemies.",
+              "level": 2,
+              "marker": "■"
+            },
+            {
+              "text": "**Skill Test:** The attacker makes an Opposed Task against their target. Both the attacker and the defender use an Attribute determined by the attacker’s weapon or spell. Unless otherwise stated, both always use Skirmish for the Skill. Like any Opposed Task, the defender rolls first, followed by the attacker’s roll. Any increases or reductions to the Difficulty by effects or abilities are then applied.",
+              "level": 0,
+              "marker": "3."
+            },
+            {
+              "text": "If the target is unable or chooses not to defend themself (such as if they were Incapacitated), this becomes a Difficulty 1 Task to determine if the attack hits.",
+              "level": 1,
+              "marker": "A."
+            },
+            {
+              "text": "**Outcome:** If the attacker succeeds on the Task, they get to inflict damage on their target. If the defender wins the Opposed Task, they may inflict damage on the attacker as a **Counterstrike** if they are able.",
+              "level": 0,
+              "marker": "4."
+            },
+            {
+              "text": "The defender may only **Counterstrike** when defending against a melee attack and if they are also wielding a melee weapon.",
+              "level": 1,
+              "marker": "A."
+            },
+            {
+              "text": "**Calculating Damage:** Damage is calculated in the following order:",
+              "level": 0,
+              "marker": "5."
+            },
+            {
+              "text": "A number of Challenge Dice [CD] are rolled equal to the weapon’s base damage + the wielder’s Skirmish.",
+              "level": 1,
+              "marker": "A."
+            },
+            {
+              "text": "If there are relevant effects that would reduce or increase the damage, these are applied now (e.g. -2 damage from Fire spells from Pyromancer 2). When halving, round down to a minimum of 1.",
+              "level": 1,
+              "marker": "B."
+            },
+            {
+              "text": "The target’s Resistance is subtracted from the damage.",
+              "level": 1,
+              "marker": "C."
+            },
+            {
+              "text": "Remaining damage is inflicted on the target, subtracting from their HP.",
+              "level": 1,
+              "marker": "D."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Multiple Targets and Bonus Momentum"
+        },
+        {
+          "type": "paragraph",
+          "text": "If any Task calls for a contested check against more than one opponent, the reactive characters each roll first, followed by the active character who only rolls once. Any reactive characters that rolled equal to or below the active character’s number of successes fail the Task, as usual, but the effective Difficulty for determining how much Bonus Momentum is generated is the single highest number of Successes made by any of the reactive characters."
+        },
+        {
+          "type": "paragraph",
+          "text": "In other words, if you cast _Fireball_ and roll 3 Successes on your Magick + Skirmish task, and the 2 Characters in the area of effect roll 4 and 2 Successes respectively, then no Bonus Momentum is generated because the highest number of successes from a reactive character (4) is higher than the number of successes the active character generated (3)—which also means that enemy unit isn’t dealt any damage by the attack—while the lowest number of successes (2) is lower than the active character’s (3). However, if both of the reactive characters roll 2 successes each, 1 Bonus Momentum is generated."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "[Sidebar] Focuses in Combat"
+        },
+        {
+          "type": "paragraph",
+          "text": "When in combat, litigating whether a character’s Focuses might apply to the situation can slow down the flow of battle. In order to streamline this, here is an optional rule for how to use Focuses during combat scenarios:"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Combat Focuses.** During character creation, characters may choose two Skills that they have specialized in as their “Combat Focuses.” Instead of relying on their written Focuses to gain an expanded crit range during combat, any time a character attempts a Task using one of their specialized Skills they gain an expanded crit range based on that Skill. You may also swap which Skills you are specialized in when you level up. You may choose a third Skill at level 6.",
+          "indent": true
+        }
+      ],
+      "id": "chapter-five-combat-making-an-attack"
+    },
+    {
+      "title": "Damage and Injuries",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Beneath their armor and behind their courage, characters can withstand a degree of punishment before any lasting injury is caused. This ability to endure is represented by the character’s amount of **Health Points (HP)**, a total equal to **Three Health Bars**, each being Brawn + Skirmish, for a **Max** **HP** of (Brawn + Skirmish) * 3. Characters may be able to increase the maximum of a Health Bar and thus their Max HP through other means, such as Talents."
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character takes damage, they first subtract any Resistance they have from the damage total (see **Resistance and Cover**), and any damage remaining affects the target, subtracting from the character’s total amount of HP. Each point of damage on the damage roll, after reductions, removes a single point of HP."
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character’s HP is reduced to certain amounts, they suffer **Wounds.** Wounds are temporary harms that a character suffers as they take more and more damage during a fight. Characters suffer a Wound when their HP is reduced by 1 and 2 Health Bars, and they can get rid of these Wounds when their HP is restored above those totals."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Wound 1:** When a Character’s HP is reduced by at least 1 Health Bar (in other words, is at or below ⅔ of their maximum HP) they suffer **Wound 1**, causing their speed to be reduced by 2.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Wound 2:** When a Character’s HP is reduced by at least 1 Health Bar (in other words, is at or below ⅓ of their maximum HP) they suffer **Wound 2,** causing them to be unable to take Swift Tasks (the penalty of Wound 1 continues to apply).",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Injuries"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character’s HP is reduced to zero, they become Incapacitated and fall Prone. If a character is healed and their HP restored, they are no longer Incapacitated but remain Prone until they take the Stand Minor Action. Characters at 0 HP cannot take further damage but may still suffer Statuses inflicted by attacks."
+        },
+        {
+          "type": "paragraph",
+          "text": "Characters that have been reduced to 0 HP may also choose to die rather than become Incapacitated. If a player chooses for their character to die, they immediately gain a point of Determination which they may spend or grant to an ally, and they may immediately take a turn, acting as if their character had full HP (they do not suffer from the consequences of Wounds). Once that turn ends, the character is permanently dead and cannot return to play."
+        },
+        {
+          "type": "paragraph",
+          "text": "At the end of battle, characters that have been reduced to 0 HP suffer their Injuries. Injuries are permanent harms that may last until a character receives careful treatment from a medic or healer. Once battle is concluded, all characters who have been reduced to 0 HP one or more times must make an Injury check to determine the results of their Injury. In order to make an Injury check, roll a d20 for every time your character has been reduced to 0 HP during the battle (1d20 for only one reduction to 0 HP, 2d20 for the second, and so on). You must take the highest result rolled and check the corresponding number on the Injury chart to determine the outcome."
+        },
+        {
+          "type": "paragraph",
+          "text": "Ascension provides levels of lethality of injuries: Noble, Deadly, and Brutal. With noble injuries, player characters will not die from their injuries, but may suffer serious narrative consequences from them. Players and the GM should agree on what level of lethality at the start of the campaign, and may adjust the table as they feel is appropriate for the desired tone of the campaign, and then roll on that version of the table when determining injuries after a battle."
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "Injury Effect Table"
+            ],
+            [
+              "**Noble**",
+              "**Deadly**",
+              "**Brutal**"
+            ],
+            [
+              "1",
+              "1",
+              "1",
+              "Your injuries are minor and require little rest to recover."
+            ],
+            [
+              "2 - 10",
+              "2 - 8",
+              "2 - 5",
+              "Your injuries are notable and require some treatment and rest. You or an ally must succeed at a Treat Injury task or your injuries inflict a lasting **Temporary Injury**. On a success, your injuries notably scar and require rest but are otherwise fine."
+            ],
+            [
+              "11 - 19",
+              "9 - 14",
+              "6 - 9",
+              "Your injuries are major and require treatment to prevent them from becoming serious. You or an ally must succeed at a Treat Injury task or you will suffer a **Minor Permanent Injury**. On a success, you suffer a lasting **Temporary Injury.**"
+            ],
+            [
+              "-",
+              "16 - 18",
+              "11 - 17",
+              "Your injuries are lethal and require serious treatment. You or an ally must succeed at a Treat Injury task or your injuries will prove fatal and you will **die**. On a success, you suffer a lasting **Temporary Injury.**"
+            ],
+            [
+              "20",
+              "19",
+              "18",
+              "Your injuries are serious and could be debilitating. You or an ally must succeed at a Treat Injury task or you will suffer a **Major Permanent Injury**. On a success, you suffer a **Minor Permanent Injury.**"
+            ],
+            [
+              "-",
+              "20",
+              "19",
+              "Your injuries are lethal and serious. You or an ally must succeed at a Treat Injury task or your injuries will prove fatal and you will **die**. On a success, you suffer a lasting **Minor Permanent Injury.**"
+            ],
+            [
+              "-",
+              "-",
+              "20",
+              "Your injuries are highly lethal and debilitating. You or an ally must succeed at a Treat Injury task or your injuries will prove fatal and you will **die**. On a success, you suffer a **Major Permanent Injury.**"
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "**Treat Injury:** A character attempts to treat an Injury on themselves or an ally. This is a Difficulty 3 Reason + Medicine Task to treat an ally and Difficulty 4 to treat themself. The Difficulty is increased for every additional number of times the affected character rolled on the Injury Effect Table."
+        },
+        {
+          "type": "paragraph",
+          "text": "Unless agreed upon by the players and GM at the start of the campaign, all Treat Injuries tasks may Succeed at Cost."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Avoid Injury:** Once per scene, a character may spend their Determination to Avoid Injury. If a character is dealt damage that would reduce their HP to 0, they may instead reduce it to 1 HP without suffering an Injury."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Injury Traits"
+        },
+        {
+          "type": "paragraph",
+          "text": "Lasting injuries are sorted into three categories that shape the degree to which they affect the character. The affected player and the GM should collaborate to determine the appropriate Injury for the character to suffer and how it might affect them based on the category of Injury they suffered."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Temporary Injuries:** A temporary Injury is an Injury that creates a lasting impact on the character for weeks as it takes time to heal and is certain to leave a scar."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Minor Permanent Injuries:** A minor permanent Injury is an Injury that creates a long term impact on the character for years or longer. Examples may include a temporary limp, chronic pain, or losing hearing in an ear."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Major Permanent Injuries:** A major permanent Injury is an Injury that massively affects the life of the inflicted character. Examples may include losing a limb or an eye or losing the ability to move a body-part."
+        },
+        {
+          "type": "paragraph",
+          "text": "By default, Ascension assumes that Injury Traits do not ultimately hamper the functioning of the character, instead affecting them on a story level. A character who loses a limb may gain a prosthetic that allows them to keep fighting, but may suffer phantom limb pain. A character who loses an eye may learn to fight without depth perception, but may be looked at differently by strangers than they were before."
+        },
+        {
+          "type": "paragraph",
+          "text": "When handling injuries, they should be used to expand the narrative and development of the affected character instead of being treated as purely a mechanical debuff, in narrative or combat play both. Ascension does not define any mechanical consequences for injuries; any mechanical complications should be agreed upon by the player and GM _both_, and are recommended not to be any worse than the effect of a Wound."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Temporary HP"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some abilities or spells may grant temporary Health Points (temporary HP), which is a special type of HP that goes away completely once a condition has been met, it is replaced, or when it has been depleted. temporary HP does not add to your maximum HP total, but is a separate pool of HP that buffers you against damage to your actual HP. When taking damage, you subtract from your temporary HP first if you have it, and only take damage to your HP total when you no longer have any temporary HP."
+        },
+        {
+          "type": "paragraph",
+          "text": "Once lost, temporary HP cannot be restored, so any abilities or spells that heal HP cannot restore temporary HP. Temporary HP also cannot stack, so once an instance of temporary HP is granted, granting a second instance of temporary HP would replace the first, not add onto it."
+        }
+      ],
+      "id": "chapter-five-combat-damage-and-injuries"
+    },
+    {
+      "title": "Willpower",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Though physical damage is the only thing that can kill a character, the stress of battle and the cries of their enemies can also affect a character’s will to keep fighting. This resolve to keep going is represented by a character’s **Willpower**, which is equal to their Faith."
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character receives damage from a **Demoralize** Task, they subtract the damage from their Willpower. Willpower is not affected by Resistance, and unless stated otherwise, Willpower Damage is not considered Damage for any rules that refer generally to Damage."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a Character’s Willpower reaches 0, they are **Rattled**, and all tasks increase in Difficulty by 1. A character can clear Rattled as soon as any amount of Willpower is restored, such as with the Console minor action."
+        }
+      ],
+      "id": "chapter-five-combat-willpower"
+    },
+    {
+      "title": "Statuses",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "When in combat, certain attacks, abilities, circumstances, and weapon qualities may affect a character with one of the following **Statuses.**"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Blinded:** While Blinded, you cannot see (you have +1 Difficulty on Tasks that target or are contested by characters you cannot see, such as Attacking or Defending. See **Visibility and Hidden Characters** below).",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Dazed:** While Dazed, you can only take one Major Action or one Minor Action on your turn. You may still use the **Burst of Effort** determination spend to gain extra actions.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Enraged:** When Enraged, the Difficulty of Attacks made against all creatures except the source of your Rage increases by 1.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Exposed:** While Exposed, you gain no benefit from Resistance.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Frightened:** While Frightened, all tasks increase in Difficulty by 1 and you cannot willingly move towards the source of your Fear.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Immobilized:** While Immobilized, your Speed is 0 and you cannot take any voluntary movement or Stand.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Incapacitated:** While Incapacitated, you cannot take any Actions or Reactions, and you cannot move. All attacks made against you gain a bonus d20.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Invisible:** While Invisible, creatures cannot see you, although your approximate location (which Space you are in) is still obvious unless you Hide as normal.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Off-Guard:** While Off-Guard, all tasks to defend increase in Difficulty by 1.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Prone:** While Prone, the Difficulty of all ranged attacks against you increases by +1, melee attacks gain +1d20 against you, and you cannot attempt any movement-related Major Actions. While Prone, when you move, you crawl instead of walking, and each tile of movement costs 3 spaces of speed instead of 1. This status is removed if you stand.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Rattled:** While Rattled, all tasks increase in Difficulty by 1. This status can be cleared as soon as you regain any Willpower.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Slowed:** While Slowed, your Speed is halved.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Weakened:** While Weakened, all of your melee, ranged, and spell attacks deal -2[CD] damage.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        }
+      ],
+      "id": "chapter-five-combat-statuses"
+    },
+    {
+      "title": "Visibility and Hidden Characters",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In battle, characters may attempt to become unseen in order to gain an Advantage over their opponents. When attempting a Task against a target that you cannot see, you have +1 Difficulty. This is true even if you know the target’s approximate location; for example, you would still have +1 Difficulty against an Invisible unit even if they turned Invisible right in front of you and didn’t move."
+        },
+        {
+          "type": "paragraph",
+          "text": "Characters or targets that are hidden cannot be the target of Tasks (such as a melee attack or spell) until they are found, which can be accomplished by using the Search major action, or until they take a hostile action against another character. Characters may become hidden by using the Hide major action, but can only successfully Hide if they are in Cover or Invisible. A successful Search action to find a hidden character will only reveal the target to the unit that performed the Search action."
+        }
+      ],
+      "id": "chapter-five-combat-visibility-and-hidden-characters"
+    },
+    {
+      "title": "Resistance and Cover",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Characters are not entirely defenseless, and may make use of a variety of factors to protect themselves. Protection granted by armor is called Resistance, and it reduces the amount of damage inflicted. Protection from the terrain is called Cover, and it makes certain types of attacks against a character more difficult."
+        },
+        {
+          "type": "paragraph",
+          "text": "Resistance is measured by a static number, granted to you by your armor. Some effects and abilities may also grant additional Resistance under specific circumstances, called temporary Resistance, which stacks on top of any Resistance you already have. After the damage has been rolled for an attack, the total damage inflicted is reduced by an amount equal to the character’s Resistance. If this final total is 0 or less, the attack has no further effect. If the final total is 1 or higher, then some damage has gotten through."
+        },
+        {
+          "type": "paragraph",
+          "text": "Protection granted by terrain or battlefield obstructions comes in one of two forms: **Half Cover**, or **Full Cover**. A character benefits from Half Cover if they are standing next to an obstacle that covers at least half their body, like a low wall or large bush. Being in Half Cover increases the Difficulty of ranged attacks against your character by +1. A character benefits from Full Cover if they are completely concealed by an obstacle, such as standing behind a large wall or a thick tree trunk. Full Cover prevents characters from being targeted by attacks that require ConeBulky of sight, though they may still be affected by some attacks with areas of effect."
+        },
+        {
+          "type": "paragraph",
+          "text": "**A character can only gain the benefit from being in Cover if the obstacle is directly between them and their attacker.** If a character is in Half Cover thanks to being next to a bush and a ranged attacker moves around the bush to draw direct line of sight to them, that attacker does not receive +1 Difficulty on that attack. It is possible for a character to benefit from Half Cover against certain enemies, while having no cover from others. Characters cannot grant other characters Full Cover, though they may grant Half Cover to units that are adjacent if they are standing directly between them and an attacker."
+        }
+      ],
+      "id": "chapter-five-combat-resistance-and-cover"
+    },
+    {
+      "title": "Battlefields and Distance",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "A “battlefield” represents the battle’s environment—in short, the location a conflict is taking place within. This may be a building, a city street, an area of wilderness, part of a ship, or other such areas. In Ascension, all battlefields are represented using a gridded map divided into a large number of spaces, usually between 20x20 and 40x40. Spaces on the battlefield do not represent a specific distance, instead are a tactical unit that can be scaled up or down as the context of the battle necessitates, allowing a battlefield to represent an intimate courtyard or a wide valley without requiring exponentially large maps."
+        },
+        {
+          "type": "paragraph",
+          "text": "Knowing a character’s location and where they’re positioned relative to everyone else is critical to making tactical decisions in combat. All units (both player characters and NPCs) on the battlefield are represented by a token of some kind. Humans and creatures of a similar size or smaller occupy one space on the map. Larger characters may take up more than one space depending on their size. As characters move around on the battlefield, their token is moved to display their location."
+        },
+        {
+          "type": "paragraph",
+          "text": "The Gamemaster may create features or obstacles on the battlefield that impact the navigability of the battlefield by making it easier or more difficult to move around, gain cover, interact with objects, etc., denoting them clearly on the battlefield ahead of time. They may also mark parts of the battlefield as varying types of Terrain (as described below), which can alter the way characters can move across that region of the battlefield and affect how they engage with it tactically."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Movement"
+        },
+        {
+          "type": "paragraph",
+          "text": "Your character has a Speed equal to 3 + Half your Agility (rounded down). On your turn, you can move by taking the Move Minor Action or the Sprint major action. Other abilities may provide other sources of movement. If you are Prone, you crawl instead of walking, with each tile of movement costing 3 spaces of speed instead of 1."
+        },
+        {
+          "type": "paragraph",
+          "text": "Any time an effect allows you to move, it counts as voluntary movement unless explicitly stated."
+        },
+        {
+          "type": "paragraph",
+          "text": "The rules for diagonal movement are different if your battlemap uses squares instead of hexes. The first time you move into a diagonal square on your turn costs 1 Square of movement. The next time on that turn costs 2 squares of Speed, and alternates between the two thereafter."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Teleportation"
+        },
+        {
+          "type": "paragraph",
+          "text": "Some Characters can Teleport, usually through the means of a Magick Spell. Teleportation is a type of movement that allows a character to instantly move from one space to another free space. Since Teleportation is a type of movement, Characters that are unable to move (such as from being Immobilized) cannot Teleport. Teleportation out of a Character’s Reach does not provoke Opportunity Attacks."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Flying"
+        },
+        {
+          "type": "paragraph",
+          "text": "In Ascension, the only spaces that a character can occupy are the spaces denoted on the map. As such, even if they have a flying speed, flying characters cannot occupy spaces above the map, and are never out of Reach of melee attacks from attackers in adjacent spaces. Characters with flying speeds may move across the map unimpeded by terrain effects and may move between any elevated areas without needing to use the Climb action."
+        },
+        {
+          "type": "paragraph",
+          "text": "If a character is reduced to 0 HP, they must make a Difficulty 2 Coordination + Skirmish task to maintain flight—if they fail, they immediately fall."
+        },
+        {
+          "type": "paragraph",
+          "text": "The Difficulty to make an attack with a bow against flying Characters decreases by 1."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Terrain"
+        },
+        {
+          "type": "paragraph",
+          "text": "Normal Terrain includes that of most interior floors, roads, flat or gently rolling fields, or any other terrain that is effortless to move across. Movement on normal terrain is standard."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Difficult Terrain** includes that of craggy rocks, low knee-deep water, the floor of a demolished building, and other uneven terrain with obstacles. Every space of movement over, onto, and off of difficult terrain costs twice as much as standard."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Forest** is any space where there is abundant foliage or similar obstacles in the path. Forest is a type of difficult terrain. While in forest, you gain Half Cover, and you may attempt to Hide in any space, even if an enemy currently has line of sight on you.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Deep Water** is any space with water between thigh and chest deep. Deep Water is a type of difficult terrain. All attack and defending tasks made in water have +2 Difficulty.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Perilous Water** is any space with water shoulder deep or deeper. Perilous Water is a type of difficult terrain and counts as Deep Water. Movement over, onto, and out of Perilous Water costs three times as much as standard. When you start your turn in Perilous Water, take 4[CD] Piercing damage.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "**Roads** are paved areas of a map that make it easier to move from place to place. When you start your turn on a Road tile, you gain +1 Speed until the end of your turn. Flying units do not get this bonus."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Height"
+        },
+        {
+          "type": "paragraph",
+          "text": "Terrain may also have different levels of elevation or buildings and walls of different heights. Characters can climb up or down buildings and objects at Height 1 using the **Climb** minor action. Anything taller than that is deemed impassable unless you or your mount can fly. A helpful way to think of the levels of elevation is in terms of stories, so a one story tall object would be Height 1, while a three story tall object would be Height 3."
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Height**",
+              "**Example**"
+            ],
+            [
+              "1",
+              "A road barricade, a single-story house, a simple fence"
+            ],
+            [
+              "2",
+              "A two story house, a town wall."
+            ],
+            [
+              "3",
+              "A three story tower, the walls around a keep."
+            ]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Some maps with elevated terrain or objects will also have ways to traverse these obstacles without needing to fly."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Stairs** and **Light Slopes** are spaces that act as normal terrain and allow you to move between areas that are one level of elevation difference.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Steep Slopes** are spaces that allow you to move between areas that are one level of elevation difference, but count as difficult terrain if you are moving in the direction of the higher elevation.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Ladders** are spaces that allow you to move between areas of any difference in height elevation without using the Climb minor action. Every level of height moved up on a ladder costs 2 movement. Every level of height moved down a ladder costs 1 movement.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Falling"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a character falls from a height, they take damage. For every level of height a character falls from, they take 2[CD] Piercing damage up to a maximum of Height 10. For example, a character who falls from a Height 5 tower would suffer 10[CD] Piercing damage. Any character who does not use the Climb minor action to get down from elevated terrain takes fall damage when moving."
+        }
+      ],
+      "id": "chapter-five-combat-battlefields-and-distance"
+    },
+    {
+      "title": "Rest and Recovery",
+      "chapter": "Chapter Five: Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Unless they die, a character can recover from the damage they suffer. Characters are able to restore Willpower and HP during combat using Tasks and special abilities, potentially curing accumulated Wounds, but Injuries cannot be healed during combat and can only be treated outside of combat during rests."
+        },
+        {
+          "type": "paragraph",
+          "text": "Rests require at least an hour or so during which characters are not in immediate danger and can quickly recover and heal themselves. During a rest, characters can restore all of their missing Willpower and HP, and their Wounds go away. Additionally, during rests characters may take the Treat Injury task."
+        }
+      ],
+      "id": "chapter-five-combat-rest-and-recovery"
+    }
+  ]
+}

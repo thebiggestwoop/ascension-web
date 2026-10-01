@@ -1,0 +1,1757 @@
+{
+  "source": "Ascension_BETA0.8Rules.html",
+  "chapters": [
+    "Chapter Nine: Armies",
+    "Chapter Ten: Mass Combat",
+    "Chapter Eleven: Building Blocks of an Army"
+  ],
+  "sections": [
+    {
+      "title": "Chapter Nine: Armies",
+      "chapter": "Chapter Nine: Armies",
+      "intro": true,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "When hostilities between political powers reach a boiling point and war goes from inevitable to immediate, there comes a point where armies must be raised. While many battles in Ascension focus on smaller scale combat involving only the party and some group of individual assailants, there may come a point where instead of acting just as individual combatants, player characters instead take on the role of military officers of an entire army."
+        },
+        {
+          "type": "paragraph",
+          "text": "A party in Ascension will most often have a single army that they lead, train, and expand over the course of a campaign. Armies are made up of many individual people, whose number, training, and abilities are represented by the different facets of an army: **Divisions, Scale, Talents,** and its **Traits.** Though some of these facets, like an army’s Scale or Divisions, may change over time, what players invest in their army, like Talents and its Defining Feature, will remain consistent."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Divisions"
+        },
+        {
+          "type": "paragraph",
+          "text": "Armies are composed of a number of **divisions** that have different specializations on the battlefield. These can include footsoldiers, cavalry, griffin riders, medical units, to name a few. Each army can have up to a number of divisions equal to its scale. Each division that an army has also counts as a Trait for that army."
+        },
+        {
+          "type": "paragraph",
+          "text": "Each Division will have its own resistance, features, and a buff that it grants to nearby officers. Divisions also have Types that denote what kind of division it is. Certain types of division will be stronger or weaker to other types, and this should be considered when recruiting divisions for your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "Each division has a base attack that can only be made against other divisions labeled with a damage rating and if the attack is ranged."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Scale"
+        },
+        {
+          "type": "paragraph",
+          "text": "An army’s scale represents the number of soldiers marching with the army. As a general rule, for every point of scale, the army doubles in size. An army may have a number of divisions equal to its scale. Additionally, if an army brings fewer divisions to battle than its scale allows, all divisions start the battle with 1 extra point of morale and roll 1 extra [CD] on attacks against other divisions for every point of scale above the number brought."
+        },
+        {
+          "type": "paragraph",
+          "text": "Most armies that enter battle tend to be between scale 3 and 6, but battles can involve armies much bigger or smaller than that. In a small-scale conflict between two towns, they might only have scale 1-2 armies. In a massive war between empires in a well populated region, they might use scale 7-10. Above that, it is usually better to represent the scale of an empire’s force by giving them multiple high scale armies, instead of one massive army."
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "Scale",
+              "Army Size"
+            ],
+            [
+              "1",
+              "A band of thieves"
+            ],
+            [
+              "2",
+              "A town militia"
+            ],
+            [
+              "3",
+              "A mercenary army"
+            ],
+            [
+              "4",
+              "The army of a county or minor noble"
+            ],
+            [
+              "5",
+              "A raised army of an independent city"
+            ],
+            [
+              "6",
+              "The army of a wealthy independent duchy"
+            ],
+            [
+              "7",
+              "The army of a mid-sized kingdom"
+            ],
+            [
+              "8",
+              "The army of a large and wealthy kingdom"
+            ],
+            [
+              "9",
+              "A rising empire’s army"
+            ],
+            [
+              "10",
+              "A massive empire’s army"
+            ]
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Talents"
+        },
+        {
+          "type": "paragraph",
+          "text": "Army Talents are specific abilities or advantages that your army provides during narrative play, based on your army’s areas of expertise or special training. Army Talents provide similar benefits as a character’s Narrative Talents, only they originate from the presence of your army rather than from your character’s actions and behaviors."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Traits"
+        },
+        {
+          "type": "paragraph",
+          "text": "Each army has Traits, which work the same way Traits do for player characters: they are neutral facts about the army that may be used to reduce the Momentum or Threat costs to Create an Advantages or Complications as relevant. An army will gain most of its Traits from the Divisions that it has currently recruited, and it will also have a Defining Feature Trait that is determined by the players as they create their army."
+        }
+      ],
+      "id": "chapter-nine-armies-chapter-nine-armies"
+    },
+    {
+      "title": "Chapter Ten: Mass Combat",
+      "chapter": "Chapter Ten: Mass Combat",
+      "intro": true,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "In Ascension, **mass combat** refers to any battle in which an army or armies are involved. Like smaller scale combat, mass combat utilizes a battlefield, with every officer in the involved armies occupying a single space as they would in standard combat. Individual soldiers, however, are not depicted on the field, instead each assumed to be part of various divisions of the armies they serve in. It is assumed that all characters on the battlefield hold some degree of rank or command over their side's army, with the exception of narrative NPCs who might serve as targets for protection, capture, or assassination."
+        },
+        {
+          "type": "paragraph",
+          "text": "The army itself is represented more abstractly. Instead of occupying individual spaces as officers do, each army is split into multiple divisions which each are located within a designated region on the battlefield called a **zone**. Zones are made up of some number of contiguous spaces on the map that often share a specific characteristic, such as being atop the same hill, along the bank of a riverbed, or the inside of a fortress’s walls. When officers move to spaces within the same zone as one or more allied divisions, they gain buffs from fighting alongside their soldiers and can issue the army orders to engage in more direct skirmishes with the enemy."
+        },
+        {
+          "type": "paragraph",
+          "text": "However even with the presence of an army, the core of combat remains the same: units on the field skirmishing against enemy units. Even with some potentially new responsibilities to track, players should remember that an army is only as strong as its last standing officer and will usually spend the majority of their effort battling and defeating enemy officers. But by utilizing the army effictively—relocating troops to advantageous positions, driving back dangerous enemy divisions, and using cunning stratagems to dominate the battlefield—victory can be assured."
+        }
+      ],
+      "id": "chapter-ten-mass-combat-chapter-ten-mass-combat"
+    },
+    {
+      "title": "The Basics of Battle",
+      "chapter": "Chapter Ten: Mass Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "During the battle, player characters move across the battlemap engaging with enemy officers placed onto the field as they would in small-scale combat. As they do, divisions are denoted on the battlefield alongside them, but instead of occupying specific spaces on the map, they exist broadly within different **zones** on the battlefield (see Battlefield Zones)."
+        }
+      ],
+      "id": "chapter-ten-mass-combat-the-basics-of-battle"
+    },
+    {
+      "title": "Orders",
+      "chapter": "Chapter Ten: Mass Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "The most core element to making two armies clash on the battlefield is issuing orders. which allow divisions to undertake certain actions to affect the battlefield. This is done through the below Major Action, which both players and NPCs gain during mass combat:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Issue Orders:** Choose a division within the same zone that has not already been issued an order this round. Select an order for it to undergo from the list of available orders.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Certain abilities allow orders to be issued to as a minor action or from a different zone than the division."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "List of Army Orders"
+        },
+        {
+          "type": "paragraph",
+          "text": "The basic orders available to officers are:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Army Attack:** The officer orders a division to make an Army Attack. See Making Army Attack, below, for a full explanation.",
+              "level": 0,
+              "marker": "6."
+            },
+            {
+              "text": "**Reposition:** The officer performs a Difficulty 1 Presence + Authority task. On a success, they may choose any number of divisions in the same zone to move to any adjacent zone, or any number of divisions in any adjacent zones to move into the current zone. On a failure, they may only order one division to move.",
+              "level": 0,
+              "marker": "7."
+            },
+            {
+              "text": "This order may be used to allow a division to move even if it has already taken a Free Move, or to move across a Hazardous zone border, provoking a Mass Opportunity Attack if applicable (see below).",
+              "level": 1,
+              "marker": "A."
+            },
+            {
+              "text": "**Regroup:** The Officer orders a division to tend its wounded and return to battle. The officer performs a Difficulty 1 Faith + Authority task, or Difficulty 2 if the division is broken. On a success, the division regains 2 + the officer’s Authority [CD]. If the division was broken, it no longer is.",
+              "level": 0,
+              "marker": "8."
+            },
+            {
+              "text": "Broken divisions may be ordered to Regroup, even if they have already been issued an order this round.",
+              "level": 1,
+              "marker": "A."
+            },
+            {
+              "text": "**Stratagem:** The Officer orders a division to perform a special ability granted by its stratagem. See **Stratagems.**",
+              "level": 0,
+              "marker": "9."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Free Moves"
+        },
+        {
+          "type": "paragraph",
+          "text": "Additionally, once per turn, an officer may, as a free action, order a division to make a **Free Move** across any accessible zone border (see moving between zones). The officer may either order a division in their current zone to move out, or a division in an adjacent zone to move in."
+        },
+        {
+          "type": "paragraph",
+          "text": "Once a division has moved this way, it may not move again this way until the next round. At the end of a round, any divisions that have not taken a Free Move may do so, even if an officer is not present."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Reactions"
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Brace"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a division is the target of an attack, an officer in the same zone may use a Reaction to have the division brace against the attacking force. When this occurs, the task becomes opposed, allowing the defending officer to roll using their Presence + Authority."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Mass Opportunity Attack"
+        },
+        {
+          "type": "paragraph",
+          "text": "When enemy divisions enter or leave the same zone as an officer across a Hazardous border, the officer may order all allied divisions in the zone to make a Mass Opportunity Attack. The officer performs an attack skill test, allowing an enemy officer on either side of the crossed border to Brace. On a success, each of the officer’s allied divisions may deal damage to a single enemy division that crossed the border. On a failure, the enemy divisions are unharmed, but may not Counterstrike."
+        },
+        {
+          "type": "paragraph",
+          "text": "A division may only participate in one Mass Opportunity Attack each round."
+        }
+      ],
+      "id": "chapter-ten-mass-combat-orders"
+    },
+    {
+      "title": "Attacks and Damage",
+      "chapter": "Chapter Ten: Mass Combat",
+      "blocks": [
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Making Army Attacks"
+        },
+        {
+          "type": "paragraph",
+          "text": "When issue an attack order, follow these steps:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Attacker selects the attacking division:** The ordering officer selects the division to order to attack, usually a division in the same zone.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Attacker chooses target:** The attacker chooses the target for the attack. This will usually be an opposing division in the same zone.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Skill Test:** The officer performs a Difficulty 1 Presence + Authority Task.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "If the defending division is braced, the task is instead performed as an Opposed Task against the bracing officer’s Presence + Authority.",
+              "level": 1,
+              "marker": "○"
+            },
+            {
+              "text": "**Outcome:** If the attacker officer succeeds or wins the contest, then the division inflicts damage on the target, as described below in **Army Damage**. If the defending officer wins the contest, the defending division may Counterstrike, if able. Like with attacks between characters, ranged attacks may not be counterstruck even when defended against.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Army Damage"
+        },
+        {
+          "type": "paragraph",
+          "text": "When rolling damage for a division, roll a number of [CD] equal to its damage rating plus the Authority of the ordering officer."
+        },
+        {
+          "type": "paragraph",
+          "text": "Unlike individual characters, an army’s health is considered through the morale of its divisions. A division’s morale starts with a morale of 8, plus any bonus from the army’s scale, and can be reduced when the division is attacked or nearby officers are defeated."
+        },
+        {
+          "type": "paragraph",
+          "text": "When a division is damaged, its morale is reduced equal to the damage taken, subtracting the division’s Resistance if relevant. If a division takes damage and there is no allied officer in the same zone, the attacker may also force it to **retreat.**"
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Officer Defeats"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a basic officer is defeated in battle, all allied divisions in the same zone take 1 morale damage, ignoring any Resistance. When a player character or an NPC with multiple Health Bars is defeated, allied divisions in the same zone take damage equal to their number of Health Bars (i.e. three for a player, two or three depending on the NPC). Defeated chaff do not deal morale damage to divisions."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Defeating Divisions"
+        },
+        {
+          "type": "paragraph",
+          "text": "If a division’s morale is reduced to zero, it becomes **Broken** and may be forced to retreat by the attacker (see below). A Broken division no longer provides its support buff to any officers or any passive effects and cannot move or be issued orders other than Regroup. A division remains Broken unless targeted by the Regroup order."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Retreating Divisions"
+        },
+        {
+          "type": "paragraph",
+          "text": "When a division is attacked, it may be forced to **retreat**. Most often this occurs when the division is broken. When given the option to have a target division retreat, the attacker chooses an adjacent zone for the division to forcibly relocate to. A division may not retreat to a zone that has an enemy division or across a zone border that is impassable."
+        }
+      ],
+      "id": "chapter-ten-mass-combat-attacks-and-damage"
+    },
+    {
+      "title": "The Battlefield",
+      "chapter": "Chapter Ten: Mass Combat",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Mass combat battlefields are no different from the environments for standard battles. They may be great open fields, a series rolling hills, the flats outside of castle walls, the streets of a sprawling city, or other such arenas. The Gamemaster may define regions as having unique terrain that impacts the navigability of the battlefield by making it easier or more difficult to move around, gain cover, interact with objects, etc. Hazards and Complications created with threat by the game master during battle can also affect tasks performed by the armies during battle."
+        },
+        {
+          "type": "heading",
+          "level": 3,
+          "text": "Battlefield Zones"
+        },
+        {
+          "type": "paragraph",
+          "text": "Instead of being represented directly on the battlefield, army divisions are more abstracted. While the army’s **officers** are placed on the battlefield as normal, utilizing grid spaces to move across the terrain as they would in standard combat, armies instead occupy battlefield _zones._"
+        },
+        {
+          "type": "paragraph",
+          "text": "A **battlefield zone** is a subdivision of spaces or a region on the battlefield that can support an army. A battlefield can have any number of zones—a minor battle between two small armies may only have three, while the site of the clash between massive forces could have seven or eight. As a general rule, a battlefield should always have a maximum number of zones equal to the divisions in the largest of the engaging armies."
+        },
+        {
+          "type": "paragraph",
+          "text": "Zones should aim to be of roughly similar size, and should take up anything equal to between a 5x5 area to a 12x12 area, depending on the size of the battlefield."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Moving Between Zones"
+        },
+        {
+          "type": "paragraph",
+          "text": "Officers are not affected by zones when moving and will move freely between zones as they move across the battlefield. Divisions must move from zone to zone as they progress across the battlefield, crossing over zone borders as they do."
+        },
+        {
+          "type": "paragraph",
+          "text": "Borders between zones can be either considered **Accessible, Hazardous**, or **Impassable**. A border is considered Accessible if there is no impediment to moving across it, such as over an open field. A zone border is considered hazardous if crossing it requires moving through or into difficult terrain, such as over a trench, uphill, or into a forest (see Terrain below). A border is impassable if it is composed entirely of impassable terrain."
+        },
+        {
+          "type": "paragraph",
+          "text": "Every round, each division is allowed one **Free Move** to an adjacent zone so long as the border is Accessible. Once per turn, an officer may, as a free action, order a division in the same zone to Free Move out of the current zone, or a division in an adjacent zone to Free Move into the current zone. If a division’s Free Move has not been used by the end of a round, it may move across an Accessible border into any adjacent zone to its current position, regardless of whether an allied officer is present."
+        },
+        {
+          "type": "paragraph",
+          "text": "In order to cross a Hazardous zone border, a division must be issued a reposition order. When divisions cross a hazardous border, they may provoke a Mass Opportunity Attack if there is an enemy division and officer present in the zone being moved into."
+        },
+        {
+          "type": "paragraph",
+          "text": "Divisions may not cross an Impassable border unless they have the Flying type. Additionally, any border composed entirely of Perilous Water is considered Impassable for divisions."
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Terrain"
+        },
+        {
+          "type": "paragraph",
+          "text": "The placement of terrain can affect the movement of army divisions. Terrain can often define the borders of zones—such as slopes, walls, rivers, trenches, etc. Armies need at least two spaces of normal terrain along a border to use a Free Move. If the entire border between two zones is difficult terrain or the zone is considered difficult terrain, the border is considered Hazardous and requires a reposition order to move across."
+        },
+        {
+          "type": "paragraph",
+          "text": "If the majority of tiles within a zone are of a specific type of terrain, that zone is _also_ considered that terrain. If a zone is considered difficult terrain, all of its borders are Hazardous. Some terrain types have additional effects for armies:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "If a zone is majority forest tiles, all divisions within it gain Half Cover.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "If a zone is majority Deep Water, all tasks for attack and defending orders have a Difficulty increase of 2.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "Divisions may not enter a zone that is majority Perilous Water for any reason.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 4,
+          "text": "Structures"
+        },
+        {
+          "type": "paragraph",
+          "text": "Buildings, infrastructure, and objects on the battlefield that take up spaces can be considered **Structures**. Structures are parts of the battlefield that are subject to damage or demolition on account of the actions of armies. To account for this, structures are considered to have some amount of health that, when reduced to zero, leads to a part of all of the structure to be damaged or destroyed."
+        },
+        {
+          "type": "paragraph",
+          "text": "Some structures may be too massive to be able to be wholly destroyed in one go, like a city’s walls or a massive bridge. For these structures, you may want to divide them into segments on the map that can be targeted by attacks, such that one part of the structure can be destroyed without bringing the entire thing down. For example, if a combat encounter involves sieging a walled city, you might have 3 segments of wall on the map, each with their own HP. When one segment of wall is destroyed, it allows an opening into the city where that segment was, but the remaining walls are unaffected until they are also attacked and dealt damage."
+        },
+        {
+          "type": "paragraph",
+          "text": "Some of the following structures listed operate on the assumption that you will be using segments and have rules accordingly."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Walls** are sheer structures of 1 or more Height built to defend a location and block passage through an area. Walls often serve as the border of zones. If a wall stands as the border between two zones, then divisions cannot pass into that zone without an open gate until the wall is destroyed or unless they take a different route. There are three types of walls:",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Weak walls** are cheaper fortifications made of wood, mud, or brick. These include walls around simple forts and small villages. Weak Walls have between 4-7 health.",
+              "level": 1,
+              "marker": "○"
+            },
+            {
+              "text": "**Moderate walls** are made of more durable material such as stone or concrete. These include most buildings, town walls, palaces, and simple castles. Moderate Walls usually have between 8-14 health.",
+              "level": 1,
+              "marker": "○"
+            },
+            {
+              "text": "**Fortified walls** are heavily reinforced defenses of cities, mighty castles, and fortresses. They are often 2 spaces thick and allow for officers to walk atop their battlements. Fortified Walls usually have between 15-21 health.",
+              "level": 1,
+              "marker": "○"
+            },
+            {
+              "text": "**Gates** are entrance ways used to pass through walls or other fortifications. They usually take up one or two tiles. Gates are usually constructed out of wood and will have half the health of the adjacent walls. A gate made of metal will have the same health as the walls it is attached to.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "A gate may also be opened or closed as a Minor Action from inside its walls.",
+              "level": 1,
+              "marker": "○"
+            },
+            {
+              "text": "**Turrets** are high towered structures from which ranged weapons can be fired. They are usually 1-3 tiles wide and often are part of or atop walls. Turrets use the same health ranges as walls do.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Bridges** are structures over water or above a great height difference. They are between 1-4 spaces wide. When destroyed, they generally leave the area between two locations impassable.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "Wooden bridges usually have 6-12 health.",
+              "level": 1,
+              "marker": "○"
+            },
+            {
+              "text": "Stone bridges usually have 13-18 health.",
+              "level": 1,
+              "marker": "○"
+            },
+            {
+              "text": "**Dams** are stone structures designed to hold back the flow of water, preventing a region of the battlefield from being flooded. When destroyed, some specified area on the battlefield will get flooded with Deep or Perilous Water. Dams usually have 15-20 health.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Unstable Slopes** are sides of mountains, cliffs, or hills that are on the verge of collapse. When one segment is destroyed, every segment of the structure collapses in a landslide and for every level of height the landslide falls deals 4[CD] piercing damage to an adjacent area below. Unstable Slopes usually have between 5-15 health.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Pathways** are usually 1 wide walkway at an elevated height providing a walkway around the side of a sheer cliff or wall. When destroyed, the pathway is rendered unusable. Pathways use the same health ranges as walls or unstable slopes.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Other Structures** such as houses, windmills, churches, or any other objects or buildings on the battlefield that may be targeted can have between 4-12 health, at the GM’s discretion.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Structures can only be damaged by certain divisions (such as trebuchets or mangonels) and cannot be damaged by players and NPCs. If a structure being targeted by an attack has multiple segments, the ordering officer must choose one of the segments as the target of the attack. Each segment of the structure accumulates damage separately."
+        },
+        {
+          "type": "paragraph",
+          "text": "Destroyed structures (or segments of structure) are replaced with appropriate terrain. Any character on top of the destroyed structure immediately takes the applicable fall damage and is knocked Prone."
+        },
+        {
+          "type": "paragraph",
+          "text": "Destroying segments of a structure can take different forms depending on the structure and the terrain around it. For example:"
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "When a wall segment is destroyed, it may be replaced with difficult terrain that officers and divisions may move through.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "When a gate is destroyed, it may be replaced with normal terrain, allowing easy passage through the wall.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "When a bridge segment is destroyed, the spaces where that segment was may be replaced by Perilous Water.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "When a segment of a dam is destroyed, water may flow from the spaces out across the battlefield, replacing all spaces along its path with Deep or Perilous Water.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "The consequences of destroying segments of a structure are ultimately up to the GM."
+        },
+        {
+          "type": "paragraph",
+          "text": "Special structures may have Resistance or provide certain buffs or debuffs to characters on the battlefield, at the GM’s discretion."
+        }
+      ],
+      "id": "chapter-ten-mass-combat-the-battlefield"
+    },
+    {
+      "title": "Chapter Eleven: Building Blocks of an Army",
+      "chapter": "Chapter Eleven: Building Blocks of an Army",
+      "intro": true,
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "This chapter includes all of the pieces you need to build an army: Divisions and their Stratagems, and your army’s Talents."
+        }
+      ],
+      "id": "chapter-eleven-building-blocks-of-an-army-chapter-eleven-building-blocks-of-an-army"
+    },
+    {
+      "title": "Divisions",
+      "chapter": "Chapter Eleven: Building Blocks of an Army",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Divisions each have their own set of features and abilities specified in their description. Each division will also have at least one Type listed, which describes its role on the battlefield and any strengths or weaknesses it may have."
+        },
+        {
+          "type": "list",
+          "items": [
+            {
+              "text": "**Infantry:** Infantry divisions are the foot soldiers of your army, and often will make up the bulk of an army’s fighting force. They provide buffs to an army’s melee attackers, making them quite strong when unchallenged in a zone.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Cavalry:** Cavalry divisions are made up of mounted soldiers, ideal for extra mobility or extra damage.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Projectile:** Projectile divisions can attack enemy divisions at a distance, preventing Counterstrikes from an enemy division so long as they are not also the Projectile type.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Flying:** Flying divisions are swift and agile in the air, but vulnerable to arrows and projectile weapons. Projectile Type divisions gain -1 Difficulty on attacks against Flying Type divisions.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Magick:** Magick divisions deal punishing blows to enemy divisions at range, while being more vulnerable to physical attacks.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Support:** Support divisions grant bonuses not only to the army’s officers, but also to the army itself.",
+              "level": 0,
+              "marker": "●"
+            },
+            {
+              "text": "**Siege:** Siege divisions excel at bringing down Structures. You may only attack Structures with Siege Type divisions.",
+              "level": 0,
+              "marker": "●"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Officers may only benefit from two of the same buff at any given time. (E.g. an officer may not benefit from two light footmen’s buff or from one light footmen and one heavy footmen, as they provide _To Arms)._"
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Light Footmen**\n_Easy to train, quick to field._",
+              "**Type:** Infantry"
+            ],
+            [
+              "**Resistance:** 1",
+              "**Attack Damage:** 2[CD]"
+            ],
+            [
+              "**Buff:** _To Arms_ - When an allied officer in the same zone makes or is targeted by a melee attack, they gain an Advantage on their roll to attack/defend."
+            ],
+            [
+              "**Features:**\n• This division may be issued an order as a Minor Action while unbroken.\n• If there is at least one allied officer in this division’s zone, whenever an enemy division moves out of this zone, the border is considered Hazardous unless the division is flying."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Heavy Footmen**\n_Tougher soldiers for intense skirmishes._",
+              "**Type:** Infantry"
+            ],
+            [
+              "**Resistance:** 3",
+              "**Attack Damage:** 2[CD]"
+            ],
+            [
+              "**Buff:** _To Arms -_ When an allied officer in the same zone makes or is targeted by a melee attack, they gain an Advantage on their roll to attack/defend."
+            ],
+            [
+              "**Features:**\n• If there is at least one allied officer in this division’s zone, whenever an enemy division moves out of this zone, the border is considered Hazardous unless the division is flying."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Bowmen**\n_Archers ready for battle._",
+              "**Type:** Projectile"
+            ],
+            [
+              "**Resistance:** 1",
+              "**Ranged Attack Damage:** 2[CD]"
+            ],
+            [
+              "**Buff:** _Projectile Cloud_ - Whenever an allied officer in the same zone makes an attack with a ranged weapon, they gain the Startling damage effect."
+            ],
+            [
+              "**Features:**\n• When this division attacks divisions with the Flying type, the Difficulty is reduced by 1."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Ballista**\n_Massive crossbow-like projectile weapons._",
+              "**Type:** Projectile"
+            ],
+            [
+              "**Resistance:** 0",
+              "**Ranged Attack Damage:** 4[CD]"
+            ],
+            [
+              "**Buff:** None"
+            ],
+            [
+              "**Features:**\n• When this division makes an attack, the ordering officer uses their Study instead of Authority for the task.\n• This division may attack any division in an adjacent zone, increasing the Difficulty of 1.\n• All zone borders are considered Hazardous for this division.\n• When this division attacks divisions with the Flying type, the Difficulty is reduced by 1."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Light Horse Cavalry**\n_Horseback riders, good for scouting ahead._",
+              "**Type:** Cavalry"
+            ],
+            [
+              "**Resistance:** 1",
+              "**Attack Damage:** 3[CD]"
+            ],
+            [
+              "**Buff:** _Gallop_ - A mounted allied officer that starts their turn in the same zone may take the movement minor action for free."
+            ],
+            [
+              "**Features:**\n• This division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Heavy Horse Cavalry**\n_Horseback riders, good for breaking enemy ranks._",
+              "**Type:** Cavalry"
+            ],
+            [
+              "**Resistance:** 2",
+              "**Attack Damage:** 3[CD]"
+            ],
+            [
+              "**Buff:** _Chargers_ - If a mounted allied officer starts their turn in the same zone, they gain an additional 2[CD] on the first melee attack they make."
+            ],
+            [
+              "**Features:**\n• When this division makes an attack the same turn it enters a zone, it deals an extra 2[CD] damage and gains the Startling damage effect."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Horse Archers**\n_Talented riders able to fire bows from atop a steed._",
+              "**Type:** Projectile, Cavalry"
+            ],
+            [
+              "**Resistance:** 1",
+              "**Ranged Attack Damage:** 2[CD]"
+            ],
+            [
+              "**Buff:** _Gallop_ - A mounted allied officer that starts their turn in the same zone may take the movement minor action for free."
+            ],
+            [
+              "**Features:**\n• This division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn.\n• When this division attacks divisions with the Flying type, the Difficulty is reduced by 1."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Mages**\n_Spellcasters with powerful magick._",
+              "**Type:** Magick"
+            ],
+            [
+              "**Resistance:** 0",
+              "**Ranged Attack Damage:** 2[CD] Piercing"
+            ],
+            [
+              "**Buff:** _Arcane Expertise_ - Once per round, when an allied officer in the same zone casts a spell with arcane magick, they may treat their relevant skill as one higher, to a maximum of 6, for the task."
+            ],
+            [
+              "**Features:**\n• Officers may use Reason instead of Presence when issuing Orders to this division."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Pegasi Cavalry**\n_Flying riders, great for scouting._",
+              "**Type:** Cavalry, Flying"
+            ],
+            [
+              "**Resistance:** 1",
+              "**Attack Damage:** 2[CD]"
+            ],
+            [
+              "**Buff:** _Free Flying_ - When an allied officer with a flying mount takes the Move or Sprint actions while in the same zone as this division, their speed is increased by 1 and they do not provoke Opportunity Attacks until the end of their turn."
+            ],
+            [
+              "**Features:**\n• This division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn.\n• This division is not affected by difficult terrain."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Griffin Cavalry**\n_Aerial riders, great for swooping._",
+              "**Type:** Cavalry, Flying"
+            ],
+            [
+              "**Resistance:** 1",
+              "**Attack Damage:** 3[CD]"
+            ],
+            [
+              "**Buff:** _Swoopers_ - Whenever an allied officer with a flying mount in the same zone makes a melee attack, they may roll an additional die."
+            ],
+            [
+              "**Features:**\n• This division is not affected by difficult terrain."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Medical Unit**\n_Trained Medics capable of revitalizing injured soldiers._",
+              "**Type:** Support"
+            ],
+            [
+              "**Resistance:** 0",
+              "**Attack Damage:** 0[CD]"
+            ],
+            [
+              "**Buff:** _Triage_ - When an allied officer in the same zone takes the First Aid major action, they may target any officer in the same zone regardless of distance."
+            ],
+            [
+              "**Features:**\n• Officers in the same zone as this division may issue the Regroup order as a Minor Action."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Military Band**\n_Musicians playing to inspire soldiers in battle._",
+              "**Type:** Support"
+            ],
+            [
+              "**Resistance:** 0",
+              "**Attack Damage:** 0[CD]"
+            ],
+            [
+              "**Buff:** _War Drums -_ Allied officers in the same zone roll an extra die on Console and Demoralize tasks."
+            ],
+            [
+              "**Features:**\n• At the end of each round, all unbroken allied divisions in the same zone as this division regain 1 morale."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Tactical Corps**\n_Strategic thinkers who help analyze the battlefield._",
+              "**Type:** Support"
+            ],
+            [
+              "**Resistance:** 0",
+              "**Attack Damage:** 0[CD]"
+            ],
+            [
+              "**Buff:** _Order Runners_ - Officers within the same zone as this division may issue orders to divisions in adjacent zones as if they were in that zone."
+            ],
+            [
+              "**Features:**\n• When this division enters a zone with an enemy division, the ordering officer may ask one question about the opposing army as if using the Obtain Information momentum spend."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Mangonel**\n_Shorter ranged but more flexible catapults._",
+              "**Type:** Siege"
+            ],
+            [
+              "**Resistance:** 0",
+              "**Ranged Attack Damage:** 4[CD]"
+            ],
+            [
+              "**Buff:** None"
+            ],
+            [
+              "**Features:**\n• When this division makes an attack, the ordering officer uses their Study instead of Authority for the task.\n• This division may attack structures within or along the border of its current zone.\n• This division may attack any division in an adjacent zone, increasing the Difficulty by 1."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Trebuchet**\n_Siege weapons capable of striking from afar._",
+              "**Type:** Siege"
+            ],
+            [
+              "**Resistance:** 0",
+              "**Ranged Attack Damage:** 5[CD]"
+            ],
+            [
+              "**Buff:** None"
+            ],
+            [
+              "**Features:**\n• When this division makes an attack, the ordering officer uses their Study instead of Authority for the task.\n• When making an attack, this division can target any division in an adjacent zone, or a structure in or along the border of any adjacent zone. This division cannot attack targets in the same zone.\n• All zone borders are considered Hazardous for this division."
+            ]
+          ]
+        }
+      ],
+      "id": "chapter-eleven-building-blocks-of-an-army-divisions"
+    },
+    {
+      "title": "Stratagems",
+      "chapter": "Chapter Eleven: Building Blocks of an Army",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Each division gets 1 stratagem. Most stratagems can only be applied to divisions of a particular type, though there are some that can only be utilized by a specific division."
+        },
+        {
+          "type": "paragraph",
+          "text": "Stratagems marked Order grant an additional order that the division can be issued with the Issue Orders major action. Stratagems marked Passive grant a passive ability."
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Surrounding Tactics**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Infantry_"
+            ],
+            [
+              "1/scene, you may issue this order. Choose an enemy officer within Range 8. The officer is Slowed and Off-Guard until the end of their next turn."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Fortify**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Infantry_"
+            ],
+            [
+              "2/scene, you may issue this order. Until the start of your next turn, all borders of this division’s current zone are considered Hazardous to enemy divisions, if they were not already. The first Opportunity Attack you make before your next turn deals 3[CD] additional damage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Stand Your Ground**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Infantry_"
+            ],
+            [
+              "3/scene, you may issue this order. Until the end of your next turn, enemy divisions in the same zone may only target this division. This ends if this division is broken. If you have taken the Guard major action this turn, the Bonus Momentum cost to take a Swift Action to issue this order is reduced by 1."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Battering Ram**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Infantry_"
+            ],
+            [
+              "You may issue this order. Choose a gate or door space on the battlefield. Make a Presence + Authority task of Difficulty 1. On a success, deal damage to the target equal to the division’s normal attack + 2[CD]."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Push In**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Light Footmen"
+            ],
+            [
+              "2/scene, you may issue this order. While you are in the same zone as this division, any melee attacks you make this round cannot be defended against. Immediately take the Attack Major Action and roll an additional die on the attack."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Mounted Infantry**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** _Infantry_, Bowmen"
+            ],
+            [
+              "This division starts the battle mounted. While mounted, this division can make two Free Moves every round. An officer may order this division to Free Move even if they have already ordered a Free Move this turn.\nThis division may not be issued any non-movement orders while mounted, but may be ordered to dismount as a free action. Once this division has dismounted, it may not become mounted again for the rest of the scene."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**At Guard**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Heavy Footmen"
+            ],
+            [
+              "2/scene, you may issue this order. Choose up to three allied characters in this zone. They gain 2 temporary HP until the end of your next turn."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Siege Tower**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Infantry_"
+            ],
+            [
+              "1/scene, you may issue this as an order. Choose a free space in the same zone. A ladder is placed there. If the ladder is adjacent to walls along the border between two zones, allied divisions are able to cross the border as Hazardous Terrain. The ladder is destroyed if this division is Broken.\nAs a Minor Action, you may order the division to pick up the ladder. The ladder is removed from the field and this division regains its use of this stratagem."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Missiles into Ranks**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Projectile_"
+            ],
+            [
+              "1/scene, you may issue this order. This division may make an attack against a targetable division. On a success, all other enemy divisions in the same zone take 3[CD] damage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Cover Fire**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Bowmen, Horse Bowmen"
+            ],
+            [
+              "2/scene, you may issue this as an order. Choose an allied officer in the same zone. Until your next turn, all attacks against the target officer have +1 Difficulty and they cannot be targeted by Opportunity Attacks."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Pin Down**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Projectile_"
+            ],
+            [
+              "1/scene, you may issue this order. Choose an enemy officer within Range 7 of you and perform a Difficulty 1 Presence + Authority task. On a success, they are Immobilized and Exposed until the end of their next turn."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Longbows**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Bowmen"
+            ],
+            [
+              "Your bowmen are equipped with longbows. If this division has not moved this round, they may attack a division in an adjacent zone. They may not move for the rest of this round."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Anti-Cavalry Barrage**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Projectile_"
+            ],
+            [
+              "2/scene, you may issue this order as a Reaction when an enemy cavalry division enters the same zone as this one. Immediately make an attack with an Advantage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Hail of Arrows**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Bowmen"
+            ],
+            [
+              "1/scene, you may issue this order. For the rest of the round, every army attack made by an ally in the same zone gains an extra 1d20."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Mounted Withdraw**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** _Cavalry_"
+            ],
+            [
+              "When this division crosses a Hazardous border, it does not provoke Mass Opportunity Attacks from divisions in the zone it is leaving."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Cavalry Charge**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Cavalry_"
+            ],
+            [
+              "2/scene, you may issue this order. This division charges into an adjacent zone. All enemy divisions in the target zone take 2 Piercing damage, then this division makes an Army Attack."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Ride Along**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** _Cavalry_"
+            ],
+            [
+              "2/scene, you may move half your speed when you order this division to make a Free Move. You may only do so once per round."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Shock into Submission**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Cavalry_"
+            ],
+            [
+              "2/scene, you may issue this order. Choose any number of enemy divisions in the same zone. Perform a Presence + Authority task with a Difficulty equal to the number of divisions you chose. On a success, each of those divisions cannot provide its buff or use its stratagem until the start of your next turn."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Trampling Rush**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Cavalry_"
+            ],
+            [
+              "1/scene, you may issue this order. This division charges at enemy officers. All enemies in a four space line from the ordering officer take this division’s regular attack damage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Strike with the Pack**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Heavy Cavalry, Griffin Cavalry"
+            ],
+            [
+              "1/scene, you may issue this order. Order this division to make an Army Attack, then make an attack. Your attack gains the Startling effect."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Barrel In**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** _Cavalry_"
+            ],
+            [
+              "1/scene, this division can make an army attack after making a Free Move."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Arcanum Unbound**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Mages"
+            ],
+            [
+              "When this division makes a successful attack, you may increase its damage by 2[CD]. After you do, this division is Off-Guard until the end of your next turn."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Bursts of Magick**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Mages"
+            ],
+            [
+              "1/scene, you may issue this order. Choose a space on the battlefield within Range 6 of you. This division makes an attack on that space with the Burst 2 damage effect."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Defensive Warding**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Mages"
+            ],
+            [
+              "1/scene, you may issue this order. Choose up to three allies in the same zone, officers or divisions. They gain 4[CD] temporary HP."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Arcane Reserve**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Mages"
+            ],
+            [
+              "1/scene, you may issue this order. Choose an Arcane spell you have prepared. You may cast it without expending a use, even if you have no uses left."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Siege Magic**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Mages"
+            ],
+            [
+              "This division may attack structures on the battlefield. When they do, roll an additional 2[CD]."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Arcane Artillery**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Mages"
+            ],
+            [
+              "1/scene, you may issue this order. Choose an adjacent zone to this division. All divisions in that zone take 2[CD] Piercing damage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Strafing Run**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Flying_"
+            ],
+            [
+              "1/scene, you may issue this order. Choose a space within Range 8 of you. All officers within Blast 2 of that space take 4[CD] Piercing 2 damage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Airlift**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** _Flying_"
+            ],
+            [
+              "2/scene, you may issue this order. Choose a space you can see within Range 10 of your current location. You are moved to that location, ignoring height and terrain effects, but provoking Opportunity Attacks as normal. If you make a Swift Task in the same turn that you issue this order, the Momentum cost is reduced by 1, to a minimum of 0."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Life Support**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Medical Unit"
+            ],
+            [
+              "1/scene, when an officer in the same zone is dealt damage that would reduce their HP to zero, they may Avoid Injury without spending their Determination. Additionally, when this occurs, they regain 8[CD] HP."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Attentive Aid**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Medical Unit"
+            ],
+            [
+              "1/scene, you may issue this order. All allied officers adjacent to the ordering officer, including the ordering officer, regain 7 [CD] health."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Extra Care**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Medical Unit"
+            ],
+            [
+              "1/round, when an allied officer in the same zone is healed, the healer may reroll any blanks."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Healing Support**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Medical Unit"
+            ],
+            [
+              "3/scene, you may issue this order. Take the First Aid major action, and roll an extra 4[CD] for the amount healed."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Play On, Play On**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Military Band"
+            ],
+            [
+              "At the end of each round, all unbroken allied divisions in the same zone regain 2 morale instead of 1, and all allied officers in the same zone regain 1 Willpower."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Inspiring Tune**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Military Band"
+            ],
+            [
+              "1/scene, you may issue this order. All unbroken allied divisions in the same zone restore 5[CD] Morale."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Ballad of Death**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Military Band"
+            ],
+            [
+              "2/scene, you may issue this order. All attacks you take until the end of their turn gain the Daunting 2 effect. Immediately take the attack Major Action."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Fierce Drums**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Military Band"
+            ],
+            [
+              "When an officer in the same zone takes the Demoralize action, they deal +2[CD] damage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Excellent Authority**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Tactical Corps"
+            ],
+            [
+              "When an allied officer in the same zone takes the Direct or Issue Orders major actions, they gain 1 Bonus Momentum."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Calculated Strike**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Tactical Corps"
+            ],
+            [
+              "2/scene, when an allied officer in the same or an adjacent zone makes an attack against a Pinpointed enemy, they may forgo the Advantage to add +2d20 to their roll instead."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**False Orders**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Tactical Corps"
+            ],
+            [
+              "1/scene, you may issue this order. Choose an enemy division in the same zone and perform a Difficulty 1 Reason + Intrigue task. On a success, it moves to an adjacent accessible zone of your choice and cannot be issued orders for the rest of the round, other than Brace.\n\nYou may spend Bonus Momentum to move additional divisions this way. For every Bonus Momentum you spend, move an additional division. It cannot be issued orders for the rest of the round, other than Brace."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Strategic Insights**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Tactical Corps"
+            ],
+            [
+              "2/scene, when an allied officer in the same zone takes the Pinpoint major action, they may create an additional Advantage."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Scouted for Ambush**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Tactical Corps"
+            ],
+            [
+              "3/scene, when an allied officer takes the Hide major action anywhere on the battlefield, the Difficulty is reduced by 1."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Catapult Barrage**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Mangonel, Trebuchet"
+            ],
+            [
+              "1/scene, you may issue this order if you are in a zone this division can target. Choose a space within Range 8 of you. The division makes an attack with Blast 2 targeting all officers present, allied and enemy, contested by Agility + Skirmish."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Targeted Strike**",
+              "_Passive_"
+            ],
+            [
+              "**Applicable Divisions:** Mangonel, Trebuchet"
+            ],
+            [
+              "This first time this division damages a structure, roll double its [CD]."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "rows": [
+            [
+              "**Long Fire**",
+              "_Order_"
+            ],
+            [
+              "**Applicable Divisions:** Trebuchet"
+            ],
+            [
+              "1/scene, you may issue this order. The trebuchet may make an attack against any division or structure on the battlefield, regardless of zone distance."
+            ]
+          ]
+        }
+      ],
+      "id": "chapter-eleven-building-blocks-of-an-army-stratagems"
+    },
+    {
+      "title": "Army Talents",
+      "chapter": "Chapter Eleven: Building Blocks of an Army",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Like player characters, the player’s armies have Army Talents which provide certain benefits to taking certain actions in narrative (non-combat) play, often enhancing the outcome of a character’s particular course of action if successful. While each talent is rooted in the features of the army itself, they primarily provide benefits to the player characters themselves, most often when taking actions that involve or take advantage of the army."
+        },
+        {
+          "type": "paragraph",
+          "text": "If an ability provides a bonus a limited number of times (such as once per session), that limit applies to the entire party, not each individual character."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Alert Watchmen**\nYour army has a robust watch protocol preventing the risk of ambush. While your army is camped, it cannot be surprise attacked and can always report who came and left the encampment."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additionally, when your army is prepared for an ambush, you may automatically succeed on any Task to find a place to conceal your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Camp Healers**\nYour army has a number of well-trained healers in its midst. When traveling with your army, if you roll on the Injury Effect Table, you may roll twice and choose either result. In addition, when attempting Tasks that use Medicine, you may always act as though you have a relevant Focus if you are being assisted by healers from your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Chain of Command**\nYour army has a robust and strict hierarchy, and can function for periods of time without its highest commanders. If your army is unattended for up to a week, it will maintain discipline and obey its most recent orders. Additionally, you gain +1d20 on Tasks to mitigate Complications caused by your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Diplomats Corps**\nYour army always has someone who speaks the language of and knows the general culture of anyone you encounter, so long as there is a major political power of that culture. You may always Succeed at Cost when convincing someone to parley before battle."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Enhanced Interrogation**\nYour army specializes in extracting information from captives. When you succeed on an Intrigue task to interrogate a prisoner held by your army, you gain two Bonus Momentum that can only be spent on the Obtain Information momentum spend."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Fearsome Reputation**\nYour army is known to be ruthless and terrifying. 1/session, when you perform a Task to intimidate someone, you may roll an extra die by invoking the reputation of your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "If an enemy town has an army smaller than yours, they will automatically surrender unless their liege is present."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Gossip Mill**\n3/session, when you use the Obtain Information momentum spend, you may ask an additional question to learn information from people in your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Impeccable Logistics**\nYour army is a master of its supply chain. If your army’s supply line is cut off, your army can go two months without running out of resources. Additionally, the Momentum cost to Create an Advantage to acquire an item is reduced by 1, to a minimum of 0."
+        },
+        {
+          "type": "paragraph",
+          "text": "You may always Succeed at Cost on any task to make your army undergo a forced march. When undergoing a forced march, your army can move at double speed."
+        },
+        {
+          "type": "paragraph",
+          "text": "**In it for the Coin**\nYour army fights, above all else, for the pay. You suffer no Complications or penalty to your reputation if you turn against someone who cannot or refuses to pay your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additionally, if your army is hesitant to follow an order, you always know what price it would take to convince them otherwise and how to get it."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Liege’s Legion**\nYour army fights in the name of a liege. Before you attempt a Task involving your army, you may invoke its liege’s name to ask a nearby lord or populace for assistance. If they have a positive opinion of the army’s liege, roll an extra die. If they have a negative opinion, you immediately generate a Complication instead."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Mess Tents**\nYour army’s cooks are some of the best in the land and can make delicious food with the simplest of supplies. When your army is well supplied, you gain +1d20 on Diplomacy Tasks to interact with members of your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Pampered and Provided**\nYour army is well equipped to host a person of status. When a noble or royal is traveling with you, they are always given treatment above expectations, unless you order otherwise."
+        },
+        {
+          "type": "paragraph",
+          "text": "While they are in your care, when you perform a Diplomacy Task to interact with them, you may reroll one die on the Task."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Plague Resilient**\nWhen you perform a Task to contain, treat, or study a disease affecting your army, gain an extra die. If you have a medical unit in your army, you may also gain a die when performing a Task to contain, treat, or study a disease in a city or town."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Raiders**\nYour army is especially good at looting and pillaging. When you allow your army to loot a settlement, you gain an Advantage on all Tasks relating to your army for the remainder of the session."
+        },
+        {
+          "type": "paragraph",
+          "text": "Additionally, when you do, each member of the party may specify an object or possession captured that they wish to have as theirs, which they will obtain undamaged."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Ransom Cages**\nYour army is equipped with secure means of transporting prisoners and hostages. Captured characters cannot escape your custody unless you allow them. In addition, 1/session you gain a free Advantage on any Task to intimidate someone if your army currently has prisoners."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Siege Masters**\nWhen your army is engaged in an Extended Task or Challenge for a siege, the Momentum cost to reduce the time a Task takes is 1."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you use a Siege type division in your army to reduce the cost to Create an Advantage, you may reroll any number of dice once on the task. You must keep the new result."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Skilled Scouts**\nYour army has trained for scouting ahead and learning about the enemy. You may reroll a die on a task to have your army perform a scouting mission, and may choose to keep either result. The first Momentum you spend to Gather Information from a task related to scouting,"
+        },
+        {
+          "type": "paragraph",
+          "text": "**Strict Discipline**\nYour army is held to the utmost standard and follows orders without question. 1/session, you may automatically succeed on a Task to issue commands to your army. You do not suffer Complications when rebuking or inflicting discipline on your army."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Swords for Hire**\nYour army is always on the lookout for new work. When attempting a Task to convince a prospective patron to hire you, you may reroll any number of dice in your pool. In addition, when negotiating your pay, you may choose to increase the Complication range by 2 (Complications on 18-20) in order to gain an extra die."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Strangers in a Strange Land**\nThe primary force of your army is foreign to these lands, making it more insular and self-reliant. Your army is immune to attempts to sneak outside spies into your ranks. Whenever you perform an Authority Task to interact with members of your army, roll an extra die."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Undying Commitment**\nYour army is unilaterally devoted to your cause. 1/session, after you appeal to the Common Cause to spend your Determination on a Task related to your army, you regain it."
+        },
+        {
+          "type": "paragraph",
+          "text": "Your army may call upon the party to comply with the Common Cause. If the party chooses to Challenge it instead, the army will abandon you until you regain their trust, up to the GM’s discretion."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Warriors of the Faith**\nYour army fights in the name of a religious institution. Characters of the same faith will not fight your army unless they believe you are going to attack them or if given permission by a religious authority of your faith."
+        },
+        {
+          "type": "paragraph",
+          "text": "When you perform a Task with Faith related to your army, you may roll an additional die."
+        }
+      ],
+      "id": "chapter-eleven-building-blocks-of-an-army-army-talents"
+    }
+  ]
+}
