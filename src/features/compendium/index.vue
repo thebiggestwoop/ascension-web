@@ -12,10 +12,7 @@ const activeSection = ref('lifepath')
 
 <template>
   <v-container fluid>
-    <h2 class="text-h5 mb-1">Compendium</h2>
-    <p class="text-body-2 text-medium-emphasis mb-3">
-      A rules reference for Ascension Beta 0.8, sourced directly from the bundled content.
-    </p>
+    <h2 class="text-h5 mb-3">Compendium</h2>
 
     <v-tabs v-model="activeSection" class="mb-4">
       <v-tab text="Lifepath" value="lifepath" />
