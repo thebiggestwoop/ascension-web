@@ -1,0 +1,357 @@
+ARCHETYPE PLAYSTYLE DRAFTS - FOR REVIEW
+========================================
+Not yet added to content/archetypes/_index.json - drafted here for you to review,
+edit, and paste in yourself.
+
+Written in the same voice/format as your existing playstyles: combat-only,
+**bold** for the specific Talent/Spell being called out, no mention of any
+Narrative Talent. Each one is grounded in that archetype's actual prepared
+Combat Talents, spells, and equipment (cross-checked against the rules text in
+content/talents/combat.json and content/spells/*.json) - not just vibes.
+
+Where an archetype holds a Combat Talent whose bonus doesn't cleanly click with
+the rest of its kit (e.g. a talent that wants no armor on a character who wears
+armor), I either left it out or phrased it as a situational fallback rather than
+overstating a synergy that isn't really there - flagged inline with [note] where
+that happened, so you can decide whether to swap gear/talents instead of the text.
+
+
+SWORD
+=====
+
+Assassin
+--------
+Open a fight from range by throwing your Throwing Knife - a successful hit with
+**Thrown Weapons Adept** hands you a bonus momentum immediately. Close in and
+strike with your shortsword or dagger; **Sword Adept** and **Dual Wielding**
+both shave down the cost to Swift Task into a second attack with whichever
+blade is free, letting you chain hits before the enemy can react.
+
+Once you've landed a hit, use **Stealthy Fighter** to Hide as a Minor Action -
+vanish back into the shadows to reposition, line up your next throw, or avoid
+being ganged up on between turns.
+
+
+AXE
+===
+
+Death Knight
+------------
+Make your battleaxe your **Spellblade** weapon, so you can swing it using
+Presence instead of Brawn - and cast Dark spells right through it, no Spell
+Implement needed. Before charging in, cast **Siphoning Strike** to imbue your
+axe: the extra damage lands alongside your **Axe Adept** rerolls, and you heal
+for every Effect you roll.
+
+When an enemy manages to wound you, retaliate on your next turn - **Vengeful**
+grants a hefty 2 bonus momentum against anyone who damaged you this round,
+fueling repeat swings or a follow-up **Soul Drain** to seep away more of their
+life for your own.
+
+Guardian
+--------
+Take the Guard Major Action to protect an ally - wearing armor nets you a
+bonus momentum from **Defensive Wall** for doing so, and **Close Protection**
+lets that ally move freely at your side without leaving your protection,
+keeping them shielded as the fight shifts.
+
+Wield your round shield to Block incoming attacks: **Shield Master** doubles
+the temporary HP you gain when an Effect is rolled. Once per session,
+designate an ally with **Willing Shield** so you can throw yourself between
+them and an attacker's blow, assisting their defense with your own weapon's
+Attribute and Skirmish.
+
+Warrior
+-------
+Thanks to **Heavy Lifting**, wield your greataxe in one hand without penalty
+so you can also carry your shield - the best of both offense and defense. Go
+berserk as a Minor Action with **Berserker**: you gain a bonus die and +2[CD]
+on every melee swing, and **Axe Adept** lets you reroll any damage dice that
+come up low.
+
+Before the real fighting starts, **Antagonist** makes your Demoralize hit
+twice as hard, softening an enemy's resolve before you close the distance.
+Remember that while berserk you can't recover HP or Willpower and enemies
+gain a bonus die against you too - so pick your moment to rage.
+
+Reaver
+------
+**Heavy Lifting** lets you wield your greataxe in a single hand, freeing your
+other hand for a handaxe - true dual-wielding of two Axe-tag weapons. Attack
+with one, then use **Dual Wielding**'s reduced Swift Task cost to follow up
+with the other; **Axe Adept** lets you reroll any lackluster damage dice from
+either strike.
+
+When you Shove a foe out of position, **Juggernaut** sends them flying 3
+spaces instead of 1 - useful for putting distance between you and a target
+you'd rather isolate, or knocking someone off a ledge or into a hazard.
+
+
+SPEAR
+=====
+
+Paladin
+-------
+Make your glaive your **Spellblade** weapon so you can strike with Faith
+instead of Coordination, and cast Light spells through it freely. Before
+wading in, cast **Holy Smite** to imbue the blade with radiant power, then
+thrust with **Spear Adept**'s bonus die backing up the swing.
+
+At the start of a rough turn, take a **Defensive Stance** for 5 temporary HP
+to weather the return blow. Between clashes, reach out with **Lay on Hands**
+to mend a wounded ally at your side, ward one with **Divine Protection** from
+range, or soften a target with **Guiding Ray** so your allies' follow-up
+attacks land easier.
+
+Bulwark
+-------
+Plant yourself at the front with your tower shield - its Concealing quality
+gives adjacent allies Half-Cover from ranged attacks, while **Shield Master**
+doubles the temporary HP your Block gains from a rolled Effect. Take the
+Guard Major Action to watch over an ally: **Defensive Wall** rewards you with
+bonus momentum for wearing armor while you do, and **Close Protection** lets
+your ward move freely at your side without stepping outside your protection.
+
+When an opening appears, thrust with your spear - **Spear Adept**'s bonus die
+keeps your strikes reliable even while your attention is split between
+offense and holding the line.
+
+
+BOW
+===
+
+Arcane Archer
+-------------
+Thanks to **Spellshot**, your Spellblade spells work through your bow instead
+of a melee weapon - imbue your shortbow with **Volcanic Strike**, **Frozen
+Strike**, or **Thunderous Strike** before firing to layer elemental damage
+and a status effect onto your shot. **Bow Adept** lets you choose the better
+result when you reroll on the Aim Minor Action, keeping your aimed shots
+reliable.
+
+Use **Skip** to reposition - **Warp** extends its range further than most,
+letting you put real distance between yourself and anyone closing in. When
+forced into melee, **Arcane Parry** lets you defend with Magick instead of
+your physical Attributes.
+
+
+ARCANE MAGICK
+=============
+
+Fulgermancer
+------------
+Strike from range with **Electric Arc**, then use **Fulgermancer** to juice
+up your next Lightning spell - Arcing Bolt to catch multiple foes in its
+burst, Distant Spark to stretch your range further, or Static Vulnerability
+to leave a stunned target wide open for an ally's follow-up. **Armis Arcane**
+keeps you surprisingly durable while unarmored and unshielded.
+
+When things get too close, cast **Invisibilis** and immediately Hide as a
+free action thanks to **Shadow Cloak** - or **Skip** away entirely, **Warp**
+stretching the teleport further than most casters manage. Either way, you're
+gone before retaliation ever lands.
+
+Pyromancer
+----------
+Ride into range on your horse - **Cavalry Adept** removes the usual
+Difficulty increase for casting while mounted - and rain down **Firebolt** on
+your enemies. Apply **Pyromancer** to your next Fire spell for Spreading
+Flames to catch a cluster of foes, Vicious Flames for a straight damage
+boost, or Distant Flames to strike from further away.
+
+With your Spell Implement in hand, **Augmentier** turns any Bonus Damage
+momentum spend into extra damage dice instead of flat points, letting a
+well-placed hit spiral out of control. Use **Skip** to reposition and
+**Electric Arc** to punish anyone resistant to fire, and fall back on
+**Arcane Parry** to defend with Magick if an enemy closes the distance.
+
+Cryomancer
+----------
+Stay unarmored and shieldless to get the most from **Counterspell** - a
+bonus, rerollable die to defend against enemy spells - while **Armis Arcane**
+still grants you 2 Resistance to offset the risk. Freeze foes at range with
+**Frigid Grasp**, then apply **Cryomancer** to your next Ice spell: Encasing
+Ice to lock a Slowed target down entirely, Frostbite to catch them Off-Guard
+instead, or Brittle Ice to expose them to your allies' attacks.
+
+With your Spell Implement in hand, **Augmentier** converts Bonus Damage
+momentum spends into extra damage dice. If an enemy gets in your face, imbue
+your handaxe with **Frozen Strike** to slow them down, or **Skip** away
+before they get the chance.
+
+Spellstalker
+------------
+Strike from hiding with **Electric Arc** or **Frozen Strike**, then use
+**Stealthy Fighter** to Hide again as a Minor Action the moment your attack
+connects. Cast **Invisibilis** to vanish outright - **Shadow Cloak** lets you
+immediately Hide as a free action the instant you turn invisible, layering
+concealment on concealment.
+
+When you need to close distance or bail out entirely, **Skip** away with
+**Warp**'s extended range. Your buckler's Effortless quality keeps your
+off-hand free without slowing you down, so you're never caught without an
+escape route.
+
+
+LIGHT MAGICK
+============
+
+Mendicant
+---------
+Reach out and heal the wounded with **Lay on Hands**, then apply **Vitalurge**
+to your next Healing spell - Soothing Touch for more HP restored, Restorative
+Ward to layer on temporary HP, or Cleansing Light to burn off a lingering
+condition alongside the healing. **Divine Protection** wards an ally before
+they take a hit at all, and **Guiding Ray** both damages a foe and makes them
+easier for your allies to hit.
+
+With your Spell Implement in hand, **Augmentier** turns Bonus Damage momentum
+into extra damage dice when you do need to fight back. [note: Counterspell's
+bonus die needs no armor/shield, but this build wears medium armor - line
+below phrases it as a situational fallback rather than a reliable feature]
+**Counterspell** gives you a fighting chance to shrug off a return spell if
+you're ever caught without your armor.
+
+Luminary
+--------
+Strike from range with **Guiding Ray**, then apply **Luminurge** to your next
+Radiant spell to layer on a status effect - Dazzling Flash to catch them
+Off-Guard, Weakening Glare to sap their strength, or Exposing Glint to open
+them up for your allies. **Touch of Haste** sends an ally darting into
+position or out of danger with a burst of speed.
+
+Mend the wounded with **Lay on Hands**, and with your Spell Implement in
+hand, **Augmentier** turns Bonus Damage momentum into extra damage dice on
+the rare occasion you need to hit hard. **Fortified Mind** lets you shrug off
+attempts to shake your resolve mid-fight.
+
+Inquisitor
+----------
+Use **Inquisitor's Eye** to sniff out anyone hiding from you, then bear down
+on spellcasters especially - **Mage's Bane** lets you punish an enemy the
+instant they cast a spell, either with an immediate Opportunity Attack if
+they're close or a full-speed charge to close the gap if they're not. Imbue
+your shortsword with **Holy Smite** before you strike.
+
+Demoralize is your other weapon: **Antagonist** adds extra damage to a
+successful Demoralize, and **Provocateur** lets you tack the Provoking damage
+effect onto either your attack or your Demoralize, dragging an enemy's
+attention onto you. **Castigate** batters a target's Willpower directly,
+softening their resolve from range before you ever close in.
+
+War Priest
+----------
+Make your warhammer your **Spellblade** weapon, striking with Faith instead
+of Brawn and casting Light spells through it without a Spell Implement.
+Imbue it with **Holy Smite** before you swing - your warhammer's own
+Knockdown effect on top of the extra radiant damage can flatten an enemy
+outright.
+
+**Mage's Bane** lets you punish enemy spellcasters the moment they cast, with
+an Opportunity Attack if they're close or a full charge if they're not.
+Between swings, mend allies with **Lay on Hands**, soften a target from range
+with **Guiding Ray** or **Castigate**, and use **Luminurge** to layer a
+status effect onto your next Radiant spell.
+
+
+DARK MAGICK
+===========
+
+Shadow Caller
+-------------
+Strike from range with **Penumbra**, then apply **Noctocraft** to your next
+Shadow spell - Grip of Terror to leave a hit target Frightened, Enfeebling
+Shroud to set up a devastating follow-up Demoralize, or Last Will to hit even
+harder once you've taken a Wound yourself. Imbue your dagger with **Shadow
+Blade** or **Geist Strike** before closing in for the kill.
+
+Disappear the instant the fighting turns against you: **Stealthy Fighter**
+lets you Hide as a Minor Action right after a successful attack, and casting
+**Umbral Shroud** turns you invisible outright - **Shadow Cloak** then lets
+you Hide again immediately, keeping you one step ahead of anyone trying to
+find you.
+
+Plague Doctor
+-------------
+Poison a foe's blood with **Blood Sickness**, then apply **Hemocraft** to your
+next Blood spell - Open Veins to make them harder to heal, Diseased Blood to
+worsen the lingering damage, or Blood Sense to stretch your reach. **Soul
+Drain** seeps away an enemy's life force at close range and hands the stolen
+HP right back to you.
+
+When an ally goes down, **Combat Medic** gives you a bonus die on First Aid
+even in the thick of a fight, and **Blood Heal** lets you trade your own HP
+to mend theirs at a steep exchange rate. With your Spell Implement in hand,
+**Augmentier** turns Bonus Damage momentum into extra damage dice for when
+you need to strike back yourself.
+
+Nosferatu
+---------
+Seep away life with **Soul Drain**, then apply **Thymocraft** to your next
+Soul spell - Weakening Drain to sap a target's strength, Lethargic Drain to
+slow them down, or Thirsting Drain to heal for even more when the spell
+restores your HP. **Siphoning Strike** turns your handaxe itself into a
+life-draining weapon for when enemies close the distance.
+
+**Gremorie** gives your Tome an extra Spell Slot, letting you prepare more of
+your draining spells than most casters manage, and **Augmentier** converts
+Bonus Damage momentum into extra damage dice with your Spell Implement in
+hand.
+
+Night Rider
+-----------
+Charge in mounted, lance leveled - its Saddleback quality means you don't
+suffer the usual Difficulty increase for attacking on horseback, and **Spear
+Adept** adds a reliable bonus die to the strike. Make your lance your
+**Spellblade** weapon so you can attack with Presence and cast Dark spells
+through it without a Spell Implement.
+
+Before the charge, cast **Penumbra** or imbue your lance with **Shadow
+Blade** for extra bite, and apply **Noctocraft** to your next Shadow spell to
+leave a hit target Frightened. **Blood Bargain** lets you trade HP for a
+burst of Willpower (or an easier Magick task) when you need the extra push,
+and **Siphoning Strike** keeps you topped up in a drawn-out melee.
+
+
+AUTHORITY
+=========
+
+Bishop
+------
+Ride at the head of your allies - **Cavalry Adept** removes the usual
+Difficulty increase for acting from horseback - and take the **Direct**
+Major Action to let an ally act on your turn. **Commander** grants a bonus
+momentum every time you Direct or Issue Orders, and **Bannerlord** lets you
+wield your banner without tying up a hand, still granting a reroll on
+Authority Tasks or Direct itself.
+
+Support from range with **Guiding Ray** to soften a foe and set up an ally's
+attack, mend wounds with **Lay on Hands**, and use **Prayer of Fortune** to
+hand an ally an Advantage right when they need it most.
+
+Strategist
+----------
+Set the battlefield before the fight even starts - **Trapper** lets you lay
+hidden Spring, Steel, or Net traps to knock back, immobilize, or ensnare
+anyone who stumbles into them. Open with **Pinpoint** to size up a target,
+and **Tactician** hands you 2 bonus momentum for it, on top of unlocking the
+**Direct** Major Action.
+
+**Commander** adds another bonus momentum every time you Direct or Issue
+Orders, letting your allies act more often than they could alone, and
+**Helping Hand** does the same for a well-timed Assist. Fall back on your
+shortbow to pick off stragglers while your traps and orders do the heavy
+lifting.
+
+Dark Vizier
+-----------
+**Feint** before you strike, redirecting your next melee attack to use
+Intrigue instead of Skirmish - useful when your cunning outstrips your
+swordsmanship. Imbue your blade with **Geist Strike** to leave a hit target
+seeing you as Invisible, or vanish outright with **Umbral Shroud**.
+
+**Tactician** rewards you with bonus momentum for Pinpointing a target and
+opens up the **Direct** Major Action, while **Helping Hand** does the same
+for a well-placed Assist - letting your allies strike harder and more often
+than they could alone. Keep a throwing knife ready for anyone who closes the
+distance before you're ready for them.

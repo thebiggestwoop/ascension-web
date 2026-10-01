@@ -66,7 +66,7 @@
     "medicine",
     "skirmish"
   ],
-  "currentHp": 30,
+  "currentHp": 36,
   "currentWillpower": 11,
   "temporaryHp": 0,
   "temporaryResistance": 0,
@@ -80,7 +80,7 @@
     "light_magick_1",
     "vitalurge_1",
     "augmentier_1",
-    "counterspell_1"
+    "resilient_1"
   ],
   "equippedWeaponIds": [
     "shortsword"
@@ -148,7 +148,7 @@
         "light_magick_1",
         "vitalurge_1",
         "augmentier_1",
-        "counterspell_1"
+        "resilient_1"
       ],
       "equippedWeaponIds": [
         "shortsword"
